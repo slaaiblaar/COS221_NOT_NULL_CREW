@@ -938,11 +938,13 @@ CREATE TABLE `hole` (
   `hole_no` tinyint(4) NOT NULL,
   `site_id` int(11) NOT NULL,
   `par` tinyint(4) NOT NULL,
-  `length` smallint(6) NOT NULL,
+  `length` decimal(6,2) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_hole_site_id__sites_id` (`site_id`),
   CONSTRAINT `FK_hole_site_id__sites_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
-  CONSTRAINT `CHK_pos_vals` CHECK (`hole_no` > 0 and `par` > 0 and `length` > 0)
+  CONSTRAINT `CHK_par` CHECK (`par` >= 1 and `par` <= 5),
+  CONSTRAINT `CHK_hole_no` CHECK (`hole_no` >= 1 and `hole_no` <= 18),
+  CONSTRAINT `CHK_length` CHECK (`length` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
