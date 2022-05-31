@@ -1825,6 +1825,83 @@ LOCK TABLES `roles` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `round`
+--
+
+DROP TABLE IF EXISTS `round`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `round` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `round_no` tinyint(4) NOT NULL,
+  `event_id` int(11) NOT NULL,
+  `leader_id` int(11) DEFAULT NULL,
+  `state` varchar(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `round_no` (`round_no`,`event_id`),
+  CONSTRAINT `CHK_state` CHECK (`state` = 'scheduled' or `state` = 'in progress' or `state` = 'finished' or `state` = 'cancelled' or `state` = 'postponed')
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `round`
+--
+
+LOCK TABLES `round` WRITE;
+/*!40000 ALTER TABLE `round` DISABLE KEYS */;
+INSERT INTO `round` VALUES (1,1,1,NULL,'scheduled'),(2,1,2,NULL,'scheduled');
+/*!40000 ALTER TABLE `round` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_round_insert 
+BEFORE INSERT ON round
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkPersonId(NEW.leader_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT INSERT, LEADER_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_round_update
+BEFORE UPDATE ON round
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkPersonId(NEW.leader_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, LEADER_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
 -- Table structure for table `seasons`
 --
 
@@ -2523,6 +2600,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `checkPersonId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `checkPersonId`(person_id int(11)) RETURNS tinyint(1)
+BEGIN
+		IF (person_id IS NULL) 
+			THEN RETURN 1; 
+        END IF;
+        IF (EXISTS (SELECT persons.id FROM persons WHERE persons.id = person_id)) 
+			THEN RETURN 1; 
+        END IF;
+        
+        RETURN 0;
+	END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP FUNCTION IF EXISTS `checkTourId` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -2559,4 +2662,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 17:35:40
+-- Dump completed on 2022-05-31 17:52:20
