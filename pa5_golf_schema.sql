@@ -123,9 +123,57 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
-INSERT INTO `affiliations` VALUES (1,'blah-blah-aff',NULL,1,NULL),(2,'blah-blah-aff',NULL,1,1);
+INSERT INTO `affiliations` VALUES (1,'affiliation_test_1',NULL,1,NULL),(2,'affiliatioon_test_2',NULL,1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_manager_insert 
+BEFORE INSERT ON affiliations
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkMgrId(NEW.manager_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT INSERT, MANAGER_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_manager_update
+BEFORE UPDATE ON affiliations
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkMgrId(NEW.manager_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, MANAGER_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `affiliations_documents`
@@ -1627,7 +1675,7 @@ CREATE TABLE `publishers` (
 
 LOCK TABLES `publishers` WRITE;
 /*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
-INSERT INTO `publishers` VALUES (1,'blah-blah',NULL);
+INSERT INTO `publishers` VALUES (1,'publisher',NULL);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2356,6 +2404,40 @@ LOCK TABLES `weather_conditions` WRITE;
 /*!40000 ALTER TABLE `weather_conditions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `weather_conditions` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Dumping events for database 'pa5_golf_schema'
+--
+
+--
+-- Dumping routines for database 'pa5_golf_schema'
+--
+/*!50003 DROP FUNCTION IF EXISTS `checkMgrId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `checkMgrId`(manager_id int(11)) RETURNS tinyint(1)
+BEGIN
+		IF (manager_id IS NULL) 
+			THEN RETURN 1; 
+        END IF;
+        IF (EXISTS (SELECT affiliations.id FROM affiliations WHERE affiliations.id = manager_id)) 
+			THEN RETURN 1; 
+        END IF;
+        
+        RETURN 0;
+	END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2366,4 +2448,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 16:29:12
+-- Dump completed on 2022-05-31 16:31:18
