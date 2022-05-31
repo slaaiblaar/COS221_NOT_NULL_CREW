@@ -927,6 +927,35 @@ LOCK TABLES `events_sub_seasons` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `hole`
+--
+
+DROP TABLE IF EXISTS `hole`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `hole` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hole_no` tinyint(4) NOT NULL,
+  `site_id` int(11) NOT NULL,
+  `par` tinyint(4) NOT NULL,
+  `length` smallint(6) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_hole_site_id__sites_id` (`site_id`),
+  CONSTRAINT `FK_hole_site_id__sites_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
+  CONSTRAINT `CHK_pos_vals` CHECK (`hole_no` > 0 and `par` > 0 and `length` > 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `hole`
+--
+
+LOCK TABLES `hole` WRITE;
+/*!40000 ALTER TABLE `hole` DISABLE KEYS */;
+/*!40000 ALTER TABLE `hole` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `injury_phases`
 --
 
@@ -2068,18 +2097,18 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `Id` int(11) NOT NULL AUTO_INCREMENT,
-  `Email` varchar(320) NOT NULL,
-  `Password` char(97) NOT NULL,
-  `TelNo` char(10) NOT NULL,
-  `Type` varchar(6) NOT NULL,
-  `FirstName` varchar(50) NOT NULL,
-  `Init` char(1) DEFAULT NULL,
-  `LastName` varchar(50) NOT NULL,
-  PRIMARY KEY (`Id`),
-  UNIQUE KEY `Email` (`Email`),
-  CONSTRAINT `CHK_TYPE` CHECK (`Type` = 'Admin' or `Type` = 'Normal'),
-  CONSTRAINT `CHK_TEL` CHECK (`TelNo` regexp '0[0-9]{9}')
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `email` varchar(320) NOT NULL,
+  `password` char(97) NOT NULL,
+  `tel_no` char(10) NOT NULL,
+  `type` varchar(6) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `init` char(1) DEFAULT NULL,
+  `last_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `email` (`email`),
+  CONSTRAINT `CHK_type` CHECK (`type` = 'admin' or `type` = 'normal'),
+  CONSTRAINT `CHK_tel` CHECK (`tel_no` regexp '0[0-9]{9}')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2332,4 +2361,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 14:23:13
+-- Dump completed on 2022-05-31 14:36:29
