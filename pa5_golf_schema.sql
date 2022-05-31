@@ -1605,6 +1605,9 @@ CREATE TABLE `persons` (
   `hometown_location_id` int(11) DEFAULT NULL,
   `residence_location_id` int(11) DEFAULT NULL,
   `death_location_id` int(11) DEFAULT NULL,
+  `age` tinyint(4) NOT NULL,
+  `affiliation_id` int(11) NOT NULL,
+  `handicap` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_persons_final_resting_location_id_locations_id` (`final_resting_location_id`),
   KEY `FK_per_bir_loc_id__loc_id` (`birth_location_id`),
@@ -1613,13 +1616,16 @@ CREATE TABLE `persons` (
   KEY `FK_per_hom_loc_id__loc_id` (`hometown_location_id`),
   KEY `IDX_FK_per_pub_id__pub_id` (`publisher_id`),
   KEY `IDX_persons_1` (`person_key`),
+  KEY `FK_persons_aff_id__aff_id` (`affiliation_id`),
   CONSTRAINT `FK_per_bir_loc_id__loc_id` FOREIGN KEY (`birth_location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_per_dea_loc_id__loc_id` FOREIGN KEY (`death_location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_per_hom_loc_id__loc_id` FOREIGN KEY (`hometown_location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_per_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   CONSTRAINT `FK_per_res_loc_id__loc_id` FOREIGN KEY (`residence_location_id`) REFERENCES `locations` (`id`),
-  CONSTRAINT `FK_persons_final_resting_location_id_locations_id` FOREIGN KEY (`final_resting_location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_persons_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`),
+  CONSTRAINT `FK_persons_final_resting_location_id_locations_id` FOREIGN KEY (`final_resting_location_id`) REFERENCES `locations` (`id`),
+  CONSTRAINT `CHK_handicap` CHECK (`handicap` >= 0)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1628,6 +1634,7 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
+INSERT INTO `persons` VALUES (1,'7205160067090',1,'male','1972/05/16',NULL,NULL,1,1,1,NULL,50,1,0),(2,'0209130060086',1,'female','2002/09/13',NULL,NULL,1,1,1,NULL,20,1,3);
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2692,4 +2699,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 18:15:11
+-- Dump completed on 2022-05-31 19:23:45
