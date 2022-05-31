@@ -1729,10 +1729,13 @@ CREATE TABLE `sites` (
   `site_key` varchar(128) NOT NULL,
   `publisher_id` int(11) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
+  `address_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_FK_sit_loc_id__loc_id` (`location_id`),
   KEY `IDX_FK_sit_pub_id__pub_id` (`publisher_id`),
   KEY `IDX_sites_1` (`site_key`),
+  KEY `FK_address_id` (`address_id`),
+  CONSTRAINT `FK_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   CONSTRAINT `FK_sit_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_sit_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -2329,4 +2332,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 14:14:00
+-- Dump completed on 2022-05-31 14:23:13
