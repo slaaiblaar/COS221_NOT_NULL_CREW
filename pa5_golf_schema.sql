@@ -123,7 +123,7 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
-INSERT INTO `affiliations` VALUES (1,'affiliation_test_1',NULL,1,NULL),(2,'affiliatioon_test_2',NULL,1,1);
+INSERT INTO `affiliations` VALUES (1,'International Golf Federation','International',1,NULL),(2,'GOLDRSA','South Africa',1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -1675,7 +1675,7 @@ CREATE TABLE `publishers` (
 
 LOCK TABLES `publishers` WRITE;
 /*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
-INSERT INTO `publishers` VALUES (1,'publisher',NULL);
+INSERT INTO `publishers` VALUES (1,'admin@google.com',NULL);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2143,6 +2143,32 @@ LOCK TABLES `teams_media` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tour`
+--
+
+DROP TABLE IF EXISTS `tour`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tour` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `affiliation_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_tour_aff_id__aff_id` (`affiliation_id`),
+  CONSTRAINT `FK_tour_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tour`
+--
+
+LOCK TABLES `tour` WRITE;
+/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -2448,4 +2474,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 16:31:18
+-- Dump completed on 2022-05-31 16:46:40
