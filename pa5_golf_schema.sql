@@ -107,13 +107,14 @@ CREATE TABLE `affiliations` (
   `affiliation_key` varchar(100) NOT NULL,
   `affiliation_type` varchar(100) DEFAULT NULL,
   `publisher_id` int(11) NOT NULL,
+  `manager_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_affiliations_1` (`affiliation_key`),
   KEY `IDX_affiliations_2` (`affiliation_type`),
   KEY `IDX_affiliations_3` (`affiliation_key`,`affiliation_type`,`publisher_id`),
   KEY `IDX_FK_aff_pub_id__pub_id` (`publisher_id`),
   CONSTRAINT `FK_aff_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +123,7 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
+INSERT INTO `affiliations` VALUES (1,'blah-blah-aff',NULL,1,NULL),(2,'blah-blah-aff',NULL,1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1616,7 +1618,7 @@ CREATE TABLE `publishers` (
   `publisher_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_publishers_1` (`publisher_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1625,6 +1627,7 @@ CREATE TABLE `publishers` (
 
 LOCK TABLES `publishers` WRITE;
 /*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
+INSERT INTO `publishers` VALUES (1,'blah-blah',NULL);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2363,4 +2366,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 14:36:29
+-- Dump completed on 2022-05-31 16:29:12
