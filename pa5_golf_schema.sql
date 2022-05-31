@@ -1059,7 +1059,7 @@ CREATE TABLE `hole` (
 
 LOCK TABLES `hole` WRITE;
 /*!40000 ALTER TABLE `hole` DISABLE KEYS */;
-INSERT INTO `hole` VALUES (3,1,1,5,512.00),(4,2,1,3,182.00);
+INSERT INTO `hole` VALUES (1,1,1,5,512.00),(2,2,1,3,182.00);
 /*!40000 ALTER TABLE `hole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1909,6 +1909,43 @@ DELIMITER ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
+-- Table structure for table `score`
+--
+
+DROP TABLE IF EXISTS `score`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `score` (
+  `person_id` int(11) NOT NULL,
+  `round_id` int(11) NOT NULL,
+  `hole_id` int(11) NOT NULL,
+  `netscore` tinyint(4) NOT NULL DEFAULT 0,
+  `strokecount` tinyint(4) NOT NULL DEFAULT 0,
+  `birdie` tinyint(1) DEFAULT NULL,
+  `eagle` tinyint(1) DEFAULT NULL,
+  `bogey` tinyint(1) DEFAULT NULL,
+  `doublebogey` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`person_id`,`round_id`,`hole_id`),
+  KEY `FK_score_round_id__round_id` (`round_id`),
+  KEY `FK_score_hole_id__hole_id` (`hole_id`),
+  CONSTRAINT `FK_score_hole_id__hole_id` FOREIGN KEY (`hole_id`) REFERENCES `hole` (`id`),
+  CONSTRAINT `FK_score_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_score_round_id__round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`id`),
+  CONSTRAINT `CHK_pos` CHECK (`netscore` >= 0 and `strokecount` >= 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `score`
+--
+
+LOCK TABLES `score` WRITE;
+/*!40000 ALTER TABLE `score` DISABLE KEYS */;
+INSERT INTO `score` VALUES (1,1,1,0,0,NULL,NULL,NULL,NULL),(1,1,2,0,0,NULL,NULL,NULL,NULL);
+/*!40000 ALTER TABLE `score` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `seasons`
 --
 
@@ -2101,6 +2138,40 @@ CREATE TABLE `stats` (
 LOCK TABLES `stats` WRITE;
 /*!40000 ALTER TABLE `stats` DISABLE KEYS */;
 /*!40000 ALTER TABLE `stats` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `stroke`
+--
+
+DROP TABLE IF EXISTS `stroke`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `stroke` (
+  `person_id` int(11) NOT NULL,
+  `round_id` int(11) NOT NULL,
+  `hole_id` int(11) NOT NULL,
+  `strokeno` tinyint(4) NOT NULL DEFAULT 0,
+  `club` varchar(10) NOT NULL,
+  `distance` smallint(6) NOT NULL,
+  `landing` varchar(7) NOT NULL,
+  PRIMARY KEY (`person_id`,`round_id`,`hole_id`,`strokeno`),
+  KEY `FK_stroke_round_id__round_id` (`round_id`),
+  KEY `FK_stroke_hole_id__hole_id` (`hole_id`),
+  CONSTRAINT `FK_stroke_hole_id__hole_id` FOREIGN KEY (`hole_id`) REFERENCES `hole` (`id`),
+  CONSTRAINT `FK_stroke_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_stroke_round_id__round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`id`),
+  CONSTRAINT `CHK_landing` CHECK (`landing` = 'penalty' or `landing` = 'fairway' or `landing` = 'rough' or `landing` = 'bunker' or `landing` = 'hole')
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `stroke`
+--
+
+LOCK TABLES `stroke` WRITE;
+/*!40000 ALTER TABLE `stroke` DISABLE KEYS */;
+/*!40000 ALTER TABLE `stroke` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2699,4 +2770,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 19:23:45
+-- Dump completed on 2022-05-31 20:42:46
