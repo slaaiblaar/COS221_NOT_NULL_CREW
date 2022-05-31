@@ -46,7 +46,7 @@ CREATE TABLE `addresses` (
   KEY `IDX_addresses_3` (`postal_code`),
   KEY `IDX_FK_add_loc_id__loc_id` (`location_id`),
   CONSTRAINT `FK_add_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,6 +55,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` VALUES (1,1,'en-ZA',NULL,NULL,NULL,'15',NULL,'Breedt Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'South Africa'),(2,2,'en-US',NULL,NULL,NULL,'1086',NULL,'Suzuki Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Japan');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,7 +124,7 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
-INSERT INTO `affiliations` VALUES (1,'International Golf Federation','International',1,NULL),(2,'GOLDRSA','South Africa',1,1);
+INSERT INTO `affiliations` VALUES (1,'International Golf Federation','International',1,NULL),(2,'GOLFRSA','South Africa',1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -224,6 +225,7 @@ CREATE TABLE `affiliations_events` (
 
 LOCK TABLES `affiliations_events` WRITE;
 /*!40000 ALTER TABLE `affiliations_events` DISABLE KEYS */;
+INSERT INTO `affiliations_events` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `affiliations_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -880,13 +882,17 @@ CREATE TABLE `events` (
   `start_date_time_local` datetime DEFAULT NULL,
   `medal_event` varchar(100) DEFAULT NULL,
   `series_index` varchar(40) DEFAULT NULL,
+  `gender` varchar(5) NOT NULL,
+  `tour_id` int(11) DEFAULT NULL,
+  `year` year(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_events_1` (`event_key`),
   KEY `IDX_FK_eve_pub_id__pub_id` (`publisher_id`),
   KEY `IDX_FK_eve_sit_id__sit_id` (`site_id`),
   CONSTRAINT `FK_eve_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
-  CONSTRAINT `FK_eve_sit_id__sit_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_eve_sit_id__sit_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
+  CONSTRAINT `CHK_gender` CHECK (`gender` = 'Men' or `gender` = 'Women')
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -895,8 +901,57 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
+INSERT INTO `events` VALUES (1,'Pretoria Classic',1,'2022-06-01 13:00:00','2022-06-04 17:00:00',1,NULL,'Scheduled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Men',1,2022),(2,'Yokohama Open',1,'2022-06-01 13:00:00','2022-06-04 17:00:00',2,NULL,'Cancelled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Women',NULL,2022);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_event_insert 
+BEFORE INSERT ON events
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkTourId(NEW.tour_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT INSERT, TOUR_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_event_update
+BEFORE UPDATE ON events
+FOR EACH ROW 
+BEGIN 
+	IF (NOT checkTourId(NEW.tour_id)) 
+		THEN SIGNAL SQLSTATE '45000' SET
+        MYSQL_ERRNO = 31001,
+        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, TOUR_ID DOES NOT EXIST';
+	END IF;
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `events_documents`
@@ -995,7 +1050,7 @@ CREATE TABLE `hole` (
   CONSTRAINT `CHK_par` CHECK (`par` >= 1 and `par` <= 5),
   CONSTRAINT `CHK_hole_no` CHECK (`hole_no` >= 1 and `hole_no` <= 18),
   CONSTRAINT `CHK_length` CHECK (`length` > 0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1004,6 +1059,7 @@ CREATE TABLE `hole` (
 
 LOCK TABLES `hole` WRITE;
 /*!40000 ALTER TABLE `hole` DISABLE KEYS */;
+INSERT INTO `hole` VALUES (3,1,1,5,512.00),(4,2,1,3,182.00);
 /*!40000 ALTER TABLE `hole` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1143,7 +1199,7 @@ CREATE TABLE `locations` (
   `country_code` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_locations_1` (`country_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1152,6 +1208,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,'Pretoria',NULL,NULL,'South Africa','+0HRS','33:56 S','2:29 E',NULL),(2,'Tokyo',NULL,NULL,'Japan','+7HRS','29:52 N','13:56 W',NULL);
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1820,7 +1877,7 @@ CREATE TABLE `sites` (
   CONSTRAINT `FK_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
   CONSTRAINT `FK_sit_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_sit_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1829,6 +1886,7 @@ CREATE TABLE `sites` (
 
 LOCK TABLES `sites` WRITE;
 /*!40000 ALTER TABLE `sites` DISABLE KEYS */;
+INSERT INTO `sites` VALUES (1,'Pretoria Country Club',1,1,1),(2,'Tokyo Yokahama',1,2,2);
 /*!40000 ALTER TABLE `sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2156,7 +2214,7 @@ CREATE TABLE `tour` (
   PRIMARY KEY (`id`),
   KEY `FK_tour_aff_id__aff_id` (`affiliation_id`),
   CONSTRAINT `FK_tour_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2165,6 +2223,7 @@ CREATE TABLE `tour` (
 
 LOCK TABLES `tour` WRITE;
 /*!40000 ALTER TABLE `tour` DISABLE KEYS */;
+INSERT INTO `tour` VALUES (1,'Sunshine Tour',2),(2,'PGA',1);
 /*!40000 ALTER TABLE `tour` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2464,6 +2523,32 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP FUNCTION IF EXISTS `checkTourId` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` FUNCTION `checkTourId`(tour_id int(11)) RETURNS tinyint(1)
+BEGIN
+		IF (tour_id IS NULL) 
+			THEN RETURN 1; 
+        END IF;
+        IF (EXISTS (SELECT tour.id FROM tour WHERE tour.id = tour_id)) 
+			THEN RETURN 1; 
+        END IF;
+        
+        RETURN 0;
+	END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2474,4 +2559,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 16:46:40
+-- Dump completed on 2022-05-31 17:35:40
