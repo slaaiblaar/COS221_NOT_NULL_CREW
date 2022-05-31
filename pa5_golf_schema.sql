@@ -2305,6 +2305,36 @@ INSERT INTO `tour` VALUES (1,'Sunshine Tour',2),(2,'PGA',1);
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tournament_schedule`
+--
+
+DROP TABLE IF EXISTS `tournament_schedule`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tournament_schedule` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_tourn_sched_event_id__events_id` (`event_id`),
+  CONSTRAINT `FK_tourn_sched_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  CONSTRAINT `CHK_time` CHECK (timediff(`end_time`,`start_time`) > 0)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tournament_schedule`
+--
+
+LOCK TABLES `tournament_schedule` WRITE;
+/*!40000 ALTER TABLE `tournament_schedule` DISABLE KEYS */;
+INSERT INTO `tournament_schedule` VALUES (1,1,'2022-06-01','13:00:00','17:00:00'),(2,1,'2022-06-02','13:00:00','17:00:00');
+/*!40000 ALTER TABLE `tournament_schedule` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `users`
 --
 
@@ -2662,4 +2692,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 17:52:20
+-- Dump completed on 2022-05-31 18:15:11
