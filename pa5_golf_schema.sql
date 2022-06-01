@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.27, for Win64 (x86_64)
 --
--- Host: localhost    Database: pa5_golf_schema
+-- Host: localhost    Database: pa5_task_4
 -- ------------------------------------------------------
 -- Server version	5.5.5-10.4.22-MariaDB
 
@@ -46,7 +46,7 @@ CREATE TABLE `addresses` (
   KEY `IDX_addresses_3` (`postal_code`),
   KEY `IDX_FK_add_loc_id__loc_id` (`location_id`),
   CONSTRAINT `FK_add_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,7 +55,6 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,1,'en-ZA',NULL,NULL,NULL,'15',NULL,'Breedt Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'South Africa'),(2,2,'en-US',NULL,NULL,NULL,'1086',NULL,'Suzuki Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Japan');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -114,8 +113,10 @@ CREATE TABLE `affiliations` (
   KEY `IDX_affiliations_2` (`affiliation_type`),
   KEY `IDX_affiliations_3` (`affiliation_key`,`affiliation_type`,`publisher_id`),
   KEY `IDX_FK_aff_pub_id__pub_id` (`publisher_id`),
+  KEY `FK_aff_manager_id__aff_id` (`manager_id`),
+  CONSTRAINT `FK_aff_manager_id__aff_id` FOREIGN KEY (`manager_id`) REFERENCES `affiliations` (`id`),
   CONSTRAINT `FK_aff_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,57 +125,8 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
-INSERT INTO `affiliations` VALUES (1,'International Golf Federation','International',1,NULL),(2,'GOLFRSA','South Africa',1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_manager_insert 
-BEFORE INSERT ON affiliations
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkMgrId(NEW.manager_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT INSERT, MANAGER_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_manager_update
-BEFORE UPDATE ON affiliations
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkMgrId(NEW.manager_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, MANAGER_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `affiliations_documents`
@@ -225,7 +177,6 @@ CREATE TABLE `affiliations_events` (
 
 LOCK TABLES `affiliations_events` WRITE;
 /*!40000 ALTER TABLE `affiliations_events` DISABLE KEYS */;
-INSERT INTO `affiliations_events` VALUES (1,1),(2,2);
 /*!40000 ALTER TABLE `affiliations_events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -882,17 +833,18 @@ CREATE TABLE `events` (
   `start_date_time_local` datetime DEFAULT NULL,
   `medal_event` varchar(100) DEFAULT NULL,
   `series_index` varchar(40) DEFAULT NULL,
-  `gender` varchar(5) NOT NULL,
+  `gender` set('Men','Women') NOT NULL,
   `tour_id` int(11) DEFAULT NULL,
   `year` year(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_events_1` (`event_key`),
   KEY `IDX_FK_eve_pub_id__pub_id` (`publisher_id`),
   KEY `IDX_FK_eve_sit_id__sit_id` (`site_id`),
+  KEY `FK_events_tour_id__tours_id` (`tour_id`),
   CONSTRAINT `FK_eve_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   CONSTRAINT `FK_eve_sit_id__sit_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
-  CONSTRAINT `CHK_gender` CHECK (`gender` = 'Men' or `gender` = 'Women')
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_events_tour_id__tours_id` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -901,57 +853,8 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
-INSERT INTO `events` VALUES (1,'Pretoria Classic',1,'2022-06-01 13:00:00','2022-06-04 17:00:00',1,NULL,'Scheduled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Men',1,2022),(2,'Yokohama Open',1,'2022-06-01 13:00:00','2022-06-04 17:00:00',2,NULL,'Cancelled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Women',NULL,2022);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_event_insert 
-BEFORE INSERT ON events
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkTourId(NEW.tour_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT INSERT, TOUR_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_event_update
-BEFORE UPDATE ON events
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkTourId(NEW.tour_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, TOUR_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `events_documents`
@@ -1032,35 +935,90 @@ LOCK TABLES `events_sub_seasons` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `hole`
+-- Table structure for table `golf_statistics`
 --
 
-DROP TABLE IF EXISTS `hole`;
+DROP TABLE IF EXISTS `golf_statistics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `hole` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `hole_no` tinyint(4) NOT NULL,
-  `site_id` int(11) NOT NULL,
-  `par` tinyint(4) NOT NULL,
-  `length` decimal(6,2) NOT NULL,
+CREATE TABLE `golf_statistics` (
+  `id` int(11) NOT NULL,
+  `entity_type` varchar(100) NOT NULL,
+  `entity_id` int(11) NOT NULL,
+  `person_id` int(11) DEFAULT NULL,
+  `tour_ind` tinyint(1) DEFAULT NULL,
+  `event_ind` tinyint(1) DEFAULT NULL,
+  `round_ind` tinyint(1) DEFAULT NULL,
+  `player_ind` tinyint(1) DEFAULT NULL,
+  `winner_id` int(11) DEFAULT NULL,
+  `leader_id` int(11) DEFAULT NULL,
+  `no_of_eagles` int(3) DEFAULT NULL,
+  `no_of_birdies` int(3) DEFAULT NULL,
+  `no_of_bogeys` int(3) DEFAULT NULL,
+  `no_of_double_bogeys` int(3) DEFAULT NULL,
+  `max_drive` decimal(10,2) DEFAULT NULL,
+  `top10_cnt` int(6) DEFAULT NULL,
+  `avg_net_score` int(6) DEFAULT NULL,
+  `win_cnt` int(6) DEFAULT NULL,
+  `position` int(6) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_hole_site_id__sites_id` (`site_id`),
-  CONSTRAINT `FK_hole_site_id__sites_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
-  CONSTRAINT `CHK_par` CHECK (`par` >= 1 and `par` <= 5),
-  CONSTRAINT `CHK_hole_no` CHECK (`hole_no` >= 1 and `hole_no` <= 18),
-  CONSTRAINT `CHK_length` CHECK (`length` > 0)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `entity_type` (`entity_type`,`entity_id`,`person_id`),
+  KEY `FK_golf_statistics_person_id__persons_id` (`person_id`),
+  KEY `FK_golf_statistics_winner_id__persons_id` (`winner_id`),
+  KEY `FK_golf_statistics_leader_id__persons_id` (`leader_id`),
+  CONSTRAINT `FK_golf_statistics_leader_id__persons_id` FOREIGN KEY (`leader_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_golf_statistics_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_golf_statistics_winner_id__persons_id` FOREIGN KEY (`winner_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `CHK_no_of_eagles` CHECK (`no_of_eagles` >= 0),
+  CONSTRAINT `CHK_no_of_birdies` CHECK (`no_of_birdies` >= 0),
+  CONSTRAINT `CHK_no_of_bogeys` CHECK (`no_of_bogeys` >= 0),
+  CONSTRAINT `CHK_no_of_double_bogeys` CHECK (`no_of_double_bogeys` >= 0),
+  CONSTRAINT `CHK_max_drive` CHECK (`max_drive` >= 0),
+  CONSTRAINT `CHK_top10_cnt` CHECK (`top10_cnt` >= 0),
+  CONSTRAINT `CHK_win_cnt` CHECK (`win_cnt` >= 0),
+  CONSTRAINT `CHK_position` CHECK (`position` >= 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `hole`
+-- Dumping data for table `golf_statistics`
 --
 
-LOCK TABLES `hole` WRITE;
-/*!40000 ALTER TABLE `hole` DISABLE KEYS */;
-INSERT INTO `hole` VALUES (1,1,1,5,512.00),(2,2,1,3,182.00);
-/*!40000 ALTER TABLE `hole` ENABLE KEYS */;
+LOCK TABLES `golf_statistics` WRITE;
+/*!40000 ALTER TABLE `golf_statistics` DISABLE KEYS */;
+/*!40000 ALTER TABLE `golf_statistics` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `holes`
+--
+
+DROP TABLE IF EXISTS `holes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `holes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `hole_no` int(2) NOT NULL,
+  `site_id` int(11) NOT NULL,
+  `par` int(2) NOT NULL,
+  `length` decimal(10,2) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `hole_no` (`hole_no`,`site_id`),
+  KEY `site_id` (`site_id`),
+  CONSTRAINT `holes_ibfk_1` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
+  CONSTRAINT `CHK_hole_no` CHECK (`hole_no` > 0),
+  CONSTRAINT `CHK_par` CHECK (`par` > 0),
+  CONSTRAINT `CHK_length` CHECK (`length` > 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `holes`
+--
+
+LOCK TABLES `holes` WRITE;
+/*!40000 ALTER TABLE `holes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `holes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1199,7 +1157,7 @@ CREATE TABLE `locations` (
   `country_code` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_locations_1` (`country_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1208,7 +1166,6 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
-INSERT INTO `locations` VALUES (1,'Pretoria',NULL,NULL,'South Africa','+0HRS','33:56 S','2:29 E',NULL),(2,'Tokyo',NULL,NULL,'Japan','+7HRS','29:52 N','13:56 W',NULL);
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1605,9 +1562,9 @@ CREATE TABLE `persons` (
   `hometown_location_id` int(11) DEFAULT NULL,
   `residence_location_id` int(11) DEFAULT NULL,
   `death_location_id` int(11) DEFAULT NULL,
-  `age` tinyint(4) NOT NULL,
+  `age` int(4) NOT NULL,
+  `handicap` int(4) NOT NULL,
   `affiliation_id` int(11) NOT NULL,
-  `handicap` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `FK_persons_final_resting_location_id_locations_id` (`final_resting_location_id`),
   KEY `FK_per_bir_loc_id__loc_id` (`birth_location_id`),
@@ -1623,9 +1580,8 @@ CREATE TABLE `persons` (
   CONSTRAINT `FK_per_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   CONSTRAINT `FK_per_res_loc_id__loc_id` FOREIGN KEY (`residence_location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_persons_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`),
-  CONSTRAINT `FK_persons_final_resting_location_id_locations_id` FOREIGN KEY (`final_resting_location_id`) REFERENCES `locations` (`id`),
-  CONSTRAINT `CHK_handicap` CHECK (`handicap` >= 0)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_persons_final_resting_location_id_locations_id` FOREIGN KEY (`final_resting_location_id`) REFERENCES `locations` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1634,7 +1590,6 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
-INSERT INTO `persons` VALUES (1,'7205160067090',1,'male','1972/05/16',NULL,NULL,1,1,1,NULL,50,1,0),(2,'0209130060086',1,'female','2002/09/13',NULL,NULL,1,1,1,NULL,20,1,3);
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1730,7 +1685,7 @@ CREATE TABLE `publishers` (
   `publisher_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_publishers_1` (`publisher_key`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1739,7 +1694,6 @@ CREATE TABLE `publishers` (
 
 LOCK TABLES `publishers` WRITE;
 /*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
-INSERT INTO `publishers` VALUES (1,'admin@google.com',NULL);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1832,117 +1786,70 @@ LOCK TABLES `roles` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `round`
+-- Table structure for table `rounds`
 --
 
-DROP TABLE IF EXISTS `round`;
+DROP TABLE IF EXISTS `rounds`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `round` (
+CREATE TABLE `rounds` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `round_no` tinyint(4) NOT NULL,
+  `round_no` int(2) NOT NULL,
   `event_id` int(11) NOT NULL,
   `leader_id` int(11) DEFAULT NULL,
-  `state` varchar(11) NOT NULL,
+  `state` set('Scheduled','In progress','Finished','Cancelled','Postponed') NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `round_no` (`round_no`,`event_id`),
-  CONSTRAINT `CHK_state` CHECK (`state` = 'scheduled' or `state` = 'in progress' or `state` = 'finished' or `state` = 'cancelled' or `state` = 'postponed')
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `round`
---
-
-LOCK TABLES `round` WRITE;
-/*!40000 ALTER TABLE `round` DISABLE KEYS */;
-INSERT INTO `round` VALUES (1,1,1,NULL,'scheduled'),(2,1,2,NULL,'scheduled');
-/*!40000 ALTER TABLE `round` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_round_insert 
-BEFORE INSERT ON round
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkPersonId(NEW.leader_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT INSERT, LEADER_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER CHK_round_update
-BEFORE UPDATE ON round
-FOR EACH ROW 
-BEGIN 
-	IF (NOT checkPersonId(NEW.leader_id)) 
-		THEN SIGNAL SQLSTATE '45000' SET
-        MYSQL_ERRNO = 31001,
-        MESSAGE_TEXT = _utf8'CAN NOT UPDATE, LEADER_ID DOES NOT EXIST';
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-
---
--- Table structure for table `score`
---
-
-DROP TABLE IF EXISTS `score`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `score` (
-  `person_id` int(11) NOT NULL,
-  `round_id` int(11) NOT NULL,
-  `hole_id` int(11) NOT NULL,
-  `netscore` tinyint(4) NOT NULL DEFAULT 0,
-  `strokecount` tinyint(4) NOT NULL DEFAULT 0,
-  `birdie` tinyint(1) DEFAULT NULL,
-  `eagle` tinyint(1) DEFAULT NULL,
-  `bogey` tinyint(1) DEFAULT NULL,
-  `doublebogey` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`person_id`,`round_id`,`hole_id`),
-  KEY `FK_score_round_id__round_id` (`round_id`),
-  KEY `FK_score_hole_id__hole_id` (`hole_id`),
-  CONSTRAINT `FK_score_hole_id__hole_id` FOREIGN KEY (`hole_id`) REFERENCES `hole` (`id`),
-  CONSTRAINT `FK_score_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
-  CONSTRAINT `FK_score_round_id__round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`id`),
-  CONSTRAINT `CHK_pos` CHECK (`netscore` >= 0 and `strokecount` >= 0)
+  KEY `FK_rounds_event_id__events_id` (`event_id`),
+  KEY `FK_rounds_leader_id__persons_id` (`leader_id`),
+  CONSTRAINT `FK_rounds_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  CONSTRAINT `FK_rounds_leader_id__persons_id` FOREIGN KEY (`leader_id`) REFERENCES `persons` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `score`
+-- Dumping data for table `rounds`
 --
 
-LOCK TABLES `score` WRITE;
-/*!40000 ALTER TABLE `score` DISABLE KEYS */;
-INSERT INTO `score` VALUES (1,1,1,0,0,NULL,NULL,NULL,NULL),(1,1,2,0,0,NULL,NULL,NULL,NULL);
-/*!40000 ALTER TABLE `score` ENABLE KEYS */;
+LOCK TABLES `rounds` WRITE;
+/*!40000 ALTER TABLE `rounds` DISABLE KEYS */;
+/*!40000 ALTER TABLE `rounds` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scores`
+--
+
+DROP TABLE IF EXISTS `scores`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `scores` (
+  `person_id` int(11) NOT NULL,
+  `round_id` int(11) NOT NULL,
+  `hole_id` int(11) NOT NULL,
+  `net_score` int(3) DEFAULT NULL,
+  `stroke_count` int(2) DEFAULT NULL,
+  `birdie` tinyint(1) DEFAULT NULL,
+  `eagle` tinyint(1) DEFAULT NULL,
+  `bogey` tinyint(1) DEFAULT NULL,
+  `double_bogey` tinyint(1) DEFAULT NULL,
+  PRIMARY KEY (`person_id`,`round_id`,`hole_id`),
+  KEY `FK_scores_round_id__rounds_id` (`round_id`),
+  KEY `FK_scores_hole_id__holes_id` (`hole_id`),
+  CONSTRAINT `FK_scores_hole_id__holes_id` FOREIGN KEY (`hole_id`) REFERENCES `holes` (`id`),
+  CONSTRAINT `FK_scores_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_scores_round_id__rounds_id` FOREIGN KEY (`round_id`) REFERENCES `rounds` (`id`),
+  CONSTRAINT `CHK_strokes` CHECK (`stroke_count` >= 0)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scores`
+--
+
+LOCK TABLES `scores` WRITE;
+/*!40000 ALTER TABLE `scores` DISABLE KEYS */;
+/*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1989,16 +1896,16 @@ CREATE TABLE `sites` (
   `site_key` varchar(128) NOT NULL,
   `publisher_id` int(11) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
-  `address_id` int(11) NOT NULL,
+  `address_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_FK_sit_loc_id__loc_id` (`location_id`),
   KEY `IDX_FK_sit_pub_id__pub_id` (`publisher_id`),
   KEY `IDX_sites_1` (`site_key`),
-  KEY `FK_address_id` (`address_id`),
-  CONSTRAINT `FK_address_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`),
+  KEY `FK_sites_address_id__addresses_id` (`address_id`),
   CONSTRAINT `FK_sit_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
-  CONSTRAINT `FK_sit_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `FK_sit_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
+  CONSTRAINT `FK_sites_address_id__addresses_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2007,7 +1914,6 @@ CREATE TABLE `sites` (
 
 LOCK TABLES `sites` WRITE;
 /*!40000 ALTER TABLE `sites` DISABLE KEYS */;
-INSERT INTO `sites` VALUES (1,'Pretoria Country Club',1,1,1),(2,'Tokyo Yokahama',1,2,2);
 /*!40000 ALTER TABLE `sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2141,37 +2047,38 @@ LOCK TABLES `stats` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `stroke`
+-- Table structure for table `strokes`
 --
 
-DROP TABLE IF EXISTS `stroke`;
+DROP TABLE IF EXISTS `strokes`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `stroke` (
-  `person_id` int(11) NOT NULL,
+CREATE TABLE `strokes` (
+  `stroke_no` int(2) NOT NULL,
   `round_id` int(11) NOT NULL,
   `hole_id` int(11) NOT NULL,
-  `strokeno` tinyint(4) NOT NULL DEFAULT 0,
-  `club` varchar(10) NOT NULL,
-  `distance` smallint(6) NOT NULL,
-  `landing` varchar(7) NOT NULL,
-  PRIMARY KEY (`person_id`,`round_id`,`hole_id`,`strokeno`),
-  KEY `FK_stroke_round_id__round_id` (`round_id`),
-  KEY `FK_stroke_hole_id__hole_id` (`hole_id`),
-  CONSTRAINT `FK_stroke_hole_id__hole_id` FOREIGN KEY (`hole_id`) REFERENCES `hole` (`id`),
-  CONSTRAINT `FK_stroke_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
-  CONSTRAINT `FK_stroke_round_id__round_id` FOREIGN KEY (`round_id`) REFERENCES `round` (`id`),
-  CONSTRAINT `CHK_landing` CHECK (`landing` = 'penalty' or `landing` = 'fairway' or `landing` = 'rough' or `landing` = 'bunker' or `landing` = 'hole')
+  `person_id` int(11) NOT NULL,
+  `club_used` varchar(100) NOT NULL,
+  `distance` decimal(10,2) DEFAULT NULL,
+  `landing` set('Penalty','Fairway','Rough','Bunker','Green','Hole') NOT NULL,
+  PRIMARY KEY (`stroke_no`,`round_id`,`hole_id`,`person_id`),
+  KEY `FK_strokes_person_id__persons_id` (`person_id`),
+  KEY `FK_strokes_round_id__rounds_id` (`round_id`),
+  KEY `FK_strokes_hole_id__holes_id` (`hole_id`),
+  CONSTRAINT `FK_strokes_hole_id__holes_id` FOREIGN KEY (`hole_id`) REFERENCES `holes` (`id`),
+  CONSTRAINT `FK_strokes_person_id__persons_id` FOREIGN KEY (`person_id`) REFERENCES `persons` (`id`),
+  CONSTRAINT `FK_strokes_round_id__rounds_id` FOREIGN KEY (`round_id`) REFERENCES `rounds` (`id`),
+  CONSTRAINT `CHK_stroke_no` CHECK (`stroke_no` > 0)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `stroke`
+-- Dumping data for table `strokes`
 --
 
-LOCK TABLES `stroke` WRITE;
-/*!40000 ALTER TABLE `stroke` DISABLE KEYS */;
-/*!40000 ALTER TABLE `stroke` ENABLE KEYS */;
+LOCK TABLES `strokes` WRITE;
+/*!40000 ALTER TABLE `strokes` DISABLE KEYS */;
+/*!40000 ALTER TABLE `strokes` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2356,60 +2263,30 @@ LOCK TABLES `teams_media` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `tour`
+-- Table structure for table `tours`
 --
 
-DROP TABLE IF EXISTS `tour`;
+DROP TABLE IF EXISTS `tours`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tour` (
+CREATE TABLE `tours` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) NOT NULL,
+  `tour_name` varchar(100) NOT NULL,
   `affiliation_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `FK_tour_aff_id__aff_id` (`affiliation_id`),
-  CONSTRAINT `FK_tour_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `tour_name` (`tour_name`),
+  KEY `FK_tours_aff_id__aff_id` (`affiliation_id`),
+  CONSTRAINT `FK_tours_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tour`
+-- Dumping data for table `tours`
 --
 
-LOCK TABLES `tour` WRITE;
-/*!40000 ALTER TABLE `tour` DISABLE KEYS */;
-INSERT INTO `tour` VALUES (1,'Sunshine Tour',2),(2,'PGA',1);
-/*!40000 ALTER TABLE `tour` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tournament_schedule`
---
-
-DROP TABLE IF EXISTS `tournament_schedule`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `tournament_schedule` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `event_id` int(11) NOT NULL,
-  `date` date NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `FK_tourn_sched_event_id__events_id` (`event_id`),
-  CONSTRAINT `FK_tourn_sched_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
-  CONSTRAINT `CHK_time` CHECK (timediff(`end_time`,`start_time`) > 0)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tournament_schedule`
---
-
-LOCK TABLES `tournament_schedule` WRITE;
-/*!40000 ALTER TABLE `tournament_schedule` DISABLE KEYS */;
-INSERT INTO `tournament_schedule` VALUES (1,1,'2022-06-01','13:00:00','17:00:00'),(2,1,'2022-06-02','13:00:00','17:00:00');
-/*!40000 ALTER TABLE `tournament_schedule` ENABLE KEYS */;
+LOCK TABLES `tours` WRITE;
+/*!40000 ALTER TABLE `tours` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -2422,16 +2299,16 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(320) NOT NULL,
-  `password` char(97) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `tel_no` char(10) NOT NULL,
-  `type` varchar(6) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `init` char(1) DEFAULT NULL,
-  `last_name` varchar(50) NOT NULL,
+  `user_type` varchar(6) NOT NULL,
+  `first_name` varchar(100) NOT NULL,
+  `init` varchar(5) DEFAULT NULL,
+  `last_name` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
-  CONSTRAINT `CHK_type` CHECK (`type` = 'admin' or `type` = 'normal'),
-  CONSTRAINT `CHK_tel` CHECK (`tel_no` regexp '0[0-9]{9}')
+  CONSTRAINT `CHK_tel` CHECK (`tel_no` regexp '0[0-9]{9}'),
+  CONSTRAINT `CHK_type` CHECK (`user_type` regexp '(admin|normal)')
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -2674,92 +2551,6 @@ LOCK TABLES `weather_conditions` WRITE;
 /*!40000 ALTER TABLE `weather_conditions` DISABLE KEYS */;
 /*!40000 ALTER TABLE `weather_conditions` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Dumping events for database 'pa5_golf_schema'
---
-
---
--- Dumping routines for database 'pa5_golf_schema'
---
-/*!50003 DROP FUNCTION IF EXISTS `checkMgrId` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `checkMgrId`(manager_id int(11)) RETURNS tinyint(1)
-BEGIN
-		IF (manager_id IS NULL) 
-			THEN RETURN 1; 
-        END IF;
-        IF (EXISTS (SELECT affiliations.id FROM affiliations WHERE affiliations.id = manager_id)) 
-			THEN RETURN 1; 
-        END IF;
-        
-        RETURN 0;
-	END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `checkPersonId` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `checkPersonId`(person_id int(11)) RETURNS tinyint(1)
-BEGIN
-		IF (person_id IS NULL) 
-			THEN RETURN 1; 
-        END IF;
-        IF (EXISTS (SELECT persons.id FROM persons WHERE persons.id = person_id)) 
-			THEN RETURN 1; 
-        END IF;
-        
-        RETURN 0;
-	END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP FUNCTION IF EXISTS `checkTourId` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_ZERO_IN_DATE,NO_ZERO_DATE,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`root`@`localhost` FUNCTION `checkTourId`(tour_id int(11)) RETURNS tinyint(1)
-BEGIN
-		IF (tour_id IS NULL) 
-			THEN RETURN 1; 
-        END IF;
-        IF (EXISTS (SELECT tour.id FROM tour WHERE tour.id = tour_id)) 
-			THEN RETURN 1; 
-        END IF;
-        
-        RETURN 0;
-	END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -2770,4 +2561,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-31 20:42:46
+-- Dump completed on 2022-06-01 13:53:45
