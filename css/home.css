@@ -1,0 +1,509 @@
+ /* Name: Arno Jooste */
+ /* Student Number: 21457451 */
+ /* .topnav{
+    background-color: darkblue;
+    overflow: hidden;
+    color: white;
+    text-align: left;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-style: italic;
+    box-shadow: 0px 20px 30px crimson;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .topnav ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .topnav li{
+    display: inline;
+  }
+  .topnav a{
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+  }
+  
+  .topnav a:hover{
+    background-color: crimson;
+    color:  white;
+    border-radius: 30px;
+  }
+  .topnav a.active{
+    background-color: lightslategray;
+    color: white;
+    border-left: 5px solid crimson;
+    border-right: 5px solid crimson;
+    border-top: 5px solid crimson;
+    border-bottom: 5px solid crimson;
+    border-radius: 20px;
+  } */
+
+  /* .topnav{
+    padding: 10px 16px;
+    background-color: rgb(0, 108, 32);  
+    box-shadow: 1px 8px 10px rgb(0, 255, 119);
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
+}
+.topnav ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.topnav li{
+    display: inline; 
+}
+.topnav a:hover{
+    background-color: #00420d;
+    font-weight: bold;
+}
+.topnav a{
+    padding: 10px 16px;
+    text-decoration: none;
+    color: white;
+}
+.topnav a.active{
+    background-color: rgb(0, 255, 76);
+    color: black;
+    font-weight: bold;
+    
+} */
+
+body{
+  padding:0;
+  margin:0;
+  overflow: hidden;
+  background-color:lightslategray;
+  background-image: url("../img/wallpaperflare.com_wallpaper-2.jpg");
+  background-size: cover;
+  overflow-y: scroll;
+}  
+
+.menu{
+  width: 100%;
+  height: 100%;
+  top:0;
+  left:0;
+  right:0;
+  bottom: 0;
+  visibility: visible;
+  z-index: 2;
+  background-color: blue;
+  transition: background-color 0.5s;
+  -webkit-transition: background-color .5s;
+}
+
+/* .sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 50px;
+  text-align: center;
+} */
+
+.menu-btn{
+  position: absolute;
+  top:15px;
+  left:45px;
+  height: 45px;
+  width: 45px;
+  background: #1b1b1b;
+}
+.sidebar{
+  position: fixed;
+  width: 250px;
+  height: 100%;
+  left:0;
+  background: #1b1b1b;
+}
+
+.sidebar .textt{
+  color: white;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 65px;
+  text-align: center;
+  background: #1e1e1e;
+  letter-spacing: 1px;
+}
+
+nav ul{
+  background: #1b1b1b;
+  height: 100%;
+  width: 100%;
+  list-style: none;
+}
+
+nav ul li{
+  line-height: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul li{
+  line-height: 60px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+nav ul li a{
+  color: white;
+  text-decoration: none;
+  position: relative;
+  font-size: 18px;
+  padding-left: 40px;
+  font-weight: 500;
+  display: block;
+  width: 100%;
+  border-left: 3px solid transparent;
+}
+
+nav ul li:last-child{
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+nav ul li.active a{
+  color:rgb(0, 255, 119);
+  background: #1e1e1e;
+  border-left-color: rgb(0, 255, 119);
+}
+
+nav ul ul{
+  position: static;
+  display: none;
+}
+
+nav ul .course-show.show{
+  display: block;
+}
+
+nav ul .tournament-show.show1{
+  display: block;
+}
+
+nav ul ul li{
+  line-height: 42px;
+  border-bottom: none;
+}
+
+nav ul ul li a{
+  font-size: 17px;
+  color: #e6e6e6;
+  padding-left: 80px;
+}
+
+nav ul li.active ul li a{
+  color:#e6e6e6;
+  background: #1b1b1b;
+  border-left-color: transparent;
+}
+
+nav ul ul li a:hover{
+  color: rgb(0, 255, 119)!important;
+  background: #1e1e1e!important;
+}
+
+nav ul li a span{
+  position: absolute;
+  top:50%;
+  right:20px;
+  font-size: 22px;
+  transform: translateY(-50%);
+  transition: transform 0.4s;;
+}
+
+nav ul li a span.rotate{
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  text-align: center;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.loginRegister{
+  float: right;
+  background-color: rgb(0, 108, 32); 
+  font-size: 30px;
+  padding: 10px 10px;
+  box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+  
+}
+
+  .loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .filterTheme{
+    float: right;
+    cursor: pointer;
+    /* margin-right: 20px; */
+    padding: 10px 16px;
+    color: white;
+    border-radius: 50px;
+    margin-bottom: 5px;
+  }
+
+  /* .dark .webTitle{
+    font-size: 4em;
+    margin:0;
+    padding:0;
+    text-align: center;
+    font-family: Georgia,serif;
+    font-weight: bold;
+    background: rgb(0,0,60);
+    font-weight: lighter;
+    color: red;
+    border-top: 5px dotted red;
+    border-left: 5px dotted red;
+    border-right: 5px dotted red;
+    border-bottom: 5px dotted red;
+  }
+
+  .dark .topnav{
+    background-color: rgb(0, 0, 60);
+    overflow: hidden;
+    color: white;
+    text-align: left;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-style: italic;
+    box-shadow: 0px 20px 30px crimson;
+    margin: 0;
+  }
+
+  .dark .filterTheme{
+    float: right;
+    cursor: pointer;
+    margin-right: 20px;
+    padding: 5px;
+    background-color: white;
+    color: black;
+    border-radius: 50px;
+  }
+
+  .dark .buttons{
+    background-color: rgb(0,0,60);
+    color: white;
+    padding: 5px 10px;
+    margin: auto;
+    text-align: center;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100px;
+    border-radius: 20px;
+  }
+
+  .dark .footer{
+    text-align: center;
+    border-radius: 50px;
+    color: white;
+    background-color: rgb(0,0,60);
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+  } */
+
+  .top-content{
+    padding: 10px 16px;
+    background-color: rgb(0, 108, 32);  
+    box-shadow: 1px 8px 10px rgb(0, 255, 119);
+    font-family: "Courier New", Courier, monospace;
+    border: 10px dashed rgb(151, 151, 151);
+  }
+
+  .top-content > img{
+    float: left;
+    background-color: rgba(164,164,164, 0.7);
+    border-radius: 30px;
+    margin-top: 5px;
+  }
+
+  .content{
+    display:none;
+  }
+
+  .loader{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #16191e;
+    position: relative;
+  }
+  
+  .loader > div{
+    height: 100px;
+    width: 100px;
+    border: 15px solid #45474b;
+    border-top-color: lawngreen;
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 50%;
+    animation: spin 2s infinite linear;
+  }
+  @keyframes spin{
+    100%{
+      transform:rotate(360deg);
+    }
+  }
+  
+  .grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: transparent;
+    margin-top: 40px;
+    grid-gap: 10px;
+    overflow-x: hidden;
+    height: 500px;
+    margin-left: 20px;
+    margin-right:20px;
+  }
+
+  .grid > div{
+    text-align: center;
+  }
+
+  hr{
+    border-top: 3px solid black;
+  }
+
+  #grid-panel-1{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1; 
+  }
+
+  #grid-panel-1:hover{
+    /* -webkit-transform: scale(1.1);
+    transform: scale(1.1); */
+  }
+
+
+  #grid-panel-2{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    grid-column: 3 / span 2;
+    grid-row: 1 / span 1;
+  }
+
+  #grid-panel-3{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    grid-column: 1 / span 2;
+    grid-row: 2 / span 1;
+  }
+
+  #grid-panel-4{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    grid-column: 3 / span 2;
+    grid-row: 2 / span 1;
+  }
+
+  #webTitle{
+    background-color: rgb(0, 108, 32);
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-family: "Georgia" ,serif;
+  }
+
+  /* #Logo{
+    margin-top: 30px;
+    position: relative;
+    padding-bottom: 40px;
+    background-color: transparent;    
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    margin-bottom: 20px;
+  } */
+  
+  /* #slogan{
+    background-color: navy;
+    font-size: 1.5em;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Georgia,serif;
+    color: crimson;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+  } */
+
+  .footer{
+    text-align: center;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    bottom: 0%;
+    top: 100%;
+    width: 95%;
+    color: white;
+  }
