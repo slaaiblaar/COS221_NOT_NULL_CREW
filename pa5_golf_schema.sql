@@ -1896,7 +1896,7 @@ CREATE TABLE `sites` (
   `site_key` varchar(128) NOT NULL,
   `publisher_id` int(11) NOT NULL,
   `location_id` int(11) DEFAULT NULL,
-  `address_id` int(11) DEFAULT NULL,
+  `address_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_FK_sit_loc_id__loc_id` (`location_id`),
   KEY `IDX_FK_sit_pub_id__pub_id` (`publisher_id`),
@@ -2263,6 +2263,35 @@ LOCK TABLES `teams_media` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `tournament_schedules`
+--
+
+DROP TABLE IF EXISTS `tournament_schedules`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `tournament_schedules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `event_id` int(11) NOT NULL,
+  `date` date NOT NULL,
+  `start_time` time NOT NULL,
+  `end_time` time NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `event_id` (`event_id`,`date`),
+  CONSTRAINT `FK_tourn_sched_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
+  CONSTRAINT `CHK_time` CHECK (`start_time` < `end_time`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `tournament_schedules`
+--
+
+LOCK TABLES `tournament_schedules` WRITE;
+/*!40000 ALTER TABLE `tournament_schedules` DISABLE KEYS */;
+/*!40000 ALTER TABLE `tournament_schedules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `tours`
 --
 
@@ -2309,7 +2338,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`),
   CONSTRAINT `CHK_tel` CHECK (`tel_no` regexp '0[0-9]{9}'),
   CONSTRAINT `CHK_type` CHECK (`user_type` regexp '(admin|normal)')
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2318,6 +2347,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'admin@google.com','12345%&','0834567890','Admin','Happy',NULL,'Gilmore'),(2,'pietie@icloud.com','12345%&','0834567890','Admin','Happy','N','Gilmore');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2561,4 +2591,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-01 13:53:45
+-- Dump completed on 2022-06-01 14:44:52
