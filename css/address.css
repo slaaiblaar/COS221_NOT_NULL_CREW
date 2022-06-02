@@ -90,33 +90,3 @@
     top:0;
     background-color: rgba(192, 192, 192, 1);
   }
-
-  .id
-  {
-    min-width: 18px;
-  }
-
-  .location_id
-  {
-    min-width: 94px;
-  }
-
-  .language
-  {
-    min-width: 80px;
-  }
-  
-  .street_number
-  {
-    min-width: 120px;
-  }
-  
-  .street
-  {
-    min-width: 45px;
-  }
-  
-  .country
-  {
-    min-width: 68px;
-  }

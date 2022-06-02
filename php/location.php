@@ -49,7 +49,7 @@
       <!-- inclusion of navbar end-->
 
       <div id="mainContainer">
-        <h1>Addresses Table</h1>
+        <h1>Locations Table</h1>
         <hr>
         <div id="tableContainer">
           <!-- <div id="scrollDiv"> -->
@@ -76,12 +76,12 @@
 
               foreach($data as $row)
               {
-                echo "<tr><td class='id'>".$row['id']."</td>
-                <td class='location_id'>".$row['city']."</td>
-                <td class='language'>".$row['country']."</td>
-                <td class='street_number'>".$row['timezone']."</td>
-                <td class='street'>".$row['latitude']."</td>
-                <td class='country'>".$row['longitude']."</td></tr>";
+                echo "<tr><td>".$row['id']."</td>
+                <td>".$row['city']."</td>
+                <td>".$row['country']."</td>
+                <td>".$row['timezone']."</td>
+                <td>".$row['latitude']."</td>
+                <td>".$row['longitude']."</td></tr>";
               }
             }
             else

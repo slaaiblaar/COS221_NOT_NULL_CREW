@@ -110,6 +110,47 @@
                 return [ "success" => false, "Error" => $conn->error];
             }
         }
+        
+        public function getCourses()
+        {
+            $getQuery = "SELECT * FROM sites";
+
+            $conn = $this->dbConnection;
+            $result = $conn->query($getQuery);
+
+            if ($result->num_rows > 0)
+            {
+                $responseObject = array();
+                while ($row = $result->fetch_assoc())
+                {
+                    $temp = array("id"=>$row["id"], "site_key"=>$row["site_key"], "publisher_id"=>$row["publisher_id"], "location_id"=>$row["location_id"], 
+                    "address_id"=>$row["address_id"]);
+                    array_push($responseObject, $row);
+                }
+                return ["success"=>true, "result"=>$responseObject];
+            }
+            else
+            {
+                return ["success"=>true, "message"=>"No locations found"];
+            }
+        }
+
+        public function addCourse($site_key, $publisher_id, $location_id, $address_id)
+        {
+            $addSQL = "INSERT INTO sites (site_key, publisher_id, location_id, address_id) VALUES ('".$site_key."',".$publisher_id.","
+            .$location_id.",".$address_id.")";
+
+            $conn = $this->dbConnection;
+            if ($conn->query($addSQL) === true)
+            {
+                return [ "success" => true, "Message" => "Successfully added course: ". $site_key];
+            }
+            else
+            {
+                return [ "success" => false, "Error" => $conn->error];
+            }
+        }
+        
         public function delAddress($email, $pw)
         {
 

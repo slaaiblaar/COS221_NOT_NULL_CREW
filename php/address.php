@@ -76,12 +76,12 @@
 
               foreach($data as $row)
               {
-                echo "<tr><td class='id'>".$row['id']."</td>
-                <td class='location_id'>".$row['location_id']."</td>
-                <td class='language'>".$row['language']."</td>
-                <td class='street_number'>".$row['street_number']."</td>
-                <td class='street'>".$row['street']."</td>
-                <td class='country'>".$row['country']."</td></tr>";
+                echo "<tr><td>".$row['id']."</td>
+                <td>".$row['location_id']."</td>
+                <td>".$row['language']."</td>
+                <td>".$row['street_number']."</td>
+                <td>".$row['street']."</td>
+                <td>".$row['country']."</td></tr>";
               }
             }
             else
