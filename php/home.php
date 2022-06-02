@@ -6,10 +6,17 @@
   <a target="_blank" href="https://icons8.com/icon/do6N9EHMyX0y/golf">Golf</a> icon by <a target="_blank" href="https://icons8.com">Golf cart</a>
   <a target="_blank" href="https://icons8.com/icon/zvuXdcGcdznE/golf">Golf</a> icon by <a target="_blank" href="https://icons8.com">Golf swing 1</a>
   <a target="_blank" href="https://icons8.com/icon/kXlPf6CIckW9/golf">Golf</a> icon by <a target="_blank" href="https://icons8.com">Golf swing 2</a>
-  <a target="_blank" href="https://icons8.com/icon/gT2eJkI8NVD2/golf">Golf</a> icon by <a target="_blank" href="https://icons8.com">Golf Flag</a> -->
+  <a target="_blank" href="https://icons8.com/icon/gT2eJkI8NVD2/golf">Golf</a> icon by <a target="_blank" href="https://icons8.com">Golf Flag</a>
+  <a href="https://www.flaticon.com/free-icons/golf" title="golf icons">Golf icons created by Vectors Market - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/trophy" title="trophy icons">Trophy icons created by Freepik - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/statistics" title="statistics icons">Statistics icons created by Freepik - Flaticon</a>
+  <a href="https://www.flaticon.com/free-icons/travel" title="travel icons">Travel icons created by Freepik - Flaticon</a>
+-->
   <!-- // -->
   <!-- images -->
-  <!-- https://www.flaticon.com/free-icon/golf-field_2076961 -->
+  <!-- https://www.flaticon.com/free-icon/golf-field_2076961
+    https://en.wikipedia.org/wiki/File:Great_Waters_at_Reynolds_Lake_Oconee_-_Oct_2019.jpg
+-->
 
 <?php
   session_start();
@@ -25,8 +32,6 @@
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
   </head>
   
   <body>
@@ -37,8 +42,8 @@
     <div class="content">
       <div class="top-content">
         <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
-        <h1 id="webTitle">Sunrise Golfing</h1>
-      </div>    
+        <h1 id="webTitle">Sunrise Golfing</h1>  
+      </div> 
 
       <!-- inclusion of navbar start -->
       <?php
@@ -48,19 +53,31 @@
 
       <div class="grid">
         <div id="grid-panel-1">
-          <h1>View Courses</h1>
+          <h1><img src="../img/golf-courses-icon.png" alt="icon" width="50" height="50">
+          View Courses
+          <img src="../img/golf-courses-icon.png" alt="icon" width="50" height="50">
+          </h1>
           <hr>
         </div>
         <div id="grid-panel-2">
-          <h1>View Tournaments</h1>
+          <h1><img src="../img/golf-trophy.png" alt="trophy" width="50" height="50">
+          View Tournaments
+          <img src="../img/golf-trophy.png" alt="trophy" width="50" height="50">
+          </h1>
           <hr>
         </div>
         <div id="grid-panel-3">
-          <h1>View Tours</h1>
+          <h1><img src="../img/golf-tour.png" alt="tour" width="50" height="50">
+          View Tours
+          <img src="../img/golf-tour.png" alt="tour" width="50" height="50">
+          </h1>
           <hr>
         </div>
         <div id="grid-panel-4">
-          <h1>View Statistics</h1>
+          <h1><img src="../img/golf-analysis.png" alt="trophy" width="50" height="50">
+          View Statistics
+          <img src="../img/golf-analysis.png" alt="trophy" width="50" height="50">
+          </h1>
           <hr>
         </div>
       </div>
