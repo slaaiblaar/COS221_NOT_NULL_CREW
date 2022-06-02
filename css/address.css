@@ -1,0 +1,122 @@
+*
+{
+    box-sizing: border-box;
+}
+    #mainContainer
+{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    width:70%;
+    margin: auto;
+    background-color:white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  /* body {
+    margin: 0;
+    padding: 2rem;
+  }
+  
+  table {
+    text-align: left;
+    position: relative;
+    border-collapse: collapse; 
+  }
+  th, td {
+    padding: 0.25rem;
+  }
+  th {
+    background: white;
+    position: sticky;
+    top: 0;  Don't forget this, required for the stickiness 
+    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+  } */
+  #mainContainer
+  {
+      position: relative;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      align-content: center;
+      text-align: center;
+  }
+  #tableContainer
+  {
+    position: relative;
+    border-radius: 10px !important;
+    background-color: white;
+    opacity: 1;
+    border: 3px solid black;
+    margin: 20px auto 20px auto;
+    display: flex;
+    overflow: auto;
+    max-height: 560px; 
+  }
+  table
+  {
+    position:sticky;
+    top: 0;
+    min-width: 600px;
+  }
+  table h3
+  {
+    margin: auto;
+  }
+  #mainContainer > hr
+  {
+      width: 100%;
+      margin-top:0;
+  }
+  tr:nth-child(even)
+  {
+    background-color: rgba(212, 212, 212,1);
+  }
+  tr:nth-child(odd)
+  {
+    background-color: rgba(247, 247, 247, 1);
+  }
+  table, th, td 
+  {
+    border-collapse: collapse;
+    padding:5px;
+  }
+
+  th
+  {
+    position: sticky;
+    top:0;
+    background-color: rgba(192, 192, 192, 1);
+  }
+
+  .id
+  {
+    min-width: 18px;
+  }
+
+  .location_id
+  {
+    min-width: 94px;
+  }
+
+  .language
+  {
+    min-width: 80px;
+  }
+  
+  .street_number
+  {
+    min-width: 120px;
+  }
+  
+  .street
+  {
+    min-width: 45px;
+  }
+  
+  .country
+  {
+    min-width: 68px;
+  }
