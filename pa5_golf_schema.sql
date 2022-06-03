@@ -46,7 +46,7 @@ CREATE TABLE `addresses` (
   KEY `IDX_addresses_3` (`postal_code`),
   KEY `IDX_FK_add_loc_id__loc_id` (`location_id`),
   CONSTRAINT `FK_add_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -55,6 +55,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
+INSERT INTO `addresses` VALUES (1,1,'en-US',NULL,NULL,NULL,'15',NULL,'Breedt Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'South Africa'),(2,2,'en-US',NULL,NULL,NULL,'1086',NULL,'Suzuki Street',NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Japan');
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,7 +117,7 @@ CREATE TABLE `affiliations` (
   KEY `FK_aff_manager_id__aff_id` (`manager_id`),
   CONSTRAINT `FK_aff_manager_id__aff_id` FOREIGN KEY (`manager_id`) REFERENCES `affiliations` (`id`),
   CONSTRAINT `FK_aff_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -125,6 +126,7 @@ CREATE TABLE `affiliations` (
 
 LOCK TABLES `affiliations` WRITE;
 /*!40000 ALTER TABLE `affiliations` DISABLE KEYS */;
+INSERT INTO `affiliations` VALUES (1,'International Golf Federation','International',1,NULL),(2,'GOLFRSA','South Africa',1,1);
 /*!40000 ALTER TABLE `affiliations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -350,7 +352,7 @@ CREATE TABLE `display_names` (
   PRIMARY KEY (`id`),
   KEY `IDX_display_names_1` (`entity_id`),
   KEY `IDX_display_names_2` (`entity_type`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -359,6 +361,7 @@ CREATE TABLE `display_names` (
 
 LOCK TABLES `display_names` WRITE;
 /*!40000 ALTER TABLE `display_names` DISABLE KEYS */;
+INSERT INTO `display_names` VALUES (1,'en-US','persons',1,NULL,'Gary','Lee','Player',NULL,NULL,NULL,NULL,NULL),(2,'en-US','persons',2,NULL,'Jonelle',NULL,'Coertze',NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `display_names` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -844,7 +847,7 @@ CREATE TABLE `events` (
   CONSTRAINT `FK_eve_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   CONSTRAINT `FK_eve_sit_id__sit_id` FOREIGN KEY (`site_id`) REFERENCES `sites` (`id`),
   CONSTRAINT `FK_events_tour_id__tours_id` FOREIGN KEY (`tour_id`) REFERENCES `tours` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -853,6 +856,7 @@ CREATE TABLE `events` (
 
 LOCK TABLES `events` WRITE;
 /*!40000 ALTER TABLE `events` DISABLE KEYS */;
+INSERT INTO `events` VALUES (1,'Pretoria classic',1,'2022-06-01 13:00:00','2022-06-04 17:00:00',1,NULL,'Scheduled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Men',1,2022),(2,'Yokohama open',2,'2022-06-01 13:00:00','2022-06-04 17:00:00',2,NULL,'Cancelled','4',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'Women',NULL,2022);
 /*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1009,7 +1013,7 @@ CREATE TABLE `holes` (
   CONSTRAINT `CHK_hole_no` CHECK (`hole_no` > 0),
   CONSTRAINT `CHK_par` CHECK (`par` > 0),
   CONSTRAINT `CHK_length` CHECK (`length` > 0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1018,6 +1022,7 @@ CREATE TABLE `holes` (
 
 LOCK TABLES `holes` WRITE;
 /*!40000 ALTER TABLE `holes` DISABLE KEYS */;
+INSERT INTO `holes` VALUES (1,1,1,5,512.00),(2,2,1,3,182.00);
 /*!40000 ALTER TABLE `holes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1157,7 +1162,7 @@ CREATE TABLE `locations` (
   `country_code` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_locations_1` (`country_code`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1166,6 +1171,7 @@ CREATE TABLE `locations` (
 
 LOCK TABLES `locations` WRITE;
 /*!40000 ALTER TABLE `locations` DISABLE KEYS */;
+INSERT INTO `locations` VALUES (1,'Pretoria',NULL,NULL,'South Africa','+0HRS','33:56 S','2:29 E',NULL),(2,'Tokyo',NULL,NULL,'Japan','+7HRS','29:52 N','13:56 W',NULL);
 /*!40000 ALTER TABLE `locations` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1581,7 +1587,7 @@ CREATE TABLE `persons` (
   CONSTRAINT `FK_per_res_loc_id__loc_id` FOREIGN KEY (`residence_location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_persons_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`),
   CONSTRAINT `FK_persons_final_resting_location_id_locations_id` FOREIGN KEY (`final_resting_location_id`) REFERENCES `locations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1590,6 +1596,7 @@ CREATE TABLE `persons` (
 
 LOCK TABLES `persons` WRITE;
 /*!40000 ALTER TABLE `persons` DISABLE KEYS */;
+INSERT INTO `persons` VALUES (1,' 7205160067090',1,'male','1972/05/16',NULL,NULL,1,1,1,NULL,50,0,1),(2,'0209130060086',1,'female','2002/09/13',NULL,NULL,1,1,1,NULL,20,3,1);
 /*!40000 ALTER TABLE `persons` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1685,7 +1692,7 @@ CREATE TABLE `publishers` (
   `publisher_name` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `IDX_publishers_1` (`publisher_key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1694,6 +1701,7 @@ CREATE TABLE `publishers` (
 
 LOCK TABLES `publishers` WRITE;
 /*!40000 ALTER TABLE `publishers` DISABLE KEYS */;
+INSERT INTO `publishers` VALUES (1,'admin@google.com',NULL),(2,'pietie@icloud.com',NULL);
 /*!40000 ALTER TABLE `publishers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1804,7 +1812,7 @@ CREATE TABLE `rounds` (
   KEY `FK_rounds_leader_id__persons_id` (`leader_id`),
   CONSTRAINT `FK_rounds_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   CONSTRAINT `FK_rounds_leader_id__persons_id` FOREIGN KEY (`leader_id`) REFERENCES `persons` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1813,6 +1821,7 @@ CREATE TABLE `rounds` (
 
 LOCK TABLES `rounds` WRITE;
 /*!40000 ALTER TABLE `rounds` DISABLE KEYS */;
+INSERT INTO `rounds` VALUES (1,1,1,NULL,'Scheduled'),(2,2,1,NULL,'Scheduled');
 /*!40000 ALTER TABLE `rounds` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1849,6 +1858,7 @@ CREATE TABLE `scores` (
 
 LOCK TABLES `scores` WRITE;
 /*!40000 ALTER TABLE `scores` DISABLE KEYS */;
+INSERT INTO `scores` VALUES (1,1,1,NULL,NULL,NULL,NULL,NULL,NULL),(1,1,2,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `scores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1905,7 +1915,7 @@ CREATE TABLE `sites` (
   CONSTRAINT `FK_sit_loc_id__loc_id` FOREIGN KEY (`location_id`) REFERENCES `locations` (`id`),
   CONSTRAINT `FK_sit_pub_id__pub_id` FOREIGN KEY (`publisher_id`) REFERENCES `publishers` (`id`),
   CONSTRAINT `FK_sites_address_id__addresses_id` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -1914,6 +1924,7 @@ CREATE TABLE `sites` (
 
 LOCK TABLES `sites` WRITE;
 /*!40000 ALTER TABLE `sites` DISABLE KEYS */;
+INSERT INTO `sites` VALUES (1,'Pretoria Country Club',1,1,1),(2,'Tokyo Yokahama',2,2,2);
 /*!40000 ALTER TABLE `sites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2279,7 +2290,7 @@ CREATE TABLE `tournament_schedules` (
   UNIQUE KEY `event_id` (`event_id`,`date`),
   CONSTRAINT `FK_tourn_sched_event_id__events_id` FOREIGN KEY (`event_id`) REFERENCES `events` (`id`),
   CONSTRAINT `CHK_time` CHECK (`start_time` < `end_time`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2288,6 +2299,7 @@ CREATE TABLE `tournament_schedules` (
 
 LOCK TABLES `tournament_schedules` WRITE;
 /*!40000 ALTER TABLE `tournament_schedules` DISABLE KEYS */;
+INSERT INTO `tournament_schedules` VALUES (1,1,'2022-06-01','13:00:00','17:00:00'),(2,1,'2022-06-02','13:00:00','17:00:00');
 /*!40000 ALTER TABLE `tournament_schedules` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2306,7 +2318,7 @@ CREATE TABLE `tours` (
   UNIQUE KEY `tour_name` (`tour_name`),
   KEY `FK_tours_aff_id__aff_id` (`affiliation_id`),
   CONSTRAINT `FK_tours_aff_id__aff_id` FOREIGN KEY (`affiliation_id`) REFERENCES `affiliations` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -2315,6 +2327,7 @@ CREATE TABLE `tours` (
 
 LOCK TABLES `tours` WRITE;
 /*!40000 ALTER TABLE `tours` DISABLE KEYS */;
+INSERT INTO `tours` VALUES (1,'Sunshine Tour',2),(2,'PGA',1);
 /*!40000 ALTER TABLE `tours` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2347,7 +2360,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@google.com','12345%&','0834567890','Admin','Happy',NULL,'Gilmore'),(2,'pietie@icloud.com','12345%&','0834567890','Admin','Happy','N','Gilmore');
+INSERT INTO `users` VALUES (1,'admin@google.com','12345%&','0834567890','Admin','Happy',NULL,'Gilmore'),(2,'pietie@icloud.com','password','0796854321','Normal','Pietie','N','Cronje');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -2591,4 +2604,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-06-01 14:44:52
+-- Dump completed on 2022-06-01 16:56:54
