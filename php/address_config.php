@@ -1,5 +1,6 @@
 <?php //Wian Koekemoer u19043512
-
+    
+    include_once("setDBEnvVar.php");
     function console_log($output, $with_script_tags = true) 
     {
         $js_code = 'console.log(' . json_encode($output, JSON_HEX_TAG) . ');';
@@ -24,10 +25,10 @@
 
         private function __construct()
         {
-            $hostname = "localhost";
-            $uName = "root";
-            $pw = "";
-            $dbName = "pa5_task_4";
+            $hostname = getenv("GOLF_DB_HOST");
+            $uName = getenv("GOLF_DB_USERNAME");
+            $pw = getenv("GOLF_DB_PASSWORD");
+            $dbName = getenv("GOLF_DB_NAME");
             
             $this->dbConnection = new mysqli($hostname, $uName, $pw, $dbName);
         }
@@ -155,5 +156,38 @@
         {
 
         }
+    }
+    if ($_POST['table'] === 'addresses')
+    {
+        $dbConn = Database::getInstance();
+        $test = $dbConn->getAddresses();
+        $debugFile = fopen("../debug.txt","r+");
+        fwrite($debugFile,"======================================\n");
+        fwrite($debugFile,print_r($_POST,true));
+        fwrite($debugFile,"\n======================================\n");
+        fclose($debugFile);
+        echo json_encode($test);
+    }
+    if ($_POST['table'] === 'locations')
+    {
+        $dbConn = Database::getInstance();
+        $test = $dbConn->getLocations();
+        $debugFile = fopen("../debug.txt","r+");
+        fwrite($debugFile,"======================================\n");
+        fwrite($debugFile,print_r($_POST,true));
+        fwrite($debugFile,"\n======================================\n");
+        fclose($debugFile);
+        echo json_encode($test);
+    }
+    if ($_POST['table'] === 'courses')
+    {
+        $dbConn = Database::getInstance();
+        $test = $dbConn->getCourses();
+        $debugFile = fopen("../debug.txt","r+");
+        fwrite($debugFile,"======================================\n");
+        fwrite($debugFile,print_r($_POST,true));
+        fwrite($debugFile,"\n======================================\n");
+        fclose($debugFile);
+        echo json_encode($test);
     }
 ?>
