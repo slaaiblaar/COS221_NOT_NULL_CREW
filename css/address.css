@@ -43,6 +43,71 @@
       align-content: center;
       text-align: center;
   }
+  #mainContainer > hr
+  {
+    width: 100%;
+  }
+  #secondaryContainer
+  {
+    display: flex;
+  }
+  #controls
+  {
+    overflow: auto;
+    margin-top: 20px;
+    position: relative;
+    border-radius: 10px !important;
+    background-color: white;
+    opacity: 1;
+    border: 3px solid black;
+    margin: 20px 20px 20px auto;
+  }
+  #controls > h2
+  {
+    padding: 2px 5px 2px 5px;
+    background-color: rgba(192, 192, 192, 1);
+    margin: 0 auto 0 auto;
+    width: 100%;
+    border-bottom: 1px solid black;
+  }
+  #controls > hr
+  {
+    margin-top: 0;
+    border-top: 1px solid black;
+  }
+  .controlButton
+  {
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    display:block;
+    border-radius: 3px;
+    border: 1px solid black;
+  }
+  .controlButton > h2
+  {
+    font-family: "Times New Roman", Times, serif;
+    padding: 0.5em 0;
+    margin: 0;
+  }
+  #add
+  {
+    background-color: rgba(85, 207, 60,0.7);
+  }
+  #modify
+  {
+    background-color: rgba(255, 187, 0, 0.7);
+  }
+  #delete
+  {
+    background-color: rgba(255, 72, 0, 0.7);
+  }
+  .inputField
+  {
+    display: block;
+    height: 20px;
+    width: 200px;
+  }
   #tableContainer
   {
     position: relative;
@@ -65,11 +130,6 @@
   {
     margin: auto;
   }
-  #mainContainer > hr
-  {
-      width: 100%;
-      margin-top:0;
-  }
   tr:nth-child(even)
   {
     background-color: rgba(212, 212, 212,1);
@@ -89,4 +149,17 @@
     position: sticky;
     top:0;
     background-color: rgba(192, 192, 192, 1);
+    border-bottom: 1px solid black;
+  }
+  .mod:hover
+  {
+    background-color: rgba(255, 187, 0, 0.7);
+  }
+  .del:hover
+  {
+    background-color: rgba(255, 72, 0, 0.7);
+  }
+  #label
+  {
+    margin: -19px 0 1px 0;
   }

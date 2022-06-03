@@ -35,21 +35,37 @@
       <!-- inclusion of navbar end-->
 
       <div id="mainContainer">
-        <h1>Addresses Table</h1>
+        <h1>Manage Addresses</h1>
         <hr>
-        <div id="tableContainer">
-          <table id="table">
-            <thead><tr>
-              <th><h3>Id</h3></th>
-              <th><h3>Location Id</h3></th>
-              <th><h3>Language</h3></th>
-              <th><h3>Street Number</h3></th>
-              <th><h3>Street</h3></th>
-              <th><h3>Country</h3></th>
-            </tr></thead>
-            <tbody>
-            </tbody>
-          </table>
+        <div id="secondaryContainer">
+          <div id="controls">
+            <h2>Controls</h2>
+            <div style="padding:0 10px; margin: auto">
+              <button class="controlButton" id="add"><h2>Add Address</h2></button>
+              <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Address</h2></button>
+              <button class="controlButton" id="delete" onclick="del()"><h2>Delete Address</h2></button>
+            </div>
+            <div style="padding:0 10px; margin: auto">
+              <input class="inputField" type="text" id="key"></input>
+              <input class="inputField" type="text" id="Publisher Id"></input>
+              <input class="inputField" type="text" id="Location Id"></input>
+              <input class="inputField" type="text" id="Address Id"></input>
+            </div>
+          </div>
+          <div id="tableContainer">
+            <table id="table">
+              <thead><tr>
+                <th><h3>Id</h3></th>
+                <th><h3>Location Id</h3></th>
+                <th><h3>Language</h3></th>
+                <th><h3>Street Number</h3></th>
+                <th><h3>Street</h3></th>
+                <th><h3>Country</h3></th>
+              </tr></thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 

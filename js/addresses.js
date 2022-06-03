@@ -43,3 +43,54 @@ function popTable(){
     apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     apiRequest.send(reqConf.join("&"));
 }
+
+function mod()
+{
+    var rows = document.querySelectorAll("tbody > tr");
+    for (var x = 0; x < rows.length; x++)
+    {
+        rows[x].classList.add('mod');
+        rows[x].classList.remove('del');
+    }
+    var label = document.querySelector('#label');
+    var delButton = document.querySelector("#delete");
+    if (label == null)
+    {
+        label = document.createElement("p");
+        label.setAttribute('id','label');
+        label.style = "color: red";
+        label.innerHTML = "*Select a row";
+    } 
+    else
+    {
+        delButton.parentNode.removeChild(label);
+    }
+    delButton.parentNode.insertBefore(label, delButton);
+    delButton.style.margin = "0 0 20px 0";
+}
+
+function del()
+{
+    var rows = document.querySelectorAll("tbody > tr");
+    for (var x = 0; x < rows.length; x++)
+    {
+        rows[x].classList.add('del');
+        rows[x].classList.remove('mod');
+    }
+    var label = document.querySelector('#label');
+    var delButton = document.querySelector("#delete");
+    if (label == null)
+    {
+        label = document.createElement("p");
+        label.style = "color: red";
+        label.innerHTML = "*Select a row";
+        label.setAttribute('id','label');
+    }
+    else
+    {
+        delButton.parentNode.removeChild(label);
+    }
+    
+    delButton.parentNode.appendChild(label);
+    delButton.style.margin = "20px 0";
+}
