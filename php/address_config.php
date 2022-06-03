@@ -157,37 +157,25 @@
 
         }
     }
+    $dbConn = Database::getInstance();
     if ($_POST['table'] === 'addresses')
     {
-        $dbConn = Database::getInstance();
-        $test = $dbConn->getAddresses();
-        $debugFile = fopen("../debug.txt","r+");
-        fwrite($debugFile,"======================================\n");
-        fwrite($debugFile,print_r($_POST,true));
-        fwrite($debugFile,"\n======================================\n");
-        fclose($debugFile);
-        echo json_encode($test);
+        echo json_encode($dbConn->getAddresses());
     }
-    if ($_POST['table'] === 'locations')
+    else if ($_POST['table'] === 'locations')
     {
-        $dbConn = Database::getInstance();
-        $test = $dbConn->getLocations();
-        $debugFile = fopen("../debug.txt","r+");
-        fwrite($debugFile,"======================================\n");
-        fwrite($debugFile,print_r($_POST,true));
-        fwrite($debugFile,"\n======================================\n");
-        fclose($debugFile);
-        echo json_encode($test);
+        echo json_encode($dbConn->getLocations());
     }
-    if ($_POST['table'] === 'courses')
+    else if ($_POST['table'] === 'courses')
     {
-        $dbConn = Database::getInstance();
-        $test = $dbConn->getCourses();
+        echo json_encode($dbConn->getCourses());        
+    }
+    else 
+    {
         $debugFile = fopen("../debug.txt","r+");
         fwrite($debugFile,"======================================\n");
         fwrite($debugFile,print_r($_POST,true));
         fwrite($debugFile,"\n======================================\n");
         fclose($debugFile);
-        echo json_encode($test);
     }
 ?>
