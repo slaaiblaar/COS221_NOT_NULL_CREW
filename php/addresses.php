@@ -41,15 +41,9 @@
           <div id="controls">
             <h2>Controls</h2>
             <div style="padding:0 10px; margin: auto">
-              <button class="controlButton" id="add"><h2>Add Address</h2></button>
+              <button class="controlButton" id="add" onclick="add()"><h2>Add Address</h2></button>
               <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Address</h2></button>
               <button class="controlButton" id="delete" onclick="del()"><h2>Delete Address</h2></button>
-            </div>
-            <div style="padding:0 10px; margin: auto">
-              <input class="inputField" type="text" id="key"></input>
-              <input class="inputField" type="text" id="Publisher Id"></input>
-              <input class="inputField" type="text" id="Location Id"></input>
-              <input class="inputField" type="text" id="Address Id"></input>
             </div>
           </div>
           <div id="tableContainer">
@@ -65,6 +59,70 @@
               <tbody>
               </tbody>
             </table>
+          </div>
+        </div>
+        <div class="popup" id="addPopup">
+          <div id="addForm">
+            <h1>Add Address</h1>
+            <hr>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Language</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Street Number</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Street</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmAdd()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="modPopup">
+          <div id="modForm">
+            <h1>Modify Address</h1>
+            <hr>
+            <h3>Address ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Language</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Street Number</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Street</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmMod()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="delPopup">
+          <div id="delForm">
+            <h1>Delete Address</h1>
+            <hr>
+            <h3>Address ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Language</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Street Number</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Street</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text" disabled></input>
+            <div>
+              <button class="cancelButton" onclick="cancelDel()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmDel()"><h2>Confirm</h2></button>
+            </div>
           </div>
         </div>
       </div>

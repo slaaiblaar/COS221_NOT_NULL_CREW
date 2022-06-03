@@ -23,12 +23,12 @@ function popTable(){
                 var data = response['result'];
                 for (var row in data)
                 {
-                    tBody.innerHTML+= "<tr><td>" + data[row]['id'] + "</td>"
-                    +"<td>" + data[row]['city'] + "</td>"
-                    +"<td>" + data[row]['country'] + "</td>"
-                    +"<td>" + data[row]['timezone'] + "</td>"
-                    +"<td>" + data[row]['latitude'] + "</td>"
-                    +"<td>" + data[row]['longitude'] + "</td></tr>";
+                    tBody.innerHTML+= `<tr><td>${data[row]['id']}</td>
+                    <td>${data[row]['city']}</td>
+                    <td>${data[row]['country']}</td>
+                    <td>${data[row]['timezone']}</td>
+                    <td>${data[row]['latitude']}</td>
+                    <td>${data[row]['longitude']}</td></tr>`;
                 }
             }
         }
@@ -51,6 +51,8 @@ function mod()
     {
         rows[x].classList.add('mod');
         rows[x].classList.remove('del');
+        var cells = rows[x].childNodes;
+        rows[x].setAttribute("onclick",`modPop(${cells[0].innerHTML},'${cells[2].innerHTML}','${cells[4].innerHTML}','${cells[6].innerHTML}','${cells[8].innerHTML}','${cells[10].innerHTML}')`);
     }
     var label = document.querySelector('#label');
     var delButton = document.querySelector("#delete");
@@ -76,6 +78,8 @@ function del()
     {
         rows[x].classList.add('del');
         rows[x].classList.remove('mod');
+        var cells = rows[x].childNodes;
+        rows[x].setAttribute("onclick",`delPop(${cells[0].innerHTML},'${cells[2].innerHTML}','${cells[4].innerHTML}','${cells[6].innerHTML}','${cells[8].innerHTML}','${cells[10].innerHTML}')`);
     }
     var label = document.querySelector('#label');
     var delButton = document.querySelector("#delete");
@@ -93,4 +97,66 @@ function del()
     
     delButton.parentNode.appendChild(label);
     delButton.style.margin = "20px 0";
+}
+
+function modPop(a,b,c,d,e,f)
+{
+    var input = document.querySelectorAll("#modForm > input");
+    input[0].value = a;
+    input[1].value = b;
+    input[2].value = c;
+    input[3].value = d;
+    input[4].value = e;
+    input[5].value = f;
+    document.querySelector('#modPopup').style.visibility = "visible";
+}
+function cancelMod()
+{
+    var rows = document.querySelectorAll("tbody > tr");
+    for (var x = 0; x < rows.length; x++)
+    {
+        rows[x].classList.remove('mod');
+        rows[x].setAttribute("onclick",'');
+    }
+    var label = document.querySelector("#label");
+    label.parentNode.removeChild(label);
+    document.querySelector("#modPopup").style.visibility = "hidden";
+}
+function delPop(a,b,c,d,e,f)
+{
+    var input = document.querySelectorAll("#delForm > input");
+    input[0].value = a;
+    input[1].value = b;
+    input[2].value = c;
+    input[3].value = d;
+    input[4].value = e;
+    input[5].value = f;
+    document.querySelector('#delPopup').style.visibility = "visible";
+}
+function cancelDel()
+{
+    var rows = document.querySelectorAll("tbody > tr");
+    for (var x = 0; x < rows.length; x++)
+    {
+        rows[x].classList.remove('del');
+        rows[x].setAttribute("onclick",'');
+    }
+    var label = document.querySelector("#label");
+    label.parentNode.removeChild(label);
+    document.querySelector("#delPopup").style.visibility = "hidden";
+}
+
+function add()
+{
+    var input = document.querySelectorAll("#addForm > input");
+    input[0].value = '';
+    input[1].value = '';
+    input[2].value = '';
+    input[3].value = '';
+    input[4].value = '';
+    document.querySelector('#addPopup').style.visibility = "visible";
+}
+function cancelAdd()
+{
+    document.querySelector('#addPopup').style.visibility = "hidden";
 }

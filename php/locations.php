@@ -45,17 +45,10 @@
               <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Location</h2></button>
               <button class="controlButton" id="delete" onclick="del()"><h2>Delete Location</h2></button>
             </div>
-            <div style="padding:0 10px; margin: auto">
-              <input class="inputField" type="text" id="key"></input>
-              <input class="inputField" type="text" id="Publisher Id"></input>
-              <input class="inputField" type="text" id="Location Id"></input>
-              <input class="inputField" type="text" id="Address Id"></input>
-            </div>
           </div>
           <div id="tableContainer">
-          
             <table id="table">
-              <thead><tr class="top">
+              <thead><tr>
                 <th><h3>Id</h3></th>
                 <th><h3>City</h3></th>
                 <th><h3>Country</h3></th>
@@ -66,6 +59,70 @@
               <tbody>
               </tbody>
             </table>
+          </div>
+        </div>
+        <div class="popup" id="addPopup">
+          <div id="addForm">
+            <h1>Add Location</h1>
+            <hr>
+            <h3>City</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Time Zone</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Longitude</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Latitude</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmAdd()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="modPopup">
+          <div id="modForm">
+            <h1>Modify Location</h1>
+            <hr>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>City</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Time Zone</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Longitude</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Latitude</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmMod()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="delPopup">
+          <div id="delForm">
+            <h1>Delete Location</h1>
+            <hr>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>City</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Country</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Time Zone</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Longitude</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Latitude</h3>
+            <input class="inputField" type="text" disabled></input>
+            <div>
+              <button class="cancelButton" onclick="cancelDel()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmDel()"><h2>Confirm</h2></button>
+            </div>
           </div>
         </div>
       </div>

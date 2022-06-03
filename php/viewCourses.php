@@ -41,25 +41,19 @@
           <div id="controls">
             <h2>Controls</h2>
             <div style="padding:0 10px; margin: auto">
-              <button class="controlButton" id="add"><h2>Add Course</h2></button>
+              <button class="controlButton" id="add" onclick="add()"><h2>Add Course</h2></button>
               <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Course</h2></button>
               <button class="controlButton" id="delete" onclick="del()"><h2>Delete Course</h2></button>
-            </div>
-            <div style="padding:0 10px; margin: auto">
-              <input class="inputField" type="text" id="key"></input>
-              <input class="inputField" type="text" id="Publisher Id"></input>
-              <input class="inputField" type="text" id="Location Id"></input>
-              <input class="inputField" type="text" id="Address Id"></input>
             </div>
           </div>
           <div id="tableContainer">
             <table id="table">
-              <thead><tr class="top">
-                <th><h3>Id</h3></th>
-                <th><h3>Site Key</h3></th>
-                <th><h3>Publisher Id</h3></th>
-                <th><h3>Location Id</h3></th>
-                <th><h3>Address Id</h3></th>
+              <thead><tr>
+                <th><h3>ID</h3></th>
+                <th><h3>Course Key</h3></th>
+                <th><h3>Publisher ID</h3></th>
+                <th><h3>Location ID</h3></th>
+                <th><h3>Address ID</h3></th>
                 </tr>
               </thead>
               <tbody>
@@ -67,7 +61,66 @@
             </table>
           </div>
         </div>
+        <div class="popup" id="addPopup">
+          <div id="addForm">
+            <h1>Add Course</h1>
+            <hr>
+            <h3>Course Key</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Publisher ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Address ID</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmAdd()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="modPopup">
+          <div id="modForm">
+            <h1>Modify Course</h1>
+            <hr>
+            <h3>Course ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Course Key</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Publisher ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text"></input>
+            <h3>Address ID</h3>
+            <input class="inputField" type="text"></input>
+            <div>
+              <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmMod()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
+        <div class="popup" id="delPopup">
+          <div id="delForm">
+            <h1>Delete Course</h1>
+            <hr>
+            <h3>Course ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Course Key</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Publisher ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Location ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Address ID</h3>
+            <input class="inputField" type="text" disabled></input>
+            <div>
+              <button class="cancelButton" onclick="cancelDel()"><h2>Cancel</h2></button>
+              <button class="confirmButton" onclick="confirmDel()"><h2>Confirm</h2></button>
+            </div>
+          </div>
+        </div>
       </div>
+      
       
 
       <!-- inclusion of footer start -->
