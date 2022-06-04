@@ -66,17 +66,18 @@
             <h1>Add Course</h1>
             <hr>
             <h3>Course Key</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Publisher ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Location ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Address ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
-              <button class="confirmButton" onclick="confirmAdd()"><h2>Confirm</h2></button>
+              <button class="validateButton" onclick="validateAdd()"><h2>Validate</h2></button>
             </div>
+            <button id="addButton" onclick="confirmAdd()" disabled><h2>Confirm</h2></button>
           </div>
         </div>
         <div class="popup" id="modPopup">
@@ -86,17 +87,18 @@
             <h3>Course ID</h3>
             <input class="inputField" type="text" disabled></input>
             <h3>Course Key</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Publisher ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Location ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Address ID</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
-              <button class="confirmButton" onclick="confirmMod()"><h2>Confirm</h2></button>
+              <button class="validateButton" onclick="validateMod()"><h2>Validate</h2></button>
             </div>
+            <button id="modButton" onclick="confirmMod()" disabled><h2>Confirm</h2></button>
           </div>
         </div>
         <div class="popup" id="delPopup">

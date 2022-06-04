@@ -1,7 +1,6 @@
 window.onload = popTable();
 
 function popTable(){
-
     var tBody = document.querySelector("#table > tbody");
     var rows = tBody.childNodes; //document.querySelectorAll("tbody > tr");
     for (var x = rows.length-1; x >= 0 ; x--)
@@ -43,8 +42,12 @@ function popTable(){
     apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     apiRequest.send(reqConf.join("&"));
 }
-
-function mod()
+function disableButtons()
+{
+    document.querySelector("#addButton").disabled = true;
+    document.querySelector("#modButton").disabled = true;
+}
+function mod() //Enables row selection for modification
 {
     var rows = document.querySelectorAll("tbody > tr");
     for (var x = 0; x < rows.length; x++)
@@ -71,7 +74,7 @@ function mod()
     delButton.style.margin = "0 0 20px 0";
 }
 
-function del()
+function del() //Enables row selection for deletion
 {
     var rows = document.querySelectorAll("tbody > tr");
     for (var x = 0; x < rows.length; x++)
@@ -100,8 +103,9 @@ function del()
     delButton.style.margin = "20px 0";
 }
 
-function modPop(a,b,c,d,e,f)
+function modPop(a,b,c,d,e,f)//Makes modification popup visible
 {
+    disableButtons();
     var input = document.querySelectorAll("#modForm > input");
     input[0].value = a;
     input[1].value = b;
@@ -123,7 +127,7 @@ function cancelMod()
     label.parentNode.removeChild(label);
     document.querySelector("#modPopup").style.visibility = "hidden";
 }
-function delPop(a,b,c,d,e,f)
+function delPop(a,b,c,d,e,f)//Makes deletion popup visible
 {
     var input = document.querySelectorAll("#delForm > input");
     input[0].value = a;
@@ -147,8 +151,9 @@ function cancelDel()
     document.querySelector("#delPopup").style.visibility = "hidden";
 }
 
-function add()
+function add() //Makes add popup visible
 {
+    disableButtons();
     var input = document.querySelectorAll("#addForm > input");
     input[0].value = '';
     input[1].value = '';
@@ -162,30 +167,203 @@ function cancelAdd()
     document.querySelector('#addPopup').style.visibility = "hidden";
 }
 
-function confirmAdd()
+function validateAdd()
 {
-    var idExp = /[^0-9]+/g;
     var input = document.querySelectorAll("#addForm > input");
-    
-    if (idExp.test(input[0].value)) alert(`Invalid Location ID: ${input[0].value}`);
-    if (!isValidLanguage(input[1].value)) alert(`Invalid Language: ${input[1].value}`);
-    if (!isValidStreet(input[3].value)) alert(`Invalid Street: ${input[3].value}`);
-    if (!isValidCountry(input[4].value)) alert(`Invalid Country: ${input[4].value}`);
+    isValidLoc(input[0].value, "#addForm");
 }
 
-function confirmMod()
+function validateMod()
 {
-    var idExp = /[^0-9]+/g;
     var input = document.querySelectorAll("#modForm > input");
-    console.log(input[4]);
-    if (idExp.test(input[1].value)) alert(`Invalid Location ID: ${input[1].value}`);
-    if (!isValidLanguage(input[2].value)) alert(`Invalid Language: ${input[2].value}`);
-    if (!isValidStreet(input[4].value)) alert(`Invalid Street: ${input[4].value}`);
-    if (!isValidCountry(input[5].value)) alert(`Invalid Country: ${input[5].value}`);
+    isValidLoc(input[1].value, "#modForm");
 }
 
-function isValidCountry(a)
+function isValidLoc(a,b)
 {
+    var input = document.querySelectorAll(b + " > input");
+    var idExp = /[^0-9]/g;
+    if (a == "" || idExp.test(a)) 
+    {
+        if (b.includes('mod')) 
+        {
+            input[1].classList.add("invalid");
+            input[1].classList.remove("valid");
+        }
+        else 
+        {
+            input[0].classList.add("invalid");
+            input[0].classList.remove("valid");
+        }
+        alert(`Invalid Location ID: ${a}`);
+    }
+    else 
+    {
+        var apiRequest = new XMLHttpRequest();
+        apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+        apiRequest.onreadystatechange = function()
+        {
+            if (apiRequest.readyState == 4 && apiRequest.status == 200)
+            {
+                var response = (JSON.parse(apiRequest.responseText));
+                console.log(response);
+                if (!response["success"]) 
+                {
+                    if (b.includes('mod')) 
+                    {
+                        input[1].classList.add("invalid");
+                        input[1].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[0].classList.add("invalid");
+                        input[0].classList.remove("valid");
+                    }
+                    alert("Location ID does not exist");
+                }
+                else 
+                {
+                    console.log(response['location']);
+                    if (b.includes('mod')) 
+                    {
+                        input[1].classList.add("valid");
+                        input[1].classList.remove("invalid");
+                        isValidLanguage(input[2].value, b);
+                    }
+                    else 
+                    {
+                        input[0].classList.add("valid");
+                        input[0].classList.remove("invalid");
+                        isValidLanguage(input[1].value, b);
+                    }
+                }
+            }
+        }
+        var data = {"table" : "locations", "target" : parseInt(a)};
+        var reqConf = [];
+
+        for (var item in data)
+        {
+            reqConf.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
+        }
+        apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        apiRequest.send(reqConf.join("&"));
+    }
+}
+
+
+function isValidLanguage(a, b) 
+{
+    var input = document.querySelectorAll(b + " > input");
+    var languages = ["ar-SA","bn-BD","bn-IN","cs-CZ","da-DK","de-AT","de-CH","de-DE","el-GR",
+    "en-AU","en-CA","en-GB","en-IE","en-IN","en-NZ","en-US","en-ZA","es-AR","es-CL","es-CO",
+    "es-ES","es-MX","es-US","fi-FI","fr-BE","fr-CA","fr-CH","fr-FR","he-IL","hi-IN","hu-HU",
+    "id-ID","it-CH","it-IT","jp-JP","ko-KR","nl-BE","nl-NL","no-NO","pl-PL","pt-BR","pt-PT",
+    "ro-RO","ru-RU","sk-SK","sv-SE","ta-IN","ta-LK","th-TH","tr-TR","zh-CN","zh-HK","zh-TW"];
+
+    if (languages.includes(a))
+    {
+        if (b.includes('mod')) 
+        {
+            input[2].classList.add("valid");
+            input[2].classList.remove("invalid");
+            isValidStreet(input[4].value, b);
+        }
+        else 
+        {
+            input[1].classList.add("valid");
+            input[1].classList.remove("invalid");
+            isValidStreet(input[3].value, b);
+        }
+    }
+    else 
+    {
+        if (b.includes('mod')) 
+        {
+            input[2].classList.add("invalid");
+            input[2].classList.remove("valid");
+        }
+        else 
+        {
+            input[1].classList.add("invalid");
+            input[1].classList.remove("valid");
+        }
+        alert(`Invalid language: ${a}`);
+    }
+}
+
+function isValidStreet(a, b)
+{
+    var input = document.querySelectorAll(b + " > input");
+    var suffixes = ["ALLEY","ANEX","ARCADE","AVENUE","BAYOU","BEACH","BEND","BLUFF","BLUFFS","BOTTOM",
+    "BOULEVARD","BRANCH","BRIDGE","BROOK","BROOKS","BURG","BURGS","BYPASS","CAMP","CANYON","CAPE",
+    "CAUSEWAY","CENTER","CENTERS","CIRCLE","CIRCLES","CLIFF","CLIFFS","CLUB","COMMON","COMMONS",
+    "CORNER","CORNERS","COURSE","COURT","COURTS","COVE","COVES","CREEK","CRESCENT","CREST","CROSSING",
+    "CROSSROAD","CROSSROADS","CURVE","DALE","DAM","DIVIDE","DRIVE","DRIVES","ESTATE","ESTATES",
+    "EXPRESSWAY","EXTENSION","EXTENSIONS","FALL","FALLS","FERRY","FIELD","FIELDS","FLAT","FLATS",
+    "FORD","FORDS","FOREST","FORGE","FORGES","FORK","FORKS","FORT","FREEWAY","GARDEN","GARDENS","GATEWAY",
+    "GLEN","GLENS","GREEN","GREENS","GROVE","GROVES","HARBOR","HARBORS","HAVEN","HEIGHTS","HIGHWAY",
+    "HILL","HILLS","HOLLOW","INLET","ISLAND","ISLANDS","ISLE","JUNCTION","JUNCTIONS","KEY","KEYS",
+    "KNOLL","KNOLLS","LAKE","LAKES","LAND","LANDING","LANE","LIGHT","LIGHTS","LOAF","LOCK","LOCKS",
+    "LODGE","LOOP","MALL","MANOR","MANORS","MEADOW","MEADOWS","MEWS","MILL","MILLS","MISSION",
+    "MOTORWAY","MOUNT","MOUNTAIN","MOUNTAINS","NECK","ORCHARD","OVAL","OVERPASS","PARK","PARKS",
+    "PARKWAY","PARKWAYS","PASS","PASSAGE","PATH","PIKE","PINE","PINES","PLACE","PLAIN","PLAINS",
+    "PLAZA","POINT","POINTS","PORT","PORTS","PRAIRIE","RADIAL","RAMP","RANCH","RAPID","RAPIDS",
+    "REST","RIDGE","RIDGES","RIVER","ROAD","ROADS","ROUTE","ROW","RUE","RUN","SHOAL","SHOALS",
+    "SHORE","SHORES","SKYWAY","SPRING","SPRINGS","SPUR","SPURS","SQUARE","SQUARES","STATION",
+    "STRAVENUE","STREAM","STREET","STREETS","SUMMIT","TERRACE","THROUGHWAY","TRACE","TRACK",
+    "TRAFFICWAY","TRAIL","TRAILER","TUNNEL","TURNPIKE","UNDERPASS","UNION","UNIONS","VALLEY",
+    "VALLEYS","VIADUCT","VIEW","VIEWS","VILLAGE","VILLAGES","VILLE","VISTA","WALK","WALKS","WALL",
+    "WAY","WAYS","WELL","WELLS"];
+    var str = a.toUpperCase();
+    var arr = str.split(" ");
+    var valid = false;
+    for (var x in suffixes)
+    {
+        if (valid) break;
+        for (var y in arr)
+        {
+            if(valid) break;
+            if (arr[y] == suffixes[x]) 
+            {
+                console.log(arr[y] + "=="+ suffixes[x]);
+                if (b.includes('mod')) 
+                {
+                    input[4].classList.add("valid");
+                    input[4].classList.remove("invalid");
+                    isValidCountry(input[5].value, b);
+                }
+                else 
+                {
+                    input[3].classList.add("valid");
+                    input[3].classList.remove("invalid");
+                    isValidCountry(input[4].value, b);
+                }
+                valid = true;
+            }
+        }
+    }
+
+    if (!valid) 
+    {
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("invalid");
+            input[4].classList.remove("valid");
+        }
+        else 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+        alert(`Invalid Street: ${a}`);
+    }
+}
+
+function isValidCountry(a, b)
+{
+    var input = document.querySelectorAll(b + " > input");
     var countries = [ "Afhanistan","Albania","Algeria","Andorro","Angola","Antigua and Barbuda",
     "Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh",
     "Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina",
@@ -213,60 +391,30 @@ function isValidCountry(a)
     
     if (countries.includes(a))
     {
-        return true;
-    }
-    return false;
-}
-function isValidLanguage(a) 
-{
-    var languages = ["ar-SA","bn-BD","bn-IN","cs-CZ","da-DK","de-AT","de-CH","de-DE","el-GR",
-    "en-AU","en-CA","en-GB","en-IE","en-IN","en-NZ","en-US","en-ZA","es-AR","es-CL","es-CO",
-    "es-ES","es-MX","es-US","fi-FI","fr-BE","fr-CA","fr-CH","fr-FR","he-IL","hi-IN","hu-HU",
-    "id-ID","it-CH","it-IT","jp-JP","ko-KR","nl-BE","nl-NL","no-NO","pl-PL","pt-BR","pt-PT",
-    "ro-RO","ru-RU","sk-SK","sv-SE","ta-IN","ta-LK","th-TH","tr-TR","zh-CN","zh-HK","zh-TW"];
-
-    if (languages.includes(a))
-    {
-        return true;
-    }
-    return false;
-}
-
-function isValidStreet(a)
-{
-    
-    var suffixes = ["ALLEY","ANEX","ARCADE","AVENUE","BAYOU","BEACH","BEND","BLUFF","BLUFFS","BOTTOM",
-    "BOULEVARD","BRANCH","BRIDGE","BROOK","BROOKS","BURG","BURGS","BYPASS","CAMP","CANYON","CAPE",
-    "CAUSEWAY","CENTER","CENTERS","CIRCLE","CIRCLES","CLIFF","CLIFFS","CLUB","COMMON","COMMONS",
-    "CORNER","CORNERS","COURSE","COURT","COURTS","COVE","COVES","CREEK","CRESCENT","CREST","CROSSING",
-    "CROSSROAD","CROSSROADS","CURVE","DALE","DAM","DIVIDE","DRIVE","DRIVES","ESTATE","ESTATES",
-    "EXPRESSWAY","EXTENSION","EXTENSIONS","FALL","FALLS","FERRY","FIELD","FIELDS","FLAT","FLATS",
-    "FORD","FORDS","FOREST","FORGE","FORGES","FORK","FORKS","FORT","FREEWAY","GARDEN","GARDENS","GATEWAY",
-    "GLEN","GLENS","GREEN","GREENS","GROVE","GROVES","HARBOR","HARBORS","HAVEN","HEIGHTS","HIGHWAY",
-    "HILL","HILLS","HOLLOW","INLET","ISLAND","ISLANDS","ISLE","JUNCTION","JUNCTIONS","KEY","KEYS",
-    "KNOLL","KNOLLS","LAKE","LAKES","LAND","LANDING","LANE","LIGHT","LIGHTS","LOAF","LOCK","LOCKS",
-    "LODGE","LOOP","MALL","MANOR","MANORS","MEADOW","MEADOWS","MEWS","MILL","MILLS","MISSION",
-    "MOTORWAY","MOUNT","MOUNTAIN","MOUNTAINS","NECK","ORCHARD","OVAL","OVERPASS","PARK","PARKS",
-    "PARKWAY","PARKWAYS","PASS","PASSAGE","PATH","PIKE","PINE","PINES","PLACE","PLAIN","PLAINS",
-    "PLAZA","POINT","POINTS","PORT","PORTS","PRAIRIE","RADIAL","RAMP","RANCH","RAPID","RAPIDS",
-    "REST","RIDGE","RIDGES","RIVER","ROAD","ROADS","ROUTE","ROW","RUE","RUN","SHOAL","SHOALS",
-    "SHORE","SHORES","SKYWAY","SPRING","SPRINGS","SPUR","SPURS","SQUARE","SQUARES","STATION",
-    "STRAVENUE","STREAM","STREET","STREETS","SUMMIT","TERRACE","THROUGHWAY","TRACE","TRACK",
-    "TRAFFICWAY","TRAIL","TRAILER","TUNNEL","TURNPIKE","UNDERPASS","UNION","UNIONS","VALLEY",
-    "VALLEYS","VIADUCT","VIEW","VIEWS","VILLAGE","VILLAGES","VILLE","VISTA","WALK","WALKS","WALL",
-    "WAY","WAYS","WELL","WELLS"];
-    var str = a.toUpperCase();
-    var arr = str.split(" ");
-    for (var x in suffixes)
-    {
-        for (var y in arr)
+        if (b.includes('mod')) 
         {
-            if (arr[y] == suffixes[x]) 
-            {
-                console.log(arr[y] + "=="+ suffixes[x]);
-                return true;
-            }
+            input[5].classList.add("valid");
+            input[5].classList.remove("invalid");
+            document.querySelector("#modButton").disabled = false;
+        }
+        else 
+        {
+            input[4].classList.add("valid");
+            input[4].classList.remove("invalid");
+            document.querySelector("#addButton").disabled = false;
         }
     }
-    return false;
+    else
+    {
+        if (b.includes('mod')) 
+        {
+            input[5].classList.add("invalid");
+            input[5].classList.remove("valid");
+        }
+        else 
+        {
+            input[4].classList.add("invalid");
+            input[4].classList.remove("valid");
+        }
+    }
 }

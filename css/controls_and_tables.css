@@ -183,14 +183,14 @@
   }
   .inputField
   {
-    height: 20px;
-    width: 200px;
-    margin: 5px;
+    width: 260px;
+    margin: 5px 10px;
   }
   .popup button
   {
     margin-bottom: 5px;
     border-radius: 3px;
+    border: 1px solid black;
   }
 
   .popup button > h2
@@ -203,4 +203,37 @@
   {
     background-color: rgba(255, 72, 0, 0.7);
   }
-  
+  .validateButton
+  {
+    background-color: rgba(255, 196, 0, 0.7);
+  }
+  #modButton, #addButton
+  {
+    background-color: rgba(85, 207, 60,0.7);
+  }
+  .valid
+  {
+    outline-color: green;
+    border: 2px solid green !important;
+  }
+  .invalid
+  {
+    outline-color: red;
+    border: 2px solid red !important;
+  }
+  .popup input[type=text]
+  {
+    font-size: 15px;
+    padding: 5px;
+    border-radius: 5px;
+
+  }
+  :focus-visible
+  {
+    outline-style: auto;
+    outline-width: 1px;
+  }
+  input:focus-visible
+  {
+    outline-offset: 0px;
+  }

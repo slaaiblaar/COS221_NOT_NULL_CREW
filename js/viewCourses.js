@@ -42,6 +42,12 @@ function popTable(){
     apiRequest.send(reqConf.join("&"));
 }
 
+function disableButtons()
+{
+    document.querySelector("#addButton").disabled = true;
+    document.querySelector("#modButton").disabled = true;
+}
+
 function mod()
 {
     var rows = document.querySelectorAll("tbody > tr");
@@ -99,6 +105,7 @@ function del()
 
 function modPop(a,b,c,d,e)
 {
+    disableButtons()
     var input = document.querySelectorAll("#modForm > input");
     input[0].value = a;
     input[1].value = b;
@@ -144,6 +151,7 @@ function cancelDel()
 
 function add()
 {
+    disableButtons()
     var input = document.querySelectorAll("#addForm > input");
     input[0].value = '';
     input[1].value = '';
@@ -151,7 +159,239 @@ function add()
     input[3].value = '';
     document.querySelector('#addPopup').style.visibility = "visible";
 }
+
 function cancelAdd()
 {
     document.querySelector('#addPopup').style.visibility = "hidden";
+}
+
+function validateAdd()
+{
+    var input = document.querySelectorAll("#addForm > input");
+    isValidPub(input[1].value, "#addForm");
+}
+
+function validateMod()
+{
+    var input = document.querySelectorAll("#modForm > input");
+    isValidPub(input[2].value, "#modForm");
+}
+
+function isValidPub(a,b)
+{
+    var input = document.querySelectorAll(b + " > input");
+    var idExp = /[^0-9]/g;
+    if (a == "" || idExp.test(a)) 
+    {
+        if (b.includes('mod')) 
+        {
+            input[2].classList.add("invalid");
+            input[2].classList.remove("valid");
+        }
+        else 
+        {
+            input[1].classList.add("invalid");
+            input[1].classList.remove("valid");
+        }
+        alert(`Invalid Publisher ID: ${a}`);
+    }
+    else 
+    {
+        var apiRequest = new XMLHttpRequest();
+        apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+        apiRequest.onreadystatechange = function()
+        {
+            if (apiRequest.readyState == 4 && apiRequest.status == 200)
+            {
+                var response = (JSON.parse(apiRequest.responseText));
+                console.log(response);
+                if (!response["success"]) 
+                {
+                    if (b.includes('mod')) 
+                    {
+                        input[2].classList.add("invalid");
+                        input[2].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[1].classList.add("invalid");
+                        input[1].classList.remove("valid");
+                    }
+                    alert(`Publisher ID does not exist: ${a}`);
+                }
+                else 
+                {
+                    console.log(response['location']);
+                    if (b.includes('mod')) 
+                    {
+                        input[2].classList.add("valid");
+                        input[2].classList.remove("invalid");
+                        isValidLoc(input[3].value, b);
+                    }
+                    else 
+                    {
+                        input[1].classList.add("valid");
+                        input[1].classList.remove("invalid");
+                        isValidLoc(input[2].value, b);
+                    }
+                }
+            }
+        }
+        var data = {"table" : "publishers", "target" : parseInt(a)};
+        var reqConf = [];
+
+        for (var item in data)
+        {
+            reqConf.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
+        }
+        apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        apiRequest.send(reqConf.join("&"));
+    }
+}
+
+function isValidLoc(a,b)
+{
+    var input = document.querySelectorAll(b + " > input");
+    var idExp = /[^0-9]/g;
+    if (a == "" || idExp.test(a)) 
+    {
+        if (b.includes('mod')) 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+        else 
+        {
+            input[2].classList.add("invalid");
+            input[2].classList.remove("valid");
+        }
+        alert(`Invalid Location ID: ${a}`);
+    }
+    else 
+    {
+        var apiRequest = new XMLHttpRequest();
+        apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+        apiRequest.onreadystatechange = function()
+        {
+            if (apiRequest.readyState == 4 && apiRequest.status == 200)
+            {
+                var response = (JSON.parse(apiRequest.responseText));
+                console.log(response);
+                if (!response["success"]) 
+                {
+                    if (b.includes('mod')) 
+                    {
+                        input[3].classList.add("invalid");
+                        input[3].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[2].classList.add("invalid");
+                        input[2].classList.remove("valid");
+                    }
+                    alert(`Location ID does not exist: ${a}`);
+                }
+                else 
+                {
+                    console.log(response['location']);
+                    if (b.includes('mod')) 
+                    {
+                        input[3].classList.add("valid");
+                        input[3].classList.remove("invalid");
+                        isValidAddr(input[4].value, b);
+                    }
+                    else 
+                    {
+                        input[2].classList.add("valid");
+                        input[2].classList.remove("invalid");
+                        isValidAddr(input[3].value, b);
+                    }
+                }
+            }
+        }
+        var data = {"table" : "locations", "target" : parseInt(a)};
+        var reqConf = [];
+
+        for (var item in data)
+        {
+            reqConf.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
+        }
+        apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        apiRequest.send(reqConf.join("&"));
+    }
+}
+
+function isValidAddr(a,b)
+{
+    var input = document.querySelectorAll(b + " > input");
+    var idExp = /[^0-9]/g;
+    if (a == "" || idExp.test(a)) 
+    {
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("invalid");
+            input[4].classList.remove("valid");
+        }
+        else 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+        alert(`Invalid Address ID: ${a}`);
+    }
+    else 
+    {
+        var apiRequest = new XMLHttpRequest();
+        apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+        apiRequest.onreadystatechange = function()
+        {
+            if (apiRequest.readyState == 4 && apiRequest.status == 200)
+            {
+                var response = (JSON.parse(apiRequest.responseText));
+                console.log(response);
+                if (!response["success"]) 
+                {
+                    if (b.includes('mod')) 
+                    {
+                        input[4].classList.add("invalid");
+                        input[4].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[3].classList.add("invalid");
+                        input[3].classList.remove("valid");
+                    }
+                    alert(`Address ID does not exist: ${a}`);
+                }
+                else 
+                {
+                    console.log(response['location']);
+                    if (b.includes('mod')) 
+                    {
+                        input[4].classList.add("valid");
+                        input[4].classList.remove("invalid");
+                        document.querySelector("#modButton").disabled = false;
+                    }
+                    else 
+                    {
+                        input[3].classList.add("valid");
+                        input[3].classList.remove("invalid");
+                        document.querySelector("#addButton").disabled = false;
+                    }
+                }
+            }
+        }
+        var data = {"table" : "addresses", "target" : parseInt(a)};
+        var reqConf = [];
+
+        for (var item in data)
+        {
+            reqConf.push(encodeURIComponent(item) + "=" + encodeURIComponent(data[item]));
+        }
+        apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        apiRequest.send(reqConf.join("&"));
+    }
 }

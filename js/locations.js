@@ -44,6 +44,12 @@ function popTable(){
     apiRequest.send(reqConf.join("&"));
 }
 
+function disableButtons()
+{
+    document.querySelector("#addButton").disabled = true;
+    document.querySelector("#modButton").disabled = true;
+}
+
 function mod()
 {
     var rows = document.querySelectorAll("tbody > tr");
@@ -101,6 +107,7 @@ function del()
 
 function modPop(a,b,c,d,e,f)
 {
+    disableButtons();
     var input = document.querySelectorAll("#modForm > input");
     input[0].value = a;
     input[1].value = b;
@@ -148,6 +155,7 @@ function cancelDel()
 
 function add()
 {
+    disableButtons();
     var input = document.querySelectorAll("#addForm > input");
     input[0].value = '';
     input[1].value = '';
@@ -161,29 +169,22 @@ function cancelAdd()
     document.querySelector('#addPopup').style.visibility = "hidden";
 }
 
-function confirmAdd()
+function validateAdd()
 {
-    var input = document.querySelectorAll("#modForm > input");
-    console.log(input[4]);
-    isValidCountryCity(input[2].value,input[1].value);
-    if (!isValidTZone(input[3].value)) alert(`Invalid Time Zone: ${input[3].value}`);
-    if (!isValidLat(input[4].value)) alert(`Invalid Latitude: ${input[4].value}`);
-    if (!isValidLon(input[5].value)) alert(`Invalid Longitude: ${input[5].value}`);
+    var input = document.querySelectorAll("#addForm > input");
+    isValidCountryCity(input[1].value,input[0].value, "#addForm");
 }
 
-function confirmMod()
+function validateMod()
 {
     var input = document.querySelectorAll("#modForm > input");
-    console.log(input[4]);
-    isValidCountryCity(input[2].value,input[1].value);
-    if (!isValidTZone(input[3].value)) alert(`Invalid Time Zone: ${input[3].value}`);
-    if (!isValidLat(input[4].value)) alert(`Invalid Latitude: ${input[4].value}`);
-    if (!isValidLon(input[5].value)) alert(`Invalid Longitude: ${input[5].value}`);
+    isValidCountryCity(input[2].value,input[1].value, "#modForm");
 }
 
-function isValidCountryCity(a,b)
+function isValidCountryCity(a,b,c)
 {// Uses an open source API, CountriesNow, to test if country exists, and if the city is part of it
  // GitHub page of API: https://github.com/MartinsOnuoha/countriesNowAPI
+    var input = document.querySelectorAll(c + " > input");
     var apiRequest = new XMLHttpRequest(); 
     apiRequest.open('POST','https://countriesnow.space/api/v0.1/countries/cities',false);
     apiRequest.setRequestHeader("Content-Type", "application/json");
@@ -193,56 +194,168 @@ function isValidCountryCity(a,b)
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
         {
+            if (c.includes('mod')) input[2].classList.add("valid");
+            else input[1].classList.add("valid");
             var response = JSON.parse(apiRequest.responseText);
-            if (response['error']) alert("Something went wrong while checking City/Country Validity");
-            var cities = [];
-            for (var x in response['data'])
+            if (response['error']) 
             {
-                cities.push(response['data'][x].toUpperCase());
+                alert("Something went wrong while checking City/Country Validity");
             }
-            console.log(cities);
-            if(!cities.includes(b.toUpperCase())) alert("Invalid City");
+            else
+            {
+                var cities = [];
+                for (var x in response['data'])
+                {
+                    cities.push(response['data'][x].toUpperCase());
+                }
+                console.log(cities);
+                if(!cities.includes(b.toUpperCase())) 
+                {
+                    alert("Invalid City");
+                    if (c.includes('mod')) input[1].classList.add("invalid");
+                    else input[0].classList.add("invalid");
+                }
+                else
+                {
+                    if (c.includes('mod')) 
+                    {
+                        isValidTZone(input[3].value, c);
+                        input[1].classList.add("valid");
+                    }
+                    else  
+                    {
+                        isValidTZone(input[2].value, c);
+                        input[0].classList.add("valid");
+                    }
+                }
+            }
         }
-        else alert("Invalid Country");
+        else 
+        {
+            if (c.includes('mod')) input[2].classList.add("invalid");
+            else input[1].classList.add("invalid");
+            alert("Invalid Country");
+        }
     }
     apiRequest.send(JSON.stringify(data));
 }
-function isValidTZone(a)
+function isValidTZone(a,b)
 {
+    var input = document.querySelectorAll(b + " > input");
+    var valid = false;
     var value = parseInt(a.replace(/hrs/i,""));
     if (value == NaN) return false;
-    if (value < -24 || value > 24) return false;
-    console.log("Valid Time Zone");
-    return true;
+    else if (value < -24 || value > 24) return false;
+    else 
+    {
+        valid = true;
+        var input = document.querySelectorAll(b + " > input");
+        if (b.includes('mod')) 
+        {
+            input[3].classList.add("valid");
+            isValidLat(input[4].value, b);
+        }
+        else  
+        {
+            input[2].classList.add("valid");
+            isValidLat(input[3].value, b);
+        }
+    }
+    if (!valid)
+    {
+        if (b.includes('mod')) input[3].classList.add("invalid");
+        else input[2].classList.add("invalid");
+    }
 }
-function isValidLat(a)
+function isValidLat(a,b)
 {//     Latitude and Longitude formatting:
  //     https://docs.mapbox.com/help/glossary/lat-lon/
 
+    var input = document.querySelectorAll(b + " > input");
+    var valid = true;
     var decCountReg = /\.[0-9]{5}$/g;
     var symReg = /[^\.\-\+0-9]/g;
-    if (decCountReg.test(a)) return false; //More than 4 decimals
-    if (symReg.test(a)) return false; //Has Special Characters
+    if (decCountReg.test(a))  
+    {
+        valid = false;
+        alert("Latitude may not have more than 4 decimal places"); //More than 4 decimals
+    }
+    if (valid && symReg.test(a)) 
+    {
+        valid = false;
+        alert("Latitude may not contain special characters"); //Has Special Characters
+    }
     var latNum = parseFloat(a);
     console.log("latitude: " + latNum);
-    if (latNum == NaN) return false; //Not a number
-    if (latNum > 90 || latNum < -90) return false;//outside of -90 <= x <= 90 range for latitude
-    console.log(a + " is a valid lat");
-    return true;
+    if (valid && latNum == NaN) 
+    {
+        alert("Latitude must be a number"); //Not a number
+    }
+    else if (valid &&  (latNum > 90 || latNum < -90)) //outside of -90 <= x <= 90 range for latitudeif (b.includes('mod')) 
+    {
+        alert("Latitude is outside of acceptable range");
+    }
+    else if (valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("valid");
+            isValidLon(input[5].value, b);
+        }
+        else  
+        {
+            input[3].classList.add("valid");
+            isValidLon(input[4].value, b);
+        }
+    }
+    if(!valid)
+    {
+        if (b.includes('mod')) input[4].classList.add("invalid");
+        else input[3].classList.add("invalid");
+    }
+
 }
 
-function isValidLon(a)
+function isValidLon(a,b)
 {//     Latitude and Longitude formatting:
  //     https://docs.mapbox.com/help/glossary/lat-lon/
-
+    var input = document.querySelectorAll(b + " > input");
+    var valid = true;
     var decCountReg = /\.[0-9]{5}$/g;
     var symReg = /[^\.\-\+0-9]/g;
-    if (decCountReg.test(a)) return false; //More than 4 decimals
-    if (symReg.test(a)) return false; //Has Special Characters
+    if (decCountReg.test(a))  
+    {
+        valid = false;
+        alert("Longitude may not have more than 4 decimal places"); //More than 4 decimals
+    }
+    if (valid && symReg.test(a))  
+    {
+        valid = false;
+        alert("Longitude may not contain special characters"); //Has Special Characters
+    }
     var lonNum = parseFloat(a);
     console.log("longitude: " + lonNum);
-    if (lonNum == NaN) return false; //Not a number
-    if (lonNum > 180 || lonNum < -180) return false; //outside of -180 <= x <= 180 range for latitude
-    console.log(a + " is a valid lon");
-    return true;
+    if (valid && lonNum == NaN) alert("Longitude must be a number"); //Not a number
+    else if (valid && (lonNum > 180 || lonNum < -180)) //outside of -180 <= x <= 180 range for latitude
+    {
+        alert("Longitude is outside of acceptable range");
+    }
+    else if (valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[5].classList.add("valid");
+            document.querySelector("#modButton").disabled = false;
+        }
+        else
+        {
+            input[4].classList.add("valid");
+            document.querySelector("#addButton").disabled = false;
+        }
+    }
+    if(!valid)
+    {
+        if (b.includes('mod')) input[5].classList.add("invalid");
+        else input[4].classList.add("invalid");
+    }
 }
