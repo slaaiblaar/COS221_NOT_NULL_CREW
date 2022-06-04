@@ -152,12 +152,33 @@
         
         public function modLocation(array $data)
         {
+            $addSQL = "UPDATE locations SET city='".$data['city']."', country='".$data['country']."', timezone='".$data['timezone']."',"
+            ." latitude='".$data['latitude']."', longitude='".$data['longitude']."' WHERE id=".$data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($addSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully modified location: ". $data['timezone']." ".$data['latitude']." ".$data['longitude']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => $conn->error];
+            }
         }
         
         public function delLocation(array $data)
         {
+            $delSQL = "DELETE FROM locations WHERE id=". $data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($delSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully deleted location: ". $data['timezone']." ".$data['latitude']." ".$data['longitude']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => "Some error occurred, could not delete location: ". $data['timezone']." ".$data['latitude']." ".$data['longitude']];
+            }
         }
         
         public function getAddresses() //All Addresses

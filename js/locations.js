@@ -129,6 +129,45 @@ function cancelMod()
     label.parentNode.removeChild(label);
     document.querySelector("#modPopup").style.visibility = "hidden";
 }
+
+function confirmMod()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to modify Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelMod();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#modForm > input");
+    var data = {
+        "table": "locations", 
+        "mod": {   
+            "id": parseInt(input[0].value),
+            "city": input[1].value,
+            "country": input[2].value,
+            "timezone": input[3].value,
+            "latitude": input[4].value,
+            "longitude": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function delPop(a,b,c,d,e,f)
 {
     var input = document.querySelectorAll("#delForm > input");
@@ -153,6 +192,44 @@ function cancelDel()
     document.querySelector("#delPopup").style.visibility = "hidden";
 }
 
+function confirmDel()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to delete Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelDel();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#delForm > input");
+    var data = {
+        "table": "locations", 
+        "del": {   
+            "id": parseInt(input[0].value),
+            "city": input[1].value,
+            "country": input[2].value,
+            "timezone": input[3].value,
+            "latitude": input[4].value,
+            "longitude": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function add()
 {
     disableButtons();
@@ -175,6 +252,43 @@ function validateAdd()
     isValidCountryCity(input[1].value,input[0].value, "#addForm");
 }
 
+function confirmAdd()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to add Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelAdd();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#addForm > input");
+    var data = {
+        "table": "locations", 
+        "add": {
+            "city": input[0].value,
+            "country": input[1].value,
+            "timezone": input[2].value,
+            "latitude": input[3].value,
+            "longitude": input[4].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function validateMod()
 {
     var input = document.querySelectorAll("#modForm > input");
@@ -194,8 +308,16 @@ function isValidCountryCity(a,b,c)
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
         {
-            if (c.includes('mod')) input[2].classList.add("valid");
-            else input[1].classList.add("valid");
+            if (c.includes('mod')) 
+            {
+                input[2].classList.add("valid");
+                input[2].classList.remove("invalid");
+            }
+            else  
+            {
+               input[1].classList.add("valid");
+               input[1].classList.remove("invalid");
+           }
             var response = JSON.parse(apiRequest.responseText);
             if (response['error']) 
             {
@@ -212,8 +334,16 @@ function isValidCountryCity(a,b,c)
                 if(!cities.includes(b.toUpperCase())) 
                 {
                     alert("Invalid City");
-                    if (c.includes('mod')) input[1].classList.add("invalid");
-                    else input[0].classList.add("invalid");
+                    if (c.includes('mod')) 
+                    {
+                        input[1].classList.add("invalid");
+                        input[1].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[0].classList.add("invalid");
+                        input[0].classList.remove("valid");
+                    }
                 }
                 else
                 {
@@ -221,19 +351,29 @@ function isValidCountryCity(a,b,c)
                     {
                         isValidTZone(input[3].value, c);
                         input[1].classList.add("valid");
+                        input[1].classList.remove("invalid");
                     }
                     else  
                     {
                         isValidTZone(input[2].value, c);
                         input[0].classList.add("valid");
+                        input[0].classList.remove("invalid");
                     }
                 }
             }
         }
         else 
         {
-            if (c.includes('mod')) input[2].classList.add("invalid");
-            else input[1].classList.add("invalid");
+            if (c.includes('mod')) 
+            {
+                input[2].classList.add("invalid");
+                input[2].classList.remove("valid");
+            }
+            else 
+            {
+                input[1].classList.add("invalid");
+                input[1].classList.remove("valid");
+            }
             alert("Invalid Country");
         }
     }
@@ -245,7 +385,7 @@ function isValidTZone(a,b)
     var valid = false;
     var value = parseInt(a.replace(/hrs/i,""));
     if (value == NaN) return false;
-    else if (value < -24 || value > 24) return false;
+    else if (value < -12 || value > 14) return false;
     else 
     {
         valid = true;
@@ -253,18 +393,28 @@ function isValidTZone(a,b)
         if (b.includes('mod')) 
         {
             input[3].classList.add("valid");
+            input[3].classList.remove("invalid");
             isValidLat(input[4].value, b);
         }
         else  
         {
             input[2].classList.add("valid");
+            input[2].classList.remove("invalid");
             isValidLat(input[3].value, b);
         }
     }
     if (!valid)
     {
-        if (b.includes('mod')) input[3].classList.add("invalid");
-        else input[2].classList.add("invalid");
+        if (b.includes('mod')) 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+        else 
+        {
+            input[2].classList.add("invalid");
+            input[2].classList.remove("valid");
+        }
     }
 }
 function isValidLat(a,b)
@@ -300,18 +450,28 @@ function isValidLat(a,b)
         if (b.includes('mod')) 
         {
             input[4].classList.add("valid");
+            input[4].classList.remove("invalid");
             isValidLon(input[5].value, b);
         }
         else  
         {
             input[3].classList.add("valid");
+            input[3].classList.remove("invalid");
             isValidLon(input[4].value, b);
         }
     }
     if(!valid)
     {
-        if (b.includes('mod')) input[4].classList.add("invalid");
-        else input[3].classList.add("invalid");
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("invalid");
+            input[4].classList.remove("valid");
+        }
+        else 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
     }
 
 }
@@ -345,17 +505,27 @@ function isValidLon(a,b)
         if (b.includes('mod')) 
         {
             input[5].classList.add("valid");
+            input[5].classList.remove("invalid");
             document.querySelector("#modButton").disabled = false;
         }
         else
         {
             input[4].classList.add("valid");
+            input[4].classList.remove("invalid");
             document.querySelector("#addButton").disabled = false;
         }
     }
     if(!valid)
     {
-        if (b.includes('mod')) input[5].classList.add("invalid");
-        else input[4].classList.add("invalid");
+        if (b.includes('mod')) 
+        {
+            input[5].classList.add("invalid");
+            input[5].classList.remove("valid");
+        }
+        else 
+        {
+           input[4].classList.add("invalid");
+           input[4].classList.remove("valid");
+       }
     }
 }

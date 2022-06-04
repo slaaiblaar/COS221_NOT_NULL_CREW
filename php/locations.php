@@ -71,9 +71,9 @@
             <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Time Zone</h3>
             <input class="inputField" oninput="disableButtons()" type="text"></input>
-            <h3>Longitude</h3>
-            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Latitude</h3>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
+            <h3>Longitude</h3>
             <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
@@ -94,9 +94,9 @@
             <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Time Zone</h3>
             <input class="inputField" oninput="disableButtons()" type="text"></input>
-            <h3>Longitude</h3>
-            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Latitude</h3>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
+            <h3>Longitude</h3>
             <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
@@ -117,9 +117,9 @@
             <input class="inputField" type="text" disabled></input>
             <h3>Time Zone</h3>
             <input class="inputField" type="text" disabled></input>
-            <h3>Longitude</h3>
-            <input class="inputField" type="text" disabled></input>
             <h3>Latitude</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Longitude</h3>
             <input class="inputField" type="text" disabled></input>
             <div>
               <button class="cancelButton" onclick="cancelDel()"><h2>Cancel</h2></button>

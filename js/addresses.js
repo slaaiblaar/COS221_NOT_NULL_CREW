@@ -141,7 +141,7 @@ function confirmMod()
             console.log(response);
             if (!response["success"]) 
             {
-                alert("Something went wrong while trying to modify Address: " + input[2].value + " " + input[3].value + " " + input[4]);
+                alert("Something went wrong while trying to modify Address: " + input[3].value + " " + input[4].value + " " + input[5]);
             }
             else
             {
@@ -166,6 +166,7 @@ function confirmMod()
 
     apiRequest.send(JSON.stringify(data));
 }
+
 function validateMod()
 {
     var input = document.querySelectorAll("#modForm > input");
@@ -207,7 +208,7 @@ function confirmDel()
             console.log(response);
             if (!response["success"]) 
             {
-                alert("Something went wrong while trying to delete Address: " + input[2].value + " " + input[3].value + " " + input[4]);
+                alert("Something went wrong while trying to delete Address: " + input[3].value + " " + input[4].value + " " + input[5]);
             }
             else
             {
