@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/address.css">
+    <link rel="stylesheet" href="../css/controls_and_tables.css">
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>

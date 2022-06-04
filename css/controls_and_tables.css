@@ -1,9 +1,9 @@
-*
-{
+  *
+  {
     box-sizing: border-box;
-}
-    #mainContainer
-{
+  }
+  #mainContainer
+  {
     border-radius: 20px;
     background-color: white;
     opacity: 0.7;
@@ -15,25 +15,6 @@
     align-items: center;
     justify-content: center;
   }
-  /* body {
-    margin: 0;
-    padding: 2rem;
-  }
-  
-  table {
-    text-align: left;
-    position: relative;
-    border-collapse: collapse; 
-  }
-  th, td {
-    padding: 0.25rem;
-  }
-  th {
-    background: white;
-    position: sticky;
-    top: 0;  Don't forget this, required for the stickiness 
-    box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
-  } */
   #mainContainer
   {
     position: relative;

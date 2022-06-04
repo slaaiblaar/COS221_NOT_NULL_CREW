@@ -10,7 +10,7 @@ function popTable(){
     }
 
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/address_config.php',true);
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
