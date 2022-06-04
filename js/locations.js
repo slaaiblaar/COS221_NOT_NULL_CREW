@@ -3,7 +3,7 @@ window.onload = popTable();
 function popTable(){
 
     var tBody = document.querySelector("#table > tbody");
-    var rows = tBody.childNodes; //document.querySelectorAll("tbody > tr");
+    var rows = tBody.childNodes;
     for (var x = rows.length-1; x >= 0 ; x--)
     {
         tBody.removeChild(rows[x]);

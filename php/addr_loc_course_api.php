@@ -70,14 +70,14 @@
             else return ["success"=>false, "message" => "A publisher with ID(". $id .") does not exist"];
         }
 
-        public function addPublisher($publisher_key, $publisher_name)
+        public function addPublisher(array $data)
         {
-            $addSQL = "INSERT INTO publishers (publisher_key, publisher_name) VALUES ('".$publisher_key."','".$publisher_name."')";
+            $addSQL = "INSERT INTO publishers (publisher_key, publisher_name) VALUES ('".$data['publisher_key']."','".$data['publisher_name']."')";
 
             $conn = $this->dbConnection;
             if ($conn->query($addSQL) === true)
             {
-                return [ "success" => true, "message" => "Successfully added publisher: ". $publisher_key." ".$publisher_name];
+                return [ "success" => true, "message" => "Successfully added publisher: ". $data['publisher_key']." ".$data['publisher_name']];
             }
             else
             {
@@ -85,12 +85,12 @@
             }
         }
         
-        public function modPublisher($id, $publisher_key, $publisher_name)
+        public function modPublisher(array $data)
         {
 
         }
 
-        public function delPublisher($id)
+        public function delPublisher(array $data)
         {
 
         }
@@ -134,15 +134,15 @@
             else return ["success"=>false, "message" => "A location with ID(". $id .") does not exist"];
         }
 
-        public function addLocation($city, $country, $timezone, $latitude, $longitude)
+        public function addLocation(array $data)
         {
-            $addSQL = "INSERT INTO locations (city, country, timezone, latitude, longitude) VALUES ('".$city."','".$country."','"
-            .$timezone."','".$latitude."','".$longitude."')";
+            $addSQL = "INSERT INTO locations (city, country, timezone, latitude, longitude) VALUES ('".$data['city']."','".$data['country']."','"
+            .$data['timezone']."','".$data['latitude']."','".$data['longitude']."')";
 
             $conn = $this->dbConnection;
             if ($conn->query($addSQL) === true)
             {
-                return [ "success" => true, "message" => "Successfully added location: ". $timezone." ".$latitude." ".$longitude];
+                return [ "success" => true, "message" => "Successfully added location: ". $data['timezone']." ".$data['latitude']." ".$data['longitude']];
             }
             else
             {
@@ -150,12 +150,12 @@
             }
         }
         
-        public function modLocation($id, $city, $country, $timezone, $latitude, $longitude)
+        public function modLocation(array $data)
         {
 
         }
         
-        public function delLocation($id)
+        public function delLocation(array $data)
         {
 
         }
@@ -199,30 +199,51 @@
             else return ["success"=>false, "message" => "An address with ID(". $id .") does not exist"];
         }
 
-        public function addAddress($location_id, $language, $street_number, $street, $country)
+        public function addAddress(array $data)
         {
-            $addSQL = "INSERT INTO addresses (location_id, language, street_number, street, country) VALUES (".$location_id.",'".$language."','"
-            .$street_number."','".$street."','".$country."')";
+            $addSQL = "INSERT INTO addresses (location_id, language, street_number, street, country) VALUES (".$data['location_id'].",'".$data['language']."','"
+            .$data['street_number']."','".$data['street']."','".$data['country']."')";
 
             $conn = $this->dbConnection;
             if ($conn->query($addSQL) === true)
             {
-                return [ "success" => true, "message" => "Successfully added address: ". $street_number." ".$street." ".$country];
+                return [ "success" => true, "message" => "Successfully added address: ". $data['street_number']." ".$data['street']." ".$data['country']];
             }
             else
             {
-                return [ "success" => false, "error" => "Some error occurred, could not add address: ". $street_number." ".$street." ".$country];
+                return [ "success" => false, "error" => "Some error occurred, could not add address: ". $data['street_number']." ".$data['street']." ".$data['country']];
             }
         }
         
-        public function modAddress($id, $location_id, $language, $street_number, $street, $country)
+        public function modAddress(array $data)
         {
+            $addSQL = "UPDATE addresses SET location_id=".$data['location_id'].", language='".$data['language']."', street_number='".$data['street_number']."',"
+            ." street='".$data['street']."', country='".$data['country']."' WHERE id=".$data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($addSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully modified address: ". $data['street_number']." ".$data['street']." ".$data['country']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => "Some error occurred, could not add address: ". $data['street_number']." ".$data['street']." ".$data['country']];
+            }
         }
         
-        public function delAddress($id)
+        public function delAddress(array $data)
         {
+            $delSQL = "DELETE FROM addresses WHERE id=". $data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($delSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully deleted address: ". $data['street_number']." ".$data['street']." ".$data['country']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => "Some error occurred, could not delete address: ". $data['street_number']." ".$data['street']." ".$data['country']];
+            }
         }
         
         public function getCourses() //All Courses
@@ -264,15 +285,15 @@
             else return ["success"=>false, "message" => "A site with ID(". $id .") does not exist"];
         }
 
-        public function addCourse($site_key, $publisher_id, $location_id, $address_id)
+        public function addCourse(array $data)
         {
-            $addSQL = "INSERT INTO sites (site_key, publisher_id, location_id, address_id) VALUES ('".$site_key."',".$publisher_id.","
-            .$location_id.",".$address_id.")";
+            $addSQL = "INSERT INTO sites (site_key, publisher_id, location_id, address_id) VALUES ('".$data['site_key']."',".$data['publisher_id.'].","
+            .$data['location_id'].",".$data['address_id.'].")";
 
             $conn = $this->dbConnection;
             if ($conn->query($addSQL) === true)
             {
-                return [ "success" => true, "message" => "Successfully added course: ". $site_key];
+                return [ "success" => true, "message" => "Successfully added course: ". $data['site_key']];
             }
             else
             {
@@ -280,43 +301,69 @@
             }
         }
         
-        public function modCourse($id, $site_key, $publisher_id, $location_id, $address_id)
+        public function modCourse(array $data)
         {
 
         }
 
-        public function deCourse($id)
+        public function delCourse(array $data)
         {
 
         }
     }
     $dbConn = Database::getInstance();
-    if ($_POST['table'] === 'addresses')
+    if (isset($_POST['table']))
     {
-        if (isset($_POST['target'])) echo json_encode($dbConn->getAddress($_POST['target']));
-        else echo json_encode($dbConn->getAddresses());
-    }
-    else if ($_POST['table'] === 'locations')
-    {
-        if (isset($_POST['target'])) echo json_encode($dbConn->getLocation($_POST['target']));
-        else echo json_encode($dbConn->getLocations());
-    }
-    else if ($_POST['table'] === 'courses')
-    {
-        if (isset($_POST['target'])) echo json_encode($dbConn->getCourse($_POST['target']));
-        else echo json_encode($dbConn->getCourses());        
-    }
-    else if ($_POST['table'] === 'publishers')
-    {
-        if (isset($_POST['target'])) echo json_encode($dbConn->getPublisher($_POST['target']));
-        else echo json_encode($dbConn->getCourses());        
+        if ($_POST['table'] === 'addresses')
+        {
+            if (isset($_POST['target'])) echo json_encode($dbConn->getAddress($_POST['target']));
+            else echo json_encode($dbConn->getAddresses());
+        }
+        else if ($_POST['table'] === 'locations')
+        {
+            if (isset($_POST['target'])) echo json_encode($dbConn->getLocation($_POST['target']));
+            else echo json_encode($dbConn->getLocations());
+        }
+        else if ($_POST['table'] === 'courses')
+        {
+            if (isset($_POST['target'])) echo json_encode($dbConn->getCourse($_POST['target']));
+            else echo json_encode($dbConn->getCourses());        
+        }
+        else if ($_POST['table'] === 'publishers')
+        {
+            if (isset($_POST['target'])) echo json_encode($dbConn->getPublisher($_POST['target']));
+            else echo json_encode($dbConn->getCourses());        
+        }
     }
     else 
     {
-        $debugFile = fopen("../debug.txt","r+");
-        fwrite($debugFile,"======================================\n");
-        fwrite($debugFile,print_r($_POST,true));
-        fwrite($debugFile,"\n======================================\n");
-        fclose($debugFile);
+        $post = json_decode(file_get_contents('php://input'), true);
+        // $debugFile = fopen("../debug.txt","a+");
+        // fwrite($debugFile,"======================================\n");
+        // fwrite($debugFile,print_r($post['add'],true));
+        // fwrite($debugFile,"\n======================================\n");
+        // fclose($debugFile);
+        if ($post['table'] === 'addresses')
+        {
+            if (isset($post['add'])) echo json_encode($dbConn->addAddress($post['add']));
+            else if (isset($post['mod'])) echo json_encode($dbConn->modAddress($post['mod']));
+            else if (isset($post['del'])) echo json_encode($dbConn->delAddress($post['del']));
+        }
+        if ($post['table'] === 'locations')
+        {
+            if (isset($post['add'])) echo json_encode($dbConn->addLocation($post['add']));
+            else if (isset($post['mod'])) echo json_encode($dbConn->modLocation($post['mod']));
+            else if (isset($post['del'])) echo json_encode($dbConn->delLocation($post['del']));
+        }
+        if ($post['table'] === 'courses')
+        {
+            if (isset($post['add'])) echo json_encode($dbConn->addCourse($post['add']));
+            else if (isset($post['mod'])) echo json_encode($dbConn->modCourse($post['mod']));
+            else if (isset($post['del'])) echo json_encode($dbConn->delCourse($post['del']));
+        }
+        if ($post['table'] === 'publishers')
+        {
+            
+        }
     }
 ?>

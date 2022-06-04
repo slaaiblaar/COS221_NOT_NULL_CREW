@@ -2,7 +2,7 @@ window.onload = popTable();
 
 function popTable(){
     var tBody = document.querySelector("#table > tbody");
-    var rows = tBody.childNodes; //document.querySelectorAll("tbody > tr");
+    var rows = tBody.childNodes;
     for (var x = rows.length-1; x >= 0 ; x--)
     {
         tBody.removeChild(rows[x]);
@@ -127,6 +127,51 @@ function cancelMod()
     label.parentNode.removeChild(label);
     document.querySelector("#modPopup").style.visibility = "hidden";
 }
+
+function confirmMod()
+{
+    
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to modify Address: " + input[2].value + " " + input[3].value + " " + input[4]);
+            }
+            else
+            {
+                popTable();
+                cancelMod();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#modForm > input");
+    var data = {
+        "table": "addresses", 
+        "mod": {   
+            "id": parseInt(input[0].value),
+            "location_id": parseInt(input[1].value),
+            "language": input[2].value,
+            "street_number": input[3].value,
+            "street": input[4].value,
+            "country": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+function validateMod()
+{
+    var input = document.querySelectorAll("#modForm > input");
+    isValidLoc(input[1].value, "#modForm");
+}
+
 function delPop(a,b,c,d,e,f)//Makes deletion popup visible
 {
     var input = document.querySelectorAll("#delForm > input");
@@ -150,7 +195,43 @@ function cancelDel()
     label.parentNode.removeChild(label);
     document.querySelector("#delPopup").style.visibility = "hidden";
 }
+function confirmDel()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to delete Address: " + input[2].value + " " + input[3].value + " " + input[4]);
+            }
+            else
+            {
+                popTable();
+                cancelDel();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#delForm > input");
+    var data = {
+        "table": "addresses", 
+        "del": {   
+            "id": parseInt(input[0].value),
+            "location_id": parseInt(input[1].value),
+            "language": input[2].value,
+            "street_number": input[3].value,
+            "street": input[4].value,
+            "country": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
+    apiRequest.send(JSON.stringify(data));
+}
 function add() //Makes add popup visible
 {
     disableButtons();
@@ -173,12 +254,42 @@ function validateAdd()
     isValidLoc(input[0].value, "#addForm");
 }
 
-function validateMod()
+function confirmAdd()
 {
-    var input = document.querySelectorAll("#modForm > input");
-    isValidLoc(input[1].value, "#modForm");
-}
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to add Address: " + input[2].value + " " + input[3].value + " " + input[4]);
+            }
+            else
+            {
+                popTable();
+                cancelAdd();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#addForm > input");
+    var data = {
+        "table": "addresses", 
+        "add": {   
+            "location_id": parseInt(input[0].value),
+            "language": input[1].value,
+            "street_number": input[2].value,
+            "street": input[3].value,
+            "country": input[4].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
 
+    apiRequest.send(JSON.stringify(data));
+}
 function isValidLoc(a,b)
 {
     var input = document.querySelectorAll(b + " > input");
