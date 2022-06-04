@@ -152,11 +152,11 @@
         
         public function modLocation(array $data)
         {
-            $addSQL = "UPDATE locations SET city='".$data['city']."', country='".$data['country']."', timezone='".$data['timezone']."',"
+            $modSQL = "UPDATE locations SET city='".$data['city']."', country='".$data['country']."', timezone='".$data['timezone']."',"
             ." latitude='".$data['latitude']."', longitude='".$data['longitude']."' WHERE id=".$data['id'];
 
             $conn = $this->dbConnection;
-            if ($conn->query($addSQL) === true)
+            if ($conn->query($modSQL) === true)
             {
                 return [ "success" => true, "message" => "Successfully modified location: ". $data['timezone']." ".$data['latitude']." ".$data['longitude']];
             }
@@ -238,11 +238,11 @@
         
         public function modAddress(array $data)
         {
-            $addSQL = "UPDATE addresses SET location_id=".$data['location_id'].", language='".$data['language']."', street_number='".$data['street_number']."',"
+            $modSQL = "UPDATE addresses SET location_id=".$data['location_id'].", language='".$data['language']."', street_number='".$data['street_number']."',"
             ." street='".$data['street']."', country='".$data['country']."' WHERE id=".$data['id'];
 
             $conn = $this->dbConnection;
-            if ($conn->query($addSQL) === true)
+            if ($conn->query($modSQL) === true)
             {
                 return [ "success" => true, "message" => "Successfully modified address: ". $data['street_number']." ".$data['street']." ".$data['country']];
             }
@@ -308,8 +308,8 @@
 
         public function addCourse(array $data)
         {
-            $addSQL = "INSERT INTO sites (site_key, publisher_id, location_id, address_id) VALUES ('".$data['site_key']."',".$data['publisher_id.'].","
-            .$data['location_id'].",".$data['address_id.'].")";
+            $addSQL = "INSERT INTO sites (site_key, publisher_id, location_id, address_id) VALUES ('".$data['site_key']."',".$data['publisher_id'].","
+            .$data['location_id'].",".$data['address_id'].")";
 
             $conn = $this->dbConnection;
             if ($conn->query($addSQL) === true)
@@ -324,12 +324,33 @@
         
         public function modCourse(array $data)
         {
+            $modSQL = "UPDATE sites SET site_key='".$data['site_key']."', publisher_id=".$data['publisher_id'].", location_id=".$data['location_id'].", "
+            ."address_id=".$data['address_id']." WHERE id=".$data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($modSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully modified course: ". $data['site_key']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => $conn->error];
+            }
         }
 
         public function delCourse(array $data)
         {
+            $delSQL = "DELETE FROM sites WHERE id=".$data['id'];
 
+            $conn = $this->dbConnection;
+            if ($conn->query($delSQL) === true)
+            {
+                return [ "success" => true, "message" => "Successfully deleted course: ". $data['site_key']];
+            }
+            else
+            {
+                return [ "success" => false, "error" => $conn->error];
+            }
         }
     }
     $dbConn = Database::getInstance();

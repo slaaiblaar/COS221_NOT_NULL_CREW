@@ -102,6 +102,42 @@ function del()
     delButton.parentNode.appendChild(label);
     delButton.style.margin = "20px 0";
 }
+function confirmDel()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to modify Course: " + input[0].value);
+            }
+            else
+            {
+                popTable();
+                cancelDel();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#delForm > input");
+    var data = {
+        "table": "courses", 
+        "del": {
+            "id": parseInt(input[0].value),
+            "site_key": input[1].value,
+            "publisher_id": parseInt(input[2].value),
+            "location_id": parseInt(input[3].value),
+            "address_id": parseInt(input[4].value)
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
 
 function modPop(a,b,c,d,e)
 {
@@ -171,10 +207,83 @@ function validateAdd()
     isValidPub(input[1].value, "#addForm");
 }
 
+function confirmAdd()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to add Course: " + input[0].value);
+            }
+            else
+            {
+                popTable();
+                cancelAdd();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#addForm > input");
+    var data = {
+        "table": "courses", 
+        "add": {
+            "site_key": input[0].value,
+            "publisher_id": parseInt(input[1].value),
+            "location_id": parseInt(input[2].value),
+            "address_id": parseInt(input[3].value)
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function validateMod()
 {
     var input = document.querySelectorAll("#modForm > input");
     isValidPub(input[2].value, "#modForm");
+}
+
+function confirmMod()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to modify Course: " + input[0].value);
+            }
+            else
+            {
+                popTable();
+                cancelMod();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#modForm > input");
+    var data = {
+        "table": "courses", 
+        "mod": {
+            "id": parseInt(input[0].value),
+            "site_key": input[1].value,
+            "publisher_id": parseInt(input[2].value),
+            "location_id": parseInt(input[3].value),
+            "address_id": parseInt(input[4].value)
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
 }
 
 function isValidPub(a,b)
