@@ -3,7 +3,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/signup.css">
+        <link rel="stylesheet" href="../css/signup.css">
         <title> Golf Statistics/Sign Up </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -13,10 +13,10 @@
     <body>
         <div id="bodyContainer">
             <?php
-                include_once("php/header.php");
+                include_once("header.php");
             ?>
             <div id="signupForm">
-                <form action="php/validate-signup.php" method="post" class="signupForm"> <!-- onsubmit="return ValidateInput()"> -->
+                <form action="validateSignup.php" method="post" class="signupForm"> <!-- onsubmit="return ValidateInput()"> -->
                     <div class="container">
                         <h1>Sign Up</h1>
                         <p>Please fill in this form to create an account.</p>
@@ -120,11 +120,17 @@
                 </div>
             </div>
         </div>
-        <?php
-            include_once("php/footer.php");
+        <?php 
+            if(!empty($_SESSION['showRegPopupAdd'])){
+                echo"<script> document.querySelector('.fullScreenPopup').style.visibility = 'visible';</script>";
+            }
         ?>
-        <script src="js/inputValidationSignUp.js"></script>
-        <script src="js/passwordToggle.js"></script>
+         
+        <?php
+            include_once("footer.php");
+        ?>
+        <script src="../js/inputValidationSignUp.js"></script>
+        <script src="../js/passwordToggle.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </body>

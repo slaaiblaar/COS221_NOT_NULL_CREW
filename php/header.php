@@ -81,5 +81,39 @@ echo '<script src="../js/sideMenu.js"></script>';
             </div>
             ';
     }
+    else if(strpos($_SERVER['SCRIPT_FILENAME'], 'managePlayers.php',0)!= FALSE){
+        echo '
+            <div>
+                <nav class="topnav">
+                <ul>
+                    <li><a href="home.php">Home</a></li>
+                    <li><a href="courses.php">Courses</a></li>
+                    <li><a href="?????">Tab 2 Name</a></li>
+                    <li><a href="?????">Tab 3 Name</a></li>
+                    <li id="Login"><a href="">Login</a></li>
+                    <li id="Register"><a href="">Sign Up</a></li>
+                    <li><a href="?????">Tab 4 Name</a></li>
+                </ul>
+                </nav>
+            </div>
+        ';
+    }
+    else if(strpos($_SERVER['SCRIPT_FILENAME'], 'manageUsers.php',0) != FALSE){
+        echo '
+        <div>
+            <nav class="topnav">
+            <ul>
+                <li><a href="home.php">Home</a></li>
+                <li><a href="courses.php">Courses</a></li>
+                <li><a href="?????">Tab 2 Name</a></li>
+                <li><a href="?????">Tab 3 Name</a></li>
+                <li id="Login"><a href="">Login</a></li>
+                <li id="Register"><a href="">Sign Up</a></li>
+                <li><a href="?????">Tab 4 Name</a></li>
+            </ul>
+            </nav>
+        </div>
+        ';
+    }
 
 ?>

@@ -2,6 +2,9 @@ var form = document.querySelector("#newPlayerFormPopup");
 if (form==null){
     form = document.querySelector("#deletePlayerForm");
 }
+if (form==null){
+    form = document.querySelector("#updatePlayerForm");
+}
 var dateOfBirth = document.querySelector('.dateOfBirth');
 const genderMale = document.querySelector('.genderMale');
 const genderFemale = document.querySelector('.genderFemale');
@@ -10,6 +13,8 @@ const country = document.querySelector('.country');
 const handicap = document.querySelector('.handicap');
 const age = document.querySelector('.age');
 const idNumber = document.querySelector('.idNumber');
+const id = document.querySelector('.id');
+const updateID = document.querySelector('.updateInputID input.id');
 const updatePopupInput = document.querySelector(".updatePopupInput");
 const viewMales = document.querySelector(".filter-option1");
 const viewFemales = document.querySelector(".filter-option2");
@@ -117,6 +122,15 @@ function setInputError(element, msg){
     userInput.classList.add('error');
     userInput.classList.remove('success');
 }
+function clearInputSuccessError(element){
+    const userInput = element.parentElement;
+    console.log(element);
+    const errorMsg = userInput.querySelector('.error');
+
+    errorMsg.innerText = "";
+    userInput.classList.remove('error');
+    userInput.classList.remove('success');
+}
 
 function setInputSuccess(element){
     const userInput = element.parentElement;
@@ -142,6 +156,17 @@ if(id !=null){
         }
     });
 }
+if(updateID !=null){
+    updateID.addEventListener("keyup", function(){
+        var updateIDRequirement = /^\d+$/;
+        if (!updateIDRequirement.test(updateID.value)){
+            setInputError(updateID,"Invalid id. Please enter digits");
+        }
+        else{
+            setInputSuccess(updateID);
+        }
+    });
+}
 
 if(viewMales){
     viewMales.addEventListener("click", function(){
@@ -150,6 +175,8 @@ if(viewMales){
         viewAgeLT45.checked=false;
         viewHandicapGT30.checked=false;
         viewResetTable.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
+        
     })
 }
 if(viewFemales){
@@ -159,6 +186,7 @@ if(viewFemales){
         viewAgeLT45.checked=false;
         viewHandicapGT30.checked=false;
         viewResetTable.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
     })
 }
 if(viewAgeGT45){
@@ -168,6 +196,7 @@ if(viewAgeGT45){
         viewAgeLT45.checked=false;
         viewHandicapGT30.checked=false;
         viewResetTable.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
     })
 }
 if(viewAgeLT45){
@@ -177,6 +206,7 @@ if(viewAgeLT45){
         viewMales.checked=false;
         viewHandicapGT30.checked=false;
         viewResetTable.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
     })
 }
 if(viewHandicapGT30){
@@ -186,6 +216,7 @@ if(viewHandicapGT30){
         viewAgeLT45.checked=false;
         viewMales.checked=false;
         viewResetTable.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
     })
 }
 if(viewResetTable){
@@ -195,10 +226,11 @@ if(viewResetTable){
         viewAgeGT45.checked=false;
         viewAgeLT45.checked=false;
         viewHandicapGT30.checked=false;
+        document.querySelector('.submitFilter').style.visibility="visible";
     })
 }
 //////////update radios//////////////
-if(updatePersonKey){
+if(updatePersonKey != null){
     updatePersonKey.addEventListener("click", function(){
         updateDoB.checked=false;
         updateAge.checked=false;
@@ -208,9 +240,10 @@ if(updatePersonKey){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option1");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter Id number");
     })
 }
-if(updateDoB){
+if(updateDoB != null){
     updateDoB.addEventListener("click", function(){
         updatePersonKey.checked=false;
         updateAge.checked=false;
@@ -220,9 +253,10 @@ if(updateDoB){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option2");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter birth date");
     })
 }
-if(updateAge){
+if(updateAge != null){
     updateAge.addEventListener("click", function(){
         updateDoB.checked=false;
         updatePersonKey.checked=false;
@@ -232,9 +266,10 @@ if(updateAge){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option3");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter age (range[18-65]");
     })
 }
-if(updateHandicap){
+if(updateHandicap != null){
     updateHandicap.addEventListener("click", function(){
         updateDoB.checked=false;
         updateAge.checked=false;
@@ -244,9 +279,10 @@ if(updateHandicap){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option4");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter handicap (range[0-54])");
     })
 }
-if(updateDeathDate){
+if(updateDeathDate != null){
     updateDeathDate.addEventListener("click", function(){
         updateDoB.checked=false;
         updateAge.checked=false;
@@ -256,9 +292,10 @@ if(updateDeathDate){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option5");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter death date");
     })
 }
-if(updateGender){
+if(updateGender != null){
     updateGender.addEventListener("click", function(){
         updatePersonKey.checked=false;
         updateDoB.checked=false;
@@ -268,27 +305,76 @@ if(updateGender){
         document.querySelector(".updateInput > input").className=""; //empty class list
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option6");
+        document.querySelector(".updateInput > input").setAttribute("placeholder","Enter gender (choose from Male/Female/Other)");
     })
 }
 //validation on update fields
-if (updatePersonKey.checked==true){
-    //do validation for ID number
-    var idRequirement = /^\d{13}$/;
-    var day = updatePopupInput.value.substring(4,6);
-    var month = updatePopupInput.value.substring(2,4);
-    var thisYear = new Date().getFullYear().toString();
-    var year = thisYear.substring(0,2)+updatePopupInput.value.substring(0,2);
-    var date = year+"-"+month+"-"+day;
-    if(!idRequirement.test(updatePopupInput.value.trim())){
-        setInputError(updatePopupInput,"Invalid ID. Please ensure it contains 13 digits");
-    }
-    else if (!(ageCalc(date) >= 18 && ageCalc(date) <= 65)){
-        setInputError(updatePopupInput,"Invalid Date of birth \nOnly players between the ages 18 and 65 are allowed to register.");
-    } 
-    else{
-        setInputSuccess(updatePopupInput);
-    }
+if (updatePopupInput != null){
+    updatePopupInput.addEventListener("keyup", function (){
+        if (updatePersonKey.checked){
+            //do validation for ID number
+            clearInputSuccessError(updatePopupInput);
+            var idRequirement = /^\d{13}$/;
+            var day = updatePopupInput.value.substring(4,6);
+            var month = updatePopupInput.value.substring(2,4);
+            var thisYear = new Date().getFullYear().toString();
+            var year = thisYear.substring(0,2)+updatePopupInput.value.substring(0,2);
+            var date = year+"-"+month+"-"+day;
+            if(!idRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput,"Invalid ID. Please ensure it contains 13 digits");
+            }
+            else if (!(ageCalc(date) >= 18 && ageCalc(date) <= 65)){
+                setInputError(updatePopupInput,"Invalid Date of birth \nOnly players between the ages 18 and 65 are allowed to register.");
+            } 
+            else{
+                setInputSuccess(updatePopupInput);
+            }
+        }
+        else if (updateDoB.checked){
+            //do validation for ID number
+            clearInputSuccessError(updatePopupInput);
+            if (!(ageCalc(updatePopupInput) >= 18 && ageCalc(updatePopupInput) <= 65)){
+                setInputError(updatePopupInput,"Invalid Date of birth \nOnly players between the ages 18 and 65 are allowed to register.");
+            }
+            else{
+                setInputSuccess(updatePopupInput);
+            }
+        }
+        else if(updateAge.checked){
+            clearInputSuccessError(updatePopupInput);
+            if (!(parse_int(updatePopupInput.value) >= 18 && parse_int(updatePopupInput.value) <= 65)){
+                setInputError(updatePopupInput);
+            }
+        }
+        else if(updateHandicap.checked){
+            clearInputSuccessError(updatePopupInput);
+            if (!(parse_int(updatePopupInput.value) >= 0 && parse_int(updatePopupInput.value) <= 54)){
+                setInputError(updatePopupInput);
+            }
+        }
+        else if (updateDeathDate.checked){
+            //do validation for ID number
+            clearInputSuccessError(updatePopupInput);
+            if (!(ageCalc(updatePopupInput.value) > 0)){
+                setInputError(updatePopupInput,"Invalid Death Date \nCannot use a future date.");
+            }
+            else{
+                setInputSuccess(updatePopupInput);
+            }
+        }
+        else if (updateGender.checked){
+            //do validation for ID number
+            clearInputSuccessError(updatePopupInput);
+            if (!(updatePopupInput.value == "Male" || updatePopupInput.value == "Female" || updatePopupInput.value == "Other")){
+                setInputError(updatePopupInput,"Invalid Gender \nChoose one of the following: Male , Female or Other");
+            }
+            else{
+                setInputSuccess(updatePopupInput);
+            }
+        }
+    });
 }
+
 
 //validate input on submit
 function ValidateInput(){
@@ -341,6 +427,72 @@ function ValidateInput(){
             setInputSuccess(id);
         }
     }
+
+    if (updatePopupInput != null){
+        updatePopupInput.addEventListener("keyup", function (){
+            if (updatePersonKey.checked){
+                //do validation for ID number
+                clearInputSuccessError(updatePopupInput);
+                var idRequirement = /^\d{13}$/;
+                var day = updatePopupInput.value.substring(4,6);
+                var month = updatePopupInput.value.substring(2,4);
+                var thisYear = new Date().getFullYear().toString();
+                var year = thisYear.substring(0,2)+updatePopupInput.value.substring(0,2);
+                var date = year+"-"+month+"-"+day;
+                if(!idRequirement.test(updatePopupInput.value.trim())){
+                    setInputError(updatePopupInput,"Invalid ID. Please ensure it contains 13 digits");
+                }
+                else if (!(ageCalc(date) >= 18 && ageCalc(date) <= 65)){
+                    setInputError(updatePopupInput,"Invalid Date of birth \nOnly players between the ages 18 and 65 are allowed to register.");
+                } 
+                else{
+                    setInputSuccess(updatePopupInput);
+                }
+            }
+            else if (updateDoB.checked){
+                //do validation for ID number
+                clearInputSuccessError(updatePopupInput);
+                if (!(ageCalc(updatePopupInput.value) >= 18 && ageCalc(updatePopupInput.value) <= 65)){
+                    setInputError(updatePopupInput,"Invalid Date of birth \nOnly players between the ages 18 and 65 are allowed to register.");
+                }
+                else{
+                    setInputSuccess(updatePopupInput);
+                }
+            }
+            else if(updateAge.checked){
+                clearInputSuccessError(updatePopupInput);
+                if (!(parse_int(updatePopupInput.value) >= 18 && parse_int(updatePopupInput.value) <= 65)){
+                    setInputError(updatePopupInput);
+                }
+            }
+            else if(updateHandicap.checked){
+                clearInputSuccessError(updatePopupInput);
+                if (!(parse_int(updatePopupInput.value) >= 0 && parse_int(updatePopupInput.value) <= 54)){
+                    setInputError(updatePopupInput);
+                }
+            }
+            else if (updateDeathDate.checked){
+                //do validation for ID number
+                clearInputSuccessError(updatePopupInput);
+                if (!(ageCalc(updatePopupInput.value) > 0)){
+                    setInputError(updatePopupInput,"Invalid Death Date \nCannot use a future date.");
+                }
+                else{
+                    setInputSuccess(updatePopupInput);
+                }
+            }
+            else if (updateGender.checked){
+                //do validation for ID number
+                clearInputSuccessError(updatePopupInput);
+                if (!(updatePopupInput.value == "Male" || updatePopupInput.value == "Female" || updatePopupInput.value == "Other")){
+                    setInputError(updatePopupInput,"Invalid Gender \nChoose one of the following: Male , Female or Other");
+                }
+                else{
+                    setInputSuccess(updatePopupInput);
+                }
+            }
+        });
+    }
 }
 
 function ageCalc(input) {
@@ -360,7 +512,7 @@ function ageCalc(input) {
     var year = age_dt.getUTCFullYear();
     
     //now calculate the age of the user
-    var age = Math.abs(year - 1970);
+    var age = Math.abs(year - 1970); //1970 is used to determine your age (not sure why but this works)
     
     //display the calculated age
     return age;

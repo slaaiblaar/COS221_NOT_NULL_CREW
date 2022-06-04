@@ -1,14 +1,14 @@
-var showAddNewPlayerPopup = document.getElementById("createNewPlayer");
+var showAddNewUserPopup = document.getElementById("createNewUser");
 //add event listeners
-showAddNewPlayerPopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup   
-    if(document.getElementById("errorSignup")!=null)document.getElementById("errorSignup").innerHTML="";
+showAddNewUserPopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup  
+    if (document.getElementById("errorSignup")!=null)document.getElementById("errorSignup").innerHTML="";
     document.querySelector(".fullScreenPopupAdd").style.visibility = "visible";
     $(".fullScreenPopupAdd").fadeIn();
 });
 
 var dismissAddPopup = document.querySelector(".cancelbtn");
 //add event listeners
-dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup    
+dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
     document.getElementById("errorSignup").innerHTML="";
     var nodeList = document.querySelectorAll(".inputTextBox .error");
     for (let i = 0; i < nodeList.length; i++) {
@@ -22,11 +22,7 @@ dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].value = "";
     }
-    nodeList = document.querySelectorAll(".inputTextBox > input[type='number']");
-    for (let i = 0; i < nodeList.length; i++) {
-        nodeList[i].value = "";
-    }
-    nodeList = document.querySelectorAll(".inputTextBox > input[type='date']");
+    nodeList = document.querySelectorAll(".inputTextBox > input[type='password']");
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].value = "";
     }
@@ -39,16 +35,14 @@ dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide
         nodeList[i].classList.remove("error");
         nodeList[i].classList.remove("success");
     }
-    document.querySelector("#newPlayerFormPopup").scrollTop = 0;   
-
+    document.querySelector("#newUserPopupForm").scrollTop = 0;    
     document.querySelector(".fullScreenPopupAdd").style.visibility = "hidden";
     $(".fullScreenPopupAdd").fadeOut();
 });
 
-var showDeletePlayerPopup = document.getElementById("deletePlayer");
+var showDeleteUserPopup = document.getElementById("deleteUser");
 //add event listeners
-showDeletePlayerPopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup
-    document.getElementById("errorDelete").innerHTML="";
+showDeleteUserPopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup
     document.querySelector(".fullScreenPopupDelete").style.visibility = "visible";
     $(".fullScreenPopupDelete").fadeIn();
 });
@@ -59,12 +53,12 @@ dismissDeletePopup.addEventListener("click", function hidePopup(){ //this will h
     document.getElementById("errorDelete").innerHTML="";
     document.querySelector(".fullScreenPopupDelete").style.visibility = "hidden";
     $(".fullScreenPopupDelete").fadeOut();
-
+    
     document.querySelector(".error").innerHTML = "";
-    document.querySelector("#deletePlayerPopup  .inputTextBox > div").textContent="";
-    document.querySelector("#deletePlayerPopup  .inputTextBox > input[type='text']").value="";
-    document.querySelector("#deletePlayerPopup  .inputTextBox").classList.remove("error");
-    document.querySelector("#deletePlayerPopup  .inputTextBox").classList.remove("success");
+    document.querySelector("#deleteUserPopup  .inputTextBox > div").textContent="";
+    document.querySelector("#deleteUserPopup  .inputTextBox > input[type='text']").value="";
+    document.querySelector("#deleteUserPopup  .inputTextBox").classList.remove("error");
+    document.querySelector("#deleteUserPopup  .inputTextBox").classList.remove("success");
     sessionStorage.removeItem("pkEmail");
 });
 
@@ -76,15 +70,14 @@ showFilterOptions.addEventListener("click", function showOptions(){
         document.querySelector(".filter-option2").checked=false;
         document.querySelector(".filter-option3").checked=false;
         document.querySelector(".filter-option4").checked=false;
-        document.querySelector(".filter-option5").checked=false;
-        document.querySelector(".filter-option6").checked=false;
+        document.querySelector('.submitFilter').style.opacity="0.3";
         document.querySelector('.filterFormContainer > button').style.visibility="hidden";
     }
     else{
         document.getElementById("filterForm").style.visibility = "visible";
     }
 })
-var showUpdateOptions = document.getElementById("updatePlayerData");
+var showUpdateOptions = document.getElementById("updateUserData");
 showUpdateOptions.addEventListener("click", function showOptions(){
     if(document.getElementById("updateOptions").style.visibility == "visible"){
         document.getElementById("updateOptions").style.visibility = "hidden";
@@ -92,72 +85,84 @@ showUpdateOptions.addEventListener("click", function showOptions(){
         document.querySelector(".update-option2").checked=false;
         document.querySelector(".update-option3").checked=false;
         document.querySelector(".update-option4").checked=false;
-        document.querySelector(".update-option5").checked=false;
-        document.querySelector(".update-option6").checked=false;
     }
     else{
         document.getElementById("updateOptions").style.visibility = "visible";
     }
 })
 
-var popupUpdatePersonKey = document.querySelector(".update-option1");
-popupUpdatePersonKey.addEventListener("click", function(){
+var popupUpdateEmail = document.querySelector(".update-option1");
+popupUpdateEmail.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Person Key";
-    document.querySelector(".updateInput > label").innerHTML ="Player new person key";
-    document.querySelector(".updateInput > input").placeholder ="Enter person key";
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change User Email";
+    document.querySelector(".updateInput > label").innerHTML ="User new email";
+    document.querySelector(".updateInput > input").placeholder ="Enter email (e.g. some@example.com)";
     document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateDoB = document.querySelector(".update-option2");
-popupUpdateDoB.addEventListener("click", function(){
+var popupUpdatePsw = document.querySelector(".update-option2");
+popupUpdatePsw.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Date of Birth";
-    document.querySelector(".updateInput > label").innerHTML ="Player new date of birth";
-    document.querySelector(".updateInput > input").placeholder = "Enter date (e.g. 2022/02/22)";
-    document.querySelector(".updateInput > input").setAttribute("type","date");
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change password";
+    document.querySelector(".updateInput > label").innerHTML ="New Password";
+    document.querySelector(".updateInput > input").placeholder = "Enter password";
+    document.querySelector(".updateInput > input").setAttribute("type","password");
+    var i= document.createElement("i")
+    i.setAttribute("id","togglePsw");
+    i.innerHTML = '<span id="icon2" class="material-icons">visibility</span>';
+    document.querySelector(".updateInput > input").parentElement.insertBefore(i,document.querySelector(".updateInput > input").nextSibling );
 });
-var popupUpdateAge = document.querySelector(".update-option3");
-popupUpdateAge.addEventListener("click", function(){
+var popupUpdateTelNo = document.querySelector(".update-option3");
+popupUpdateTelNo.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Age";
-    document.querySelector(".updateInput > label").innerHTML ="Player new age";
-    document.querySelector(".updateInput > input").placeholder ="Enter player Age (range [18-65])";
-    document.querySelector(".updateInput > input").setAttribute("type","number");
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change Tel No.";
+    document.querySelector(".updateInput > label").innerHTML ="User new Tel No.";
+    document.querySelector(".updateInput > input").placeholder ="Enter User Tel No.";
+    document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateHandicap = document.querySelector(".update-option4");
-popupUpdateHandicap.addEventListener("click", function(){
+var popupUpdateType = document.querySelector(".update-option4");
+popupUpdateType.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Handicap";
-    document.querySelector(".updateInput > label").innerHTML ="Player new handicap";
-    document.querySelector(".updateInput > input").placeholder ="Enter player handicap (range [0-54])";
-    document.querySelector(".updateInput > input").setAttribute("type","number");
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change User Type";
+    document.querySelector(".updateInput > label").innerHTML ="User new type";
+    document.querySelector(".updateInput > input").placeholder ="Enter User type (e.g. Male / Female / Other)";
+    document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateDeathDate = document.querySelector(".update-option5");
-popupUpdateDeathDate.addEventListener("click", function(){
+var popupUpdateFirstName = document.querySelector(".update-option5");
+popupUpdateFirstName.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Death Date";
-    document.querySelector(".updateInput > label").innerHTML ="Player new death date";
-    document.querySelector(".updateInput > input").placeholder ="Enter player death date (e.g. 2020/02/13)";
-    document.querySelector(".updateInput > input").setAttribute("type","date");
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change First Name";
+    document.querySelector(".updateInput > label").innerHTML ="User new first name";
+    document.querySelector(".updateInput > input").placeholder ="Enter User first name";
+    document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateGender = document.querySelector(".update-option6");
-popupUpdateGender.addEventListener("click", function(){
+var popupUpdateLastName = document.querySelector(".update-option6");
+popupUpdateLastName.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
-    document.querySelector(".updatePopupHeader > span").innerHTML = "Update Gender";
-    document.querySelector(".updateInput > label").innerHTML ="Player new gender";
-    document.querySelector(".updateInput > input").placeholder ="Enter player Gender (Male/Female/Other)";
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change User Last Name";
+    document.querySelector(".updateInput > label").innerHTML ="User new last name";
+    document.querySelector(".updateInput > input").placeholder ="Enter User last name";
+    document.querySelector(".updateInput > input").setAttribute("type","text");
+});
+var popupUpdateInitials = document.querySelector(".update-option7");
+popupUpdateInitials.addEventListener("click", function(){
+    document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
+    $(".fullScreenPopupUpdate").fadeIn();    
+    document.querySelector(".updatePopupHeader > span").innerHTML = "Change User Initials";
+    document.querySelector(".updateInput > label").innerHTML ="User new initials";
+    document.querySelector(".updateInput > input").placeholder ="Enter User initials";
     document.querySelector(".updateInput > input").setAttribute("type","text");
 });
 
 var dismissUpdatePopup = document.querySelector(".cancelbtnUpdate");
 //add event listeners
 dismissUpdatePopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
+
     var nodeList = document.querySelectorAll(".inputTextBox .error");
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].innerHTML = "";
@@ -184,18 +189,14 @@ dismissUpdatePopup.addEventListener("click", function hidePopup(){ //this will h
             nodeList[i].checked = false;
         }
     }
-    nodeList = document.querySelectorAll(".inputTextBox > input[type='date']");
-    if (nodeList!=null){
-        for (let i = 0; i < nodeList.length; i++) {
-            nodeList[i].value = "";
-        }
-    }
     nodeList = document.querySelectorAll(".inputTextBox");
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].classList.remove("error");
         nodeList[i].classList.remove("success");
     }
-
+    if(document.querySelector(".updateInput #togglePsw")!=null){
+        document.querySelector(".updateInput #togglePsw").remove();
+    }
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "hidden";
     $(".fullScreenPopupUpdate").fadeOut();
 });
