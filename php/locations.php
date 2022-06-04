@@ -41,7 +41,7 @@
           <div id="controls">
             <h2>Controls</h2>
             <div style="padding:0 10px; margin: auto">
-              <button class="controlButton" id="add"><h2>Add Location</h2></button>
+              <button class="controlButton" id="add" onclick="add()"><h2>Add Location</h2></button>
               <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Location</h2></button>
               <button class="controlButton" id="delete" onclick="del()"><h2>Delete Location</h2></button>
             </div>
