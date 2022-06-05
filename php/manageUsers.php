@@ -14,35 +14,32 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/manageUsers.css">
-    <title>Daily Golf Statistics</title>
+    <link rel="stylesheet" href="../css/manageUsers.css">
+    <title>Sunrise Golfing</title>
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
 </head>
 <body>
-    <div id="bodyContainer">
-        <?php 
-            include_once("php/header.php");
-        ?>
-        <div  id="main_header">
-            <div id="headingLogo">
-                <image></image>
-            </div>
-            <div class="heading">
-                Golf Statistics
-            </div>            
-        </div>                
+    <div class="loaderFlag">
+        <div>
+            <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+        </div>
+    </div>
+    <div class="content">
+        <div class="top-content">
+            <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
+            <h1 id="webTitle">Sunrise Golfing</h1>  
+        </div> 
 
-        <nav id="navBar">
-            <div class="container">
-                <ul>
-                    <li><a href="home.php">Home</a></li>
-                    <li class="loginSignUp"><a class="active" href="#">Login</a></li>
-                    <li class="loginSignUp"><a href="signup.php">Sign Up</a></li>
-                </ul>
-            </div>
-        </nav>
+        <!-- inclusion of navbar start -->
+        <?php
+            require_once("header.php");
+        ?>
+        <!-- inclusion of navbar end-->
+
         <div id="pageHeader">
             <div class="pageHeadings">
                 <span>Manage Users</span>
@@ -63,7 +60,7 @@
         <div class="fullscreenPopup">
             <div id="newUserPopupForm">
                 <div id="signupForm">
-                    <form action="php/validate-signup.php" method="post" class="signupForm"> <!-- onsubmit="return ValidateInput()"> -->
+                    <form action="validate-signup.php" method="post" class="signupForm"> <!-- onsubmit="return ValidateInput()"> -->
                         <div class="formContainer">
                             <h1>Sign Up</h1>
                             <p>Please fill in this form to create an account.</p>
@@ -155,9 +152,12 @@
         </div>
     </div>
     <?php
-        include_once("php/footer.php");
+        include_once("footer.php");
     ?>
-    <script src="js/inputValidationSignUp.js"></script>
-    <script src="js/passwordToggle.js"></script>
+    <script language="Javascript" type="text/javascript" src="../js/inputValidationSignUp.js"></script>
+    <script language="Javascript" type="text/javascript" src="../js/passwordToggle.js"></script>
+    <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>
 </html>

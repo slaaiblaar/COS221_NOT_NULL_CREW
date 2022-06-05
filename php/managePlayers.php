@@ -14,35 +14,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/managePlayers.css">
+    <link rel="stylesheet" href="../css/managePlayers.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
-    <title>Daily Golf Statistics</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <title>Sunrise Golfing</title>
 </head>
 <body>
-    <div id="bodyContainer">
-        <?php 
-            include_once("php/header.php");
-        ?>
-        <div  id="main_header">
-            <div id="headingLogo">
-                <image></image>
-            </div>
-            <div class="heading">
-                Golf Statistics
-            </div>            
-        </div>                
+    <div class="loaderFlag">
+        <div>
+            <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+        </div>
+    </div>
+    <div class="content">
 
-        <nav id="navBar">
-            <div class="container">
-                <ul>
-                    <li><a href="home.php">Home</a></li>
-                    <li class="loginSignUp"><a class="active" href="#">Login</a></li>
-                    <li class="loginSignUp"><a href="signup.php">Sign Up</a></li>
-                </ul>
-            </div>
-        </nav>
+        <div class="top-content">
+            <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
+            <h1 id="webTitle">Sunrise Golfing</h1>  
+        </div>   
+
+        <!-- inclusion of navbar start -->
+        <?php
+            require_once("header.php");
+        ?>
+        <!-- inclusion of navbar end-->
+        
         <div id="pageHeader">
             <div class="pageHeadings">
                 <span>Manage Players</span>
@@ -206,13 +204,15 @@
                 </form>
             </div>
         </div>
+        <?php
+            include_once("footer.php");
+        ?>
     </div>
-    <?php
-        include_once("php/footer.php");
-    ?>
-    <script src="js/PlayerPopups.js"></script>
-    <script src="js/inputValidationPlayers.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+    <script src="../js/PlayerPopups.js"></script>
+    <script src="../js/inputValidationPlayers.js"></script>
+    <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>
 </html>
