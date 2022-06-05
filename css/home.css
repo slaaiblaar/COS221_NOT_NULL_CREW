@@ -8,6 +8,28 @@ body{
   overflow-y: scroll;
 }  
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgreen; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(1, 148, 1); 
+}
+
 .sidenav {
   height: 100%;
   width: 0;
@@ -20,7 +42,6 @@ body{
   transition: 0.5s;
   padding-top: 10px;
   text-align: center;
-  overflow-y: scroll;
   
 }
 
@@ -170,7 +191,7 @@ body{
   .grid{
     display: grid;
     grid-template-columns: auto auto auto auto;
-    background-color: transparent;
+    /* background-color: transparent; */
     margin-top: 40px;
     grid-gap: 10px;
     overflow-x: hidden;
@@ -179,9 +200,9 @@ body{
     margin-right:20px;
   }
 
-  .grid > div{
+  /* .grid > div{
     text-align: center;
-  }
+  } */
 
   hr{
     border-top: 3px solid black;
@@ -190,53 +211,196 @@ body{
   #grid-panel-1{
     border-radius: 20px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 1;
     border: 5px solid black;
     grid-column: 1 / span 2;
     grid-row: 1 / span 1; 
+    text-align: center;
+    background-size: cover;
+    height: fit-content;
   }
 
-  #grid-panel-1 img{
-    opacity: 1;   
+  #courses{
+    opacity: 1; 
+    z-index: 5;
+    /* text-align: left; */
+    /* background-image: url('../img/courses-image.jpg'); */
+    background-size: cover;
+    height: 69.3%;
+    margin-top: 0;
+  }
+  #courses-img{
+    border-radius: 10px;
+    border: 3px solid black;
+    z-index: 2;
+  }
+  #courses-dark-img{
+    border-radius: 10px;
+    border: 3px solid black;
+    display: none;
+  }
+  #courses-btn{
+    cursor: pointer;
+    /* top:100%; */
+    right:0;
+    left:0;
+    /* bottom: 0; */
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #courses-btn a{
+    text-decoration: none;
+    color: black;
+  }
+  #courses-btn:hover{
+    background-color: rgb(88, 144, 88);
+    font-weight: bold;
   }
 
   #grid-panel-2{
     border-radius: 20px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 1;
     border: 5px solid black;
     grid-column: 3 / span 2;
     grid-row: 1 / span 1;
+    text-align: center;
+    background-size: cover ;
+    height: fit-content;
   }
 
-  #grid-panel-2 img{
-    opacity: 1;   
+  #tournaments{
+    opacity: 1; 
+    z-index: 5;
+    height: 69.3%;
+    margin-top: 0;
+    /* position: relative; */
+  }
+  #tournaments-img{
+    border-radius: 10px;
+    border: 3px solid black;
+  }
+  #tournaments-dark-img{
+    border-radius: 10px;
+    border: 3px solid black;
+    display: none;
+  }
+  #tournaments-btn{
+    cursor: pointer;
+    /* float: right; */
+    z-index: 10;
+    /* top:100%; */
+    right:0;
+    left:0;
+    /* bottom: 0; */
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #tournaments-btn a{
+    text-decoration: none;
+    color: black;
+  }
+  #tournaments-btn:hover{
+    background-color: rgb(88, 144, 88);
+    font-weight: bold;
   }
 
   #grid-panel-3{
     border-radius: 20px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 1;
     border: 5px solid black;
     grid-column: 1 / span 2;
     grid-row: 2 / span 1;
+    height: fit-content;
+    text-align: center;
   }
 
-  #grid-panel-3 img{
-    opacity: 1;
+  #tours{
+    opacity: 1; 
+    z-index: 5;
+    height: 69.3%;
+    margin-top: 0;
+    /* position: relative; */
+  }
+  #tours-img{
+    border-radius: 10px;
+    border: 3px solid black;
+  }
+  #tours-dark-img{
+    border-radius: 10px;
+    border: 3px solid black;
+    display: none;
+  }
+  #tours-btn{
+    cursor: pointer;
+    /* float: right; */
+    z-index: 10;
+    /* top:100%; */
+    right:0;
+    left:0;
+    /* bottom: 0; */
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #tours-btn a{
+    text-decoration: none;
+    color: black;
+  }
+  #tours-btn:hover{
+    background-color: rgb(88, 144, 88);
+    font-weight: bold;
   }
 
   #grid-panel-4{
     border-radius: 20px;
     background-color: white;
-    opacity: 0.9;
+    opacity: 1;
     border: 5px solid black;
     grid-column: 3 / span 2;
     grid-row: 2 / span 1;
+    text-align: center;
+    height: fit-content;
   }
 
-  #grid-panel-4 img{
-    opacity: 1;
+  #statistics{
+    opacity: 1; 
+    z-index: 5;
+    height: 69.3%;
+    margin-top: 0;
+    /* position: relative; */
+  }
+  #statistics-img{
+    border-radius: 10px;
+    border: 3px solid black;
+  }
+  #statistics-dark-img{
+    border-radius: 10px;
+    border: 3px solid black;
+    display: none;
+  }
+  #statistics-btn{
+    cursor: pointer;
+    /* float: right; */
+    z-index: 10;
+    /* top:100%; */
+    right:0;
+    left:0;
+    /* bottom: 0; */
+    background-color: lightgreen;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  #statistics-btn a{
+    text-decoration: none;
+    color: black;
+  }
+  #statistics-btn:hover{
+    background-color: rgb(88, 144, 88);
+    font-weight: bold;
   }
 
   #webTitle{
