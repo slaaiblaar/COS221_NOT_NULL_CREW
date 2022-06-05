@@ -16,6 +16,9 @@
   <!-- images -->
   <!-- https://www.flaticon.com/free-icon/golf-field_2076961
     https://en.wikipedia.org/wiki/File:Great_Waters_at_Reynolds_Lake_Oconee_-_Oct_2019.jpg
+    https://opengolf.es/circuitos/una-larga-historia-con-123-anos/
+    https://www.vecteezy.com/photo/2761098-bangkok-thailand-july-1-2020-world-globe-map-at-golf-ball-with-on-green-lawn-or-field
+    https://www.forbes.com/sites/kalevleetaru/2019/03/07/how-data-scientists-turned-against-statistics/?sh=19aa0cd7257c
 -->
 
 <?php
@@ -25,7 +28,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Go Golfing</title>
+    <title>Sunrise Golfing</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/home.css">
@@ -54,31 +57,59 @@
       <div class="grid">
         <div id="grid-panel-1">
           <h1><img src="../img/golf-courses-icon.png" alt="icon" width="50" height="50">
-          View Courses
+          Courses
           <img src="../img/golf-courses-icon.png" alt="icon" width="50" height="50">
           </h1>
           <hr>
+          <div id="courses">
+            <img id="courses-img" src="../img/courses-image.jpg" alt="courses" width="500" height="200">
+            <img id="courses-dark-img" src="../img/courses-dark-image.jpeg" alt="courses" width="500" height="200">
+          </div>
+          <button id="courses-btn" ><a href="courses.php">View Courses
+              <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          </button>
         </div>
         <div id="grid-panel-2">
           <h1><img src="../img/golf-trophy.png" alt="trophy" width="50" height="50">
-          View Tournaments
+          Tournaments
           <img src="../img/golf-trophy.png" alt="trophy" width="50" height="50">
           </h1>
           <hr>
+          <div id="tournaments">
+            <img id="tournaments-img" src="../img/tournaments-image.jpg" alt="tournaments" width="500" height="200">
+            <img id="tournaments-dark-img" src="../img/tournaments-dark-image.jpeg" alt="tournaments" width="500" height="200">
+          </div>
+          <button id="tournaments-btn"><a href="tournaments.php">View Tournaments
+              <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          </button>
         </div>
         <div id="grid-panel-3">
           <h1><img src="../img/golf-tour.png" alt="tour" width="50" height="50">
-          View Tours
+          Tours
           <img src="../img/golf-tour.png" alt="tour" width="50" height="50">
           </h1>
           <hr>
+          <div id="tours">
+            <img id="tours-img" src="../img/tours-image.jpg" alt="tours" width="500" height="200">
+            <img id="tours-dark-img" src="../img/tours-dark-image.jpg" alt="tours" width="500" height="200">
+          </div>
+          <button id="tours-btn"><a href="tours.php">View Tours
+              <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          </button>
         </div>
         <div id="grid-panel-4">
           <h1><img src="../img/golf-analysis.png" alt="trophy" width="50" height="50">
-          View Statistics
+          Statistics
           <img src="../img/golf-analysis.png" alt="trophy" width="50" height="50">
           </h1>
           <hr>
+          <div id="statistics">
+            <img id="statistics-img" src="../img/statistics-image.jpg" alt="statistics" width="500" height="200">
+            <img id="statistics-dark-img" src="../img/statistics-dark-image.jpeg" alt="statistics" width="500" height="200">
+          </div>
+          <button id="statistics-btn"><a href="statistics.php">View Statistics
+              <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
+          </button>
         </div>
       </div>
       

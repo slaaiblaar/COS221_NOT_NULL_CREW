@@ -4,14 +4,25 @@
     <head>
         <meta charset="UTF-8">
         <link rel="stylesheet" href="../css/signup.css">
-        <title> Golf Statistics/Sign Up </title>
+        <title> Sunrise Golfing/Sign Up </title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     </head>
     <body>
-        <div id="bodyContainer">
+        <div class="loaderFlag">
+            <div>
+                <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+            </div>
+        </div>
+        <div class="content">
+            <div class="top-content">
+                <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
+                <h1 id="webTitle">Sunrise Golfing</h1>  
+            </div> 
             <?php
                 include_once("header.php");
             ?>
@@ -112,7 +123,7 @@
             <div class="fullscreenPopup">
                 <div id="SuccessfulRegPopup">
                     <h1> Successful Registration </h1>
-                    <image class="Logo"></image>
+                    <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader" width="100" height="100">
                     <div class="popupButtons">
                         <button type="button" class="undoReg">Undo Registration</button>
                         <button type="button" class="dismissPopup">Dismiss</button>
@@ -129,8 +140,9 @@
         <?php
             include_once("footer.php");
         ?>
-        <script src="../js/inputValidationSignUp.js"></script>
-        <script src="../js/passwordToggle.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/inputValidationSignUp.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/passwordToggle.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </body>

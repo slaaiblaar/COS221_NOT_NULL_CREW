@@ -199,3 +199,37 @@ dismissUpdatePopup.addEventListener("click", function hidePopup(){ //this will h
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "hidden";
     $(".fullScreenPopupUpdate").fadeOut();
 });
+
+$(function updates(){
+    $('#updatePlayerData').click(function() {
+        
+        $('#updateOptions').slideToggle();
+    });
+    
+    $(document).click(function(e) 
+    { 
+    var target = e.target; 
+    if (!$(target).is('#updateOptions') && !$(target).parents().is('.buttonsGrid')) 
+    //{ $('.dropdown').hide(); }
+    { 
+        $('#updateOptions').slideUp();
+    }
+    });
+});
+
+$(function updates(){
+    $('#filterTable').click(function() {
+        
+        $('#filterOptions').slideToggle();
+    });
+    
+    $(document).click(function(e) 
+    { 
+    var target = e.target; 
+    if (!$(target).is('#filterOptions') && !$(target).parents().is('.buttonsGrid')) 
+    //{ $('.dropdown').hide(); }
+    { 
+        $('#filterOptions').slideUp();
+    }
+    });
+});

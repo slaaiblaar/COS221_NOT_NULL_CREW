@@ -117,6 +117,130 @@
     overflow-y: scroll;
   }  
 
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgreen; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(1, 148, 1); 
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+  text-align: center;
+  
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  text-align: left;
+  transition: 0.3s;
+  border-bottom: 1px solid white;
+  letter-spacing: 1px;
+}
+
+.tournaments-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.sidenav a:hover {
+  color: rgb(0, 254, 119);
+}
+
+.course-show a, .tournament-show a{
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 15px
+}
+
+.course-show a:hover, .tournament-show a:hover{
+  color: rgb(0, 255, 119);
+}
+
+.tournament-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.course-show {
+  display: none;
+  text-align: center;
+  list-style: none;
+}
+
+.tournament-show {
+  display: none;
+  list-style: none;
+}
+
+.sidenav .closebtn {
+  top: 0;
+  right: 20px;
+  font-size: 25px;
+  margin-left: 50px;
+  font-weight: bold;
+}
+
+.sidenav .closebtn > a{
+  border-bottom: none;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.loginRegister{
+  float: right;
+  background-color: rgb(0, 108, 32); 
+  font-size: 30px;
+  padding: 10px 10px;
+  box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+  
+}
+
+  .loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+  }
+
   .filterTheme{
     float: right;
     cursor: pointer;
@@ -189,34 +313,6 @@
     transform: scale(1.1); */
   }
 
-
-  #grid-panel-2{
-    border-radius: 20px;
-    background-color: white;
-    opacity: 0.7;
-    border: 5px solid black;
-    grid-column: 3 / span 2;
-    grid-row: 1 / span 1;
-  }
-
-  #grid-panel-3{
-    border-radius: 20px;
-    background-color: white;
-    opacity: 0.7;
-    border: 5px solid black;
-    grid-column: 1 / span 2;
-    grid-row: 2 / span 1;
-  }
-
-  #grid-panel-4{
-    border-radius: 20px;
-    background-color: white;
-    opacity: 0.7;
-    border: 5px solid black;
-    grid-column: 3 / span 2;
-    grid-row: 2 / span 1;
-  }
-
   #webTitle{
     background-color: rgb(0, 108, 32);
     color: rgb(255, 255, 255);
@@ -259,10 +355,10 @@
     padding-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 50px;
     bottom: 0%;
     top: 100%;
     width: 95%;
     color: white;
-    position: absolute;
+    position: relative;
   }

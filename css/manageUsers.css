@@ -6,6 +6,198 @@ body{
     padding:0;
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgreen; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(1, 148, 1); 
+}
+
+.content{
+  display:none;
+}
+
+.loaderFlag{
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background-color: #16191e;
+  position: relative;
+}
+
+.loaderFlag > div > img{
+  position: absolute;
+  margin: auto;
+  top:0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  animation: loadFlag 2s infinite linear;
+}
+@keyframes loadFlag{
+  100%{
+    transform:none;
+  }
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+  text-align: center;
+  
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  text-align: left;
+  transition: 0.3s;
+  border-bottom: 1px solid white;
+  letter-spacing: 1px;
+}
+
+.tournaments-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.sidenav a:hover {
+  color: rgb(0, 254, 119);
+}
+
+.course-show a, .tournament-show a{
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 15px
+}
+
+.course-show a:hover, .tournament-show a:hover{
+  color: rgb(0, 255, 119);
+}
+
+.tournament-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.course-show {
+  display: none;
+  text-align: center;
+  list-style: none;
+}
+
+.tournament-show {
+  display: none;
+  list-style: none;
+}
+
+.sidenav .closebtn {
+  top: 0;
+  right: 20px;
+  font-size: 25px;
+  margin-left: 50px;
+  font-weight: bold;
+}
+
+.sidenav .closebtn > a{
+  border-bottom: none;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.loginRegister{
+  float: right;
+  background-color: rgb(0, 108, 32); 
+  font-size: 30px;
+  padding: 10px 10px;
+  box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+  
+}
+
+  .loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .top-content{
+    padding: 10px 16px;
+    background-color: rgb(0, 108, 32);  
+    box-shadow: 1px 8px 10px rgb(0, 255, 119);
+    font-family: "Courier New", Courier, monospace;
+    border: 10px dashed rgb(151, 151, 151);
+  }
+
+  .top-content > img{
+    float: left;
+    background-color: rgba(164,164,164, 0.7);
+    border-radius: 30px;
+    margin-top: 5px;
+  }
+
+  
+  #webTitle{
+    background-color: rgb(0, 108, 32);
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+    /* text-align: center; */
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-family: "Georgia" ,serif;
+    margin-left:27%;
+  }
+
+  .footer{
+    text-align: center;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 10px;
+    bottom: 0%;
+    top: 100%;
+    width: 95%;
+    color: white;
+  }
+
 #main_header{
     background-color: rgb(0, 108, 32);
     color: rgb(255, 255, 255);
@@ -131,7 +323,7 @@ body{
     text-align: center;
     border-radius: 20px;
     padding-top: 10px;
-    margin: 10px 10px 2px 10px;
+    margin: 20px 10px 2px 10px;
 }
 #pageHeadings{
     opacity: 0.5;

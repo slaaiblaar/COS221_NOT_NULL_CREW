@@ -1,0 +1,364 @@
+ /* Name: Arno Jooste */
+ /* Student Number: 21457451 */
+ /* .topnav{
+    background-color: darkblue;
+    overflow: hidden;
+    color: white;
+    text-align: left;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    font-style: italic;
+    box-shadow: 0px 20px 30px crimson;
+    margin: 0;
+    position: absolute;
+    width: 100%;
+  }
+  
+  .topnav ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+  .topnav li{
+    display: inline;
+  }
+  .topnav a{
+    text-decoration: none;
+    color: white;
+    padding: 5px;
+  }
+  
+  .topnav a:hover{
+    background-color: crimson;
+    color:  white;
+    border-radius: 30px;
+  }
+  .topnav a.active{
+    background-color: lightslategray;
+    color: white;
+    border-left: 5px solid crimson;
+    border-right: 5px solid crimson;
+    border-top: 5px solid crimson;
+    border-bottom: 5px solid crimson;
+    border-radius: 20px;
+  } */
+
+  .topnav{
+    padding: 10px 16px;
+    background-color: rgb(0, 108, 32);  
+    box-shadow: 1px 8px 10px rgb(0, 255, 119);
+    font-family: "Courier New", Courier, monospace;
+    position: relative;
+}
+.topnav ul{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.topnav li{
+    display: inline; 
+}
+.topnav a:hover{
+    background-color: #00420d;
+    font-weight: bold;
+}
+.topnav a{
+    padding: 10px 16px;
+    text-decoration: none;
+    color: white;
+}
+.topnav a.active{
+    background-color: rgb(0, 255, 76);
+    color: black;
+    font-weight: bold;
+    
+}
+
+.top-content{
+  padding: 10px 16px;
+  background-color: rgb(0, 108, 32);  
+  box-shadow: 1px 8px 10px rgb(0, 255, 119);
+  font-family: "Courier New", Courier, monospace;
+  border: 10px dashed rgb(151, 151, 151);
+}
+
+.top-content > img{
+  float: left;
+  background-color: rgba(164,164,164, 0.7);
+  border-radius: 30px;
+  margin-top: 5px;
+}
+
+  #Login{
+    float:right;
+    /* margin-left: 30px;
+    margin-right: 30px; */
+  }
+  #Register{
+    float:right;
+  }
+
+  #Login a:hover, #Register a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+  }
+  
+  body{
+    padding:0;
+    margin:0;
+    overflow: hidden;
+    background-color:lightslategray;
+    background-image: url("../img/wallpaperflare.com_wallpaper-2.jpg");
+    background-size: cover;
+    overflow-y: scroll;
+  }  
+
+  /* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgreen; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(1, 148, 1); 
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 10px;
+  text-align: center;
+  
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 18px;
+  color: #818181;
+  display: block;
+  text-align: left;
+  transition: 0.3s;
+  border-bottom: 1px solid white;
+  letter-spacing: 1px;
+}
+
+.tournaments-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.sidenav a:hover {
+  color: rgb(0, 254, 119);
+}
+
+.course-show a, .tournament-show a{
+  text-decoration: none;
+  border-bottom: 1px solid white;
+  text-align: center;
+  padding: 5px 0px;
+  font-size: 15px
+}
+
+.course-show a:hover, .tournament-show a:hover{
+  color: rgb(0, 255, 119);
+}
+
+.tournament-btn a.active{
+  color: rgb(0, 255, 119);
+}
+
+.course-show {
+  display: none;
+  text-align: center;
+  list-style: none;
+}
+
+.tournament-show {
+  display: none;
+  list-style: none;
+}
+
+.sidenav .closebtn {
+  top: 0;
+  right: 20px;
+  font-size: 25px;
+  margin-left: 50px;
+  font-weight: bold;
+}
+
+.sidenav .closebtn > a{
+  border-bottom: none;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+
+.loginRegister{
+  float: right;
+  background-color: rgb(0, 108, 32); 
+  font-size: 30px;
+  padding: 10px 10px;
+  box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+  
+}
+
+  .loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+  }
+
+  .loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+  }
+
+  .filterTheme{
+    float: right;
+    cursor: pointer;
+    /* margin-right: 20px; */
+    padding: 10px 16px;
+    color: white;
+    border-radius: 50px;
+    margin-bottom: 5px;
+  }
+
+  .content{
+    display:none;
+  }
+  
+  .loaderFlag{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #16191e;
+    position: relative;
+  }
+  
+  .loaderFlag > div > img{
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: loadFlag 2s infinite linear;
+  }
+  @keyframes loadFlag{
+    100%{
+      transform:none;
+    }
+  }
+
+
+  .grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    background-color: transparent;
+    margin-top: 40px;
+    grid-gap: 10px;
+    overflow-x: hidden;
+    height: 500px;
+    margin-left: 20px;
+    margin-right:20px;
+  }
+
+  .grid > div{
+    text-align: center;
+  }
+
+  hr{
+    border-top: 3px solid black;
+  }
+
+  #grid-panel-1{
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.7;
+    border: 5px solid black;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1; 
+  }
+
+  #grid-panel-1:hover{
+    /* -webkit-transform: scale(1.1);
+    transform: scale(1.1); */
+  }
+
+  #webTitle{
+    background-color: rgb(0, 108, 32);
+    color: rgb(255, 255, 255);
+    font-size: 80px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    font-family: "Georgia" ,serif;
+  }
+
+  /* #Logo{
+    margin-top: 30px;
+    position: relative;
+    padding-bottom: 40px;
+    background-color: transparent;    
+    justify-content: center;
+    display: flex;
+    margin: auto;
+    margin-bottom: 20px;
+  } */
+  
+  #slogan{
+    background-color: navy;
+    font-size: 1.5em;
+    font-style: italic;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-family: Georgia,serif;
+    color: crimson;
+    position: absolute;
+    display: flex;
+    bottom: 0;
+  }
+  
+  .footer{
+    text-align: center;
+    border-radius: 50px;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    bottom: 0%;
+    top: 100%;
+    width: 95%;
+    color: white;
+    position: relative;
+  }
