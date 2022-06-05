@@ -5,10 +5,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Go Golfing</title>
+    <title>Sunrise Golfing</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../css/addresses.css">
     <link rel="stylesheet" href="../css/controls_and_tables.css">
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -18,8 +18,10 @@
   </head>
   
   <body>
-    <div class="loader">
-      <div></div>
+    <div class="loaderFlag">
+      <div>
+          <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+      </div>
     </div>
   
     <div class="content">
@@ -136,7 +138,7 @@
       <!-- inclusion of footer end -->
       
     </div>
-    <script src="../js/loader.js"></script>
+    <script src="../js/loaderFlag.js"></script>
     <script src="../js/addresses.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

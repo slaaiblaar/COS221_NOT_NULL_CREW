@@ -47,16 +47,97 @@ function openMenu(){
     //addresses
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/addresses.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,0.5)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 0.5)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 0.5)";
+        document.querySelector("#mainContainer").style.pointerEvents = "none";
+        document.querySelector("#controls").style.pointerEvents = "none";
+        document.querySelector("#tableContainer").style.pointerEvents = "none";
+        document.querySelector("#add").style.pointerEvents = "none";
+        document.querySelector("#modify").style.pointerEvents = "none";
+        document.querySelector("#delete").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //locations
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/locations.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,0.5)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 0.5)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 0.5)";
+        document.querySelector("#mainContainer").style.pointerEvents = "none";
+        document.querySelector("#controls").style.pointerEvents = "none";
+        document.querySelector("#tableContainer").style.pointerEvents = "none";
+        document.querySelector("#add").style.pointerEvents = "none";
+        document.querySelector("#modify").style.pointerEvents = "none";
+        document.querySelector("#delete").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //courses
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/viewCourses.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.7)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,0.5)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 0.5)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 0.5)";
+        document.querySelector("#mainContainer").style.pointerEvents = "none";
+        document.querySelector("#controls").style.pointerEvents = "none";
+        document.querySelector("#tableContainer").style.pointerEvents = "none";
+        document.querySelector("#add").style.pointerEvents = "none";
+        document.querySelector("#modify").style.pointerEvents = "none";
+        document.querySelector("#delete").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //holes
@@ -299,16 +380,97 @@ function closeMenu(){
     //addresses
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/addresses.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
+        document.querySelector("#mainContainer").style.pointerEvents = "auto";
+        document.querySelector("#controls").style.pointerEvents = "auto";
+        document.querySelector("#tableContainer").style.pointerEvents = "auto";
+        document.querySelector("#add").style.pointerEvents = "auto";
+        document.querySelector("#modify").style.pointerEvents = "auto";
+        document.querySelector("#delete").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //locations
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/locations.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
+        document.querySelector("#mainContainer").style.pointerEvents = "auto";
+        document.querySelector("#controls").style.pointerEvents = "auto";
+        document.querySelector("#tableContainer").style.pointerEvents = "auto";
+        document.querySelector("#add").style.pointerEvents = "auto";
+        document.querySelector("#modify").style.pointerEvents = "auto";
+        document.querySelector("#delete").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //courses
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/viewCourses.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
+        document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
+        document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
+        document.querySelector("#mainContainer").style.pointerEvents = "auto";
+        document.querySelector("#controls").style.pointerEvents = "auto";
+        document.querySelector("#tableContainer").style.pointerEvents = "auto";
+        document.querySelector("#add").style.pointerEvents = "auto";
+        document.querySelector("#modify").style.pointerEvents = "auto";
+        document.querySelector("#delete").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //holes
