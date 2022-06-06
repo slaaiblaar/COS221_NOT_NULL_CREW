@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php session_start(); setcookie("InsideUsers", "False", 0, "/");setcookie("InsideSignup", "True", 0, "/");
+    if(!isset($_COOKIE['showRegPopupAdd'])){
+        setcookie("showRegPopupAdd", "false", 0, "/");
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -33,10 +37,45 @@
                         <p>Please fill in this form to create an account.</p>
                         
                         <?php if(!empty($_SESSION['messages'])) {
-                            if ($_SESSION['messages'] == 'Email address already exists.'){
+                            if ($_SESSION['messages'] == "Invalid Submission. That email address is already in use"){
                                 $_SESSION['email'] = "";
                                 echo "<h3 style='color: red; font-weight: bold;'> Invalid submission. Email address already in use. </h3>";
                                 echo "<script> document.querySelector('.email').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid Email. The email must be in the format: something@example.com'){
+                                $_SESSION['email'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid Email. The email must be in the format: something@example.com </h3>";
+                                echo "<script> document.querySelector('.email').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid Name. The name must start with a capital and can only contain characters [a-z].'){
+                                $_SESSION['name'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid Name. The name must start with a capital and can only contain characters [a-z]. </h3>";
+                                echo "<script> document.querySelector('.name').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid Surname. The surname must start with a capital and can only contain characters [a-z].'){
+                                $_SESSION['surname'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid Surname. The surname must start with a capital and can only contain characters [a-z]. </h3>";
+                                echo "<script> document.querySelector('.surname').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid initials. The initials must start with a capital and can only contain characters [a-z].'){
+                                $_SESSION['initials'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid initials. The initials must start with a capital and can only contain characters [a-z]. </h3>";
+                                echo "<script> document.querySelector('.initials').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid Password. It needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.]'){
+                                $_SESSION['psw'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid Password. It needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.] </h3>";
+                                echo "<script> document.querySelector('.password').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'Invalid telephone number. Please ensure that your telephone number only contains digits.'){
+                                $_SESSION['telNo'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> Invalid telephone number. Please ensure that your telephone number only contains digits.</h3>";
+                                echo "<script> document.querySelector('.telNo').style.borderColor = 'red'; </script>";
+                            }
+                            else if ($_SESSION['messages'] == 'You did specify whether you are a player or an admin. Please do so.'){
+                                $_SESSION['userType'] = "";
+                                echo "<h3 style='color: red; font-weight: bold;'> You did specify whether you are a player or an admin. Please do so.</h3>";
+                                echo "<script> document.querySelector('.userType').style.borderColor = 'red'; </script>";
                             }
                             else {$_SESSION['name'] = "";
                                 $_SESSION['surname'] = "";
@@ -63,42 +102,37 @@
 
                         <div class="inputTextBox">
                             <label for="name"><b>Name</b></label><br>
-                            <input class= 'name' type="text" placeholder="Enter Name" name="name" required max_length = '45'
-                            value = "<?php echo isset($_SESSION['name']) ? $_SESSION['name'] : '';?>">
+                            <input class= 'name' type="text" placeholder="Enter Name" name="name" required max_length = '45'>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox" >
                             <label for="surname"><b>Surname</b></label><br>
-                            <input class="surname" type="text" placeholder="Enter Surname" name="surname" required max_length = '45'
-                            value = "<?php echo isset($_SESSION['surname']) ? $_SESSION['surname'] : '';  ?>">
+                            <input class="surname" type="text" placeholder="Enter Surname" name="surname" required max_length = '45'>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox" >
                             <label for="initials"><b>Initials (optional) </b></label><br>
-                            <input class="initials" type="text" placeholder="Enter Initials" name="initials" required max_length = '45'
-                            value = "<?php echo isset($_SESSION['initials']) ? $_SESSION['initials'] : '';  ?>">
+                            <input class="initials" type="text" placeholder="Enter Initials" name="initials" max_length = '45'>
                             <div class="error"></div><br>
                         </div>
                         <div class="userType_TelNo">
                             <div class="inputTextBox">
                                 <label for="userType"><b>Type of User</b></label><br>
-                                <input class="adminType" type="radio" name="adminType" value="Admin">
+                                <input class="adminType" type="radio" name="userType" value="Admin">
                                 <label for="adminType"><b>Admin</b></label><br>
-                                <input class="playerType" type="radio" name="playerType" value="Player">
+                                <input class="playerType" type="radio" name="userType" value="Player">
                                 <label for="playerType"><b>Player</b></label><br>
                                 <div class="error"></div><br>
                             </div>
                             <div class="inputTextBox">
                                 <label for="telNo"><b>Tel No.</b></label><br>
-                                <input class="telNo" type="text" placeholder="Enter your Telefone Number" name="telNo" required
-                                value = "<?php echo isset($_SESSION['telNo']) ? $_SESSION['telNo'] : '';  ?>">
+                                <input class="telNo" type="text" placeholder="Enter your Telefone Number" name="telNo" required>
                                 <div class="error"></div><br>
                             </div>
                         </div>
                         <div class="inputTextBox">
                             <label for="email"><b>Email</b></label><br>
-                            <input class="email" type="text" placeholder="Enter Email" name="email" required
-                            value = "<?php echo isset($_SESSION['email']) ? $_SESSION['email'] : '';  ?>">
+                            <input class="email" type="text" placeholder="Enter Email" name="email" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
@@ -132,7 +166,7 @@
             </div>
         </div>
         <?php 
-            if(!empty($_SESSION['showRegPopupAdd'])){
+            if(isset($_COOKIE['showRegPopupAdd']) && $_COOKIE['showRegPopupAdd']=="true"){
                 echo"<script> document.querySelector('.fullScreenPopup').style.visibility = 'visible';</script>";
             }
         ?>
@@ -141,13 +175,14 @@
             include_once("footer.php");
         ?>
         <script language="Javascript" type="text/javascript" src="../js/inputValidationSignUp.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/registrationPopupSignup.js"></script>
         <script language="Javascript" type="text/javascript" src="../js/passwordToggle.js"></script>
         <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     </body>
 </html>
-
+<?php session_unset(); session_destroy(); ?>
 <!--
 
     Test if the input for country is correct by using this list:

@@ -5,6 +5,9 @@ if (form==null){
 if (form==null){
     form = document.querySelector("#updateUserForm");
 }
+if (form==null){
+    form = document.querySelector("#signupForm");
+}
 const Name = document.querySelector(".name");
 const surname = document.querySelector('.surname');
 const password = document.querySelector('.password');

@@ -7,7 +7,7 @@
     u04929552
     u21457060
 -->
-<?php session_start(); 
+<?php session_start(); setcookie("InsideUsers", "True", 0, "/");setcookie("InsideSignup", "False", 0, "/");
     require_once("configDB.php");
 ?>
 
@@ -115,11 +115,11 @@
                 <?php 
                     if (empty($_SESSION['table'])){
                         $select = mysqli_query($conn,"SELECT * FROM users ");
-                    
+                        $tableRows = "";
                         if(mysqli_num_rows($select) > 0){
                             //load table
                             $tableHeaders = "
-                                    <table class='playersTable'>
+                                    <table class='Table'>
                                         <th>id</th>
                                         <th>email</th>
                                         <th>password</th>
@@ -132,8 +132,8 @@
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
-                                $tableRows = "
-                                        <tr class='tableRow'>
+                                $tableRows .= "
+                                        <tr class='TableRow'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['email']."</td>
                                             <td>".$row['password']."</td>
@@ -144,8 +144,9 @@
                                             <td>".$row['last_name']."</td>
                                         </tr>
                                 ";
-                                echo $tableRows . "</table>";
                             }
+                            
+                            echo $tableRows . "</table>";
                         }
                         else{
                             echo "<h3> No data found</h3>";

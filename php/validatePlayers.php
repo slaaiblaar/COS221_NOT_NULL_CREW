@@ -195,11 +195,30 @@
                 $result = $select->get_result();    
             }
             if (mysqli_num_rows($result)==0){
+                $tableHeaders = "
+                        <table class='Table'>
+                            <th>id</th>
+                            <th>person_key</th>
+                            <th>publisher_id</th>
+                            <th>gender</th>
+                            <th>birth_date</th>
+                            <th>death_date</th>
+                            <th>final_resting_location</th>
+                            <th>birth_location_id</th>
+                            <th>hometown_location_id</th>
+                            <th>residence_location</th>
+                            <th>death_location_id</th>
+                            <th>age</th>
+                            <th>handicap</th>
+                            <th>affiliation_id</th>
+                            </table>
+                ";
+                $_SESSION['table'] = $tableHeaders;
                 header("Location: managePlayers.php");
             }
             else{    //now to rebuild
                 $tableHeaders = "
-                        <table class='playersTable'>
+                        <table class='Table'>
                             <th>id</th>
                             <th>person_key</th>
                             <th>publisher_id</th>
@@ -218,7 +237,7 @@
                 //first get first row then build from second row
                 $row = mysqli_fetch_assoc($result);
                 $tableRows = "
-                            <tr class='tableRow'>
+                            <tr class='TableRow'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['person_key']."</td>
                                 <td>".$row['publisher_id']."</td>
@@ -238,7 +257,7 @@
                 //run through records
                 while($row = mysqli_fetch_assoc($result)){
                     $tableRows .= "
-                            <tr class='tableRow'>
+                            <tr class='TableRow'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['person_key']."</td>
                                 <td>".$row['publisher_id']."</td>
@@ -469,10 +488,9 @@
             }
             
             //build first row then continue from second row
-
             //now to rebuild
             $tableHeaders = "
-                    <table class='playersTable'>
+                    <table class='Table'>
                         <th>id</th>
                         <th>person_key</th>
                         <th>publisher_id</th>
@@ -490,7 +508,7 @@
             ";
             $row = mysqli_fetch_assoc($result);
             $tableRows = $tableHMTL . "
-                        <tr class='tableRow'>
+                        <tr class='TableRow'>
                         <td>".$row['id']."</td>
                         <td>".$row['person_key']."</td>
                         <td>".$row['publisher_id']."</td>
@@ -510,7 +528,7 @@
             //run through records
             while($row = mysqli_fetch_assoc($result)){
                 $tableRows .= $tableHMTL . "
-                        <tr class='tableRow'>
+                        <tr class='TableRow'>
                         <td>".$row['id']."</td>
                         <td>".$row['person_key']."</td>
                         <td>".$row['publisher_id']."</td>

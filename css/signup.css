@@ -41,7 +41,7 @@ body{
   top: 100%;
   width: 95%;
   color: white;
-  position: absolute;
+  /* position: absolute; */
 }
 
 .content{
@@ -364,7 +364,7 @@ input[type=radio]:hover {
   /* visibility: hidden; */
 }
 .fullscreenPopup{
-  /* visibility: hidden; */
+  visibility: hidden;
   position: fixed;
   height: 100%;
   width: 100%;

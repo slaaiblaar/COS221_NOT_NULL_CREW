@@ -9,7 +9,7 @@ showAddNewUserPopup.addEventListener("click", function showPopup(){ //this will 
 var dismissAddPopup = document.querySelector(".cancelbtn");
 //add event listeners
 dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
-    document.getElementById("errorSignup").innerHTML="";
+    if (document.getElementById("errorSignup")!=null) document.getElementById("errorSignup").innerHTML="";
     var nodeList = document.querySelectorAll(".inputTextBox .error");
     for (let i = 0; i < nodeList.length; i++) {
         nodeList[i].innerHTML = "";
@@ -50,7 +50,7 @@ showDeleteUserPopup.addEventListener("click", function showPopup(){ //this will 
 var dismissDeletePopup = document.querySelector(".cancelbtnDel");
 //add event listeners
 dismissDeletePopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
-    document.getElementById("errorDelete").innerHTML="";
+    if (document.getElementById("errorDelete")!=null) document.getElementById("errorDelete").innerHTML="";
     document.querySelector(".fullScreenPopupDelete").style.visibility = "hidden";
     $(".fullScreenPopupDelete").fadeOut();
     
@@ -199,4 +199,38 @@ dismissUpdatePopup.addEventListener("click", function hidePopup(){ //this will h
     }
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "hidden";
     $(".fullScreenPopupUpdate").fadeOut();
+});
+
+$(function filters(){
+    $('#filterTable').click(function() {
+        
+        $('#filterOptions').slideToggle();
+    });
+    
+    $(document).click(function(e) 
+    { 
+    var target = e.target; 
+    if (!$(target).is('#filterOptions') && !$(target).parents().is('.buttonsGrid')) 
+    //{ $('.dropdown').hide(); }
+    { 
+        $('#filterOptions').slideUp();
+    }
+    });
+});
+
+$(function updates(){
+    $('#updateUserData').click(function() {
+        
+        $('#updateOptions').slideToggle();
+    });
+    
+    // $(document).click(function(e) 
+    // { 
+    // var target = e.target; 
+    // if (!$(target).is('#updateOptions') && !$(target).parents().is('.buttonsGrid')) 
+    // //{ $('.dropdown').hide(); }
+    // { 
+    //     $('#updateOptions').slideUp();
+    // }
+    // });
 });

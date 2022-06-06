@@ -303,7 +303,68 @@ body{
     padding: 5px;
     overflow: scroll;
 }
+#TableSize{
+  height:100%;
+  width:975px;
+  overflow-y: auto;
+}
 
+th 
+{
+  background: rgb(0, 179, 3);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 13px;
+}
+
+table.Table
+{
+  height: 500px;
+  width: 965px;
+  border: 1px solid black;
+  border-radius: 13px; 
+  border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+border-bottom: 1px solid black;
+padding: 10px; 
+border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+  background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+  background-color: rgb(96, 164, 98);
+  color: #00420d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+  background-color: rgb(124, 211, 126);
+  color: #00420d;
+  text-decoration: none;
+}
 
 #createNewUser{
     background-color: rgb(179, 179, 0);
@@ -498,10 +559,11 @@ input[type="number"]{
 
 #filterOptions{
     /* visibility: hidden; */
-    /* background-color: rgb(172, 172, 172); */
+    background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    /* display: grid;
-    grid-template-columns: 50% 50%; */
+    display: none;
+    /* display: grid;*/
+    /* grid-template-columns: 50% 50%;  */
 }
 .lblFilter{
     color:black;
@@ -511,12 +573,12 @@ input[type="number"]{
     margin-top: 2px;
 }
 #updateOptions{
-    visibility: hidden;
+    /* visibility: hidden; */
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    display: grid;
-    grid-template-columns: 50% 50%;
-    margin-bottom: 10px;
+    display: none;
+    /* grid-template-columns: 50% 50%; */
+    /* margin-bottom: 10px; */
 }
 .lblUpdate{
     color:black;

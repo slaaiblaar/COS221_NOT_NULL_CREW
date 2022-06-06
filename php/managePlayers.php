@@ -118,11 +118,11 @@
                 <?php 
                     if (empty($_SESSION['table'])){
                         $select = mysqli_query($conn,"SELECT * FROM persons ");
-                    
+                        $tableRows = "";
                         if(mysqli_num_rows($select) > 0){
                             //load table
                             $tableHeaders = "
-                                    <table class='playersTable'>
+                                    <table class='Table'>
                                         <th>id</th>
                                         <th>person_key</th>
                                         <th>publisher_id</th>
@@ -141,8 +141,8 @@
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
-                                $tableRows = "
-                                        <tr class='tableRow'>
+                                $tableRows .= "
+                                        <tr class='TableRow'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['person_key']."</td>
                                             <td>".$row['publisher_id']."</td>
@@ -159,8 +159,8 @@
                                             <td>".$row['affiliation_id']."</td>
                                         </tr>
                                 ";
-                                echo $tableRows . "</table>";
-                            }
+                            }                            
+                            echo $tableRows . "</table>";
                         }
                         else{
                             echo "<h3> No data found</h3>";

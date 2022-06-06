@@ -8,7 +8,7 @@
             $_SESSION['surname'] = $_POST["surname"];
             $_SESSION['email'] = $_POST["email"];
             $_SESSION['psw'] = $_POST["psw"];
-            $_SESSION['dateOfBirth'] = $_POST['dateOfBirth'];
+            // $_SESSION['dateOfBirth'] = $_POST['dateOfBirth'];
             // $_SESSION['country'] = $_POST['country'];
             // $_SESSION['handicap'] = $_POST['handicap'];
             $_SESSION['initials'] = $_POST['initials'];
@@ -25,23 +25,37 @@
             // else{
             //     $_SESSION['genderType'] = "";
             // }
-
             $_SESSION['userType'] = $_POST['userType'];
             
-            if (!preg_match("/^[A-Z][a-z]+$/",$_SESSION['name']) ){
+            if ($_COOKIE['InsideUsers']=="True" && !preg_match("/^[A-Z][a-z]+$/",$_SESSION['name']) ){
                 $_SESSION['messages'] = 'Invalid Name. The name must start with a capital and can only contain characters [a-z].';
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
             }
-            else if(!preg_match("/^[A-Z][a-z]+$/",$_SESSION['surname'])){
+            else if ($_COOKIE['InsideSignup']=="True" && !preg_match("/^[A-Z][a-z]+$/",$_SESSION['name']) ){
+                $_SESSION['messages'] = 'Invalid Name. The name must start with a capital and can only contain characters [a-z].';
+               $_SESSION['showAddMenu'] = "true";
+                header("Location: signup.php");
+            }
+            else if($_COOKIE['InsideUsers']=="True" && !preg_match("/^[A-Z][a-z]+$/",$_SESSION['surname'])){
                 $_SESSION['messages'] = 'Invalid Surname. The surname must start with a capital and can only contain characters [a-z].';
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
             }
-            else if(!empty($_SESSION['initials'])&&!preg_match("/^[A-Z][a-z]+$/",$_SESSION['initials'])){
+            else if($_COOKIE['InsideSignup']=="True" && !preg_match("/^[A-Z][a-z]+$/",$_SESSION['surname'])){
+                $_SESSION['messages'] = 'Invalid Surname. The surname must start with a capital and can only contain characters [a-z].';
+               $_SESSION['showAddMenu'] = "true";
+                header("Location: signup.php");
+            }
+            else if($_COOKIE['InsideUsers']=="True" && !empty($_SESSION['initials'])&&!preg_match("/^[A-Z]+$/",$_SESSION['initials'])){
                 $_SESSION['messages'] = 'Invalid initials. The initials must start with a capital and can only contain characters [a-z].';
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
+            }
+            else if($_COOKIE['InsideSignup']=="True" && !empty($_SESSION['initials'])&&!preg_match("/^[A-Z]+$/",$_SESSION['initials'])){
+                $_SESSION['messages'] = 'Invalid initials. The initials must start with a capital and can only contain characters [a-z].';
+               $_SESSION['showAddMenu'] = "true";
+                header("Location: signup.php");
             }
             // else if(!preg_match("/^[0-9]{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$/",$_SESSION['dateOfBirth'])){
             //     $_SESSION['messages'] = "Invalid Date format. Format needs to be in YYYY/MM/DD.";
@@ -55,29 +69,47 @@
             //     $_SESSION['messages'] = 'Invalid handicap value. The value must be a whole number between [0-54].';
             //     header("Location: manageUsers.php");
             // }
-            else if(!preg_match("/^\w*@\w+([\.-]?\w+)*(\.[A-Za-z]{2,4})+$/",$_SESSION['email'])){
+            else if($_COOKIE['InsideUsers']=="True" && !preg_match("/^\w*@\w+([\.-]?\w+)*(\.[A-Za-z]{2,4})+$/",$_SESSION['email'])){
                 $_SESSION['messages'] = 'Invalid Email. The email must be in the format: something@example.com';
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
             }
-            else if(!preg_match("/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/",$_SESSION['psw'])){
+            else if($_COOKIE['InsideSignup']=="True" && !preg_match("/^\w*@\w+([\.-]?\w+)*(\.[A-Za-z]{2,4})+$/",$_SESSION['email'])){
+                $_SESSION['messages'] = 'Invalid Email. The email must be in the format: something@example.com';
+               $_SESSION['showAddMenu'] = "true";
+                header("Location: signup.php");
+            }
+            else if($_COOKIE['InsideUsers']=="True" && !preg_match("/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/",$_SESSION['psw'])){
                 $_SESSION['messages'] = 'Invalid Password. It needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.]';
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
             }
-            else if(!preg_match("/\d{10}$/",$_SESSION['telNo'])){
+            else if($_COOKIE['InsideSignup']=="True" && !preg_match("/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/",$_SESSION['psw'])){
+                $_SESSION['messages'] = 'Invalid Password. It needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.]';
+                header("Location: signup.php");
+            }
+            else if($_COOKIE['InsideUsers']=="True" && !preg_match("/\d{10}$/",$_SESSION['telNo'])){
                 $_SESSION['messages'] = "Invalid telephone number. Please ensure that your telephone number only contains digits.";
                $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
+            }
+            else if($_COOKIE['InsideSignup']=="True" && !preg_match("/\d{10}$/",$_SESSION['telNo'])){
+                $_SESSION['messages'] = "Invalid telephone number. Please ensure that your telephone number only contains digits.";
+                header("Location: signup.php");
             }
             // else if($_SESSION['genderType'] == ""){
             //     $_SESSION['messages'] = "You did not select a Gender. Please do so.";
             //     header("Location: manageUsers.php");
             // }
-            else if($_SESSION['userType']==""){
+            else if($_COOKIE['InsideUsers']=="True" && $_SESSION['userType']==""){
                 $_SESSION['messages'] = "You did specify whether you are a player or an admin. Please do so.";
                 $_SESSION['showAddMenu'] = "true";
                 header("Location: manageUsers.php");
+            }
+            else if($_COOKIE['InsideSignup']=="True" && $_SESSION['userType']==""){
+                $_SESSION['messages'] = "You did specify whether you are a player or an admin. Please do so.";
+                $_SESSION['showAddMenu'] = "true";
+                header("Location: signup.php");
             }
             else{
                 $name = $_POST['name'];
@@ -95,9 +127,13 @@
                 $select->execute();
                 $result = $select->get_result();
 
-                if(mysqli_num_rows($result) > 0) {
-                    $_SESSION['messages'] = 'That email address is already in use.';
+                if($_COOKIE['InsideUsers']=="True" && mysqli_num_rows($result) > 0) {
+                    $_SESSION['messages'] = 'Invalid Submission. That email address is already in use';
                     header("Location: manageUsers.php");
+                }
+                else if($_COOKIE['InsideSignup']=="True" && mysqli_num_rows($result) > 0) {
+                    $_SESSION['messages'] = 'Invalid Submission. That email address is already in use';
+                    header("Location: signup.php");
                 }      
                 else{          
                     //encrypt the password
@@ -113,13 +149,23 @@
                     if ($query){
                         //Success
                         //we don't want to be redirected to another page, we just want a popup to display
-                        $_SESSION['showRegPopupAdd'] = "true";
-                        header("Location: manageUsers.php");
+                        $_COOKIE['showRegPopupAdd'] = "true";
+                        if ($_COOKIE['InsideUsers']=="True"){
+                            header("Location: manageUsers.php");
+                        }
+                        else if($_COOKIE['InsideSignup']=="True"){
+                            header("Location: signup.php");
+                        }
                     }
                     else{
                         $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;
                         error_reporting(E_ALL);
-                        header("Location: manageUsers.php");
+                        if ($_COOKIE['InsideUsers']=="True"){
+                            header("Location: manageUsers.php");
+                        }
+                        else if($_COOKIE['InsideSignup']=="True"){
+                            header("Location: signup.php");
+                        }
                         // echo "Error connecting to database: " . $conn->error;
                     }
 
@@ -230,10 +276,22 @@
                 $result = $select->get_result();    
             }
             if (mysqli_num_rows($result)==0){
+                $tableHeaders = "<table class='Table'>
+                            <th>id</th>
+                            <th>email</th>
+                            <th>password</th>
+                            <th>tel_no</th>
+                            <th>user_type</th>
+                            <th>first_name</th>
+                            <th>init</th>
+                            <th>last_name</th>
+                            </table>
+                ";
+                $_SESSION['table'] = $tableHeaders;
                 header("Location: manageUsers.php");
             }
             else{   //now to rebuild
-                $tableHeaders = "<table class='UsersTable'>
+                $tableHeaders = "<table class='Table'>
                             <th>id</th>
                             <th>email</th>
                             <th>password</th>
@@ -245,7 +303,7 @@
                 ";
                 //display first result and then continue from second row
                 $row = mysqli_fetch_assoc($result);
-                $tableRows = "<tr class='tableRow'>
+                $tableRows = "<tr class='TableRow'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -258,7 +316,7 @@
                     ";
                 //run through records
                 while($row = mysqli_fetch_assoc($result)){
-                    $tableRows .= "<tr class='tableRow'>
+                    $tableRows .= "<tr class='TableRow'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -509,7 +567,7 @@
             }
             //now to rebuild
             $tableHeaders = "
-                    <table class='UsersTable'>
+                    <table class='Table'>
                         <th>id</th>
                         <th>email</th>
                         <th>password</th>
@@ -521,7 +579,7 @@
             ";
             //build first then then continue from second row
             $tableRows = "
-                    <tr class='tableRow'>
+                    <tr class='TableRow'>
                         <td>".$row['id']."</td>
                         <td>".$row['email']."</td>
                         <td>".$row['password']."</td>
@@ -535,7 +593,7 @@
             //run through records
             while($row = mysqli_fetch_assoc($result)){
                 $tableRows .= "
-                        <tr class='tableRow'>
+                        <tr class='TableRow'>
                             <td>".$row['id']."</td>
                             <td>".$row['email']."</td>
                             <td>".$row['password']."</td>
