@@ -359,9 +359,6 @@
             $sqlSuccess = array();
             foreach($post['data'] as $row)
             {
-                $debugFile = fopen("../debug.txt","a+");
-                fwrite($debugFile,print_r($post['table'],true));
-                fclose($debugFile);
                 $data = array();
                 $validKeys = array();
                 $allKeys = array_keys($row);
@@ -380,26 +377,17 @@
                 $query = "INSERT INTO ". $post['table'] . "(" . join(", ",$validKeys) . ") VALUES (" . join(", ", $data).")";
                 if ($conn->query($query) === true)
                 {
-                    $newRow = $conn->query("SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
+                    $last_ID = $conn->insert_id;
+                    $newRow = $conn->query("SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = ". $last_ID);
 
-                    $debugFile = fopen("../debug.txt","a+");
-                    fwrite($debugFile,print_r($newRow,true));
-                    fwrite($debugFile,"\nQuery: " . "SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
-                    fwrite($debugFile,"\n======================================\n");
-                    fclose($debugFile);
                     if (gettype($newRow) == "boolean")
                     {
-                        $debugFile = fopen("../criticalError.txt","a+");
-                        fwrite($debugFile,print_r($newRow,true));
-                        fwrite($debugFile,"\nQuery: " . "SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
-                        fwrite($debugFile,"\n======================================\n");
-                        fclose($debugFile);
-                        $result = ["success" => false, "query" =>$query, "message" => $conn];
+                        $result = ["success" => false, "query" =>"SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = ". $last_ID, "message" => $conn];
                     }
                     else
                     {
                         $temp = $newRow->fetch_assoc();
-                        $result = ["success" => true, "query" =>$query, "Row" => $temp];
+                        $result = ["success" => true, "query" =>"SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = ". $last_ID, "Row" => $temp];
                     }
                     
                 }
@@ -439,11 +427,6 @@
     else 
     {
         $post = json_decode(file_get_contents('php://input'), true);
-        // $debugFile = fopen("../debug.txt","a+");
-        // fwrite($debugFile,"======================================\n");
-        // fwrite($debugFile,print_r($post['add'],true));
-        // fwrite($debugFile,"\n======================================\n");
-        // fclose($debugFile);
         $current = array();
         if (!isset($post['sample']))
         {
@@ -478,7 +461,7 @@
             // fwrite($debugFile,"\n======================================\n");
             // fclose($debugFile);
             //echo json_encode($post['data']);
-            echo json_encode($dbConn->populateSamples($post));
+            if (isset($post['table'])) echo json_encode($dbConn->populateSamples($post));
         }
 
     }

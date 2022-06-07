@@ -6,6 +6,7 @@ function popStrokes(a)
     var landings = ["Fairway", "Bunker", "Penalty", "Hole"];
     var finalObject = [];
     var eventObject = [];
+    var strokes = [];
     for (var eventIndex in events) //iterate through events
     {
         console.log("Event " + (eventIndex+1));
@@ -17,14 +18,14 @@ function popStrokes(a)
             personBase = 10;
             gender = "W";
         }
-        var roundObject = [];
+        //var roundObject = [];
         for (var roundIndex = 0; roundIndex < 4; roundIndex++) //iterate through rounds
         {
-            var holeObject = [];
+            //var holeObject = [];
             for (var holeIndex = 0; holeIndex < 18; holeIndex++) //iterate through holes
             {
                 
-                var personObject = [];
+                //var personObject = [];
                 for (var personIndex = personIndexBase; personIndex < 10+personIndexBase; personIndex++)//iterate through persons
                 {
                     
@@ -33,7 +34,7 @@ function popStrokes(a)
                     var length = holes[siteIndex*18+holeIndex]['length'];
                     //console.log("Length of hole " + (holeIndex+1) + "-" + (siteIndex+1) + ": " + length);
                     var averageLength = length/numStrokes;
-                    var strokes = [];
+                    
                     for (var i = 1; i <= numStrokes; i++)
                     {
                         
@@ -70,15 +71,31 @@ function popStrokes(a)
                             });
                         }
                     }
-                    personObject.push({"strokes" : strokes});
-                    finalObject.push(strokes);
                 }
-                holeObject.push({"persons": personObject});
             }
-            roundObject.push({"holes": holeObject});
         }
-        eventObject.push({"rounds": roundObject});
     }
-    console.log(finalObject);
-    console.log({"Final structure": eventObject});
+    console.log(strokes);
+    
+
+    var strokeApiRequest = new XMLHttpRequest();
+    strokeApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    strokeApiRequest.onreadystatechange = function()
+    {
+        if (strokeApiRequest.readyState == 4 && strokeApiRequest.status == 200)
+        {
+            var response = (JSON.parse(strokeApiRequest.responseText));
+            console.log("Strokes Population API Call Response:");
+            console.log(response);
+            //if (a) popAddresses(a);
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "strokes",
+        "data": strokes
+    };
+    strokeApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    strokeApiRequest.send(JSON.stringify(data));
 }
