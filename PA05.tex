@@ -651,26 +651,23 @@ Please see our GitHub repository for the source code of these pages.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Task 6: Sample Data}
-
+\vspace{1em}
 Please see the following files on our GitHub repository:
-
+\vspace{1em}
 \begin{itemize}
   \item PA5\_Base\_Relations.sql
   \item pa5\_golf\_schema.sql
-  \item js/populateAffiliations.js
-  \item js/populateLocations.js
-  \item js/populateAddresses.js 
-  \item js/populateSites.js 
-  \item js/populatePersons.js 
-  \item js/populateTours.js 
-  \item js/populateEvents.js 
-  \item js/populateRounds.js 
-  \item js/populateHoles.js 
-  \item js/populateScores.js 
-  \item js/populateStrokes.js 
-  \item js/populateGolfStatistics.js 
-  \item 
+  \item Sample Data folder contains several JSON files of sample data that we curated by hand.
 \end{itemize}
+\vspace{1em}
+\subsection{Explanation Of Methods}
+\vspace{1em}
+For some relations, it was feasible to manually create JSON-objects within javascript (see Sample Data folder on GitHub) files and query an API that Wian
+created in order to populate the tables. However, this approach did not scale well to relations such as SCORES which required
+3600 tuples (ten players, five tournaments, four rounds per tournament and 18 holes played per round). For this relation,
+and others requiring a similiar number of tuples, we opted for an algorithmic approach that populated these relations with 
+coherent data, across many tuples using nested for-loops (for an example see Sample Data/ populateScores.js).
+
 \newpage
 
 
@@ -799,11 +796,6 @@ a descriptive message of the changes made.
   \item Overall. I feel like I did my part and fully contributed the 16.67\% that each group member need to contribute (there are 6 members).
 \end{itemize}
 
-
-
-
-
-
 \vspace{1em}
 \subsubsection*{u19043512 – Wian Koekemoer}
 \vspace{1em}
@@ -811,6 +803,7 @@ a descriptive message of the changes made.
   \item I took an outdated sportsDB dump and updated it to match the sportsDB 29 standard.
   \item I wrote the documentation for the sportsDB schema that was used to reach the final iteration of our conceptual model. 
   \item I updated the schema to match our model. 
+  \item I worked extensively to create sound data for the database, producing multiple automated files.
   \item For task 5, I wrote the code for the following pages:
   \begin{itemize}
     \item Manage addresses 
@@ -835,11 +828,11 @@ a descriptive message of the changes made.
 \vspace{1em}
 \begin{itemize}
   \item I used my previous experience with git and GitHub to coordinate the team around best practices with regards to cloning, 
-        pulling, staging commits, forking branches, and merging branches.
+        pulling, staging commits, forking repositories, and merging branches.
   \item I worked on understanding and finalising the conceptual design of the database.
   \item I collated the final pdf submission working, continuously, to understand, present, and explain the work produced
         by the group in a way that showcases our efforts.
-  \item I have worked extensively on producing sample data.
+  \item I have worked extensively on producing sample data, both by hand and by building an automated javascript data populator.
   \item Elsewhere, I volunteered whenever and wherever teammates needed my help.
 \end{itemize}
 
