@@ -1,4 +1,4 @@
-var sites = [
+var sites = [ //Courses
     {
         "site_key": "Ridgeview Country Club",
         "publisher_id": 1,
