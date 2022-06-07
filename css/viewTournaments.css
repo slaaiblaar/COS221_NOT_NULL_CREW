@@ -159,6 +159,69 @@ body{
     
   }
   
+  #TableSize{
+    height:100%;
+    width:100%;
+    overflow-y: auto;
+}
+
+th 
+{
+    background: rgb(0, 179, 3);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+    border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+    border-top-right-radius: 13px;
+}
+
+table.Table
+{
+    height: 500px;
+    width: 965px;
+    border: 1px solid black;
+    border-radius: 13px; 
+    border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+  border-bottom: 1px solid black;
+  padding: 10px; 
+  border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+  border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+    background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+    background-color: rgb(96, 164, 98);
+    color: #00420d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+    background-color: rgb(124, 211, 126);
+    color: #00420d;
+    text-decoration: none;
+}
+
     .loginRegister a{
       padding: 10px 10px;
       text-decoration: none;
@@ -269,7 +332,7 @@ body{
     display: grid;
     grid-template-rows: auto;
     grid-column: 1 / span 1;
-    grid-row: 2 / span 1;
+    grid-row: 1 / span 1;
     grid-gap: 20px;
     height: 100%;
     width:100%;
@@ -297,7 +360,7 @@ body{
     background-color: white;
     display: grid;
     grid-template-rows: auto;
-    grid-column: 1 / span 2;
+    grid-column: 2 / span 1;
     grid-row: 1 / span 1;
     grid-gap: 20px;
     height: 100%;
@@ -405,7 +468,7 @@ body{
     margin-top: 20px;
 }
 #updateTournamentPopup{
-    height: 20%;
+    height: fit-content;
 }
 #newTournamentFormPopup{
     position: fixed;
@@ -428,7 +491,7 @@ body{
 .deletePopupHeader p{
     margin: 10px;
 }
-.updatePopupInput{
+.updatePopupInput, .updatePopupInputID{
     margin-top: 20px;
 }
 
@@ -537,6 +600,25 @@ input[type="number"]{
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
     grid-template-columns: 50% 50%;
+}
+#filterForm{
+  background-color: rgb(172, 172, 172);
+  border-radius: 10px;
+  visibility: hidden;
+}
+.filterFormContainer > button{
+  visibility: hidden;
+  font-size: 10pt;
+  font-weight: bold;
+  height: 30px;
+  width: 100px;
+  color: white;
+  background-color: rgb(0, 94, 255);
+  opacity: 1;
+}
+.filterFormContainer > button:hover{
+  cursor: cursor;
+  box-shadow: 2px 3px 8px rgb(29, 123, 255);
 }
 .lblFilter{
     color:black;

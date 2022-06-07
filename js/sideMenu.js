@@ -457,7 +457,7 @@ function closeMenu(){
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/addresses.php")
     {
         document.querySelector(".sidenav a").classList.toggle("show");
-        document.getElementById("sideMenu").style.width = "250px";
+        document.getElementById("sideMenu").style.width = "0";
         document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
         document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
@@ -489,7 +489,7 @@ function closeMenu(){
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/locations.php")
     {
         document.querySelector(".sidenav a").classList.toggle("show");
-        document.getElementById("sideMenu").style.width = "250px";
+        document.getElementById("sideMenu").style.width = "0";
         document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
         document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
@@ -521,7 +521,7 @@ function closeMenu(){
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/viewCourses.php")
     {
         document.querySelector(".sidenav a").classList.toggle("show");
-        document.getElementById("sideMenu").style.width = "250px";
+        document.getElementById("sideMenu").style.width = "0";
         document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
         document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";

@@ -7,7 +7,7 @@
     u04929552
     u21457060
 -->
-<?php session_start(); ?>
+<?php session_start(); require_once("setDBEnvVar.php"); require_once("configDB.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,28 +51,37 @@
                 <button id="createNewTournament">Create New Tournament</button>
                 <button id="deleteTournament">Delete a tournament from  the table</button>
                 <button type="button" id="filterTable">List filter options</button>
-                <div id="filterOptions">
-                    <div>    
-                        <input class="filter-option1" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Men's Tournaments</label>
+                <form action="validateTournamentCreate.php" id="filterForm" method="post">
+                    <div class="filterFormContainer">
+                        <div id="filterOptions">
+                            <div>    
+                                <input class="filter-option1" type="radio" name="filterOption1" value="Men">
+                                <label class="lblFilter">View Men's Tournaments</label>
+                            </div>
+                            <div>
+                                <input class="filter-option2" type="radio" name="filterOption2" value="Women">
+                                <label class="lblFilter">View Women's Tournaments</label><br>
+                            </div>
+                            <div>
+                                <input class="filter-option3" type="radio" name="filterOption3" value="3">
+                                <label class="lblFilter">View Duration >= 3</label>
+                            </div>
+                            <div>
+                                <input class="filter-option4" type="radio" name="filterOption4" value="Scheduled">
+                                <label class="lblFilter">View Scheduled Tournaments</label>
+                            </div>
+                            <div>
+                                <input class="filter-option5" type="radio" name="filterOption5" value="Canceled">
+                                <label class="lblFilter">View Canceled Tournaments</label>
+                            </div>
+                            <div>
+                                <input class="filter-option6" type="radio" name="filterOption6">
+                                <label class="lblFilter">Reset Table</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submitFilter" name="submitFilter">Filter</button>
                     </div>
-                    <div>
-                        <input class="filter-option2" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Women's Tournaments</label><br>
-                    </div>
-                    <div>
-                        <input class="filter-option3" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Duration >= 3</label>
-                    </div>
-                    <div>
-                        <input class="filter-option4" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Scheduled Tournaments</label>
-                    </div>
-                    <div>
-                        <input class="filter-option5" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Canceled Tournaments</label>
-                    </div>
-                </div>
+                </form>
                 <button id="updateTournamentData">Update a Tournament's data</button>
                 <div id="updateOptions">
                     <div>    
@@ -91,6 +100,58 @@
             </div>
             <div class="tableGrid">
                 <!--we will build the table using javascript-->
+                <?php 
+                    if (empty($_SESSION['table'])){
+                        $select = mysqli_query($conn,"SELECT * FROM events ");
+                        $tableRows = "";
+                        if(mysqli_num_rows($select) > 0){
+                            //load table
+                            $tableHeaders = "
+                                        <table class='Table'>
+                                            <th>id</th>
+                                            <th>event_key</th>
+                                            <th>publisher_id</th>
+                                            <th>start_date_time</th>
+                                            <th>end_date_time</th>
+                                            <th>site_id</th>
+                                            <th>duration</th>
+                                            <th>event_status</th>
+                                            <th>gender</th>
+                                            <th>tour_id</th>
+                                            <th>year</th>
+                            ";
+                            echo $tableHeaders;
+                            //run through records
+                            while($row = mysqli_fetch_assoc($select)){
+                                $tableRows .= "
+                                            <tr class='TableRow'>
+                                                <td>".$row['id']."</td>
+                                                <td>".$row['event_key']."</td>
+                                                <td>".$row['publisher_id']."</td>
+                                                <td>".$row['start_date_time']."</td>
+                                                <td>".$row['end_date_time']."</td>
+                                                <td>".$row['site_id']."</td>
+                                                <td>".$row['duration']."</td>
+                                                <td>".$row['event_status']."</td>
+                                                <td>".$row['gender']."</td>
+                                                <td>".$row['tour_id']."</td>
+                                                <td>".$row['year']."</td>
+                                            </tr>
+                                ";
+                            }
+                            
+                            echo $tableRows . "</table>";
+                        }
+                        else{
+                            echo "<h3> No data found</h3>";
+
+                        }
+                    }
+                    else{
+                        error_log($_SESSION['table']);
+                        echo $_SESSION['table'];
+                    }
+                ?>
             </div>
         </div>
         <div class="fullScreenPopupAdd">
@@ -109,17 +170,17 @@
                         </div>
                         <div class="inputTextBox">
                             <label style="padding-bottom: 20px" for="startDate"><b>Start Date:</b></label><br>
-                            <input class="startDate" type="datetime-local" style="padding:5px" required>
+                            <input class="startDate" type="datetime-local" style="padding:5px" name="startDate" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
                             <label style="padding-bottom: 20px" for="endDate"><b>End Date:</b></label><br>
-                            <input class="endDate" type="datetime-local" style="padding:10px" required>
+                            <input class="endDate" type="datetime-local" style="padding:10px" name="endDate" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
                             <label style="padding-bottom: 20px" for="duration"><b>Tournament Duration (days):</b></label><br>
-                            <input class="duration" type="number" style="width: 10%; text-align:centre" max="5" min="0" value="duration()" required>
+                            <input class="duration" type="number" style="width: 10%; text-align:centre" max="5" min="0" name="duration" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
@@ -138,7 +199,7 @@
                         </div>   
                         <div class="inputTextBox">
                             <label style="padding-bottom: 20px" for="year"><b>Year:</b></label><br>
-                            <input class="year" type="text" readonly style="width: 10%; text-align:centre" value="2022" required>
+                            <input class="year" type="text" name="year" readonly style="width: 10%; text-align:centre" value="2022" required>
                             <div class="error"></div><br>
                         </div>                     
                         
@@ -153,7 +214,7 @@
         </div>
         <div class="fullScreenPopupDelete">
             <div id="deleteTournamentPopup">
-                <form action="validationTournaments.php" method="post" id="deleteTournamentForm">
+                <form action="validateTournamentCreate.php" method="post" id="deleteTournamentForm">
                     <div class="deletePopupHeader">
                         <span>Enter the id of the tournament:</span>
                         <p> (note: not the event_key)<p>
@@ -181,11 +242,17 @@
         </div>
         <div class="fullScreenPopupUpdate">
             <div id="updateTournamentPopup">
-                <form action="validationTournaments.php" method="post" id="updateTournamentForm">
+                <form action="validateTournamentCreate.php" method="post" id="updateTournamentForm">
                     <div class="updatePopupHeader">
                         <span></span>
                     </div>
+                    <div class="inputTextBox updateInputID">
+                        <label>Event id</label><br>
+                        <input class="idUpdate" type="text" name="id" placeholder="Enter the primary id">
+                        <div class="error"></div><br>
+                    </div>
                     <div class="inputTextBox updateInput">
+                        <label></label><br>
                         <input class="updatePopupInput" type="text" name="updatePopupInput">
                         <div class="error"></div><br>
                     </div>

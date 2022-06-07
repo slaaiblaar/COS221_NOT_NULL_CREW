@@ -51,29 +51,33 @@
                 <button id="createNewStroke">Create New Stroke</button>
                 <button id="deleteStroke">Delete a stroke from  the table</button>
                 <button type="button" id="filterTable">List filter options</button>
-                <div id="filterOptions">
-                    <div>    
-                        <input class="filter-option1" type="radio" name="filterOption1" value="100">
-                        <label class="lblFilter">View Distances >= 100</label>
-                    </div>
-                    <div>
-                        <input class="filter-option2" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Clubs against Distance</label><br>
-                    </div>
-                    <div>
-                        <input class="filter-option3" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Distance <= 200</label>
-                    </div>
-                    <div>
-                        <input class="filter-option4" type="radio" name="filterOption1">
-                        <label class="lblFilter">View Distance vs Landing</label>
-                    </div>
-                    <div>
-                        <input class="filter-option5" type="radio" name="filterOption1">
-                        <label class="lblFilter">Reset Table</label>
-                    </div>
+                <form action="validateScoreCreate.php" id="filterForm" method="post">
+                    <div class="filterFormContainer">
+                        <div id="filterOptions">
+                            <div>    
+                                <input class="filter-option1" type="radio" name="filterOption1" value="99">
+                                <label class="lblFilter">View Distances >= 100</label>
+                            </div>
+                            <div>
+                                <input class="filter-option2" type="radio" name="filterOption2">
+                                <label class="lblFilter">View Clubs against Distance</label><br>
+                            </div>
+                            <div>
+                                <input class="filter-option3" type="radio" name="filterOption3" value="201">
+                                <label class="lblFilter">View Distance <= 200</label>
+                            </div>
+                            <div>
+                                <input class="filter-option4" type="radio" name="filterOption4">
+                                <label class="lblFilter">View Distance vs Landing</label>
+                            </div>
+                            <div>
+                                <input class="filter-option5" type="radio" name="filterOption5">
+                                <label class="lblFilter">Reset Table</label>
+                            </div>
+                        </div>
                     <button type="submit" class="submitFilter" name="submitFilter">Filter</button>
-                </div>
+                    </div>
+                </form>
                 <button id="updateStrokeData">Update a Stroke's data</button>
                 <div id="updateOptions">
                     <div>    
@@ -81,11 +85,11 @@
                         <label class="lblUpdate">Update Club Used</label>
                     </div>
                     <div>
-                        <input class="update-option2" type="radio" name="updateOption1">
+                        <input class="update-option2" type="radio" name="updateOption2">
                         <label class="lblUpdate">Update Landing</label>
                     </div>
                     <div>
-                        <input class="update-option3" type="radio" name="updateOption1">
+                        <input class="update-option3" type="radio" name="updateOption3">
                         <label class="lblUpdate">Update Distance</label>
                     </div>
                 </div>
@@ -100,19 +104,21 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
-                                        <th>stroke_no</th>
-                                        <th>round_id</th>
-                                        <th>hole_id</th>
-                                        <th>person_id</th>
-                                        <th>club_used</th>
-                                        <th>distance</th>
-                                        <th>landing</th>
+                                        <thead rowspan='1'>
+                                            <th>stroke_no</th>
+                                            <th>round_id</th>
+                                            <th>hole_id</th>
+                                            <th>person_id</th>
+                                            <th>club_used</th>
+                                            <th>distance</th>
+                                            <th>landing</th>
+                                        </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['stroke_no']."</td>
                                             <td>".$row['round_id']."</td>
                                             <td>".$row['revision_id']."</td>
@@ -129,7 +135,19 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
+                            echo "
+                                <table class='Table'>
+                                    <thead rowspan='1'>
+                                        <th>stroke_no</th>
+                                        <th>round_id</th>
+                                        <th>hole_id</th>
+                                        <th>person_id</th>
+                                        <th>club_used</th>
+                                        <th>distance</th>
+                                        <th>landing</th>
+                                    </thead>
+                                ";
+                            echo "<tr><td> No data found </td><tr></table>";
 
                         }
                     }
@@ -155,7 +173,7 @@
                         </div>
                         <div class="inputTextBox">
                             <label style="padding-bottom: 20px" for="distance"><b>Distance:</b></label><br>
-                            <input class="distance" type="number" min="0" max="500" style="padding:5px" required>
+                            <input class="distance" type="number" min="0" max="500" name="distance" style="padding:5px" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
@@ -213,6 +231,11 @@
                 <form action="validationStrokes.php" method="post" id="updateStrokeForm">
                     <div class="updatePopupHeader">
                         <span></span>
+                    </div>
+                    <div class="inputTextBox updateInputID">
+                        <label>Event id</label><br>
+                        <input class="idUpdate" type="text" name="id" placeholder="Enter the primary id">
+                        <div class="error"></div><br>
                     </div>
                     <div class="inputTextBox updateInput">
                         <input class="updatePopupInput" type="text" name="updatePopupInput">
