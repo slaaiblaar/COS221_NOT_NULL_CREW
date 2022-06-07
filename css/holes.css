@@ -13,21 +13,21 @@ body{
     padding: 10px 10px;
     box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
     
-  }
+}
   
-    .loginRegister a{
-      padding: 10px 10px;
-      text-decoration: none;
-      color: white;
-    }
+.loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+}
   
-    .loginRegister a:hover{
-      color: black;
-      background-color: #00420d;
-      font-weight: bold;
-      color: white;
-      text-decoration: underline;
-    }
+.loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+}
 
 .top-content{
     padding: 10px 16px;
@@ -340,11 +340,11 @@ tr:nth-child(even)
     background: #555;
 }
 
-#createNewOrg{
+#createNewHole{
     background-color: rgb(179, 179, 0);
 }
 
-#deleteOrg{
+#deleteHole{
     background-color: rgb(179, 0, 0);
 }
 
@@ -380,6 +380,11 @@ tr:nth-child(even)
     background-color: rgb(144, 218, 145);
 }
 
+#filterOptions select
+{
+    font-size: 12pt;
+}
+
 #filterOptions input[type="submit"]{
     background-color: rgb(34, 216, 37);
     width: 395px;
@@ -413,7 +418,7 @@ tr:nth-child(even)
     background-color: rgb(144, 218, 145);
 }
 
-#updateOrgData{
+#updateHoleData{
     background-color: rgb(0, 179, 3);
 }
 
@@ -467,11 +472,12 @@ button[disabled] {
     color:#555;
 }
 
-/* Delete Tour + Update Tout */
-#deleteOrgPopup,#updateOrgPopup{
+/* Delete Hole + Update Hole */
+#deleteHolePopup{
     position: fixed;
     top: 15%;
     left: 35%;
+    height: 50%;
     width: 30%;
     padding: 10px;
     border-radius: 20px;
@@ -482,21 +488,26 @@ button[disabled] {
     text-align: center;
 }
 
-#deleteOrgPopup
-{
+#updateHolePopup{
+    position: fixed;
+    top: 15%;
+    left: 35%;
     height: 50%;
+    width: 30%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(35, 35, 35);
+    opacity: 0.8;
+    border: 5px solid rgb(0, 255, 115);
+    color:rgb(0, 255, 115);
+    text-align: center;
 }
 
-#updateOrgPopup
-{
-    height: 60%;
-}
-
-#deleteOrgPopup button, #updateOrgPopup button{
+#deleteHolePopup button, #updateHolePopup button{
     margin-top: 20px;
 }
 
-.DeleteOrgInput
+.DeleteHoleInput
 {
     color: #00420d;
     background-color: rgb(200, 241, 201);
@@ -504,11 +515,11 @@ button[disabled] {
 }
 
 /* New Tour */
-#newOrgFormPopup{
+#newHoleFormPopup{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 60%;
+    height: 80%;
     width: 30%;
     padding: 10px;
     border-radius: 20px;
@@ -519,15 +530,33 @@ button[disabled] {
     text-align: center;
 }
 
-.DropDowns
+.HolesCreateInput
 {
-    padding: 2px;
-    margin-bottom : 10px;
-    margin-top: 2px;
-    width : 57%;
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 200px;
 }
 
-#newOrgFormPopup hr{
+.HolesUpdateInput
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 200px;
+}
+
+#HoleLengthCreate
+{
+    width : 200px;
+}
+
+#HoleLengthUpdate
+{
+    width : 200px;
+}
+
+#newHoleFormPopup hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }

@@ -587,7 +587,7 @@
 
                 if($updated == true)
                 {
-                    $output["message"] = "Successfully update";
+                    $output["message"] = "Successfully updated";
                 }
                 else
                 {
