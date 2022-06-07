@@ -163,6 +163,7 @@
             if (mysqli_num_rows($result)==0){
                 $tableHeaders = "
                         <table class='Table'>
+                          <thead rowspan='1'>
                             <th>id</th>
                             <th>object_id</th>
                             <th>revision_id</th>
@@ -172,6 +173,7 @@
                             <th>credit_id</th>
                             <th>db_location_id</th>
                             <th>creation_location_id</th>
+                          </thead>
                         </table>
                 ";
                 $_SESSION['table'] = $tableHeaders;
@@ -180,6 +182,7 @@
             else{    //now to rebuild
                 $tableHeaders = "
                         <table class='Table'>
+                         <thead rowspan='1'>
                             <th>id</th>
                             <th>object_id</th>
                             <th>revision_id</th>
@@ -189,11 +192,12 @@
                             <th>credit_id</th>
                             <th>db_location_id</th>
                             <th>creation_location_id</th>
+                        </thead>
                 ";
                 //first get first row then build from second row
                 $row = mysqli_fetch_assoc($result);
                 $tableRows .= "
-                            <tr class='TableRow'>
+                            <tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['object_id']."</td>
                                 <td>".$row['revision_id']."</td>
@@ -208,7 +212,7 @@
                 //run through records
                 while($row = mysqli_fetch_assoc($result)){
                     $tableRows .= "
-                            <tr class='TableRow'>
+                            <tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['object_id']."</td>
                                 <td>".$row['revision_id']."</td>
@@ -236,11 +240,18 @@
             }
 
         }
-        else if(isset($_POST['updatePopupInput']) && (isset($_POST['option1']))){
+        else if(isset($_POST['option1'])){
             //update a player's data
             $_SESSION['option1'] = $_POST['option1'];
+            if (isset($_POST['filterOption1'])) {
+                $_SESSION['filterOption1'] = $_POST['filterOption1'];
+            }
+            else{
+                $_SESSION['filterOption1'] = null;
+            }
             $select=null;
             $result=null;
+            $id = $_POST['idUpdate'];
             if($_SESSION['option1'] != null){
                 //view males
                 $select = $conn->prepare("SELECT * FROM media WHERE id=?");
@@ -274,6 +285,7 @@
             //now to rebuild
             $tableHeaders = "
                     <table class='Table'>
+                      <thead rowspan='1'>
                         <th>id</th>
                         <th>object_id</th>
                         <th>revision_id</th>
@@ -283,11 +295,12 @@
                         <th>credit_id</th>
                         <th>db_location_id</th>
                         <th>creation_location_id</th>
+                    </thead>
             ";
             //first get first row then build from second row
             $row = mysqli_fetch_assoc($result);
             $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['id']."</td>
                             <td>".$row['object_id']."</td>
                             <td>".$row['revision_id']."</td>
@@ -302,7 +315,7 @@
             //run through records
             while($row = mysqli_fetch_assoc($result)){
                 $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['id']."</td>
                             <td>".$row['object_id']."</td>
                             <td>".$row['revision_id']."</td>

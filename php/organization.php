@@ -20,10 +20,16 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Organizations</title>
 </head>
 <body>
-    <div id="bodyContainer">
+    <div class="loaderFlag">
+        <div>
+            <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+        </div>
+    </div>
+    <div class="content">
 
         <div class="top-content">
             <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
@@ -238,6 +244,7 @@
     <script src="../js/OrganizationPopups.js"></script>
     <script src="../js/sideMenu.js"></script>
     <script src="../js/organization.js"></script>
+    <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 

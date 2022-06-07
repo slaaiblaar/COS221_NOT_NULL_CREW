@@ -45,8 +45,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Home</span>
@@ -95,8 +95,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Organization</span>
@@ -145,8 +145,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Addresses</span>
@@ -195,8 +195,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Locations</span>
@@ -245,8 +245,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Courses</span>
@@ -295,8 +295,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; View Holes</span>
@@ -345,8 +345,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tournaments</span>
@@ -395,8 +395,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tournament Schedule</span>
@@ -445,8 +445,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Players Scores</span>
@@ -495,8 +495,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tours</span>
@@ -545,8 +545,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Users</span>
@@ -595,8 +595,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="#">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Players</span>
@@ -645,8 +645,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="#">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Strokes</span>
@@ -695,8 +695,8 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="#">Rounds</a>
-                <a href="media.php">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageMedia.php">Media</a>
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Rounds</span>
@@ -706,7 +706,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             </div>      
             ';
     }
-    else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'media.php',0) != FALSE)
+    else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'manageMedia.php',0) != FALSE)
     {
         echo '
             <div id="sideMenu" class ="sidenav" style="color: white;border-right:1px solid white">
@@ -740,13 +740,13 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                     </a>
                 </div>                
                 
-                <a href="media.php">Tours</a>
+                <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="#">Media</a>
-                <a href="statistics.php">Statistics</a>               
+                <a href="manageStatistics.php">Statistics</a>               
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Media</span>
@@ -756,7 +756,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             </div>      
             ';
     }
-    else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'statistics.php',0) != FALSE)
+    else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'manageStatistics.php',0) != FALSE)
     {
         echo '
             <div id="sideMenu" class ="sidenav" style="color: white;border-right:1px solid white">
@@ -795,7 +795,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="managePlayers.php">Players</a>
                 <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
-                <a href="media.php">Media</a>
+                <a href="manageMedia.php">Media</a>
                 <a href="#">Statistics</a>               
             
             </div>

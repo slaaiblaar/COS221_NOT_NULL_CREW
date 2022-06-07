@@ -32,14 +32,6 @@
                 if ($query){
                     //Success
                     //we don't want to be redirected to another page, we just want a popup to display
-                    // echo "
-                    //     <script> 
-                    //         document.getElementById("fullScreenPopupReg").style.visibility = "visible"; 
-                    //         $("'#'fullScreenPopupReg").fadeIn("slow");
-                    //         document.getElementById("fullScreenPopupAdd").style.visisbility = "hidden";
-                    //         $("'#'fullScreenPopupAdd").fadeOut("slow");
-                    //     </script>
-                    // ";
                     header("Location: scores.php");
                 }
                 else{
@@ -167,6 +159,7 @@
             if (mysqli_num_rows($result)==0){
                 $tableHeaders = "
                         <table class='Table'>
+                        <thead rowspan='1'>
                             <th>stroke_no</th>
                             <th>round_id</th>
                             <th>hole_id</th>
@@ -174,6 +167,7 @@
                             <th>club_used</th>
                             <th>distance</th>
                             <th>landing</th>
+                        </thead>
                         </table>
                 ";
                 $_SESSION['table'] = $tableHeaders;
@@ -182,6 +176,7 @@
             else{    //now to rebuild
                 $tableHeaders = "
                             <table class='Table'>
+                            <thead rowspan='1'>
                                 <th>stroke_no</th>
                                 <th>round_id</th>
                                 <th>hole_id</th>
@@ -189,11 +184,12 @@
                                 <th>club_used</th>
                                 <th>distance</th>
                                 <th>landing</th>
+                            </thead>
                 ";
                 //first get first row then build from second row
                 $row = mysqli_fetch_assoc($result);
                 $tableRows .= "
-                            <tr class='TableRow'>
+                            <tr class='TableRow' rowspan='1'>
                                 <td>".$row['stroke_no']."</td>
                                 <td>".$row['round_id']."</td>
                                 <td>".$row['hole_id']."</td>
@@ -206,7 +202,7 @@
                 //run through records
                 while($row = mysqli_fetch_assoc($result)){
                     $tableRows .= "
-                            <tr class='TableRow'>
+                            <tr class='TableRow' rowspan='1'>
                                 <td>".$row['stroke_no']."</td>
                                 <td>".$row['round_id']."</td>
                                 <td>".$row['hole_id']."</td>
@@ -235,6 +231,7 @@
         if (mysqli_num_rows($result)==0){
             $tableHeaders = "
                     <table class='Table'>
+                    <thead rowspan='1'>
                         <th>stroke_no</th>
                         <th>round_id</th>
                         <th>hole_id</th>
@@ -242,6 +239,7 @@
                         <th>club_used</th>
                         <th>distance</th>
                         <th>landing</th>
+                    </thead>
                     </table>
             ";
             $_SESSION['table'] = $tableHeaders;
@@ -250,6 +248,7 @@
         else{    //now to rebuild
             $tableHeaders = "
                             <table class='Table'>
+                            <thead rowspan='1'>
                                 <th>stroke_no</th>
                                 <th>round_id</th>
                                 <th>hole_id</th>
@@ -257,11 +256,12 @@
                                 <th>club_used</th>
                                 <th>distance</th>
                                 <th>landing</th>
+                            </thead>
             ";
             //first get first row then build from second row
             $row = mysqli_fetch_assoc($result);
             $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['stroke_no']."</td>
                             <td>".$row['round_id']."</td>
                             <td>".$row['hole_id']."</td>
@@ -274,7 +274,7 @@
             //run through records
             while($row = mysqli_fetch_assoc($result)){
                 $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['stroke_no']."</td>
                             <td>".$row['round_id']."</td>
                             <td>".$row['hole_id']."</td>
@@ -400,6 +400,7 @@
             //now to rebuild
             $tableHeaders = "
                             <table class='Table'>
+                            <thead rowspan='1'>
                                 <th>stroke_no</th>
                                 <th>round_id</th>
                                 <th>hole_id</th>
@@ -407,6 +408,7 @@
                                 <th>club_used</th>
                                 <th>distance</th>
                                 <th>landing</th>
+                            </thead>
                             </table>
             ";
             //first get first row then build from second row

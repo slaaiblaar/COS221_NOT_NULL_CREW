@@ -370,13 +370,13 @@ tr:nth-child(even)
   color: #00420d;
   text-decoration: none;
 }
-#newPlayerFormPopup::-webkit-scrollbar {
+#newMediaPopupForm::-webkit-scrollbar {
     width: 15px;
   
   }
   
   /* Track */
-  #newPlayerFormPopup::-webkit-scrollbar-track {
+  #newMediaPopupForm::-webkit-scrollbar-track {
     box-shadow: inset 0 0 5px grey; 
     border-radius: 10px;
     margin-top: 50px;
@@ -384,25 +384,25 @@ tr:nth-child(even)
   }
    
   /* Handle */
-  #newPlayerFormPopup::-webkit-scrollbar-thumb {
+  #newMediaPopupForm::-webkit-scrollbar-thumb {
     background: rgb(139, 255, 165); 
     border-radius: 10px;
   }
   
   /* Handle on hover */
-  #newPlayerFormPopup::-webkit-scrollbar-thumb:hover {
+  #newMediaPopupForm::-webkit-scrollbar-thumb:hover {
     background: rgb(79, 145, 93); 
   }
-#createNewPlayer{
+#createNewMedia{
     background-color: rgb(179, 179, 0);
 }
-#deletePlayer{
+#deleteMedia{
     background-color: rgb(179, 0, 0);
 }
 #filterTable{
     background-color: rgb(0, 179, 3);
 }
-#updatePlayerData{
+#updateMediaData{
     background-color: rgb(0, 179, 3);
 }
 #pageHeader{
@@ -445,7 +445,7 @@ tr:nth-child(even)
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-#deletePlayerPopup, #updatePlayerPopup{
+#deleteMediaPopup, #updateMediaPopup{
     position: fixed;
     top: 15%;
     left: 35%;
@@ -459,13 +459,13 @@ tr:nth-child(even)
     color:rgb(0, 255, 115);
     text-align: center;
 }
-#deletePlayerPopup button, #updatePlayerPopup button{
+#deleteMediaPopup button, #updateMediaPopup button{
     margin-top: 20px;
 }
-#updatePlayerPopup{
+#updateMediaPopup{
     height: 50%;
 }
-#newPlayerFormPopup{
+#newMediaPopupForm{
     position: fixed;
     overflow-y: scroll;
     top: 15%;
@@ -491,7 +491,7 @@ tr:nth-child(even)
     margin-top: 10px;
 }
 
-#newPlayerFormPopup hr{
+#newMediaPopupForm hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }

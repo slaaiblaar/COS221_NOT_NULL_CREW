@@ -41,15 +41,7 @@
                 if ($query){
                     //Success
                     //we don't want to be redirected to another page, we just want a popup to display
-                    // echo "
-                    //     <script> 
-                    //         document.getElementById("fullScreenPopupReg").style.visibility = "visible"; 
-                    //         $("'#'fullScreenPopupReg").fadeIn("slow");
-                    //         document.getElementById("fullScreenPopupAdd").style.visisbility = "hidden";
-                    //         $("'#'fullScreenPopupAdd").fadeOut("slow");
-                    //     </script>
-                    // ";
-                    header("Location: viewTournaments.php");
+                    header("Location: viewTournaments.php")
                 }
                 else{
                     $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;
@@ -189,6 +181,7 @@
             if (mysqli_num_rows($result)==0){
                 $tableHeaders = "
                         <table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>event_key</th>
                             <th>publisher_id</th>
@@ -200,6 +193,7 @@
                             <th>gender</th>
                             <th>tour_id</th>
                             <th>year</th>
+                        </thead>
                         </table>
                 ";
                 $_SESSION['table'] = $tableHeaders;
@@ -208,6 +202,7 @@
             else{    //now to rebuild
                 $tableHeaders = "
                             <table class='Table'>
+                            <thead rowspan='1'>
                                 <th>id</th>
                                 <th>event_key</th>
                                 <th>publisher_id</th>
@@ -219,6 +214,7 @@
                                 <th>gender</th>
                                 <th>tour_id</th>
                                 <th>year</th>
+                            </thead>
                 ";
                 //first get first row then build from second row
                 $row = mysqli_fetch_assoc($result);
@@ -378,6 +374,7 @@
             //now to rebuild
             $tableHeaders = "
                         <table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>event_key</th>
                             <th>publisher_id</th>
@@ -389,6 +386,7 @@
                             <th>gender</th>
                             <th>tour_id</th>
                             <th>year</th>
+                        </thead>
             ";
             //first get first row then build from second row
             $row = mysqli_fetch_assoc($result);

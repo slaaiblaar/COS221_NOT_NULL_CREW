@@ -250,14 +250,14 @@
                 $select = $conn->prepare("SELECT * FROM users WHERE user_type=?");
                 $select->bind_param("s",$_SESSION['filterOption1']);
                 $select->execute();
-                $result = $select->get_result();                 
+                $GLOBALS['result'] = $select->get_result();                 
             }
             else if($_SESSION['filterOption2'] != null){
                 //view females
                 $select = $conn->prepare("SELECT * FROM users WHERE user_type=?");
                 $select->bind_param("s",$_SESSION['filterOption2']);
                 $select->execute();
-                $result = $select->get_result();  
+                $GLOBALS['result'] = $select->get_result();  
                 
             }
             else if($_SESSION['filterOption3'] != null){
@@ -267,16 +267,17 @@
                 $icloud = "%icloud.com";
                 $select->bind_param("ss",$google,$icloud);
                 $select->execute();
-                $result = $select->get_result(); 
+                $GLOBALS['result'] = $select->get_result(); 
 
             }
             else{ //reset table
                 $select = $conn->prepare("SELECT * FROM users ");
                 $select->execute();
-                $result = $select->get_result();    
+                $GLOBALS['result'] = $select->get_result();    
             }
-            if (mysqli_num_rows($result)==0){
+            if (mysqli_num_rows($GLOBALS['result'])==0){
                 $tableHeaders = "<table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>email</th>
                             <th>password</th>
@@ -285,6 +286,10 @@
                             <th>first_name</th>
                             <th>init</th>
                             <th>last_name</th>
+                            </thead>
+                            <tr rowspan='1'>
+                                <td colspan='3'> No data found </td>
+                            </tr>
                             </table>
                 ";
                 $_SESSION['table'] = $tableHeaders;
@@ -292,6 +297,7 @@
             }
             else{   //now to rebuild
                 $tableHeaders = "<table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>email</th>
                             <th>password</th>
@@ -300,10 +306,11 @@
                             <th>first_name</th>
                             <th>init</th>
                             <th>last_name</th>
+                        </thead>
                 ";
                 //display first result and then continue from second row
-                $row = mysqli_fetch_assoc($result);
-                $tableRows = "<tr class='TableRow'>
+                $row = mysqli_fetch_assoc($GLOBALS['result']);
+                $tableRows = "<tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -315,8 +322,8 @@
                             </tr>
                     ";
                 //run through records
-                while($row = mysqli_fetch_assoc($result)){
-                    $tableRows .= "<tr class='TableRow'>
+                while($row = mysqli_fetch_assoc($GLOBALS['result'])){
+                    $tableRows .= "<tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -346,33 +353,69 @@
             }
 
         }
-        else if(isset($_POST['updatePopupInput']) && (isset($_POST['option1']) || isset($_POST['option2']) || isset($_POST['option3']) || isset($_POST['option4']) || isset($_POST['option5']) || isset($_POST['option6']) || isset($_POST['option7']))){
+        else if(isset($_POST['option1']) || isset($_POST['option2']) || isset($_POST['option3']) || isset($_POST['option4']) || isset($_POST['option5']) || isset($_POST['option6']) || isset($_POST['option7'])){
             //update a player's data
-            if (isset($_POST['option1'])) $_SESSION['option1'] = $_POST['option1'];
-            if (isset($_POST['option2'])) $_SESSION['option2'] = $_POST['option2'];
-            if (isset($_POST['option3'])) $_SESSION['option3'] = $_POST['option3'];
-            if (isset($_POST['option4'])) $_SESSION['option4'] = $_POST['option4'];
-            if (isset($_POST['option5'])) $_SESSION['option5'] = $_POST['option5'];
-            if (isset($_POST['option6'])) $_SESSION['option6'] = $_POST['option6'];
-            if (isset($_POST['option7'])) $_SESSION['option7'] = $_POST['option7'];
+            if (isset($_POST['filterOption1'])) {
+                $_SESSION['filterOption1'] = $_POST['filterOption1'];
+            }
+            else{
+                $_SESSION['filterOption1'] = null;
+            }
+            if (isset($_POST['filterOption2'])) {
+                $_SESSION['filterOption2'] = $_POST['filterOption2'];
+            }
+            else{
+                $_SESSION['filterOption2'] = null;
+            }
+            if (isset($_POST['filterOption3'])) {
+                $_SESSION['filterOption3'] = $_POST['filterOption3'];
+            }
+            else{
+                $_SESSION['filterOption3'] = null;
+            }
+            if (isset($_POST['filterOption4'])) {
+                $_SESSION['filterOption4'] = $_POST['filterOption4'];
+            }
+            else{
+                $_SESSION['filterOption4'] = null;
+            }
+            if (isset($_POST['filterOption5'])) {
+                $_SESSION['filterOption5'] = $_POST['filterOption5'];
+            }
+            else{
+                $_SESSION['filterOption5'] = null;
+            }
+            if (isset($_POST['filterOption6'])) {
+                $_SESSION['filterOption6'] = $_POST['filterOption6'];
+            }
+            else{
+                $_SESSION['filterOption6'] = null;
+            }
+            if (isset($_POST['filterOption7'])) {
+                $_SESSION['filterOption7'] = $_POST['filterOption7'];
+            }
+            else{
+                $_SESSION['filterOption7'] = null;
+            }
             $select=null;
             $result=null;
+            $pkEmail = $_POST['pkEmailUpdate'];
             if($_SESSION['option1'] != null){
                 //view males
                 $select = $conn->prepare("SELECT * FROM users WHERE email=?");
-                $select->bind_param("s",$pkEmail);
+                $select->bind_param("s",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result();
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result();
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     $_SESSION['showUpdateMenu'] = "true";
                     header("Location: manageUsers.php");
                 }
                 else{          //****UPDATE TABLE**//
                     $query = $conn->prepare("UPDATE users SET email=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option1'], $pkEmail);
+                    $query->bind_param("ss",$_SESSION['option1'], $GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -391,19 +434,19 @@
             else if($_SESSION['option2'] != null){
                 //change password
                 $select = $conn->prepare("SELECT * FROM users WHERE email=?");
-                $select->bind_param("i",$pkEmail);
+                $select->bind_param("i",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result();    
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result();    
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     $_SESSION['showUpdateMenu'] = "true";
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET password=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option2'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option2'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -422,18 +465,18 @@
             else if($_SESSION['option3'] != null){
                 //update tel no.
                 $select = $conn->prepare("SELECT * FROM users WHERE email=?");
-                $select->bind_param("s",$pkEmail);
+                $select->bind_param("s",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result();  
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result();  
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET tel_no=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option3'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option3'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -443,7 +486,6 @@
                     else{
                         $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;
                         error_reporting(E_ALL);
-                        $_SESSION["showUpdateMenu"] = "true";
                         header("Location: manageUsers.php");
                         // echo "Error connecting to database: " . $conn->error;
                     }   
@@ -452,18 +494,18 @@
             else if($_SESSION['option4'] != null){
                 //update user type
                 $select = $conn->prepare("SELECT * FROM users WHERE email=?");
-                $select->bind_param("ss",$_SESSION['option4'],$pkEmail);
+                $select->bind_param("ss",$_SESSION['option4'],$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result();  
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result();  
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET user_type=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option4'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option4'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -473,7 +515,6 @@
                     else{
                         $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;
                         error_reporting(E_ALL);
-                        $_SESSION["showUpdateMenu"] = "true";
                         header("Location: manageUsers.php");
                         // echo "Error connecting to database: " . $conn->error;
                     }   
@@ -482,18 +523,18 @@
             else if($_SESSION['option5'] != null){
                 //view handicap >= 30
                 $select = $conn->prepare("SELECT * FROM users WHERE email=?");
-                $select->bind_param("s",$pkEmail);
+                $select->bind_param("s",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result(); 
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result(); 
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET first_name=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option5'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option5'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -511,17 +552,18 @@
             }
             else if($_SESSION['option6']!=null){
                 $select = $conn->prepare("SELECT * FROM users WHERE email=? ");
+                $select->bind_param("s",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result(); 
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result(); 
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET last_name=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option6'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option6'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -539,17 +581,18 @@
             }
             else if($_SESSION['option7']!=null){
                 $select = $conn->prepare("SELECT * FROM users WHERE email=? ");
+                $select->bind_param("s",$GLOBALS['pkEmail']);
                 $select->execute();
-                $result = $select->get_result(); 
-                if(mysqli_num_rows($result) == 0) {
+                $GLOBALS['result'] = $select->get_result(); 
+                if(mysqli_num_rows($GLOBALS['result']) == 0) {
                     $_SESSION['messages'] = 'That email does not exist in the database.';
                     header("Location: manageUsers.php");
                 }
                 else{          
                     $query = $conn->prepare("UPDATE users SET init=? WHERE email=?");
-                    $query->bind_param("ss",$_SESSION['option6'],$pkEmail);
+                    $query->bind_param("ss",$_SESSION['option6'],$GLOBALS['pkEmail']);
                     $query->execute();
-                    $result = $query->get_result();
+                    $GLOBALS['result'] = $query->get_result();
                     
                     if ($query){
                         //Success
@@ -568,6 +611,7 @@
             //now to rebuild
             $tableHeaders = "
                     <table class='Table'>
+                      <thead rowspan='1'>
                         <th>id</th>
                         <th>email</th>
                         <th>password</th>
@@ -576,10 +620,11 @@
                         <th>first_name</th>
                         <th>init</th>
                         <th>last_name</th>
+                    <thead>
             ";
             //build first then then continue from second row
             $tableRows = "
-                    <tr class='TableRow'>
+                    <tr class='TableRow' rowspan='1'>
                         <td>".$row['id']."</td>
                         <td>".$row['email']."</td>
                         <td>".$row['password']."</td>
@@ -591,9 +636,9 @@
                     </tr>
             ";
             //run through records
-            while($row = mysqli_fetch_assoc($result)){
+            while($row = mysqli_fetch_assoc($GLOBALS['result'])){
                 $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['id']."</td>
                             <td>".$row['email']."</td>
                             <td>".$row['password']."</td>

@@ -43,10 +43,52 @@ body{
     border-radius: 30px;
     margin-top: 5px;
 }
-
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: darkgreen; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(1, 148, 1); 
+  }
 .content{
     display:none;
-}
+  }
+  
+  .loaderFlag{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #16191e;
+    position: relative;
+  }
+  
+  .loaderFlag > div > img{
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: loadFlag 2s infinite linear;
+  }
+  @keyframes loadFlag{
+    100%{
+      transform:none;
+    }
+  }
 
 /* Side navigation bar*/
 .sidenav {

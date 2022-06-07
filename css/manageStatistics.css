@@ -1,72 +1,11 @@
 body{
     background-image: url("../img/wallpaperflare.com_wallpaper-1.jpg");
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 100% 126%;
     margin:0;
     padding:0;
 }
-#TableSize{
-  height:100%;
-  width:975px;
-  overflow-y: auto;
-}
 
-th 
-{
-  background: rgb(0, 179, 3);
-  color: white;
-  position: sticky;
-  top: 0;
-}
-
-/* top-left border-radius */
-table tr:first-child th:first-child {
-  border-top-left-radius: 13px;
-}
-
-/* top-right border-radius */
-table tr:first-child th:last-child {
-  border-top-right-radius: 13px;
-}
-
-table.Table
-{
-  height: 500px;
-  width: 965px;
-  border: 1px solid black;
-  border-radius: 13px; 
-  border-spacing: 0;
-}
-
-table.Table td, table.Table th { 
-border-bottom: 1px solid black;
-padding: 10px; 
-border-right: 1px solid black;;
-}
-
-table.Table tr:last-child > td {
-border-bottom: none;
-}
-
-tr:nth-child(even)
-{
-  background-color: #d8d6d6
-}
-
-.TableRow:hover 
-{
-  background-color: rgb(96, 164, 98);
-  color: #00420d;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.TableRow.TRactive
-{
-  background-color: rgb(124, 211, 126);
-  color: #00420d;
-  text-decoration: none;
-}
 .footer{
     text-align: center;
     border-radius: 50px;
@@ -74,35 +13,35 @@ tr:nth-child(even)
     padding-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 10px;
+    margin-top: 50px;
     bottom: 0%;
     top: 100%;
     width: 95%;
     color: white;
-    /* position: absolute; */
+    position: relative;
   }
 
 /* width */
 ::-webkit-scrollbar {
-  width: 10px;
-}
-
-/* Track */
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-  border-radius: 10px;
-}
- 
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: darkgreen; 
-  border-radius: 10px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: rgb(1, 148, 1); 
-}
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: darkgreen; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(1, 148, 1); 
+  }
 
 .content{
     display:none;
@@ -319,7 +258,6 @@ tr:nth-child(even)
 .contentContainer{
     display: grid;
     grid-template-columns: 30% 65%;
-    grid-template-rows: auto;
     margin-top: 20px;
     width: 100%;
     height: 100%;
@@ -329,7 +267,6 @@ tr:nth-child(even)
     background-color: white;
     display: grid;
     grid-template-rows: auto;
-    grid-row: 1 / span 1;
     grid-gap: 20px;
     height: 100%;
     width:100%;
@@ -357,7 +294,6 @@ tr:nth-child(even)
     background-color: white;
     display: grid;
     grid-template-rows: auto;
-    grid-row: 1 /span 2;
     grid-gap: 20px;
     height: 100%;
     width:100%;
@@ -366,18 +302,107 @@ tr:nth-child(even)
     opacity: 0.9;
     border: 4px solid black;
     padding: 5px;
+    overflow: scroll;
+}
+.tableGrid th,td{
+    padding: 2px;
+    text-align: center;
+}
+#TableSize{
+  height:100%;
+  width:975px;
+  overflow-y: auto;
 }
 
-#createNewTournament{
+th 
+{
+  background: rgb(0, 179, 3);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 13px;
+}
+
+table.Table
+{
+  height: 500px;
+  width: 965px;
+  border: 1px solid black;
+  border-radius: 13px; 
+  border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+border-bottom: 1px solid black;
+padding: 10px; 
+border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+  background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+  background-color: rgb(96, 164, 98);
+  color: #00420d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+  background-color: rgb(124, 211, 126);
+  color: #00420d;
+  text-decoration: none;
+}
+#newStatisticsPopupForm::-webkit-scrollbar {
+    width: 15px;
+  
+  }
+  
+  /* Track */
+  #newStatisticsPopupForm::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+   
+  /* Handle */
+  #newStatisticsPopupForm::-webkit-scrollbar-thumb {
+    background: rgb(139, 255, 165); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  #newStatisticsPopupForm::-webkit-scrollbar-thumb:hover {
+    background: rgb(79, 145, 93); 
+  }
+#createNewStatistics{
     background-color: rgb(179, 179, 0);
 }
-#deleteTournament{
+#deleteStatistics{
     background-color: rgb(179, 0, 0);
 }
 #filterTable{
     background-color: rgb(0, 179, 3);
 }
-#updateTournamentData{
+#updateStatisticsData{
     background-color: rgb(0, 179, 3);
 }
 #pageHeader{
@@ -420,12 +445,12 @@ tr:nth-child(even)
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-#deleteTournamentPopup, #updateTournamentPopup{
+#deleteStatisticsPopup, #updateStatisticsPopup{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 35%;
     padding: 10px;
     border-radius: 20px;
     background-color: rgb(35, 35, 35);
@@ -434,14 +459,15 @@ tr:nth-child(even)
     color:rgb(0, 255, 115);
     text-align: center;
 }
-#deleteTournamentPopup button, #updateTournamentPopup button{
+#deleteStatisticsPopup button, #updateStatisticsPopup button{
     margin-top: 20px;
 }
-#updateTournamentPopup{
-    height: 20%;
+#updateStatisticsPopup{
+    height: 50%;
 }
-#newTournamentFormPopup{
+#newStatisticsPopupForm{
     position: fixed;
+    overflow-y: scroll;
     top: 15%;
     left: 35%;
     height: 80%;
@@ -461,11 +487,11 @@ tr:nth-child(even)
 .deletePopupHeader p{
     margin: 10px;
 }
-.updatePopupInput{
-    margin-top: 20px;
+.updatePopupInput, .updatePopupInputID{
+    margin-top: 10px;
 }
 
-#newTournamentFormPopup hr{
+#newStatisticsPopupForm hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }
@@ -490,16 +516,11 @@ tr:nth-child(even)
     padding-top: 10px;
     padding-bottom: 20px;
 }
-
 input[type="text"], input[type="date"]{
     width: 55%;
 }
 input[type="radio"]{
-    width: 10px;
-}
-.lblStatusType{
-    color: skyblue;
-    font-size: 10pt;
+    width: 20px;
 }
 .lblGenderType{
     color: skyblue;
@@ -513,16 +534,13 @@ input[type="number"]{
     grid-template-columns: 50% 50%;
 }
 
-
 .inputTextBox input{
     min-width: 45px;
     height: 20px;
 }
 .inputTextBox > label{
     color: rgb(0, 255, 115);
-    margin-top: 10px;
 }
-
 .inputTextBox input:focus{
     outline: 0;
 }
@@ -536,7 +554,6 @@ input[type="number"]{
 .submitButtons{
     font-weight: bold;
     color: white;
-    margin-top: 10px;
 }
 .cancelbtnDel, .cancelbtn, .cancelbtnUpdate{
     width: 30%;
@@ -564,29 +581,33 @@ input[type="number"]{
     color:white;
     box-shadow: 2px 5px 10px black;
 }
+#filterForm{
+    background-color: rgb(172, 172, 172);
+    border-radius: 10px;
+    visibility: hidden;
+}
 .filterFormContainer > button{
-  visibility: hidden;
-  font-size: 10pt;
-  font-weight: bold;
-  height: 30px;
-  width: 100px;
-  color: white;
-  background-color: rgb(0, 94, 255);
-  opacity: 1;
+    visibility: hidden;
+    font-size: 10pt;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: rgb(0, 94, 255);
+    opacity: 1;
 }
 .filterFormContainer > button:hover{
-  cursor: cursor;
-  box-shadow: 2px 3px 8px rgb(29, 123, 255);
+    cursor: cursor;
+    box-shadow: 2px 3px 8px rgb(29, 123, 255);
 }
-#filterForm{
-  background-color: rgb(172, 172, 172);
-  border-radius: 10px;
-  visibility: hidden;
-}
+
 #filterOptions{
+    /* visibility: hidden; */
+    /* background-color: rgb(172, 172, 172); */
     display: none;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
+    /* display: grid; */
     grid-template-columns: 50% 50%;
 }
 .lblFilter{
@@ -597,10 +618,10 @@ input[type="number"]{
     margin-top: 2px;
 }
 #updateOptions{
-    visibility: hidden;
+    display: none;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 50% 50%;
     margin-bottom: 10px;
 }
@@ -671,3 +692,9 @@ input[type="number"]{
     background-color: rgb(136, 0, 0);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
   }
+.footer{
+    margin-top: 20px;
+    color: white;
+}
+
+

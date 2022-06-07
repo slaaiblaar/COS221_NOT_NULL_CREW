@@ -7,7 +7,7 @@
     u04929552
     u21457060
 -->
-<?php session_start(); ?>
+<?php session_start(); require_once("configDB.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,150 +49,104 @@
         <div class="contentContainer">
             <div class="buttonsGrid">
                 <button type="button" id="filterTable">List filter options</button>
-                <div id="filterOptions">
-                    <div>    
-                        <input class="filter-option1" type="radio" name="filterOption1">
-                        <label class="lblFilter">View date</label>
+                
+                <form action="validateSchedule.php" id="filterForm" method="post">
+                    <div class="filterFormContainer">
+                        <div id="filterOptions">
+                            <div>    
+                                <input class="filter-option1" type="radio" name="filterOption1">
+                                <label class="lblFilter">View date</label>
+                            </div>
+                            <div>
+                                <input class="filter-option2" type="radio" name="filterOption2">
+                                <label class="lblFilter">View start time</label><br>
+                            </div>
+                            <div>
+                                <input class="filter-option3" type="radio" name="filterOption3" value="15:00">
+                                <label class="lblFilter">View start time < 15:00</label>
+                            </div>
+                            <div>
+                                <input class="filter-option4" type="radio" name="filterOption4">
+                                <label class="lblFilter">View end time</label>
+                            </div>
+                            <div>
+                                <input class="filter-option5" type="radio" name="filterOption5" value="14:00">
+                                <label class="lblFilter">View end time < 14:00</label>
+                            </div>
+                            <div>
+                                <input class="filter-option6" type="radio" name="filterOption6">
+                                <label class="lblFilter">Reset Table</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="submitFilter" name="submitFilter">Filter</button>
                     </div>
-                    <div>
-                        <input class="filter-option2" type="radio" name="filterOption1">
-                        <label class="lblFilter">View start time</label><br>
-                    </div>
-                    <div>
-                        <input class="filter-option3" type="radio" name="filterOption1">
-                        <label class="lblFilter">View start time < 15:00</label>
-                    </div>
-                    <div>
-                        <input class="filter-option4" type="radio" name="filterOption1">
-                        <label class="lblFilter">View end time</label>
-                    </div>
-                    <div>
-                        <input class="filter-option5" type="radio" name="filterOption1">
-                        <label class="lblFilter">View end time < 14:00</label>
-                    </div>
-                </div>
-                <!-- <button id="updateTournamentData">Update a Tournament's data</button>
-                <div id="updateOptions">
-                    <div>    
-                        <input class="update-option1" type="radio" name="updateOption1">
-                        <label class="lblUpdate">Update Event key</label>
-                    </div>
-                    <div>
-                        <input class="update-option2" type="radio" name="updateOption2">
-                        <label class="lblUpdate">Update gender class</label>
-                    </div>
-                    <div>
-                </div> -->
+                </form>
             </div>
             <div class="tableGrid">
                 <!--we will build the table using javascript-->
+                <?php 
+                    if (empty($_SESSION['table'])){
+                        $select = mysqli_query($conn,"SELECT * FROM tournament_schedules ");
+                        $tableRows = "";
+                        if(mysqli_num_rows($select) > 0){
+                            //load table
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                      <thead rowspan='1'>
+                                        <th>id</th>
+                                        <th>event_id</th>
+                                        <th>date</th>
+                                        <th>start_time</th>
+                                        <th>end_time</th>
+                                    </thead>
+                            ";
+                            echo $tableHeaders;
+                            //run through records
+                            while($row = mysqli_fetch_assoc($select)){
+                                $tableRows .= "
+                                        <tr class='TableRow' rowspan='1'>
+                                            <td>".$row['id']."</td>
+                                            <td>".$row['event_id']."</td>
+                                            <td>".$row['date']."</td>
+                                            <td>".$row['start_time']."</td>
+                                            <td>".$row['end_time']."</td>
+                                        </tr>
+                                ";
+                            }
+                            
+                            echo $tableRows . "</table>";
+                        }
+                        else{
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                        <thead rowspan='1'>
+                                            <th>id</th>
+                                            <th>event_id</th>
+                                            <th>date</th>
+                                            <th>start_time</th>
+                                            <th>end_time</th>
+                                        </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>
+                                </table>";
+
+                        }
+                    }
+                    else{
+                        echo $_SESSION['table'];
+                    }
+                ?>
             </div>
-        </div>
-        <div class="fullScreenPopupAdd">
-            <!-- <div id="newTournamentFormPopup">
-                <form action="validateTournamentSignUp.php" method="post">
-                    <div class="addTournamentFormHeader">
-                        <div class="formHeading">Create new Tournament</div>
-                        <div class="formSubHeading">Please enter all fields</div>
-                    </div>
-                    <hr>
-                    <div id="formBodyContainer">
-                        <div class="inputTextBox">
-                            <label style="padding-bottom: 20px" for="eventKey"><b>Tournament Name:</b></label><br>
-                            <input class="eventKey" type="text" placeholder="Enter the name of the new tournament" name="eventKey" required max_length = '20'>
-                            <div class="error"></div><br>
-                        </div>
-                        <div class="inputTextBox">
-                            <label style="padding-bottom: 20px" for="startDate"><b>Start Date</b></label><br>
-                            <input class="startDate" type="datetime-local" style="padding:5px" required>
-                            <div class="error"></div><br>
-                        </div>
-                        <div class="inputTextBox">
-                            <label style="padding-bottom: 20px" for="endDate"><b>End Date</b></label><br>
-                            <input class="endDate" type="datetime-local" style="padding:10px" required>
-                            <div class="error"></div><br>
-                        </div>
-                        <div class="inputTextBox">
-                            <label style="padding-bottom: 20px" for="duration"><b>Tournament Duration (days)</b></label><br>
-                            <input class="duration" type="number" style="width: 10%; text-align:centre" max="5" min="0" value="duration()" required>
-                            <div class="error"></div><br>
-                        </div>
-                        <div class="inputTextBox">
-                            <label style="margin-bottom: 10px" class="lblGender" for="gender"><b>Gender</b></label><br>
-                            <input class="genderMen" type="radio" name="gender">
-                            <label class="lblGenderType" for="genderMale"><b>Men</b></label>
-                            <input class="genderWomen" type="radio" name="gender">
-                            <label class="lblGenderType" for="genderFemale"><b>Women</b></label>
-                        </div> 
-                        <div class="inputTextBox" style="margin-top: 20px;margin-bottom:20px">
-                            <label style="padding-bottom: 20px" class="lblStatus" for="status"><b>Status</b></label><br>
-                            <input class="scheduled" type="radio" name="status">
-                            <label class="lblStatusType" for="scheduled"><b>Scheduled</b></label>
-                            <input class="canceled" type="radio" name="status">
-                            <label class="lblStatusType" for="canceled"><b>Canceled</b></label>
-                        </div>                        
-                        
-                        <div id="submitButtons">
-                            <button type="button" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="submitbtn" name="Submit">Submit</button>
-                        </div>
-                    </div>
-                </form>
-                <hr class="endRuler">
-            </div> -->
-        </div>
-        <div class="fullScreenPopupDelete">
-            <!-- <div id="deleteTournamentPopup">
-                <form action="validationTournaments.php" method="post" id="deleteTournamentForm">
-                    <div class="deletePopupHeader">
-                        <span>Enter the id of the tournament:</span>
-                        <p> (note: not the event_key)<p>
-                    </div>
-                    <div class="inputTextBox">
-                        <input class="id" type="text" name="id" placeholder="Enter the id">
-                        <div class="error"></div><br>
-                    </div>
-                    <div id="submitButtons">
-                        <button type="button" class="cancelbtnDel">Cancel</button>
-                        <button type="submit" class="submitbtnDel" name="Submit">Delete</button>
-                    </div>
-                </form>
-            </div> -->
-        </div>
-        <!-- <div class="fullScreenPopupReg">
-            <div id="SuccessfulRegPopup">
-                <h1> Successful Registration </h1>
-                <image class="Logo"></image>
-                <div class="popupButtons">
-                    <button type="button" class="undoReg">Undo Registration</button>
-                    <button type="button" class="dismissPopup">Dismiss</button>
-                </div>
-            </div>
-        </div> -->
-        <div class="fullScreenPopupUpdate">
-            <!-- <div id="updateTournamentPopup">
-                <form action="validationTournaments.php" method="post" id="updateTournamentForm">
-                    <div class="updatePopupHeader">
-                        <span></span>
-                    </div>
-                    <div class="inputTextBox updateInput">
-                        <input class="updatePopupInput" type="text" name="updatePopupInput">
-                        <div class="error"></div><br>
-                    </div>
-                    <div id="submitButtons">
-                        <button type="button" class="cancelbtnUpdate">Cancel</button>
-                        <button type="submit" class="submitbtnUpdate" name="Submit">Update</button>
-                    </div>
-                </form>
-            </div> -->
         </div>
     </div>
     <?php
         include_once("footer.php");
     ?>
-    <!-- <script language="Javascript" type="text/javascript" src="../js/validationTournaments.js"></script> -->
+    <script language="Javascript" type="text/javascript" src="../js/inputValidationSchedule.js"></script>
     <script language="Javascript" type="text/javascript" src="../js/schedule.js"></script>
-    <!-- <script language="Javascript" type="text/javascript" src="../js/passwordToggle.js"></script> -->
     <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

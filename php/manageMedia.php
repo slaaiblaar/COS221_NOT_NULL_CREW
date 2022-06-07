@@ -7,7 +7,7 @@
     u04929552
     u21457060
 -->
-<?php session_start(); setcookie("InsideUsers", "True", 0, "/");setcookie("InsideSignup", "False", 0, "/");
+<?php session_start();
     require_once("configDB.php");
 ?>
 
@@ -17,7 +17,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/manageUsers.css">
+    <link rel="stylesheet" href="../css/manageMedia.css">
     <title>Sunrise Golfing</title>
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
@@ -74,7 +74,7 @@
                         <button type="submit" class="submitFilter" name="submitFilter">Filter</button>
                     </div>
                 </form>
-                <button type="button" id="updateUserData">Update a User's data</button>
+                <button type="button" id="updateMediaData">Update a User's data</button>
                 <div id="updateOptions">
                     <div>    
                         <input class="update-option1" type="radio" name="updateOption1">
@@ -116,6 +116,7 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
+                                      <thead rowspan='1'>
                                         <th>id</th>
                                         <th>object_id</th>
                                         <th>revision_id</th>
@@ -125,18 +126,19 @@
                                         <th>credit_id</th>
                                         <th>db_location_id</th>
                                         <th>creation_location_id</th>
+                                      </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['object_id']."</td>
                                             <td>".$row['revision_id']."</td>
                                             <td>".$row['media_type']."</td>
                                             <td>".$row['publisher_id']."</td>
-                                            <td>".$row['first_name']."</td>
+                                            <td>".$row['date_time']."</td>
                                             <td>".$row['credit_id']."</td>
                                             <td>".$row['db_location_id']."</td>
                                             <td>".$row['creation_location_id']."</td>
@@ -147,8 +149,25 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
-
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                      <thead rowspan='1'>
+                                        <th>id</th>
+                                        <th>object_id</th>
+                                        <th>revision_id</th>
+                                        <th>media_type</th>
+                                        <th>publisher_id</th>
+                                        <th>date_time</th>
+                                        <th>credit_id</th>
+                                        <th>db_location_id</th>
+                                        <th>creation_location_id</th>
+                                      </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>
+                                </table>";
                         }
                     }
                     else{
@@ -161,8 +180,8 @@
             <div id="newMediaPopupForm">
                     <form action="validateMedia.php" method="post" class="signupForm"> <!-- onsubmit="return ValidateInput()"> -->
                         <div class="formContainer">
-                            <h1>Sign Up</h1>
-                            <p>Please fill in this form to create an account.</p>
+                            <h1> Add New Media</h1>
+                            <p>Please fill in this form to add new media</p>
                             
                             <?php if(!empty($_SESSION['messages'])) {
                                 if ($_SESSION['messages'] == 'Invalid object_id. The object_id must be a digit.'){
@@ -263,7 +282,7 @@
                             
                             <div class="submitButtons">
                                 <button type="button" class="cancelbtn">Cancel</button>
-                                <button type="submit" class="signupbtn" name="Submit">Sign Up</button>
+                                <button type="submit" class="submitbtn" name="Submit">Sign Up</button>
                             </div>
                         </div>
                     </form>
@@ -271,7 +290,7 @@
             </div>
             <div class="fullScreenPopupDelete">
                 <div id="deleteMediaPopup">
-                    <form action="validateMedia.php" method="post" id="deletePlayerForm">
+                    <form action="validateMedia.php" method="post" id="deleteMediaForm">
                         <div class="deletePopupHeader">
                             <span>Enter the id for the Media:</span>
                             <p> (note: not the Credit_id)<p>
@@ -298,13 +317,13 @@
             </div>
             <div class="fullScreenPopupUpdate">
                 <div id="updateMediaPopup">
-                    <form action="validateMedia.php" method="post" id="updateUserForm">
+                    <form action="validateMedia.php" method="post" id="updateMediaForm">
                         <div class="updatePopupHeader">
                             <span></span>
                         </div>
                         <div class="inputTextBox updateInputID">
-                            <label>User id</label><br>
-                            <input class="id" type="text" name="id" placeholder="Enter the primary id">
+                            <label>Media id</label><br>
+                            <input class="idUpdate" type="text" name="idUpdate" placeholder="Enter the primary idUpdate">
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox updateInput">
@@ -326,7 +345,7 @@
     <?php
         include_once("footer.php");
     ?>
-    <script src="../js/UserPopups.js"></script>
+    <script src="../js/MediaPopups.js"></script>
     <script language="Javascript" type="text/javascript" src="../js/inputValidationMedia.js"></script>
     <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

@@ -8,7 +8,7 @@
     u21457060
 -->
 <?php session_start(); 
-    require_once("setDBEnvVar.php"); 
+    // require_once("setDBEnvVar.php"); 
     require_once("configDB.php");
 ?>
 <!DOCTYPE html>
@@ -124,6 +124,7 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
+                                     <thead rowspan='1'>
                                         <th>id</th>
                                         <th>person_key</th>
                                         <th>publisher_id</th>
@@ -138,12 +139,13 @@
                                         <th>age</th>
                                         <th>handicap</th>
                                         <th>affiliation_id</th>
+                                        </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['person_key']."</td>
                                             <td>".$row['publisher_id']."</td>
@@ -164,7 +166,29 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                     <thead rowspan'1'>
+                                        <th>id</th>
+                                        <th>person_key</th>
+                                        <th>publisher_id</th>
+                                        <th>gender</th>
+                                        <th>birth_date</th>
+                                        <th>death_date</th>
+                                        <th>final_resting_location</th>
+                                        <th>birth_location_id</th>
+                                        <th>hometown_location_id</th>
+                                        <th>residence_location</th>
+                                        <th>death_location_id</th>
+                                        <th>age</th>
+                                        <th>handicap</th>
+                                        <th>affiliation_id</th>
+                                        </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>";
 
                         }
                     }
@@ -223,13 +247,13 @@
                     <hr>
                     <div id="formBodyContainer">
                         <div class="inputTextBox">
-                            <label for="idNumber"><b>ID Number/Passport Number</b></label><br>
-                            <input class="idNumber" type="text" placeholder="Enter your ID Number or Passport Number" name="idNumber" required max_length = '13'>
+                            <label for="dateOfBirth"><b>Date of Birth</b></label><br>
+                            <input class="dateOfBirth" type="date" name="dateOfBirth" required>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
-                            <label for="dateOfBirth"><b>Date of Birth</b></label><br>
-                            <input class="dateOfBirth" type="date" name="dateOfBirth" required>
+                            <label for="idNumber"><b>ID Number/Passport Number</b></label><br>
+                            <input class="idNumber" type="text" placeholder="Enter your ID Number or Passport Number" name="idNumber" required max_length = '13'>
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox">
@@ -304,7 +328,7 @@
                     </div>
                     <div class="inputTextBox updateInputID">
                         <label>Player id</label><br>
-                        <input class="id" type="text" name="id" placeholder="Enter the id">
+                        <input class="idUpdate" type="text" name="idUpdate" placeholder="Enter the id">
                         <div class="error"></div><br>
                     </div>
                     <div class="inputTextBox updateInput">
@@ -363,7 +387,7 @@
                     var regPopup = document.querySelector('fullScreenPopupReg');                    
                     var updatePopup = document.querySelector('fullScreenPopupUpdate');
                     var succesPopup = document.querySelector('#SuccessfulRegPopup');
-                    successPopup.children[0].innerHTML = 'Successfully Updated User's record';
+                    successPopup.children[0].innerHTML = 'Successfully Updated Users record';
 
                     regPopup.style.visibility = 'visible'; 
                     regPopup.fadeIn('slow');
