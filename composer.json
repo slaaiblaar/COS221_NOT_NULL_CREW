@@ -1,0 +1,21 @@
+{
+    "name": "coertze/cos221_not_null_crew",
+    "description": "COS221 NOT_NULL_CREW practical 5",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JonelleCoertze",
+            "email": "u21446271@tuks.co.za"
+        }
+    ],
+    "require": {
+        "php": ">=7.2"
+    },
+    "autoload": {
+        "psr-0": {
+            "Example": "src/"
+        }
+    }
+
+}
