@@ -1,21 +1,14 @@
-document.onload = function(){
-
-    populate(0);
-}
-
-function populate(a)
-{
-    var locations = [
-        {
-            "table": "locations", 
-            "add": {
-            "id": 3,
-            "city": "Bogota",
-            "country": "Colombia",
-            "timezone": "-5UTC",
-            "latitude": "4.6243",
-            "longitude": "-74.0636"
-        }
+var locations = [
+    {
+        "table": "locations", 
+        "add": {
+        "id": 3,
+        "city": "Bogota",
+        "country": "Colombia",
+        "timezone": "-5UTC",
+        "latitude": "4.6243",
+        "longitude": "-74.0636"
+    }
     },{
         "table": "locations", 
         "add": {
@@ -233,4 +226,26 @@ function populate(a)
         }
     },
 ];
-}
+function popLocations()//Populating locations relation
+        {
+            var locApiRequest = new XMLHttpRequest();
+            locApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+            locApiRequest.onreadystatechange = function()
+            {
+                if (locApiRequest.readyState == 4 && locApiRequest.status == 200)
+                {
+                    var response = (JSON.parse(locApiRequest.responseText));
+                    console.log("Locations Population API Call Response:");
+                    console.log(response);
+                    popAddresses();
+                }
+            }
+            var data = {
+                "sample": true,
+                "table": "locations",
+                "data": locations
+            };
+            locApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+            locApiRequest.send(JSON.stringify(data));
+        }

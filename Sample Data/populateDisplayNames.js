@@ -144,3 +144,27 @@ var displayNames = [
         "last_name": "Larson"
     }
 ];
+
+function popDispNames()//Populating display_names relation
+{
+    var dispNamesApiRequest = new XMLHttpRequest();
+    dispNamesApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    dispNamesApiRequest.onreadystatechange = function()
+    {
+        if (dispNamesApiRequest.readyState == 4 && dispNamesApiRequest.status == 200)
+        {
+            var response = (JSON.parse(dispNamesApiRequest.responseText));
+            console.log("Display Names Population API Call Response:");
+            console.log(response);
+            console.log("Done");
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "display_names",
+        "data": displayNames
+    };
+    dispNamesApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    dispNamesApiRequest.send(JSON.stringify(data));
+}

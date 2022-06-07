@@ -147,3 +147,27 @@ var addresses = [
         "country": "Mongolia"
     }
 ];
+function popAddresses()//Populating addresses relation
+        {
+            var addrApiRequest = new XMLHttpRequest();
+            addrApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+            addrApiRequest.onreadystatechange = function()
+            {
+                if (addrApiRequest.readyState == 4 && addrApiRequest.status == 200)
+                {
+                    var response = (JSON.parse(addrApiRequest.responseText));
+                    console.log("Addresses Population API Call Response:");
+                    console.log(response);
+                    popSites();
+                }
+            }
+            var data = {
+                "sample": true,
+                "table": "addresses",
+                "data": addresses
+            };
+            addrApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+            addrApiRequest.send(JSON.stringify(data));
+        }
+        

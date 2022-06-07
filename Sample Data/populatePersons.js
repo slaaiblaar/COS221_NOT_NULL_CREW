@@ -11,7 +11,7 @@ var persons = [
         "residence_location_id": 1,
         "death_location_id": null,
         "age": 23,
-        "affiliation_id": 1,
+        "affiliation_id": 3,
         "handicap": 0
     },
     {
@@ -41,7 +41,7 @@ var persons = [
         "residence_location_id": 3,
         "death_location_id": null,
         "age": 38,
-        "affiliation_id": 1,
+        "affiliation_id": 3,
         "handicap": 0
     },
     {
@@ -86,7 +86,7 @@ var persons = [
         "residence_location_id": 6,
         "death_location_id": null,
         "age": 28,
-        "affiliation_id": 2,
+        "affiliation_id": 3,
         "handicap": 0
     },
     {
@@ -101,7 +101,7 @@ var persons = [
         "residence_location_id": 21,
         "death_location_id": null,
         "age": 30,
-        "affiliation_id": 1,
+        "affiliation_id": 3,
         "handicap": 0
     },
     {
@@ -131,7 +131,7 @@ var persons = [
         "residence_location_id": 17,
         "death_location_id": null,
         "age": 101,
-        "affiliation_id": 1,
+        "affiliation_id": 3,
         "handicap": 0
     },
     {
@@ -270,3 +270,27 @@ var persons = [
         "handicap": 0
     }
 ];
+
+function popPersons()//Populating persons relation
+{
+    var personsEventsApiRequest = new XMLHttpRequest();
+    personsEventsApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    personsEventsApiRequest.onreadystatechange = function()
+    {
+        if (personsEventsApiRequest.readyState == 4 && personsEventsApiRequest.status == 200)
+        {
+            var response = (JSON.parse(personsEventsApiRequest.responseText));
+            console.log("Persons Population API Call Response:");
+            console.log(response);
+            popDispNames();
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "persons",
+        "data": persons
+    };
+    personsEventsApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    personsEventsApiRequest.send(JSON.stringify(data));
+}

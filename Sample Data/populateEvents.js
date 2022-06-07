@@ -5,11 +5,11 @@ var events = [
     "publisher_id": 1,
     "start_date_time": "2022/01/01",
     "end_date_time": "2022/01/05",
-    "site_id": 2,
+    "site_id": 5,
     "duration": null,
     "event_status": "Completed",
     "gender": "Men",
-    "tour_id": 1,
+    "tour_id": null,
     "year": "2022"
     },
     {
@@ -29,7 +29,7 @@ var events = [
     "publisher_id": 1,
     "start_date_time": "2020/04/01",
     "end_date_time": "2020/04/05",
-    "site_id": 1,
+    "site_id": 4,
     "duration": null,
     "event_status": "Completed",
     "gender": "Men",
@@ -37,4 +37,28 @@ var events = [
     "year": "2020"
     }
 ];
+
+function popEvents()//Populating events relation
+{
+    var eventsApiRequest = new XMLHttpRequest();
+    eventsApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    eventsApiRequest.onreadystatechange = function()
+    {
+        if (eventsApiRequest.readyState == 4 && eventsApiRequest.status == 200)
+        {
+            var response = (JSON.parse(eventsApiRequest.responseText));
+            console.log("Events Population API Call Response:");
+            console.log(response);
+            popPersons();
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "events",
+        "data": events
+    };
+    eventsApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    eventsApiRequest.send(JSON.stringify(data));
+}
 

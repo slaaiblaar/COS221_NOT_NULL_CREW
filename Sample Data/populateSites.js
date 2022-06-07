@@ -18,3 +18,26 @@ var sites = [ //Courses
         "address_id": 4
     }
 ];
+function popSites()//Populating sites relation
+{
+    var sitesApiRequest = new XMLHttpRequest();
+    sitesApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    sitesApiRequest.onreadystatechange = function()
+    {
+        if (sitesApiRequest.readyState == 4 && sitesApiRequest.status == 200)
+        {
+            var response = (JSON.parse(sitesApiRequest.responseText));
+            console.log("Sites Population API Call Response:");
+            console.log(response);
+            popHoles();
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "sites",
+        "data": sites
+    };
+    sitesApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    sitesApiRequest.send(JSON.stringify(data));
+}

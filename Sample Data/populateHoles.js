@@ -545,8 +545,32 @@ var holes = [
         {
             "hole_no": 18,
             "site_id": 5,
-            "par": 5,
-            "length": 180
+            "par": 2,
+            "length": 560
         }
     ]
-]
+];
+
+function popHoles()//Populating holes relation
+{
+    var holesApiRequest = new XMLHttpRequest();
+    holesApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    holesApiRequest.onreadystatechange = function()
+    {
+        if (holesApiRequest.readyState == 4 && holesApiRequest.status == 200)
+        {
+            var response = (JSON.parse(holesApiRequest.responseText));
+            console.log("Holes Population API Call Response:");
+            console.log(response);
+            popAffs();
+        }
+    }
+    var data = {
+        "sample": true,
+        "table": "holes",
+        "data": holes
+    };
+    holesApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    holesApiRequest.send(JSON.stringify(data));
+}

@@ -385,27 +385,40 @@
         // fwrite($debugFile,print_r($post['add'],true));
         // fwrite($debugFile,"\n======================================\n");
         // fclose($debugFile);
-        if ($post['table'] === 'addresses')
+        if (!isset($post['sample']))
         {
-            if (isset($post['add'])) echo json_encode($dbConn->addAddress($post['add']));
-            else if (isset($post['mod'])) echo json_encode($dbConn->modAddress($post['mod']));
-            else if (isset($post['del'])) echo json_encode($dbConn->delAddress($post['del']));
+            if ($post['table'] === 'addresses')
+            {
+                if (isset($post['add'])) echo json_encode($dbConn->addAddress($post['add']));
+                else if (isset($post['mod'])) echo json_encode($dbConn->modAddress($post['mod']));
+                else if (isset($post['del'])) echo json_encode($dbConn->delAddress($post['del']));
+            }
+            if ($post['table'] === 'locations')
+            {
+                if (isset($post['add'])) echo json_encode($dbConn->addLocation($post['add']));
+                else if (isset($post['mod'])) echo json_encode($dbConn->modLocation($post['mod']));
+                else if (isset($post['del'])) echo json_encode($dbConn->delLocation($post['del']));
+            }
+            if ($post['table'] === 'courses')
+            {
+                if (isset($post['add'])) echo json_encode($dbConn->addCourse($post['add']));
+                else if (isset($post['mod'])) echo json_encode($dbConn->modCourse($post['mod']));
+                else if (isset($post['del'])) echo json_encode($dbConn->delCourse($post['del']));
+            }
+            if ($post['table'] === 'publishers')
+            {
+                
+            }
         }
-        if ($post['table'] === 'locations')
+        else
         {
-            if (isset($post['add'])) echo json_encode($dbConn->addLocation($post['add']));
-            else if (isset($post['mod'])) echo json_encode($dbConn->modLocation($post['mod']));
-            else if (isset($post['del'])) echo json_encode($dbConn->delLocation($post['del']));
+            // $debugFile = fopen("../debug.txt","a+");
+            // fwrite($debugFile,"======================================\n");
+            // fwrite($debugFile,print_r($post,true));
+            // fwrite($debugFile,"\n======================================\n");
+            // fclose($debugFile);
+            echo json_encode($post['data']);
         }
-        if ($post['table'] === 'courses')
-        {
-            if (isset($post['add'])) echo json_encode($dbConn->addCourse($post['add']));
-            else if (isset($post['mod'])) echo json_encode($dbConn->modCourse($post['mod']));
-            else if (isset($post['del'])) echo json_encode($dbConn->delCourse($post['del']));
-        }
-        if ($post['table'] === 'publishers')
-        {
-            
-        }
+
     }
 ?>
