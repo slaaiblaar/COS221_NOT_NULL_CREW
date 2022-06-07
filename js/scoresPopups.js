@@ -26,13 +26,34 @@ dismissDeletePopup.addEventListener("click", function hidePopup(){ //this will h
     $(".fullScreenPopupDelete").fadeOut();
 });
 
+var dismissDeletePopup = document.querySelector(".cancelbtnDel");
+//add event listeners
+dismissDeletePopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
+    if(document.getElementById("errorDelete")!=null) document.getElementById("errorDelete").innerHTML="";
+    document.querySelector(".fullScreenPopupDelete").style.visibility = "hidden";
+    $(".fullScreenPopupDelete").fadeOut();
+
+    document.querySelector(".error").innerHTML = "";
+    document.querySelector("#deleteStrokePopup  .inputTextBox > div").textContent="";
+    document.querySelector("#deleteStrokePopup  .inputTextBox > input[type='text']").value="";
+    document.querySelector("#deleteStrokePopup  .inputTextBox").classList.remove("error");
+    document.querySelector("#deleteStrokePopup  .inputTextBox").classList.remove("success");
+    sessionStorage.removeItem("pkEmail");
+});
+
 var showFilterOptions = document.getElementById("filterTable");
 showFilterOptions.addEventListener("click", function showOptions(){
-    if(document.getElementById("filterOptions").style.visibility == "visible"){
-        document.getElementById("filterOptions").style.visibility = "hidden";
+    if(document.getElementById("filterForm").style.visibility == "visible"){
+        document.getElementById("filterForm").style.visibility = "hidden";
+        document.querySelector(".filter-option1").checked=false;
+        document.querySelector(".filter-option2").checked=false;
+        document.querySelector(".filter-option3").checked=false;
+        document.querySelector(".filter-option4").checked=false;
+        document.querySelector(".filter-option5").checked=false;
+        document.querySelector('.filterFormContainer > button').style.visibility="hidden";
     }
     else{
-        document.getElementById("filterOptions").style.visibility = "visible";
+        document.getElementById("filterForm").style.visibility = "visible";
     }
 })
 var showUpdateOptions = document.getElementById("updateStrokeData");
@@ -50,8 +71,8 @@ showUpdateOptions.addEventListener("click", function showOptions(){
     }
 })
 
-var popupUpdatePersonKey = document.querySelector(".update-option1");
-popupUpdatePersonKey.addEventListener("click", function(){
+var popupUpdateClubUsed = document.querySelector(".update-option1");
+popupUpdateClubUsed.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
     document.querySelector(".updatePopupHeader > span").innerHTML = "Update Club Used: ";
@@ -59,8 +80,8 @@ popupUpdatePersonKey.addEventListener("click", function(){
     document.querySelector(".updateInput > input").placeholder ="Enter new club used";
     document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateDoB = document.querySelector(".update-option2");
-popupUpdateDoB.addEventListener("click", function(){
+var popupUpdateLanding = document.querySelector(".update-option2");
+popupUpdateLanding.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
     document.querySelector(".updatePopupHeader > span").innerHTML = "Update landing area";
@@ -68,8 +89,8 @@ popupUpdateDoB.addEventListener("click", function(){
     document.querySelector(".updateInput > input").placeholder = "Enter landing area (e.g. fairway)";
     document.querySelector(".updateInput > input").setAttribute("type","text");
 });
-var popupUpdateAge = document.querySelector(".update-option3");
-popupUpdateAge.addEventListener("click", function(){
+var popupUpdateDistance = document.querySelector(".update-option3");
+popupUpdateDistance.addEventListener("click", function(){
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "visible";
     $(".fullScreenPopupUpdate").fadeIn();    
     document.querySelector(".updatePopupHeader > span").innerHTML = "Update Shot Distance";
@@ -81,6 +102,38 @@ popupUpdateAge.addEventListener("click", function(){
 var dismissUpdatePopup = document.querySelector(".cancelbtnUpdate");
 //add event listeners
 dismissUpdatePopup.addEventListener("click", function hidePopup(){ //this will hide/remove the popup
+    var nodeList = document.querySelectorAll(".inputTextBox .error");
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].innerHTML = "";
+    }
+    nodeList = document.querySelectorAll(".inputTextBox > div");
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].textContent = "";
+    }
+    nodeList = document.querySelectorAll(".inputTextBox > input[type='password']");
+    if (nodeList!=null){
+        for (let i = 0; i < nodeList.length; i++) {
+            nodeList[i].value = "";
+        }
+    }
+    nodeList = document.querySelectorAll(".inputTextBox > input[type='radio']");
+    if (nodeList!=null){
+        for (let i = 0; i < nodeList.length; i++) {
+            nodeList[i].checked = false;
+        }
+    }
+    nodeList = document.querySelectorAll(".inputTextBox > input[type='date']");
+    if (nodeList!=null){
+        for (let i = 0; i < nodeList.length; i++) {
+            nodeList[i].value = "";
+        }
+    }
+    nodeList = document.querySelectorAll(".inputTextBox");
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].classList.remove("error");
+        nodeList[i].classList.remove("success");
+    }
+
     document.querySelector(".fullScreenPopupUpdate").style.visibility = "hidden";
     $(".fullScreenPopupUpdate").fadeOut();
 });
