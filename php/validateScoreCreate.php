@@ -28,14 +28,7 @@
                 if ($query){
                     //Success
                     //we don't want to be redirected to another page, we just want a popup to display
-                    echo "
-                        <script> 
-                            document.getElementById("fullScreenPopupReg").style.visibility = "visible"; 
-                            $("'#'fullScreenPopupReg").fadeIn("slow");
-                            document.getElementById("fullScreenPopupAdd").style.visisbility = "hidden";
-                            $("'#'fullScreenPopupAdd").fadeOut("slow");
-                        </script>
-                    ";
+                    header("Location: scores.php");
                 }
                 else{
                     $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;
@@ -151,18 +144,18 @@
 
         }
             if (mysqli_num_rows($result)==0){
-                $tableHeaders = "
-                        <table class='Table'>
-                            <th>stroke_no</th>
-                            <th>round_id</th>
-                            <th>hole_id</th>
-                            <th>person_id</th>
-                            <th>club_used</th>
-                            <th>distance</th>
-                            <th>landing</th>
-                        </table>
-                ";
-                $_SESSION['table'] = $tableHeaders;
+                // $tableHeaders = "
+                //         <table class='Table'>
+                //             <th>stroke_no</th>
+                //             <th>round_id</th>
+                //             <th>hole_id</th>
+                //             <th>person_id</th>
+                //             <th>club_used</th>
+                //             <th>distance</th>
+                //             <th>landing</th>
+                //         </table>
+                // ";
+                // $_SESSION['table'] = $tableHeaders;
                 header("Location: scores.php");
             }
             else{    //now to rebuild

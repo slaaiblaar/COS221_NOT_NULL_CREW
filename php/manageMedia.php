@@ -116,6 +116,7 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
+                                      <thead rowspan='1'>
                                         <th>id</th>
                                         <th>object_id</th>
                                         <th>revision_id</th>
@@ -125,12 +126,13 @@
                                         <th>credit_id</th>
                                         <th>db_location_id</th>
                                         <th>creation_location_id</th>
+                                      </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['object_id']."</td>
                                             <td>".$row['revision_id']."</td>
@@ -147,8 +149,25 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
-
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                      <thead rowspan='1'>
+                                        <th>id</th>
+                                        <th>object_id</th>
+                                        <th>revision_id</th>
+                                        <th>media_type</th>
+                                        <th>publisher_id</th>
+                                        <th>date_time</th>
+                                        <th>credit_id</th>
+                                        <th>db_location_id</th>
+                                        <th>creation_location_id</th>
+                                      </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>
+                                </table>";
                         }
                     }
                     else{

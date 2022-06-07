@@ -8,7 +8,8 @@
     u21457060
 -->
 <?php session_start(); setcookie("InsideUsers", "True", 0, "/");setcookie("InsideSignup", "False", 0, "/");
-    require_once("setDBEnvVar.php"); require_once("configDB.php");
+    // require_once("setDBEnvVar.php"); 
+    require_once("configDB.php");
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +23,6 @@
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     
 </head>
@@ -120,6 +120,7 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
+                                      <thead rowspan='1'>
                                         <th>id</th>
                                         <th>email</th>
                                         <th>password</th>
@@ -128,12 +129,13 @@
                                         <th>first_name</th>
                                         <th>init</th>
                                         <th>last_name</th>
+                                        </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['email']."</td>
                                             <td>".$row['password']."</td>
@@ -149,7 +151,24 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
+                            $tableHeaders = "
+                                    <table class='Table'>
+                                    <thead rowspan='1'>
+                                        <th>id</th>
+                                        <th>email</th>
+                                        <th>password</th>
+                                        <th>tel_no</th>
+                                        <th>user_type</th>
+                                        <th>first_name</th>
+                                        <th>init</th>
+                                        <th>last_name</th>
+                                        </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>
+                                </table>";
 
                         }
                     }

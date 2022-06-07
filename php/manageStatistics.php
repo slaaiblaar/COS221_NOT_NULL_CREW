@@ -52,7 +52,7 @@
         </div>
         <div class="contentContainer">
             <div class="buttonsGrid">
-                <button id="createNewStatistics">Add New stats</button>
+                <button id="createNewStatistics">Add New Statistics</button>
                 <button id="deleteStatistics">Delete a record from  the table</button>
                 <button id="filterTable">List filter options</button>
                 <form action="validateStatistics.php" id="filterForm" method="post">
@@ -156,6 +156,7 @@
                             //load table
                             $tableHeaders = "
                                     <table class='Table'>
+                                     <thead rowspan='1'>
                                         <th>id</th>
                                         <th>entity_type</th>
                                         <th>entity_id</th>
@@ -175,12 +176,13 @@
                                         <th>AvgNetScore</th>
                                         <th>WinCount</th>
                                         <th>Position</th>
+                                     </thead>
                             ";
                             echo $tableHeaders;
                             //run through records
                             while($row = mysqli_fetch_assoc($select)){
                                 $tableRows .= "
-                                        <tr class='TableRow'>
+                                        <tr class='TableRow' rowspan='1'>
                                             <td>".$row['id']."</td>
                                             <td>".$row['entity_type']."</td>
                                             <td>".$row['entity_id']."</td>
@@ -207,7 +209,35 @@
                             echo $tableRows . "</table>";
                         }
                         else{
-                            echo "<h3> No data found</h3>";
+                            $tableHeaders = "
+                                        <table class='Table'>
+                                            <thead rowspan='1'>
+                                                <th>id</th>
+                                                <th>entity_type</th>
+                                                <th>entity_id</th>
+                                                <th>person_id</th>
+                                                <th>tour_ind</th>
+                                                <th>event_ind</th>
+                                                <th>round_ind</th>
+                                                <th>player_ind</th>
+                                                <th>winner_id</th>
+                                                <th>leader_id</th>
+                                                <th>NoOfEagles</th>
+                                                <th>NoOfBirdies</th>
+                                                <th>NoOfBogeys</th>
+                                                <th>NoOfDBogeys</th>
+                                                <th>MaxDrive</th>
+                                                <th>Top10Count</th>
+                                                <th>AvgNetScore</th>
+                                                <th>WinCount</th>
+                                                <th>Position</th>
+                                            </thead>
+                            ";
+                            echo $tableHeaders;
+                            echo "<tr>
+                                    <td colspan='3'> No data found </td>
+                                </tr>
+                                </table>";
 
                         }
                     }

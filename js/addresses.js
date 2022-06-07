@@ -10,11 +10,12 @@ function popTable(){
     var table = document.querySelector("#table");
 
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.open('POST','addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
         {
+            console.log(apiRequest.responseText);
             var response = (JSON.parse(apiRequest.responseText));
             console.log(response);
             if (response["success"])
@@ -132,7 +133,7 @@ function confirmMod()
 {
     
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.open('POST','addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
@@ -199,7 +200,7 @@ function cancelDel()
 function confirmDel()
 {
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.open('POST','addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
@@ -258,7 +259,7 @@ function validateAdd()
 function confirmAdd()
 {
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.open('POST','addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
@@ -312,7 +313,7 @@ function isValidLoc(a,b)
     else 
     {
         var apiRequest = new XMLHttpRequest();
-        apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+        apiRequest.open('POST','addr_loc_course_api.php',true);
         apiRequest.onreadystatechange = function()
         {
             if (apiRequest.readyState == 4 && apiRequest.status == 200)

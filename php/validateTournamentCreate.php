@@ -40,14 +40,7 @@
                 if ($query){
                     //Success
                     //we don't want to be redirected to another page, we just want a popup to display
-                    echo "
-                        <script> 
-                            document.getElementById("fullScreenPopupReg").style.visibility = "visible"; 
-                            $("'#'fullScreenPopupReg").fadeIn("slow");
-                            document.getElementById("fullScreenPopupAdd").style.visisbility = "hidden";
-                            $("'#'fullScreenPopupAdd").fadeOut("slow");
-                        </script>
-                    ";
+                    header("Location: viewTournaments.php")
                 }
                 else{
                     $_SESSION['messages'] = 'Error connecting to database: '.$conn->error;

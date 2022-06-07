@@ -277,6 +277,7 @@
             }
             if (mysqli_num_rows($GLOBALS['result'])==0){
                 $tableHeaders = "<table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>email</th>
                             <th>password</th>
@@ -285,6 +286,10 @@
                             <th>first_name</th>
                             <th>init</th>
                             <th>last_name</th>
+                            </thead>
+                            <tr rowspan='1'>
+                                <td colspan='3'> No data found </td>
+                            </tr>
                             </table>
                 ";
                 $_SESSION['table'] = $tableHeaders;
@@ -292,6 +297,7 @@
             }
             else{   //now to rebuild
                 $tableHeaders = "<table class='Table'>
+                        <thead rowspan='1'>
                             <th>id</th>
                             <th>email</th>
                             <th>password</th>
@@ -300,10 +306,11 @@
                             <th>first_name</th>
                             <th>init</th>
                             <th>last_name</th>
+                        </thead>
                 ";
                 //display first result and then continue from second row
                 $row = mysqli_fetch_assoc($GLOBALS['result']);
-                $tableRows = "<tr class='TableRow'>
+                $tableRows = "<tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -316,7 +323,7 @@
                     ";
                 //run through records
                 while($row = mysqli_fetch_assoc($GLOBALS['result'])){
-                    $tableRows .= "<tr class='TableRow'>
+                    $tableRows .= "<tr class='TableRow' rowspan='1'>
                                 <td>".$row['id']."</td>
                                 <td>".$row['email']."</td>
                                 <td>".$row['password']."</td>
@@ -348,13 +355,48 @@
         }
         else if(isset($_POST['option1']) || isset($_POST['option2']) || isset($_POST['option3']) || isset($_POST['option4']) || isset($_POST['option5']) || isset($_POST['option6']) || isset($_POST['option7'])){
             //update a player's data
-            if (isset($_POST['option1'])) $_SESSION['option1'] = $_POST['option1'];
-            if (isset($_POST['option2'])) $_SESSION['option2'] = $_POST['option2'];
-            if (isset($_POST['option3'])) $_SESSION['option3'] = $_POST['option3'];
-            if (isset($_POST['option4'])) $_SESSION['option4'] = $_POST['option4'];
-            if (isset($_POST['option5'])) $_SESSION['option5'] = $_POST['option5'];
-            if (isset($_POST['option6'])) $_SESSION['option6'] = $_POST['option6'];
-            if (isset($_POST['option7'])) $_SESSION['option7'] = $_POST['option7'];
+            if (isset($_POST['filterOption1'])) {
+                $_SESSION['filterOption1'] = $_POST['filterOption1'];
+            }
+            else{
+                $_SESSION['filterOption1'] = null;
+            }
+            if (isset($_POST['filterOption2'])) {
+                $_SESSION['filterOption2'] = $_POST['filterOption2'];
+            }
+            else{
+                $_SESSION['filterOption2'] = null;
+            }
+            if (isset($_POST['filterOption3'])) {
+                $_SESSION['filterOption3'] = $_POST['filterOption3'];
+            }
+            else{
+                $_SESSION['filterOption3'] = null;
+            }
+            if (isset($_POST['filterOption4'])) {
+                $_SESSION['filterOption4'] = $_POST['filterOption4'];
+            }
+            else{
+                $_SESSION['filterOption4'] = null;
+            }
+            if (isset($_POST['filterOption5'])) {
+                $_SESSION['filterOption5'] = $_POST['filterOption5'];
+            }
+            else{
+                $_SESSION['filterOption5'] = null;
+            }
+            if (isset($_POST['filterOption6'])) {
+                $_SESSION['filterOption6'] = $_POST['filterOption6'];
+            }
+            else{
+                $_SESSION['filterOption6'] = null;
+            }
+            if (isset($_POST['filterOption7'])) {
+                $_SESSION['filterOption7'] = $_POST['filterOption7'];
+            }
+            else{
+                $_SESSION['filterOption7'] = null;
+            }
             $select=null;
             $result=null;
             $pkEmail = $_POST['pkEmailUpdate'];
@@ -569,6 +611,7 @@
             //now to rebuild
             $tableHeaders = "
                     <table class='Table'>
+                      <thead rowspan='1'>
                         <th>id</th>
                         <th>email</th>
                         <th>password</th>
@@ -577,10 +620,11 @@
                         <th>first_name</th>
                         <th>init</th>
                         <th>last_name</th>
+                    <thead>
             ";
             //build first then then continue from second row
             $tableRows = "
-                    <tr class='TableRow'>
+                    <tr class='TableRow' rowspan='1'>
                         <td>".$row['id']."</td>
                         <td>".$row['email']."</td>
                         <td>".$row['password']."</td>
@@ -594,7 +638,7 @@
             //run through records
             while($row = mysqli_fetch_assoc($GLOBALS['result'])){
                 $tableRows .= "
-                        <tr class='TableRow'>
+                        <tr class='TableRow' rowspan='1'>
                             <td>".$row['id']."</td>
                             <td>".$row['email']."</td>
                             <td>".$row['password']."</td>
