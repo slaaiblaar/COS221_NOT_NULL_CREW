@@ -1,6 +1,6 @@
-var showAddNewScorePopup = document.getElementById("createNewScore");
+var showAddNewPlayerScorePopup = document.getElementById("createNewPlayerScore");
 //add event listeners
-showAddNewScorePopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup   
+showAddNewPlayerScorePopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup   
     if(document.getElementById("errorSignup")!=null)document.getElementById("errorSignup").innerHTML="";
     document.querySelector(".fullScreenPopupAdd").style.visibility = "visible";
     $(".fullScreenPopupAdd").fadeIn();
@@ -39,15 +39,15 @@ dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide
         nodeList[i].classList.remove("error");
         nodeList[i].classList.remove("success");
     }
-    document.querySelector("#newScoreFormPopup").scrollTop = 0;   
+    document.querySelector("#newRegisterPlayerPopupForm").scrollTop = 0;   
 
     document.querySelector(".fullScreenPopupAdd").style.visibility = "hidden";
     $(".fullScreenPopupAdd").fadeOut();
 });
 
-var showDeleteScorePopup = document.getElementById("deleteScore");
+var showDeleteRegisterPlayerPopup = document.getElementById("deletePlayerScore");
 //add event listeners
-showDeleteScorePopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup
+showDeleteRegisterPlayerPopup.addEventListener("click", function showPopup(){ //this will hide/remove the popup
     document.querySelector(".fullScreenPopupDelete").style.visibility = "visible";
     $(".fullScreenPopupDelete").fadeIn();
 });
@@ -76,21 +76,19 @@ showFilterOptions.addEventListener("click", function showOptions(){
         document.querySelector(".filter-option3").checked=false;
         document.querySelector(".filter-option4").checked=false;
         document.querySelector(".filter-option5").checked=false;
+        document.querySelector(".filter-option6").checked=false;
         document.querySelector('.filterFormContainer > button').style.visibility="hidden";
     }
     else{
         document.getElementById("filterForm").style.visibility = "visible";
     }
 })
-var showUpdateOptions = document.getElementById("updateScoreData");
+var showUpdateOptions = document.getElementById("updatePlayerScoreData");
 showUpdateOptions.addEventListener("click", function showOptions(){
     if(document.getElementById("updateOptions").style.visibility == "visible"){
         document.getElementById("updateOptions").style.visibility = "hidden";
         document.querySelector(".update-option1").checked=false;
         document.querySelector(".update-option2").checked=false;
-        document.querySelector(".update-option3").checked=false;
-        document.querySelector(".update-option4").checked=false;
-        document.querySelector(".update-option5").checked=false;
     }
     else{
         document.getElementById("updateOptions").style.visibility = "visible";
@@ -195,4 +193,20 @@ $(function filters(){
         $('#filterOptions').slideUp();
     }
     });
+});
+$(function updates(){
+    $('#updatePlayerScoreData').click(function() {
+        
+        $('#updateOptions').slideToggle();
+    });
+    
+    // $(document).click(function(e) 
+    // { 
+    // var target = e.target; 
+    // if (!$(target).is('#updateOptions') && !$(target).parents().is('.buttonsGrid')) 
+    // //{ $('.dropdown').hide(); }
+    // { 
+    //     $('#updateOptions').slideUp();
+    // }
+    // });
 });

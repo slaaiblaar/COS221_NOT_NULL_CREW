@@ -4,8 +4,9 @@
 if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERVER['SCRIPT_FILENAME'], 'signup.php',0) == FALSE)
 {
     echo '<script src="../js/sideMenu.js"></script>';
+    echo '<script src="../js/home.js"></script>';
 }
-
+    
     if (strpos($_SERVER['SCRIPT_FILENAME'], 'home.php',0) != FALSE)
     {
         echo '
@@ -49,12 +50,27 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="manageStatistics.php">Statistics</a>               
             
             </div>
-            <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Home</span>
+            <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Home</span>     
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else if (strpos($_SERVER['SCRIPT_FILENAME'], 'organization.php',0) != FALSE)
     {
@@ -100,11 +116,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Organization</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'addresses.php',0) != FALSE)
     {
@@ -150,11 +181,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Addresses</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'locations.php',0) != FALSE)
     {
@@ -200,11 +246,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Locations</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'viewCourses.php',0) != FALSE)
     {
@@ -250,11 +311,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Courses</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'viewHoles.php',0) != FALSE)
     {
@@ -300,11 +376,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; View Holes</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'viewTournaments.php',0) != FALSE)
     {
@@ -350,11 +441,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tournaments</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'schedule.php',0) != FALSE)
     {
@@ -400,11 +506,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tournament Schedule</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'registerPlayer.php',0) != FALSE)
     {
@@ -450,11 +571,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Players Scores</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'tours.php',0) != FALSE)
     {
@@ -500,11 +636,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Tours</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'manageUsers.php',0) != FALSE)
     {
@@ -550,11 +701,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Users</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'managePlayers.php',0) != FALSE)
     {
@@ -600,11 +766,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Players</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'scores.php',0) != FALSE)
     {
@@ -650,11 +831,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Strokes</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'rounds.php',0) != FALSE)
     {
@@ -700,11 +896,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Rounds</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'manageMedia.php',0) != FALSE)
     {
@@ -750,11 +961,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Media</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else  if (strpos($_SERVER['SCRIPT_FILENAME'], 'manageStatistics.php',0) != FALSE)
     {
@@ -800,11 +1026,26 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
             
             </div>
             <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Statistics</span>
+            ';
+        if ((empty($_COOKIE['loginStatus'])))
+        {
+            echo '
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
-            </div>      
+            </div> 
+            
             ';
+        }
+        else{
+            unset($_COOKIE['loginStatus']);
+            echo '
+            <div class="loginRegister">
+                <a id="userName">'.$_COOKIE['userName'].'</a>
+                <a id="Login" href="login.php" >Log out</a>
+            </div> 
+            ';
+        }
     }
     else if(strpos($_SERVER['SCRIPT_FILENAME'], 'managePlayers.php',0)!= FALSE){
         echo '

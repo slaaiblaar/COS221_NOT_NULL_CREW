@@ -1,9 +1,10 @@
 <?php
+    require_once("setDBEnvVar.php");
     include_once("configDB.php");
     session_start();
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-        if (isset($_POST['person_id']) && isset($_POST['round_id']) && isset($_POST['hole_id']) && isset($_POST['stroke_count']) && isset($_POST['net_score']) && (isset($_POST['birdie']) || isset($_POST['eagle']) || isset($_POST['bogey'])|| isset($_POST['double_bogey']))){
+        if (isset($_POST['person_id']) && isset($_POST['round_id']) && isset($_POST['hole_id']) && isset($_POST['stroke_count']) && isset($_POST['net_score']) && isset($_POST['strokeType'])){
             //this is to validate adding a new scores
             $_SESSION['person_id'] = $_POST['person_id'];
             $_SESSION['round_id'] = $_POST['round_id'];

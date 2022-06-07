@@ -1,0 +1,1 @@
+document.querySelector('.fullscreenPopup').style.visibility = 'visible';

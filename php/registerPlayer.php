@@ -7,7 +7,9 @@
     u04929552
     u21457060
 -->
-<?php session_start(); require_once("configDB.php");?>
+<?php session_start();
+    require_once("setDBEnvVar.php");
+    require_once("configDB.php");?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

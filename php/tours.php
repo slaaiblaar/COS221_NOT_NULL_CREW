@@ -9,6 +9,7 @@
 -->
 <?php 
     session_start(); 
+    require_once("setDBEnvVar.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">

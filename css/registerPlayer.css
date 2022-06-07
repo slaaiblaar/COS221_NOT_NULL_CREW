@@ -468,7 +468,7 @@ text-decoration: none;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-#deleteTournamentPopup, #updateTournamentPopup{
+#deleteRegisterPlayerPopup, #updateRegisterPlayerPopup{
     position: fixed;
     top: 15%;
     left: 35%;
@@ -481,14 +481,15 @@ text-decoration: none;
     border: 5px solid rgb(0, 255, 115);
     color:rgb(0, 255, 115);
     text-align: center;
+    height: fit-content;
 }
-#deleteTournamentPopup button, #updateTournamentPopup button{
+#deleteRegisterPlayerPopup button, #updateRegisterPlayerPopup button{
     margin-top: 20px;
 }
-#updateTournamentPopup{
-    height: 20%;
+#updateRegisterPlayerPopup{
+    height: fit-content;
 }
-#newTournamentFormPopup{
+#newRegisterPlayerPopupForm{
     position: fixed;
     top: 15%;
     left: 35%;
@@ -513,7 +514,7 @@ text-decoration: none;
     margin-top: 20px;
 }
 
-#newTournamentFormPopup hr{
+#newRegisterPlayerPopupForm hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }
@@ -627,10 +628,9 @@ input[type="number"]{
     margin-top: 2px;
 }
 #updateOptions{
-    visibility: hidden;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    display: grid;
+    display: none;
     grid-template-columns: 50% 50%;
     margin-bottom: 5px;
 }

@@ -13,6 +13,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -52,6 +54,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -93,6 +97,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -125,6 +131,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -157,6 +165,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -194,6 +204,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -235,6 +247,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -267,6 +281,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -299,6 +315,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -340,6 +358,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -381,6 +401,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -422,6 +444,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -469,6 +493,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -502,6 +528,8 @@ function openMenu(){
         document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
         document.querySelector("#Login").style.pointerEvents = "none";
         document.querySelector("#Register").style.pointerEvents = "none";
         document.querySelector(".loginRegister").style.pointerEvents = "none";
@@ -550,6 +578,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -590,6 +620,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -623,21 +655,26 @@ function closeMenu(){
     {
         document.querySelector(".sidenav a").classList.toggle("show");
         document.getElementById("sideMenu").style.width = "0";
-        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
-        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
-        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
-        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
-        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
-        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
-        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
-        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#mainContainer").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#controls").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#tableContainer").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
         document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
         document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
@@ -647,7 +684,7 @@ function closeMenu(){
         document.querySelector("#add").style.pointerEvents = "auto";
         document.querySelector("#modify").style.pointerEvents = "auto";
         document.querySelector("#delete").style.pointerEvents = "auto";
-        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
 
     }
     //locations
@@ -655,21 +692,26 @@ function closeMenu(){
     {
         document.querySelector(".sidenav a").classList.toggle("show");
         document.getElementById("sideMenu").style.width = "0";
-        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
-        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
-        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
-        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
-        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
-        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
-        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
-        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#mainContainer").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#controls").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#tableContainer").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
         document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
         document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
@@ -679,7 +721,7 @@ function closeMenu(){
         document.querySelector("#add").style.pointerEvents = "auto";
         document.querySelector("#modify").style.pointerEvents = "auto";
         document.querySelector("#delete").style.pointerEvents = "auto";
-        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
 
     }
     //courses
@@ -687,21 +729,26 @@ function closeMenu(){
     {
         document.querySelector(".sidenav a").classList.toggle("show");
         document.getElementById("sideMenu").style.width = "0";
-        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
         document.querySelector("#webTitle").style.backgroundColor = "transparent";
-        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
-        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
-        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
-        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
-        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
-        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
-        document.querySelector("#mainContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#controls").style.backgroundColor = "rgba(140, 143, 141,0.9)";
-        document.querySelector("#tableContainer").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#mainContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#mainContainer").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#controls").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#controls").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#tableContainer").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#tableContainer").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#add").style.backgroundColor = "rgba(85, 207, 60,1)";
         document.querySelector("#modify").style.backgroundColor = "rgba(255, 187, 0, 1)";
         document.querySelector("#delete").style.backgroundColor = "rgba(255, 72, 0, 1)";
@@ -711,7 +758,7 @@ function closeMenu(){
         document.querySelector("#add").style.pointerEvents = "auto";
         document.querySelector("#modify").style.pointerEvents = "auto";
         document.querySelector("#delete").style.pointerEvents = "auto";
-        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
 
     }
     //holes
@@ -736,6 +783,8 @@ function closeMenu(){
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
@@ -778,6 +827,8 @@ function closeMenu(){
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,1)";
@@ -809,6 +860,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -842,6 +895,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -884,6 +939,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -926,6 +983,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -968,6 +1027,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -1016,6 +1077,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
@@ -1050,6 +1113,8 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
         document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
         document.querySelector("#Login").style.pointerEvents = "auto";
         document.querySelector("#Register").style.pointerEvents = "auto";
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
