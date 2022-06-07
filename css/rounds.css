@@ -13,21 +13,21 @@ body{
     padding: 10px 10px;
     box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
     
-  }
+}
   
-    .loginRegister a{
-      padding: 10px 10px;
-      text-decoration: none;
-      color: white;
-    }
+.loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+}
   
-    .loginRegister a:hover{
-      color: black;
-      background-color: #00420d;
-      font-weight: bold;
-      color: white;
-      text-decoration: underline;
-    }
+.loginRegister a:hover{
+    color: black;
+    background-color: #00420d;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+}
 
 .top-content{
     padding: 10px 16px;
@@ -340,11 +340,11 @@ tr:nth-child(even)
     background: #555;
 }
 
-#createNewOrg{
+#createNewRound{
     background-color: rgb(179, 179, 0);
 }
 
-#deleteOrg{
+#deleteRound{
     background-color: rgb(179, 0, 0);
 }
 
@@ -380,6 +380,11 @@ tr:nth-child(even)
     background-color: rgb(144, 218, 145);
 }
 
+#filterOptions select
+{
+    font-size: 12pt;
+}
+
 #filterOptions input[type="submit"]{
     background-color: rgb(34, 216, 37);
     width: 395px;
@@ -413,7 +418,7 @@ tr:nth-child(even)
     background-color: rgb(144, 218, 145);
 }
 
-#updateOrgData{
+#updateRoundData{
     background-color: rgb(0, 179, 3);
 }
 
@@ -467,11 +472,12 @@ button[disabled] {
     color:#555;
 }
 
-/* Delete Tour + Update Tout */
-#deleteOrgPopup,#updateOrgPopup{
+/* Delete Round + Update Round */
+#deleteRoundPopup{
     position: fixed;
     top: 15%;
     left: 35%;
+    height: 50%;
     width: 30%;
     padding: 10px;
     border-radius: 20px;
@@ -482,21 +488,26 @@ button[disabled] {
     text-align: center;
 }
 
-#deleteOrgPopup
-{
-    height: 50%;
-}
-
-#updateOrgPopup
-{
+#updateRoundPopup{
+    position: fixed;
+    top: 15%;
+    left: 35%;
     height: 60%;
+    width: 30%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(35, 35, 35);
+    opacity: 0.8;
+    border: 5px solid rgb(0, 255, 115);
+    color:rgb(0, 255, 115);
+    text-align: center;
 }
 
-#deleteOrgPopup button, #updateOrgPopup button{
+#deleteRoundPopup button, #updateRoundPopup button{
     margin-top: 20px;
 }
 
-.DeleteOrgInput
+.DeleteRoundInput
 {
     color: #00420d;
     background-color: rgb(200, 241, 201);
@@ -504,11 +515,11 @@ button[disabled] {
 }
 
 /* New Tour */
-#newOrgFormPopup{
+#newRoundFormPopup{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 60%;
+    height: 80%;
     width: 30%;
     padding: 10px;
     border-radius: 20px;
@@ -519,15 +530,48 @@ button[disabled] {
     text-align: center;
 }
 
-.DropDowns
+.RoundsCreateInput
 {
-    padding: 2px;
-    margin-bottom : 10px;
-    margin-top: 2px;
-    width : 57%;
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    padding : 3px;
+    margin: 8px;
 }
 
-#newOrgFormPopup hr{
+.RoundsUpdateInput
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    padding : 3px;
+    margin: 8px;
+}
+
+#RoundNumberCreate
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    height: 20px;
+    margin: 0px;
+    
+}
+
+#RoundNumberUpdate
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    height: 20px;
+    margin: 0px;
+}
+
+#newRoundFormPopup hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }
