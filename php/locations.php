@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/home.css">
-    <link rel="stylesheet" href="../css/address.css">
+    <link rel="stylesheet" href="../css/controls_and_tables.css">
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -41,7 +41,7 @@
           <div id="controls">
             <h2>Controls</h2>
             <div style="padding:0 10px; margin: auto">
-              <button class="controlButton" id="add"><h2>Add Location</h2></button>
+              <button class="controlButton" id="add" onclick="add()"><h2>Add Location</h2></button>
               <button class="controlButton" id="modify" onclick="mod()"><h2>Modify Location</h2></button>
               <button class="controlButton" id="delete" onclick="del()"><h2>Delete Location</h2></button>
             </div>
@@ -66,19 +66,20 @@
             <h1>Add Location</h1>
             <hr>
             <h3>City</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Country</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Time Zone</h3>
-            <input class="inputField" type="text"></input>
-            <h3>Longitude</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Latitude</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
+            <h3>Longitude</h3>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelAdd()"><h2>Cancel</h2></button>
-              <button class="confirmButton" onclick="confirmAdd()"><h2>Confirm</h2></button>
+              <button class="validateButton" onclick="validateAdd()"><h2>Validate</h2></button>
             </div>
+            <button id="addButton" onclick="confirmAdd()" disabled><h2>Confirm</h2></button>
           </div>
         </div>
         <div class="popup" id="modPopup">
@@ -88,19 +89,20 @@
             <h3>Location ID</h3>
             <input class="inputField" type="text" disabled></input>
             <h3>City</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Country</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Time Zone</h3>
-            <input class="inputField" type="text"></input>
-            <h3>Longitude</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <h3>Latitude</h3>
-            <input class="inputField" type="text"></input>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
+            <h3>Longitude</h3>
+            <input class="inputField" oninput="disableButtons()" type="text"></input>
             <div>
               <button class="cancelButton" onclick="cancelMod()"><h2>Cancel</h2></button>
-              <button class="confirmButton" onclick="confirmMod()"><h2>Confirm</h2></button>
+              <button class="validateButton" onclick="validateMod()"><h2>Validate</h2></button>
             </div>
+            <button id="modButton" onclick="confirmMod()" disabled><h2>Confirm</h2></button>
           </div>
         </div>
         <div class="popup" id="delPopup">
@@ -115,9 +117,9 @@
             <input class="inputField" type="text" disabled></input>
             <h3>Time Zone</h3>
             <input class="inputField" type="text" disabled></input>
-            <h3>Longitude</h3>
-            <input class="inputField" type="text" disabled></input>
             <h3>Latitude</h3>
+            <input class="inputField" type="text" disabled></input>
+            <h3>Longitude</h3>
             <input class="inputField" type="text" disabled></input>
             <div>
               <button class="cancelButton" onclick="cancelDel()"><h2>Cancel</h2></button>

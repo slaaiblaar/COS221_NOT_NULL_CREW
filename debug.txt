@@ -1,8 +1,33 @@
 ======================================
+
+======================================
+======================================
 Array
 (
-    [table] => courses
+    [site_key] => Ad Button Test Course
+    [publisher_id] => 1
+    [location_id] => 1
+    [address_id] => 1
 )
 
 ======================================
-=
+======================================
+Array
+(
+    [site_key] => Ad Button Test Course
+    [publisher_id] => 1
+    [location_id] => 1
+    [address_id] => 1
+)
+
+======================================
+======================================
+Array
+(
+    [site_key] => Ad Button Test Course
+    [publisher_id] => 1
+    [location_id] => 1
+    [address_id] => 1
+)
+
+======================================

@@ -3,7 +3,7 @@ window.onload = popTable();
 function popTable(){
 
     var tBody = document.querySelector("#table > tbody");
-    var rows = tBody.childNodes; //document.querySelectorAll("tbody > tr");
+    var rows = tBody.childNodes;
     for (var x = rows.length-1; x >= 0 ; x--)
     {
         tBody.removeChild(rows[x]);
@@ -11,7 +11,7 @@ function popTable(){
     var table = document.querySelector("#table");
 
     var apiRequest = new XMLHttpRequest();
-    apiRequest.open('POST','../php/address_config.php',true);
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
     apiRequest.onreadystatechange = function()
     {
         if (apiRequest.readyState == 4 && apiRequest.status == 200)
@@ -42,6 +42,12 @@ function popTable(){
     }
     apiRequest.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     apiRequest.send(reqConf.join("&"));
+}
+
+function disableButtons()
+{
+    document.querySelector("#addButton").disabled = true;
+    document.querySelector("#modButton").disabled = true;
 }
 
 function mod()
@@ -101,6 +107,7 @@ function del()
 
 function modPop(a,b,c,d,e,f)
 {
+    disableButtons();
     var input = document.querySelectorAll("#modForm > input");
     input[0].value = a;
     input[1].value = b;
@@ -122,6 +129,45 @@ function cancelMod()
     label.parentNode.removeChild(label);
     document.querySelector("#modPopup").style.visibility = "hidden";
 }
+
+function confirmMod()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to modify Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelMod();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#modForm > input");
+    var data = {
+        "table": "locations", 
+        "mod": {   
+            "id": parseInt(input[0].value),
+            "city": input[1].value,
+            "country": input[2].value,
+            "timezone": input[3].value,
+            "latitude": input[4].value,
+            "longitude": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function delPop(a,b,c,d,e,f)
 {
     var input = document.querySelectorAll("#delForm > input");
@@ -146,8 +192,47 @@ function cancelDel()
     document.querySelector("#delPopup").style.visibility = "hidden";
 }
 
+function confirmDel()
+{
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
+            {
+                alert("Something went wrong while trying to delete Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelDel();
+            }
+        }
+    }
+    var input = document.querySelectorAll("#delForm > input");
+    var data = {
+        "table": "locations", 
+        "del": {   
+            "id": parseInt(input[0].value),
+            "city": input[1].value,
+            "country": input[2].value,
+            "timezone": input[3].value,
+            "latitude": input[4].value,
+            "longitude": input[5].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
 function add()
 {
+    disableButtons();
     var input = document.querySelectorAll("#addForm > input");
     input[0].value = '';
     input[1].value = '';
@@ -161,111 +246,286 @@ function cancelAdd()
     document.querySelector('#addPopup').style.visibility = "hidden";
 }
 
+function validateAdd()
+{
+    var input = document.querySelectorAll("#addForm > input");
+    isValidCountryCity(input[1].value,input[0].value, "#addForm");
+}
+
 function confirmAdd()
 {
-    var idExp = /[^0-9]+/g;
-    var input = document.querySelectorAll("#addForm > input");
-    
-    if (idExp.test(input[0].value)) alert(`Invalid Location ID: ${input[0].value}`);
-    if (!isValidLanguage(input[1].value)) alert(`Invalid Language: ${input[1].value}`);
-    if (!isValidStreet(input[3].value)) alert(`Invalid Street: ${input[3].value}`);
-    if (!isValidCountry(input[4].value)) alert(`Invalid Country: ${input[4].value}`);
-}
-
-function confirmMod()
-{
-    var idExp = /[^0-9]+/g;
-    var input = document.querySelectorAll("#modForm > input");
-    console.log(input[4]);
-    if (idExp.test(input[1].value)) alert(`Invalid Location ID: ${input[1].value}`);
-    if (!isValidLanguage(input[2].value)) alert(`Invalid Language: ${input[2].value}`);
-    if (!isValidStreet(input[4].value)) alert(`Invalid Street: ${input[4].value}`);
-    if (!isValidCountry(input[5].value)) alert(`Invalid Country: ${input[5].value}`);
-}
-
-function isValidCountry(a)
-{
-    var countries = [ "Afhanistan","Albania","Algeria","Andorro","Angola","Antigua and Barbuda",
-    "Argentina","Armenia","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh",
-    "Barbados","Belarus","Belgium","Belize","Benin","Bhutan","Bolivia","Bosnia and Herzegovina",
-    "Botswana","Brazil","Brunei","Bulgaria","Burkina Faso","Burundi","Côte d'Ivoire","Cabo Verde",
-    "Cambodia","Cameroon","Canada","Central African Republic","Chad","Chile","China","Colombia",
-    "Congo","Costa Rica","Croatia","Cuba","Cyprus","Czech Republic","Democratic Republic of the Congo",
-    "Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea",
-    "Eritrea","Estonia","Swaziland","Ethiopia","Fiji","Finland","France","Gabon","Gambia","Georgia","Germany",
-    "Ghana","Greece","Grenada","Guatemala","Guinea","Guinea-Bissau","Guyana","Haiti","Holy See","Honduras",
-    "Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Israel","Italy","Jamaica","Japan",
-    "Jordan","Kazakhstan","Kenya","Kiribati","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon",
-    "Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Madagascar","Malawi",
-    "Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico",
-    "Micronesia","Moldova","Monaco","Mongolia","Montenegro","Morocco","Mozambique","Myanmar",
-    "Namibia","Nauru","Nepal","Netherlands","New Zealand","Nicaragua","Niger","Nigeria","North Korea",
-    "North Macedonia","Norway","Oman","Pakistan","Palau","Palestine State","Panama","Papua New Guinea",
-    "Paraguay","Peru","Philippines","Poland","Portugal","Qatar","Romania","Russia","Rwanda",
-    "Saint Kitts and Nevis","Saint Lucia","Saint Vincent and the Grenadines","Samoa","San Marino",
-    "Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone",
-    "Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea",
-    "South Sudan","Spain","Sri Lanka","Sudan","Suriname","Sweden","Switzerland","Syria",
-    "Tajikistan","Tanzania","Thailand","Timor-Leste","Togo","Tonga","Trinidad and Tobago","Tunisia",
-    "Turkey","Turkmenistan","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom",
-    "United States of America","Uruguay","Uzbekistan","Vanuatu","Venezuela","Vietnam","Yemen","Zambia","Zimbabwe"];
-    
-    if (countries.includes(a))
+    var apiRequest = new XMLHttpRequest();
+    apiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    apiRequest.onreadystatechange = function()
     {
-        return true;
-    }
-    return false;
-}
-function isValidLanguage(a) 
-{
-    var languages = ["ar-SA","bn-BD","bn-IN","cs-CZ","da-DK","de-AT","de-CH","de-DE","el-GR",
-    "en-AU","en-CA","en-GB","en-IE","en-IN","en-NZ","en-US","en-ZA","es-AR","es-CL","es-CO",
-    "es-ES","es-MX","es-US","fi-FI","fr-BE","fr-CA","fr-CH","fr-FR","he-IL","hi-IN","hu-HU",
-    "id-ID","it-CH","it-IT","jp-JP","ko-KR","nl-BE","nl-NL","no-NO","pl-PL","pt-BR","pt-PT",
-    "ro-RO","ru-RU","sk-SK","sv-SE","ta-IN","ta-LK","th-TH","tr-TR","zh-CN","zh-HK","zh-TW"];
-
-    if (languages.includes(a))
-    {
-        return true;
-    }
-    return false;
-}
-
-function isValidStreet(a)
-{
-    
-    var suffixes = ["ALLEY","ANEX","ARCADE","AVENUE","BAYOU","BEACH","BEND","BLUFF","BLUFFS","BOTTOM",
-    "BOULEVARD","BRANCH","BRIDGE","BROOK","BROOKS","BURG","BURGS","BYPASS","CAMP","CANYON","CAPE",
-    "CAUSEWAY","CENTER","CENTERS","CIRCLE","CIRCLES","CLIFF","CLIFFS","CLUB","COMMON","COMMONS",
-    "CORNER","CORNERS","COURSE","COURT","COURTS","COVE","COVES","CREEK","CRESCENT","CREST","CROSSING",
-    "CROSSROAD","CROSSROADS","CURVE","DALE","DAM","DIVIDE","DRIVE","DRIVES","ESTATE","ESTATES",
-    "EXPRESSWAY","EXTENSION","EXTENSIONS","FALL","FALLS","FERRY","FIELD","FIELDS","FLAT","FLATS",
-    "FORD","FORDS","FOREST","FORGE","FORGES","FORK","FORKS","FORT","FREEWAY","GARDEN","GARDENS","GATEWAY",
-    "GLEN","GLENS","GREEN","GREENS","GROVE","GROVES","HARBOR","HARBORS","HAVEN","HEIGHTS","HIGHWAY",
-    "HILL","HILLS","HOLLOW","INLET","ISLAND","ISLANDS","ISLE","JUNCTION","JUNCTIONS","KEY","KEYS",
-    "KNOLL","KNOLLS","LAKE","LAKES","LAND","LANDING","LANE","LIGHT","LIGHTS","LOAF","LOCK","LOCKS",
-    "LODGE","LOOP","MALL","MANOR","MANORS","MEADOW","MEADOWS","MEWS","MILL","MILLS","MISSION",
-    "MOTORWAY","MOUNT","MOUNTAIN","MOUNTAINS","NECK","ORCHARD","OVAL","OVERPASS","PARK","PARKS",
-    "PARKWAY","PARKWAYS","PASS","PASSAGE","PATH","PIKE","PINE","PINES","PLACE","PLAIN","PLAINS",
-    "PLAZA","POINT","POINTS","PORT","PORTS","PRAIRIE","RADIAL","RAMP","RANCH","RAPID","RAPIDS",
-    "REST","RIDGE","RIDGES","RIVER","ROAD","ROADS","ROUTE","ROW","RUE","RUN","SHOAL","SHOALS",
-    "SHORE","SHORES","SKYWAY","SPRING","SPRINGS","SPUR","SPURS","SQUARE","SQUARES","STATION",
-    "STRAVENUE","STREAM","STREET","STREETS","SUMMIT","TERRACE","THROUGHWAY","TRACE","TRACK",
-    "TRAFFICWAY","TRAIL","TRAILER","TUNNEL","TURNPIKE","UNDERPASS","UNION","UNIONS","VALLEY",
-    "VALLEYS","VIADUCT","VIEW","VIEWS","VILLAGE","VILLAGES","VILLE","VISTA","WALK","WALKS","WALL",
-    "WAY","WAYS","WELL","WELLS"];
-    var str = a.toUpperCase();
-    var arr = str.split(" ");
-    for (var x in suffixes)
-    {
-        for (var y in arr)
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
         {
-            if (arr[y] == suffixes[x]) 
+            var response = (JSON.parse(apiRequest.responseText));
+            console.log(response);
+            if (!response["success"]) 
             {
-                console.log(arr[y] + "=="+ suffixes[x]);
-                return true;
+                alert("Something went wrong while trying to add Location: " + input[3].value + " " + input[4].value + " " + input[5]);
+            }
+            else
+            {
+                popTable();
+                cancelAdd();
             }
         }
     }
-    return false;
+    var input = document.querySelectorAll("#addForm > input");
+    var data = {
+        "table": "locations", 
+        "add": {
+            "city": input[0].value,
+            "country": input[1].value,
+            "timezone": input[2].value,
+            "latitude": input[3].value,
+            "longitude": input[4].value
+        }
+    };
+    apiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    apiRequest.send(JSON.stringify(data));
+}
+
+function validateMod()
+{
+    var input = document.querySelectorAll("#modForm > input");
+    isValidCountryCity(input[2].value,input[1].value, "#modForm");
+}
+
+function isValidCountryCity(a,b,c)
+{// Uses an open source API, CountriesNow, to test if country exists, and if the city is part of it
+ // GitHub page of API: https://github.com/MartinsOnuoha/countriesNowAPI
+    var input = document.querySelectorAll(c + " > input");
+    var apiRequest = new XMLHttpRequest(); 
+    apiRequest.open('POST','https://countriesnow.space/api/v0.1/countries/cities',false);
+    apiRequest.setRequestHeader("Content-Type", "application/json");
+    var data = {"country" : a};
+
+    apiRequest.onreadystatechange = function()
+    {
+        if (apiRequest.readyState == 4 && apiRequest.status == 200)
+        {
+            if (c.includes('mod')) 
+            {
+                input[2].classList.add("valid");
+                input[2].classList.remove("invalid");
+            }
+            else  
+            {
+               input[1].classList.add("valid");
+               input[1].classList.remove("invalid");
+           }
+            var response = JSON.parse(apiRequest.responseText);
+            if (response['error']) 
+            {
+                alert("Something went wrong while checking City/Country Validity");
+            }
+            else
+            {
+                var cities = [];
+                for (var x in response['data'])
+                {
+                    cities.push(response['data'][x].toUpperCase());
+                }
+                console.log(cities);
+                if(!cities.includes(b.toUpperCase())) 
+                {
+                    alert("Invalid City");
+                    if (c.includes('mod')) 
+                    {
+                        input[1].classList.add("invalid");
+                        input[1].classList.remove("valid");
+                    }
+                    else 
+                    {
+                        input[0].classList.add("invalid");
+                        input[0].classList.remove("valid");
+                    }
+                }
+                else
+                {
+                    if (c.includes('mod')) 
+                    {
+                        isValidTZone(input[3].value, c);
+                        input[1].classList.add("valid");
+                        input[1].classList.remove("invalid");
+                    }
+                    else  
+                    {
+                        isValidTZone(input[2].value, c);
+                        input[0].classList.add("valid");
+                        input[0].classList.remove("invalid");
+                    }
+                }
+            }
+        }
+        else 
+        {
+            if (c.includes('mod')) 
+            {
+                input[2].classList.add("invalid");
+                input[2].classList.remove("valid");
+            }
+            else 
+            {
+                input[1].classList.add("invalid");
+                input[1].classList.remove("valid");
+            }
+            alert("Invalid Country");
+        }
+    }
+    apiRequest.send(JSON.stringify(data));
+}
+function isValidTZone(a,b)
+{
+    var input = document.querySelectorAll(b + " > input");
+    var valid = false;
+    var value = parseInt(a.replace(/hrs/i,""));
+    if (value == NaN) return false;
+    else if (value < -12 || value > 14) return false;
+    else 
+    {
+        valid = true;
+        var input = document.querySelectorAll(b + " > input");
+        if (b.includes('mod')) 
+        {
+            input[3].classList.add("valid");
+            input[3].classList.remove("invalid");
+            isValidLat(input[4].value, b);
+        }
+        else  
+        {
+            input[2].classList.add("valid");
+            input[2].classList.remove("invalid");
+            isValidLat(input[3].value, b);
+        }
+    }
+    if (!valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+        else 
+        {
+            input[2].classList.add("invalid");
+            input[2].classList.remove("valid");
+        }
+    }
+}
+function isValidLat(a,b)
+{//     Latitude and Longitude formatting:
+ //     https://docs.mapbox.com/help/glossary/lat-lon/
+
+    var input = document.querySelectorAll(b + " > input");
+    var valid = true;
+    var decCountReg = /\.[0-9]{5}$/g;
+    var symReg = /[^\.\-\+0-9]/g;
+    if (decCountReg.test(a))  
+    {
+        valid = false;
+        alert("Latitude may not have more than 4 decimal places"); //More than 4 decimals
+    }
+    if (valid && symReg.test(a)) 
+    {
+        valid = false;
+        alert("Latitude may not contain special characters"); //Has Special Characters
+    }
+    var latNum = parseFloat(a);
+    console.log("latitude: " + latNum);
+    if (valid && latNum == NaN) 
+    {
+        alert("Latitude must be a number"); //Not a number
+    }
+    else if (valid &&  (latNum > 90 || latNum < -90)) //outside of -90 <= x <= 90 range for latitudeif (b.includes('mod')) 
+    {
+        alert("Latitude is outside of acceptable range");
+    }
+    else if (valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("valid");
+            input[4].classList.remove("invalid");
+            isValidLon(input[5].value, b);
+        }
+        else  
+        {
+            input[3].classList.add("valid");
+            input[3].classList.remove("invalid");
+            isValidLon(input[4].value, b);
+        }
+    }
+    if(!valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[4].classList.add("invalid");
+            input[4].classList.remove("valid");
+        }
+        else 
+        {
+            input[3].classList.add("invalid");
+            input[3].classList.remove("valid");
+        }
+    }
+
+}
+
+function isValidLon(a,b)
+{//     Latitude and Longitude formatting:
+ //     https://docs.mapbox.com/help/glossary/lat-lon/
+    var input = document.querySelectorAll(b + " > input");
+    var valid = true;
+    var decCountReg = /\.[0-9]{5}$/g;
+    var symReg = /[^\.\-\+0-9]/g;
+    if (decCountReg.test(a))  
+    {
+        valid = false;
+        alert("Longitude may not have more than 4 decimal places"); //More than 4 decimals
+    }
+    if (valid && symReg.test(a))  
+    {
+        valid = false;
+        alert("Longitude may not contain special characters"); //Has Special Characters
+    }
+    var lonNum = parseFloat(a);
+    console.log("longitude: " + lonNum);
+    if (valid && lonNum == NaN) alert("Longitude must be a number"); //Not a number
+    else if (valid && (lonNum > 180 || lonNum < -180)) //outside of -180 <= x <= 180 range for latitude
+    {
+        alert("Longitude is outside of acceptable range");
+    }
+    else if (valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[5].classList.add("valid");
+            input[5].classList.remove("invalid");
+            document.querySelector("#modButton").disabled = false;
+        }
+        else
+        {
+            input[4].classList.add("valid");
+            input[4].classList.remove("invalid");
+            document.querySelector("#addButton").disabled = false;
+        }
+    }
+    if(!valid)
+    {
+        if (b.includes('mod')) 
+        {
+            input[5].classList.add("invalid");
+            input[5].classList.remove("valid");
+        }
+        else 
+        {
+           input[4].classList.add("invalid");
+           input[4].classList.remove("valid");
+       }
+    }
 }

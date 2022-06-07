@@ -9,20 +9,31 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="css/login.css">
-        <title> Golf Statistics/Login </title>
+        <link rel="stylesheet" href="../css/login.css">
+        <title> Sunrise Golfing/Login </title>
         <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
     </head>
     <body>
         <script> if (localStorage.length > 0) localStorage.clear(); </script>
-        
-        <div id="bodyContainer">
+        <div class="loaderFlag">
+            <div>
+                <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
+            </div>
+        </div>
+        <div class="content">
+            <div class="top-content">
+                <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
+                <h1 id="webTitle">Sunrise Golfing</h1>  
+            </div> 
             <?php
-                include_once("php/header.php");
+                include_once("header.php");
             ?>
             <div id="loginForm">
-                <form action="php/validate-login.php" method="post" class="loginForm">
+                <form action="validate-login.php" method="post" class="loginForm">
                     <div class="container">
                         <h1>Login</h1>
                         <p>Please fill in details to login.</p>
@@ -80,12 +91,16 @@
                     </div>
                 </form>
             </div>
+            <?php
+                include_once("footer.php");
+            ?>
         </div>
-        <?php
-            include_once("php/footer.php");
-        ?>
-        <script src="js/inputValidationLogin.js"></script>
-        <script src="js/passwordToggle.js"></script>
+        
+        <script language="Javascript" type="text/javascript" src="../js/inputValidationLogin.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/passwordToggle.js"></script>
+        <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     </body>
 </html>
 <?php session_unset(); session_destroy(); ?>
