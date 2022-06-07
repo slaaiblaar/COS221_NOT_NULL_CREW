@@ -10,13 +10,11 @@ function popStrokes(a)
     for (var eventIndex in events) //iterate through events
     {
         console.log("Event " + (eventIndex+1));
-        var gender = "M";
         
         var personIndexBase = 0
         if (events[eventIndex]['gender'] !== "Women") // Female events
         {
             personBase = 10;
-            gender = "W";
         }
         //var roundObject = [];
         for (var roundIndex = 0; roundIndex < 4; roundIndex++) //iterate through rounds
@@ -48,7 +46,7 @@ function popStrokes(a)
                         {
                             "stroke_no": i,
                             "round_id": (eventIndex*4+roundIndex+1),
-                            "hole_id": (holeIndex+1),
+                            "hole_id": (eventIndex*18+holeIndex+1),
                             "person_id": (personIndex+1),
                             "club_used": clubs[clubIndex],
                             "distance": averageLength,
@@ -63,7 +61,7 @@ function popStrokes(a)
                             {
                                 "stroke_no": i,
                                 "round_id": (eventIndex*4+roundIndex+1),
-                                "hole_id": (holeIndex+1),
+                                "hole_id": (eventIndex*18+holeIndex+1),
                                 "person_id": (personIndex+1),
                                 "club_used": clubs[clubIndex],
                                 "distance": 0,
@@ -87,7 +85,7 @@ function popStrokes(a)
             var response = (JSON.parse(strokeApiRequest.responseText));
             console.log("Strokes Population API Call Response:");
             console.log(response);
-            //if (a) popAddresses(a);
+            if (a) popScores(a);
         }
     }
     var data = {

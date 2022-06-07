@@ -23,6 +23,7 @@
     <script src="../Sample Data/populateRounds.js"></script>
     <script src="../Sample Data/popTournSched.js"></script>
     <script src="../Sample Data/populateStrokes.js"></script>
+    <script src="../Sample Data/populateScores.js"></script>
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -65,6 +66,7 @@
         // console.log(displayNames);
 
         popPubs(true);
+        //popScores(true);
         console.log("Done");
 
     </script>

@@ -399,7 +399,67 @@
             }
             return $sqlSuccess;
         }
-    }
+
+        public function sampleScores(array $data)
+        {
+            $responseObject = [];
+            $conn = $this->dbConnection;
+            $debugFile = fopen("../debug.txt","a+");
+            foreach ($data as $row)
+            {
+                $rid = $row['round_id'];
+                $pid = $row['person_id'];
+                $hid = $row['hole_id'];
+                fwrite($debugFile,print_r($row,true));
+                $result = $conn->query("SELECT MAX(stroke_no) as stroke_num FROM strokes WHERE person_id=".$pid." and hole_id=".$hid." and round_id=".$rid);
+                $numStrokes = $result->fetch_assoc();
+                $result = $conn->query("SELECT par FROM holes WHERE id=".$row['hole_id']);
+                $par = $result->fetch_assoc();
+                fwrite($debugFile,"Par(".gettype($par['par'])."): ". $par['par'].", strokes(".gettype($numStrokes['stroke_num'])."): ".$numStrokes['stroke_num']."\n");
+                $netscore = ($numStrokes['stroke_num'] - $par['par']);
+                $arr = ["person_id" => $pid, "round_id" => $rid, "hole_id" => $hid, "net_score" => $netscore, "stroke_count"=> intval($numStrokes['stroke_num']),
+                "birdie" =>(($netscore === -1)?1:0), "eagle" =>(($netscore === -2)?1:0), "bogey" =>(($netscore === 1)?1:0), "double_bogey" =>(($netscore === 2)?1:0)];
+                array_push($responseObject, $this->addScore($arr));
+                // $debugFile = fopen("../debug.txt","a+");
+                // fwrite($debugFile,"======================================\n");
+                // fwrite($debugFile,print_r($post,true));
+                // fwrite($debugFile,"\n======================================\n");
+                // fclose($debugFile);
+                //echo json_encode($post['data']);
+            }
+            fclose($debugFile);
+            return $responseObject;
+        }
+        public function addScore(array $data)
+        {
+            $conn = $this->dbConnection;
+            $validKeys = array();
+            $allKeys = array_keys($data);
+            $attributes = [];
+            foreach($allKeys as $key)
+            {
+                if ($data[$key] !== null)
+                {
+                    if (gettype($data[$key]) == "string")
+                    {
+                        array_push($attributes, "\"".$data[$key]."\"");
+                    }
+                    else array_push($attributes, $data[$key]);
+                    array_push($validKeys, $key);
+                }
+            }
+
+            $query = "INSERT INTO scores (" . join(", ",$validKeys) . ") VALUES (" . join(", ", $attributes).")";
+            if ($conn->query($query) === true)
+            {
+                return ["success" => true, "query" =>$query, "Row" => $data];  
+            }
+            else
+            {
+                return ["success" => false, "query" =>$query, "message" => $conn->error];
+            }
+        }
+    }   
     $dbConn = Database::getInstance();
     if (isset($_POST['table']))
     {
@@ -455,13 +515,17 @@
         }
         else
         {
-            // $debugFile = fopen("../debug.txt","a+");
-            // fwrite($debugFile,"======================================\n");
-            // fwrite($debugFile,print_r($post,true));
-            // fwrite($debugFile,"\n======================================\n");
-            // fclose($debugFile);
+            $debugFile = fopen("../debug.txt","a+");
+            fwrite($debugFile,"======================================\n");
+            fwrite($debugFile,print_r($post,true));
+            fwrite($debugFile,"\n======================================\n");
+            fclose($debugFile);
             //echo json_encode($post['data']);
-            if (isset($post['table'])) echo json_encode($dbConn->populateSamples($post));
+            if ($post['table'] == "scores")
+            {
+                echo json_encode($dbConn->sampleScores($post['data']));
+            }
+            else echo json_encode($dbConn->populateSamples($post));
         }
 
     }
