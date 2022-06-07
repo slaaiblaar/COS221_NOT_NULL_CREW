@@ -7,24 +7,24 @@ function createScores() {
   var strokeCount = [ 2, 4, 8, 13, 17, 21, 24, 27, 28, 32, 35, 38, 42, 47, 50, 53, 58 ];
 
   for (let i = 0; i < 4; i++) { // for each round in a tournament
-    for (let j = 0; j < 5; j++) { // for each tournament
-      for (let k = 0; k < 10; k++) { // for each player
+    for (let k = 0; k < 5; k++) { // for each tournament
+      for (let j = 1; j < 11; j++) { // for each player
         var birdie = false;
         var eagle = false;
         var bogey = false;
         var double_bogey = false;
-        for (let b = 0; b < 18; b++) { // for each hole on a course
-          startingScore += scoreAfterHole[b];
-          if (b = 1) birdie = true;
-          if (b = 4) eagle = true;
-          if (b = 5) bogey = true;
-          if (b = 9) double_bogey = true; 
+        for (let hole = 0; hole < 18; hole++) { // for each hole on a course
+          startingScore += scoreAfterHole[hole];
+          if (hole = 1) birdie = true;
+          if (hole = 4) eagle = true;
+          if (hole = 5) bogey = true;
+          if (hole = 9) double_bogey = true; 
           scores.push({
-              "person_id": k,
-              "round_id": i,
-              "hole_id": l,
+              "person_id": j,
+              "round_id": (i + 1),
+              "hole_id": (hole + 1),
               "net_score": startingScore,
-              "stroke_count": strokeCount[b],
+              "stroke_count": strokeCount[hole],
               "birdie": birdie,
               "eagle": eagle,
               "bogey": bogey,
