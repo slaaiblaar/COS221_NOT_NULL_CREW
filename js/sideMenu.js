@@ -164,6 +164,13 @@ function openMenu(){
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector("#createNewTournament").style.backgroundColor = "rgba(179, 179, 90,0.9)";
         document.querySelector("#createNewTournament").style.color = "rgba(0, 0, 0,0.7)";
         document.querySelector("#deleteTournament").style.backgroundColor = "rgba(130, 0, 0,0.9)";
@@ -175,6 +182,7 @@ function openMenu(){
         document.querySelector("#createNewTournament").style.pointerEvents = "none";
         document.querySelector("#deleteTournament").style.pointerEvents = "none";
         document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
         document.querySelector("#updateTournamentData").style.pointerEvents = "none";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
@@ -197,9 +205,17 @@ function openMenu(){
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
         document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
         document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
     //registerPlayer
@@ -221,9 +237,17 @@ function openMenu(){
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
         document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
         document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
     //tour
@@ -234,7 +258,6 @@ function openMenu(){
     //users
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/manageUsers.php")
     {
-        
         document.querySelector(".sidenav a").classList.toggle("show");
         document.getElementById("sideMenu").style.width = "250px";
         document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
@@ -251,6 +274,13 @@ function openMenu(){
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector("#createNewUser").style.backgroundColor = "rgba(179, 179, 90,0.9)";
         document.querySelector("#createNewUser").style.color = "rgba(0, 0, 0,0.7)";
         document.querySelector("#deleteUser").style.backgroundColor = "rgba(130, 0, 0,0.9)";
@@ -263,6 +293,7 @@ function openMenu(){
         document.querySelector("#deleteUser").style.pointerEvents = "none";
         document.querySelector("#filterTable").style.pointerEvents = "none";
         document.querySelector("#updateUserData").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
     //players
@@ -284,6 +315,13 @@ function openMenu(){
         document.querySelector("#sideMenu").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector("#createNewPlayer").style.backgroundColor = "rgba(179, 179, 90,0.9)";
         document.querySelector("#createNewPlayer").style.color = "rgba(0, 0, 0,0.7)";
         document.querySelector("#deletePlayer").style.backgroundColor = "rgba(130, 0, 0,0.9)";
@@ -296,11 +334,49 @@ function openMenu(){
         document.querySelector("#deletePlayer").style.pointerEvents = "none";
         document.querySelector("#filterTable").style.pointerEvents = "none";
         document.querySelector("#updatePlayerData").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
     //scores
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/scores.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector("#createNewStroke").style.backgroundColor = "rgba(179, 179, 90,0.9)";
+        document.querySelector("#createNewStroke").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#deleteStroke").style.backgroundColor = "rgba(130, 0, 0,0.9)";
+        document.querySelector("#deleteStroke").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateStrokeData").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#updateStrokeData").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#createNewStroke").style.pointerEvents = "none";
+        document.querySelector("#deleteStroke").style.pointerEvents = "none";
+        document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector("#updateStrokeData").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //rounds
@@ -499,18 +575,26 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector("#createNewTournament").style.backgroundColor = "rgba(179, 179, 3,1)";
         document.querySelector("#createNewTournament").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#deleteTournament").style.backgroundColor = "rgba(179, 0, 0,1)";
         document.querySelector("#deleteTournament").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
-        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#updateTournamentData").style.backgroundColor = "rgba(0, 179, 3,1)";
         document.querySelector("#updateTournamentData").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#createNewTournament").style.pointerEvents = "auto";
         document.querySelector("#deleteTournament").style.pointerEvents = "auto";
         document.querySelector("#filterTable").style.pointerEvents = "auto";
         document.querySelector("#updateTournamentData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //schedule
@@ -533,9 +617,17 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,1)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
         document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //registerPlayer
@@ -558,9 +650,17 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,1)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
         document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //tour
@@ -588,18 +688,26 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector("#createNewUser").style.backgroundColor = "rgba(179, 179, 3,1)";
         document.querySelector("#createNewUser").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#deleteUser").style.backgroundColor = "rgba(179, 0, 0,1)";
         document.querySelector("#deleteUser").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
-        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#updateUserData").style.backgroundColor = "rgba(0, 179, 3,1)";
         document.querySelector("#updateUserData").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#createNewUser").style.pointerEvents = "auto";
         document.querySelector("#deleteUser").style.pointerEvents = "auto";
         document.querySelector("#filterTable").style.pointerEvents = "auto";
         document.querySelector("#updateUserData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //players
@@ -622,23 +730,69 @@ function closeMenu(){
         document.querySelector(".loginRegister").style.pointerEvents = "auto";
         document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
         document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
         document.querySelector("#createNewPlayer").style.backgroundColor = "rgba(179, 179, 3,1)";
         document.querySelector("#createNewPlayer").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#deletePlayer").style.backgroundColor = "rgba(179, 0, 0,1)";
         document.querySelector("#deletePlayer").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
-        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#updatePlayerData").style.backgroundColor = "rgba(0, 179, 3,1)";
         document.querySelector("#updatePlayerData").style.color = "rgba(0, 0, 0,1)";
         document.querySelector("#createNewPlayer").style.pointerEvents = "auto";
         document.querySelector("#deletePlayer").style.pointerEvents = "auto";
         document.querySelector("#filterTable").style.pointerEvents = "auto";
         document.querySelector("#updatePlayerData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
         document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //scores
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/scores.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "0";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "black";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#createNewStroke").style.backgroundColor = "rgba(179, 179, 3,1)";
+        document.querySelector("#createNewStroke").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#deleteStroke").style.backgroundColor = "rgba(179, 0, 0,1)";
+        document.querySelector("#deleteStroke").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#updateStrokeData").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#updateStrokeData").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#createNewStroke").style.pointerEvents = "auto";
+        document.querySelector("#deleteStroke").style.pointerEvents = "auto";
+        document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector("#updateStrokeData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
 
     }
     //rounds

@@ -8,7 +8,7 @@
     u21457060
 -->
 <?php session_start(); setcookie("InsideUsers", "True", 0, "/");setcookie("InsideSignup", "False", 0, "/");
-    require_once("configDB.php");
+    require_once("setDBEnvVar.php"); require_once("configDB.php");
 ?>
 
 <!DOCTYPE html>
