@@ -1,4 +1,4 @@
-<?php
+<?php //Wian Kokemeoer u19043512
   session_start();
 ?>
 

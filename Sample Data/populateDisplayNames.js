@@ -1,4 +1,21 @@
+//Wian Kokemeoer u19043512
 var displayNames = [
+    {
+        "language": "en-US",
+        "entity_type": "persons",
+        "entity_id": 1,
+        "first_name": "Gary",
+        "middle_name": "Lee",
+        "last_name": "Player"
+    },
+    {
+        "language": "en-US",
+        "entity_type": "persons",
+        "entity_id": 2,
+        "first_name": "Jonelle",
+        "middle_name": "",
+        "last_name": "Coertzee"
+    },
     {
         "language": "en-US",
         "entity_type": "persons",
@@ -67,9 +84,9 @@ var displayNames = [
         "language": "en-US",
         "entity_type": "persons",
         "entity_id": 11,
-        "first_name": "Clarissa",
+        "first_name": "Tannie",
         "middle_name": "",
-        "last_name": "Hauck"
+        "last_name": "Sannie"
     },
     {
         "language": "en-US",
@@ -145,7 +162,7 @@ var displayNames = [
     }
 ];
 
-function popDispNames()//Populating display_names relation
+function popDispNames(a)//Populating display_names relation
 {
     var dispNamesApiRequest = new XMLHttpRequest();
     dispNamesApiRequest.open('POST','../php/addr_loc_course_api.php',true);
@@ -156,7 +173,7 @@ function popDispNames()//Populating display_names relation
             var response = (JSON.parse(dispNamesApiRequest.responseText));
             console.log("Display Names Population API Call Response:");
             console.log(response);
-            console.log("Done");
+            if (a) popAffiliationsEvents(a);
         }
     }
     var data = {

@@ -1,3 +1,4 @@
+//Wian Kokemeoer u19043512
 window.onload = popTable();
 
 function popTable(){
@@ -381,14 +382,15 @@ function isValidCountryCity(a,b,c)
 }
 function isValidTZone(a,b)
 {
+    var regexp = /^UTC[\+\-][0-9]{1,2}$/g;
+    var valid = true;
+    if (!regexp.test(a)) valid = false;
     var input = document.querySelectorAll(b + " > input");
-    var valid = false;
-    var value = parseInt(a.replace(/hrs/i,""));
-    if (value == NaN) return false;
-    else if (value < -12 || value > 14) return false;
-    else 
+    var value = parseInt(a.replace(/utc/i,""));
+    if (value == NaN) valid = false;
+    else if (value < -12 || value > 14) valid = false;
+    else if(valid)
     {
-        valid = true;
         var input = document.querySelectorAll(b + " > input");
         if (b.includes('mod')) 
         {
@@ -403,7 +405,7 @@ function isValidTZone(a,b)
             isValidLat(input[3].value, b);
         }
     }
-    if (!valid)
+    else
     {
         if (b.includes('mod')) 
         {

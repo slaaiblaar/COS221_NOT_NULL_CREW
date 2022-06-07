@@ -1,19 +1,28 @@
+//Wian Kokemeoer u19043512
 var tours = [
     {
-        "name:": "PGA Tour",
-        "affiliation_id": 1
-    },
-    {
-        "name:": "Green Tour",
+        "tour_name": "Sunshine Tour",
         "affiliation_id": 2
     },
     {
-        "name:": "A Golf Tour",
+        "tour_name": "PGA",
+        "affiliation_id": 1
+    },
+    {
+        "tour_name": "ZA Tour",
+        "affiliation_id": 1
+    },
+    {
+        "tour_name": "Green Tour",
+        "affiliation_id": 2
+    },
+    {
+        "tour_name": "A Golf Tour",
         "affiliation_id": 3
     }
 ];
 
-function popTours()//Populating tours relation
+function popTours(a)//Populating tours relation
 {
     var toursApiRequest = new XMLHttpRequest();
     toursApiRequest.open('POST','../php/addr_loc_course_api.php',true);
@@ -24,7 +33,7 @@ function popTours()//Populating tours relation
             var response = (JSON.parse(toursApiRequest.responseText));
             console.log("Tours Population API Call Response:");
             console.log(response);
-            popEvents()
+            if (a) popEvents(a);
         }
     }
     var data = {

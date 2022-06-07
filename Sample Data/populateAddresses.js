@@ -1,4 +1,19 @@
+//Wian Kokemeoer u19043512
 var addresses = [
+    {
+        "location_id": 1,
+        "language": "en-US",
+        "street_number": "15",
+        "street": "Breedt Street",
+        "country": "South Africa"
+    },
+    {
+        "location_id": 2,
+        "language": "en-US",
+        "street_number": "1086",
+        "street": "Suzuki Street",
+        "country": "Japan"
+    },
     {
         "location_id": 3,
         "language": "en-US",
@@ -147,27 +162,27 @@ var addresses = [
         "country": "Mongolia"
     }
 ];
-function popAddresses()//Populating addresses relation
+function popAddresses(a)//Populating addresses relation
+{
+    var addrApiRequest = new XMLHttpRequest();
+    addrApiRequest.open('POST','../php/addr_loc_course_api.php',true);
+    addrApiRequest.onreadystatechange = function()
+    {
+        if (addrApiRequest.readyState == 4 && addrApiRequest.status == 200)
         {
-            var addrApiRequest = new XMLHttpRequest();
-            addrApiRequest.open('POST','../php/addr_loc_course_api.php',true);
-            addrApiRequest.onreadystatechange = function()
-            {
-                if (addrApiRequest.readyState == 4 && addrApiRequest.status == 200)
-                {
-                    var response = (JSON.parse(addrApiRequest.responseText));
-                    console.log("Addresses Population API Call Response:");
-                    console.log(response);
-                    popSites();
-                }
-            }
-            var data = {
-                "sample": true,
-                "table": "addresses",
-                "data": addresses
-            };
-            addrApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
-
-            addrApiRequest.send(JSON.stringify(data));
+            var response = (JSON.parse(addrApiRequest.responseText));
+            console.log("Addresses Population API Call Response:");
+            console.log(response);
+            if (a) popSites(a);
         }
+    }
+    var data = {
+        "sample": true,
+        "table": "addresses",
+        "data": addresses
+    };
+    addrApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
+
+    addrApiRequest.send(JSON.stringify(data));
+}
         

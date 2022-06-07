@@ -1,4 +1,17 @@
+//Wian Kokemeoer u19043512
 var sites = [ //Courses
+    {
+        "site_key": "Pretoria Country club",
+        "publisher_id": 1,
+        "location_id": 1,
+        "address_id": 1
+    },
+    {
+        "site_key": "Tokyo Yokahama",
+        "publisher_id": 2,
+        "location_id": 2,
+        "address_id": 2
+    },
     {
         "site_key": "Ridgeview Country Club",
         "publisher_id": 1,
@@ -18,7 +31,7 @@ var sites = [ //Courses
         "address_id": 4
     }
 ];
-function popSites()//Populating sites relation
+function popSites(a)//Populating sites relation
 {
     var sitesApiRequest = new XMLHttpRequest();
     sitesApiRequest.open('POST','../php/addr_loc_course_api.php',true);
@@ -29,7 +42,7 @@ function popSites()//Populating sites relation
             var response = (JSON.parse(sitesApiRequest.responseText));
             console.log("Sites Population API Call Response:");
             console.log(response);
-            popHoles();
+            if (a) popHoles(a);
         }
     }
     var data = {

@@ -352,6 +352,49 @@
                 return [ "success" => false, "error" => $conn->error];
             }
         }
+
+        public function populateSamples(array $post)
+        { //Completely clears the data in the specified table and populates it with example data
+
+            $conn = $this->dbConnection;
+            $clearSQL = "DELETE FROM ". $post['table'];
+            if ($conn->query($clearSQL) === true)
+            {
+                $conn->query("ALTER TABLE ". $post['table']. " AUTO_INCREMENT = 1");
+                $sqlSuccess = array();
+                foreach($post['data'] as $row)
+                {
+                    $data = array();
+                    $validKeys = array();
+                    $allKeys = array_keys($row);
+                    foreach($allKeys as $key)
+                    {
+                        if ($row[$key] !== null)
+                        {
+                            if (gettype($row[$key]) == "string")
+                            {
+                                array_push($data, "\"".$row[$key]."\"");
+                            }
+                            else array_push($data, $row[$key]);
+                            array_push($validKeys, $key);
+                        }
+                    }
+                    $query = "INSERT INTO ". $post['table'] . "(" . join(", ",$validKeys) . ") VALUES (" . join(", ", $data).")";
+                    if ($conn->query($query) === true)
+                    {
+                        $newRow = $conn->query("SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
+                        $result = ["success" => true, "query" =>$query, "Row" => $newRow->fetch_assoc()];
+                    }
+                    else
+                    {
+                        $result = ["success" => false, "query" =>$query, "message" => $conn->error];
+                    }
+                    array_push($sqlSuccess, $result);
+                }
+                return $sqlSuccess;
+            }
+            else return ["success" => false];
+        }
     }
     $dbConn = Database::getInstance();
     if (isset($_POST['table']))
@@ -385,6 +428,7 @@
         // fwrite($debugFile,print_r($post['add'],true));
         // fwrite($debugFile,"\n======================================\n");
         // fclose($debugFile);
+        $current = array();
         if (!isset($post['sample']))
         {
             if ($post['table'] === 'addresses')
@@ -417,7 +461,8 @@
             // fwrite($debugFile,print_r($post,true));
             // fwrite($debugFile,"\n======================================\n");
             // fclose($debugFile);
-            echo json_encode($post['data']);
+            //echo json_encode($post['data']);
+            echo json_encode($dbConn->populateSamples($post));
         }
 
     }
