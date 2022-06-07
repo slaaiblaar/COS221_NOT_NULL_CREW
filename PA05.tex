@@ -393,7 +393,7 @@ We mapped our relation model to the SportsDB and added columns and new tables as
 \-\ \hspace{30pt}`last\_name` varchar(100) NOT NULL, \\
 \-\ \hspace{30pt}PRIMARY KEY (`id`), \\
 \-\ \hspace{30pt}UNIQUE KEY `email` (`email`), \\
-\-\ \hspace{30pt}CONSTRAINT `CHK\_tel` CHECK (`tel\_no` regexp '0[0-9]{9}'), \\
+\-\ \hspace{30pt}CONSTRAINT `CHK\_tel` CHECK (`tel\_no` regexp '0[0-9]\{9\}'), \\
 \-\ \hspace{30pt}CONSTRAINT `CHK\_type` CHECK (`user\_type` regexp '(admin$\vert$normal)') \\
 \-\ \hspace{15pt}) ENGINE=InnoDB AUTO\_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 
