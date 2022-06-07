@@ -133,6 +133,7 @@ function popTournamentSchedule(a)//Populating tournament_schedules relation
             var response = (JSON.parse(tournSchedApiRequest.responseText));
             console.log("Tournament Shedules Population API Call Response:");
             console.log(response);
+            if (a) popStrokes(a)
         }
     }
     var data = {

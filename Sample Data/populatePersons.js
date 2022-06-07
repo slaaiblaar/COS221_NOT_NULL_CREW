@@ -16,21 +16,6 @@ var persons = [
         "handicap": 0
     },
     {
-        "person_key": "0209130060086",
-        "publisher_id": 1,
-        "gender":  "F",
-        "birth_date": "2002/09/13",
-        "death_date": null,
-        "final_resting_location_id": null,
-        "birth_location_id": 1,
-        "hometown_location_id": 1,
-        "residence_location_id": 1,
-        "death_location_id": null,
-        "age": 20,
-        "affiliation_id": 1,
-        "handicap": 3
-    },
-    {
         "person_key": "9901084800085",
         "publisher_id": 1,
         "gender": "F",
@@ -149,6 +134,21 @@ var persons = [
         "age": 32,
         "affiliation_id": 2,
         "handicap": 2
+    },
+    {
+        "person_key": "0209130060086",
+        "publisher_id": 1,
+        "gender":  "F",
+        "birth_date": "2002/09/13",
+        "death_date": null,
+        "final_resting_location_id": null,
+        "birth_location_id": 1,
+        "hometown_location_id": 1,
+        "residence_location_id": 1,
+        "death_location_id": null,
+        "age": 20,
+        "affiliation_id": 1,
+        "handicap": 3
     },
     {
         "person_key": "2012274800088",

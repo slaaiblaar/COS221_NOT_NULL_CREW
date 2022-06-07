@@ -1,15 +1,15 @@
 //Wian Kokemeoer u19043512
 var events = [
     {
-    "event_key": "Pretoria Classic",
-    "publisher_id": 1,
-    "start_date_time": "2022/06/01 13:00:00",
-    "end_date_time": "2022/06/01 17:00",
-    "site_id": 1,
-    "duration": 4,
-    "event_status": "Scheduled",
-    "gender": "Men",
-    "tour_id": 1,
+    "event_key": "U.S. Open Championship",
+    "publisher_id": 2,
+    "start_date_time": "2022/05/01 13:00:00",
+    "end_date_time": "2022/05/04 17:00",
+    "site_id": 3,
+    "duration": null,
+    "event_status": "Completed",
+    "gender": "Women",
+    "tour_id": 2,
     "year": "2022"
     },
     {
@@ -37,18 +37,6 @@ var events = [
     "year": "2022"
     },
     {
-    "event_key": "U.S. Open Championship",
-    "publisher_id": 2,
-    "start_date_time": "2022/05/01 13:00:00",
-    "end_date_time": "2022/05/04 17:00",
-    "site_id": 3,
-    "duration": null,
-    "event_status": "Completed",
-    "gender": "Women",
-    "tour_id": 2,
-    "year": "2022"
-    },
-    {
     "event_key": "The Open Championship",
     "publisher_id": 1,
     "start_date_time": "2020/04/01 13:00:00",
@@ -59,6 +47,18 @@ var events = [
     "gender": "Men",
     "tour_id": 3,
     "year": "2020"
+    },
+    {
+    "event_key": "Pretoria Classic",
+    "publisher_id": 1,
+    "start_date_time": "2022/06/01 13:00:00",
+    "end_date_time": "2022/06/01 17:00",
+    "site_id": 1,
+    "duration": 4,
+    "event_status": "Scheduled",
+    "gender": "Men",
+    "tour_id": 1,
+    "year": "2022"
     }
 ];
 

@@ -46,8 +46,8 @@ var locations = [
         "city": "Auckland",
         "country": "New Zealand",
         "timezone": "UTC+13",
-        "latitude": "",
-        "longitude": ""
+        "latitude": "-36.8485",
+        "longitude": "174.7633"
     },
     {
         "city": "Glasgow",

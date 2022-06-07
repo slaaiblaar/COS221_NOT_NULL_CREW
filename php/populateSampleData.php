@@ -21,7 +21,8 @@
     <script src="../Sample Data/populateDisplayNames.js"></script>
     <script src="../Sample Data/populateAffEvents.js"></script>
     <script src="../Sample Data/populateRounds.js"></script>
-    <script src="../Sample Data/populateTournSched.js"></script>
+    <script src="../Sample Data/popTournSched.js"></script>
+    <script src="../Sample Data/populateStrokes.js"></script>
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -64,8 +65,8 @@
         // console.log(displayNames);
 
         popPubs(true);
-        console.log("Done")
-        
+        console.log("Done");
+
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

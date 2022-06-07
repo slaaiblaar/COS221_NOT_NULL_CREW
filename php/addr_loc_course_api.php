@@ -354,46 +354,62 @@
         }
 
         public function populateSamples(array $post)
-        { //Completely clears the data in the specified table and populates it with example data
-
+        {
             $conn = $this->dbConnection;
-            $clearSQL = "DELETE FROM ". $post['table'];
-            if ($conn->query($clearSQL) === true)
+            $sqlSuccess = array();
+            foreach($post['data'] as $row)
             {
-                $conn->query("ALTER TABLE ". $post['table']. " AUTO_INCREMENT = 1");
-                $sqlSuccess = array();
-                foreach($post['data'] as $row)
+                $debugFile = fopen("../debug.txt","a+");
+                fwrite($debugFile,print_r($post['table'],true));
+                fclose($debugFile);
+                $data = array();
+                $validKeys = array();
+                $allKeys = array_keys($row);
+                foreach($allKeys as $key)
                 {
-                    $data = array();
-                    $validKeys = array();
-                    $allKeys = array_keys($row);
-                    foreach($allKeys as $key)
+                    if ($row[$key] !== null)
                     {
-                        if ($row[$key] !== null)
+                        if (gettype($row[$key]) == "string")
                         {
-                            if (gettype($row[$key]) == "string")
-                            {
-                                array_push($data, "\"".$row[$key]."\"");
-                            }
-                            else array_push($data, $row[$key]);
-                            array_push($validKeys, $key);
+                            array_push($data, "\"".$row[$key]."\"");
                         }
+                        else array_push($data, $row[$key]);
+                        array_push($validKeys, $key);
                     }
-                    $query = "INSERT INTO ". $post['table'] . "(" . join(", ",$validKeys) . ") VALUES (" . join(", ", $data).")";
-                    if ($conn->query($query) === true)
+                }
+                $query = "INSERT INTO ". $post['table'] . "(" . join(", ",$validKeys) . ") VALUES (" . join(", ", $data).")";
+                if ($conn->query($query) === true)
+                {
+                    $newRow = $conn->query("SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
+
+                    $debugFile = fopen("../debug.txt","a+");
+                    fwrite($debugFile,print_r($newRow,true));
+                    fwrite($debugFile,"\nQuery: " . "SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
+                    fwrite($debugFile,"\n======================================\n");
+                    fclose($debugFile);
+                    if (gettype($newRow) == "boolean")
                     {
-                        $newRow = $conn->query("SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
-                        $result = ["success" => true, "query" =>$query, "Row" => $newRow->fetch_assoc()];
+                        $debugFile = fopen("../criticalError.txt","a+");
+                        fwrite($debugFile,print_r($newRow,true));
+                        fwrite($debugFile,"\nQuery: " . "SELECT " . join(", ",$validKeys) . " FROM " . $post['table'] . " WHERE id = LAST_INSERT_ID()");
+                        fwrite($debugFile,"\n======================================\n");
+                        fclose($debugFile);
+                        $result = ["success" => false, "query" =>$query, "message" => $conn];
                     }
                     else
                     {
-                        $result = ["success" => false, "query" =>$query, "message" => $conn->error];
+                        $temp = $newRow->fetch_assoc();
+                        $result = ["success" => true, "query" =>$query, "Row" => $temp];
                     }
-                    array_push($sqlSuccess, $result);
+                    
                 }
-                return $sqlSuccess;
+                else
+                {
+                    $result = ["success" => false, "query" =>$query, "message" => $conn->error];
+                }
+                array_push($sqlSuccess, $result);
             }
-            else return ["success" => false];
+            return $sqlSuccess;
         }
     }
     $dbConn = Database::getInstance();
