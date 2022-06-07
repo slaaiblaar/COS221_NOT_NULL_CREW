@@ -241,16 +241,6 @@
     text-decoration: underline;
   }
 
-  .filterTheme{
-    float: right;
-    cursor: pointer;
-    /* margin-right: 20px; */
-    padding: 10px 16px;
-    color: white;
-    border-radius: 50px;
-    margin-bottom: 5px;
-  }
-
   .content{
     display:none;
   }
@@ -278,6 +268,72 @@
     }
   }
 
+  .tableGrid th,td{
+    padding: 2px;
+    text-align: center;
+}
+#TableSize{
+  height:100%;
+  width:975px;
+  overflow-y: auto;
+}
+
+th 
+{
+  background: rgb(0, 179, 3);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 13px;
+}
+
+table.Table
+{
+  height: 500px;
+  width: 965px;
+  border: 1px solid black;
+  border-radius: 13px; 
+  border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+border-bottom: 1px solid black;
+padding: 10px; 
+border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+  background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+  background-color: rgb(96, 164, 98);
+  color: #00420d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+  background-color: rgb(124, 211, 126);
+  color: #00420d;
+  text-decoration: none;
+}
 
   .grid{
     display: grid;

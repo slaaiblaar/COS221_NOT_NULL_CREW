@@ -1,5 +1,7 @@
 <?php
-  session_start(); require_once("configDB.php"); require_once("setDBEnvVar.php");
+  session_start(); 
+  require_once("setDBEnvVar.php");
+  require_once("configDB.php"); 
 ?>
 
 <!DOCTYPE html>

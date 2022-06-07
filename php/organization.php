@@ -9,6 +9,7 @@
 -->
 <?php 
     session_start(); 
+    require_once("setDBEnvVar.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -191,8 +192,7 @@
                 </form>
             </div>
         </div>
-
-         <!-- Update Tour -->
+        <!-- Update Tour -->
         <div class="fullScreenPopupUpdate">
             <div id="updateOrgPopup">
                 <forms id="updateOrgForm"  onsubmit = "return UpdateCheck()">
@@ -235,14 +235,13 @@
                 </form>
             </div>
         </div>
+        <?php
+            include_once("footer.php");
+        ?>
     </div>
 
-    <?php
-        include_once("footer.php");
-    ?>
-
     <script src="../js/OrganizationPopups.js"></script>
-    <script src="../js/sideMenu.js"></script>
+    <!-- <script src="../js/sideMenu.js"></script> -->
     <script src="../js/organization.js"></script>
     <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

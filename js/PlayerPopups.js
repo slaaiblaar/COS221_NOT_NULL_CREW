@@ -216,7 +216,7 @@ $(function updates(){
     // });
 });
 
-$(function updates(){
+$(function filters(){
     $('#filterTable').click(function() {
         
         $('#filterOptions').slideToggle();
