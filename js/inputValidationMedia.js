@@ -25,7 +25,7 @@ const updateMediaType = document.querySelector(".update-option1");
 if(object_id!=null){
     object_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(object_id)){
+        if (!idRequirement.test(object_id.value.trim())){
             setInputError(object_id,"Invalid object_id. \nobject_id can only be between a digit");
         }
         else{
@@ -36,7 +36,7 @@ if(object_id!=null){
 if(source_id!=null){
     source_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(source_id)){
+        if (!idRequirement.test(source_id.value.trim())){
             setInputError(source_id,"Invalid source_id. \nsource_id can only be between a digit");
         }
         else{
@@ -47,7 +47,7 @@ if(source_id!=null){
 if(revision_id!=null){
     revision_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(revision_id)){
+        if (!idRequirement.test(revision_id.value.trim())){
             setInputError(revision_id,"Invalid revision_id. \nrevision_id can only be between a digit");
         }
         else{
@@ -58,7 +58,7 @@ if(revision_id!=null){
 if(publisher_id!=null){
     publisher_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(publisher_id)){
+        if (!idRequirement.test(publisher_id.value.trim())){
             setInputError(publisher_id,"Invalid publisher_id. \npublisher_id can only be between a digit");
         }
         else{
@@ -69,7 +69,7 @@ if(publisher_id!=null){
 if(credit_id!=null){
     credit_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(credit_id)){
+        if (!idRequirement.test(credit_id.value.trim())){
             setInputError(credit_id,"Invalid credit_id. \ncredit_id can only be between a digit");
         }
         else{
@@ -80,7 +80,7 @@ if(credit_id!=null){
 if(create_location_id!=null){
     create_location_id.addEventListener('keyup',function validatePassword() {
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(create_location_id)){
+        if (!idRequirement.test(create_location_id.value.trim())){
             setInputError(create_location_id,"Invalid create_location_id. \ncreate_location_id can only be between a digit");
         }
         else{
@@ -135,7 +135,7 @@ form.addEventListener('submit', f => {
 if(id !=null){
     id.addEventListener("keyup", function(){
         var idRequirement = /^\d+$/;
-        if (!idRequirement.test(id.value)){
+        if (!idRequirement.test(id.value.trim())){
             setInputError(id,"Invalid id. Please enter digits");
         }
         else{
@@ -146,7 +146,7 @@ if(id !=null){
 if(updateID !=null){
     updateID.addEventListener("keyup", function(){
         var updateIDRequirement = /^\d+$/;
-        if (!updateIDRequirement.test(updateID.value)){
+        if (!updateIDRequirement.test(updateID.value.trim())){
             setInputError(updateID,"Invalid id. Please enter digits");
         }
         else{
@@ -185,6 +185,8 @@ if(updateMediaType != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option1");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter media type (Photo or Video)");
+        document.querySelector(".updateInput > input").setAttribute("type","number");
+        document.querySelector(".updateInput > input").setAttribute("name","option1");
     })
 }
 //validation on update fields
@@ -194,7 +196,7 @@ if (updatePopupInput != null){
             //do validation for ID number
             clearInputSuccessError(updatePopupInput);
             var idRequirement = /^(photo)|(video)$/;
-            if(!idRequirement.test(updateMediaType.value.trim())){
+            if(!idRequirement.test(updatePopupInput.value.trim())){
                 setInputError(updatePopupInput,"Invalid media type. Please ensure it is one of the following: photo, video");
             }
             else{
@@ -211,74 +213,98 @@ function ValidateInput(){
     // var submitReq = false;
 
     if (photoType!=null && !photoType.checked && videoType!=null && !videoType.checked){
-        setInputError(photoType, "Please select a media type.")
+        setInputError(photoType, "Please select a media type.");
     }
     else{
         setInputSuccess(photoType);
     }
-    if(object_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(object_id.value)){
-            setInputError(object_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(object_id);
-        }
+    if(object_id!=null){
+        object_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(object_id.value.trim())){
+                setInputError(object_id,"Invalid object_id. \nobject_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(object_id);
+            }
+        });
     }
-    if(source_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(source_id.value)){
-            setInputError(source_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(source_id);
-        }
+    if(source_id!=null){
+        source_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(source_id.value.trim())){
+                setInputError(source_id,"Invalid source_id. \nsource_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(source_id);
+            }
+        });
     }
-    if(revision_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(revision_id.value)){
-            setInputError(revision_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(revision_id);
-        }
+    if(revision_id!=null){
+        revision_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(revision_id.value.trim())){
+                setInputError(revision_id,"Invalid revision_id. \nrevision_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(revision_id);
+            }
+        });
     }
-    if(publisher_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(publisher_id.value)){
-            setInputError(publisher_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(publisher_id);
-        }
+    if(publisher_id!=null){
+        publisher_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(publisher_id.value.trim())){
+                setInputError(publisher_id,"Invalid publisher_id. \npublisher_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(publisher_id);
+            }
+        });
     }
-    if(credit_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(credit_id.value)){
-            setInputError(credit_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(credit_id);
-        }
+    if(credit_id!=null){
+        credit_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(credit_id.value.trim())){
+                setInputError(credit_id,"Invalid credit_id. \ncredit_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(credit_id);
+            }
+        });
     }
-    if(create_location_id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(create_location_id.value)){
-            setInputError(create_location_id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(create_location_id);
-        }
+    if(create_location_id!=null){
+        create_location_id.addEventListener('keyup',function validatePassword() {
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(create_location_id.value.trim())){
+                setInputError(create_location_id,"Invalid create_location_id. \ncreate_location_id can only be between a digit");
+            }
+            else{
+                setInputSuccess(create_location_id);
+            }
+        });
     }
-
-    if(id != null){
-        var idRequirement = /^\d+$/;
-        if (!idRequirement.test(id.value)){
-            setInputError(id,"Invalid id. Please enter digits");
-        }
-        else{
-            setInputSuccess(id);
-        }
+    if(id !=null){
+        id.addEventListener("keyup", function(){
+            var idRequirement = /^\d+$/;
+            if (!idRequirement.test(id.value.trim())){
+                setInputError(id,"Invalid id. Please enter digits");
+            }
+            else{
+                setInputSuccess(id);
+            }
+        });
+    }
+    if(updateID !=null){
+        updateID.addEventListener("keyup", function(){
+            var updateIDRequirement = /^\d+$/;
+            if (!updateIDRequirement.test(updateID.value.trim())){
+                setInputError(updateID,"Invalid id. Please enter digits");
+            }
+            else{
+                setInputSuccess(updateID);
+            }
+        });
     }
 
     if (updatePopupInput != null){
@@ -289,7 +315,7 @@ function ValidateInput(){
                         //do validation for ID number
                         clearInputSuccessError(updatePopupInput);
                         var idRequirement = /^(photo)|(video)$/;
-                        if(!idRequirement.test(updateMediaType.value.trim())){
+                        if(!idRequirement.test(updatePopupInput.value.trim())){
                             setInputError(updatePopupInput,"Invalid media type. Please ensure it is one of the following: photo, video");
                         }
                         else{

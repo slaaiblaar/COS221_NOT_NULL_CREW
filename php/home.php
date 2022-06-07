@@ -107,7 +107,7 @@
             <img id="statistics-img" src="../img/statistics-image.jpg" alt="statistics" width="500" height="200">
             <img id="statistics-dark-img" src="../img/statistics-dark-image.jpeg" alt="statistics" width="500" height="200">
           </div>
-          <button id="statistics-btn"><a href="statistics.php">View Statistics
+          <button id="statistics-btn"><a href="manageStatistics.php">View Statistics
               <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </button>
         </div>

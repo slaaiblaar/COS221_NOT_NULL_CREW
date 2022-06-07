@@ -302,6 +302,7 @@ if(updateEmail != null){
         document.querySelector(".updateInput > input").classList.add("email");
         document.querySelector(".updateInput > input").placeholder ="Enter User email (e.g. some@example.com)";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option1");
     })
 }
 if(updatePsw != null){
@@ -318,6 +319,7 @@ if(updatePsw != null){
         document.querySelector(".updateInput > input").classList.add("password");   
         document.querySelector(".updateInput > input").placeholder ="Enter User password";
         document.querySelector(".updateInput > input").setAttribute("type","password");
+        document.querySelector(".updateInput > input").setAttribute("name","option2");
     })
 }
 if(updateTelNo != null){
@@ -334,6 +336,7 @@ if(updateTelNo != null){
         document.querySelector(".updateInput > input").classList.add("telNo");
         document.querySelector(".updateInput > input").placeholder ="Enter User Tel No.";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option3");
     })
 }
 if(updateType != null){
@@ -348,8 +351,9 @@ if(updateType != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option4");
         document.querySelector(".updateInput > input").classList.add("userType");
-        document.querySelector(".updateInput > input").placeholder ="Enter User Type (e.g. Male/Female/Other)";
+        document.querySelector(".updateInput > input").placeholder ="Enter User Type (e.g. Admin/Normal)";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option4");
     })
 }
 if(updateFirstName != null){
@@ -365,6 +369,7 @@ if(updateFirstName != null){
         document.querySelector(".updateInput > input").classList.add("name");
         document.querySelector(".updateInput > input").placeholder ="Enter First Name";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option5");
     })
 }
 if(updateLastName != null){
@@ -381,6 +386,7 @@ if(updateLastName != null){
         document.querySelector(".updateInput > input").classList.add("surname");
         document.querySelector(".updateInput > input").placeholder ="Enter Last Name";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option6");
     })
 }
 if(updateInitials != null){
@@ -396,6 +402,7 @@ if(updateInitials != null){
         document.querySelector(".updateInput > input").classList.add("initials");
         document.querySelector(".updateInput > input").placeholder ="Enter User initials";
         document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option7");
     })
 }
 //validation on update fields
@@ -417,28 +424,28 @@ if (updatePopupInput != null){
             clearInputSuccessError(updatePopupInput);
             const passwordRequirement = /^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/;
             var passwordVal = password.value.trim();
-            if (!passwordRequirement.test(passwordVal)){
-                setInputError(password,"Invalid password. \nIt needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.]");
+            if (!passwordRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput,"Invalid password. \nIt needs to contain: at least 8 characters, uppercase and lowercase characters, numeric digits and at least one symbol [&,%,$,etc.]");
             }
             else{
-                setInputSuccess(password);
+                setInputSuccess(updatePopupInput);
             }
         }
         else if(updateTelNo.checked){
             clearInputSuccessError(updatePopupInput);
             const telNoRequirement = /^\d{10}$/;
-            if (!telNoRequirement.test(telNoVal)){
-                setInputError(telNo, "Please enter valid telephone number (Must contain 10 digits)");
+            if (!telNoRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput, "Please enter valid telephone number (Must contain 10 digits)");
             }
             else{
-                setInputSuccess(telNo);
+                setInputSuccess(updatePopupInput);
             }
         }
         else if(updateType.checked){
             clearInputSuccessError(updatePopupInput);
-            const updateTypeRequirement = /^(Male)|(Female)|(Other)$/;
-            if (!updateTypeRequirement.test(updateType)){
-                setInputError(updatePopupInput, "Invalid user type. Please ensure that iy matches one of the following: Male, Female, Other");
+            const updateTypeRequirement = /^(Admin)|(Normal)$/;
+            if (!updateTypeRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput, "Invalid user type. Please ensure that iy matches one of the following: Admin, Normal");
             }
             else{
                 setInputSuccess(updatePopupInput);
@@ -448,8 +455,8 @@ if (updatePopupInput != null){
             //do validation for ID number
             clearInputSuccessError(updatePopupInput);
             const nameRequirement = /^[A-Z][a-z]+$/;
-            if (!nameRequirement.test(updateFirstName)){
-                setInputError(Name,"Please enter a valid name. (Only characters allowed and it must start with a capital)");
+            if (!nameRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput,"Please enter a valid name. (Only characters allowed and it must start with a capital)");
             }
             else{
                 setInputSuccess(updatePopupInput);
@@ -459,8 +466,8 @@ if (updatePopupInput != null){
             //do validation for ID number
             clearInputSuccessError(updatePopupInput);
             const nameRequirement = /^[A-Z][a-z]+$/;
-            if (!nameRequirement.test(updateLastName)){
-                setInputError(updateLastName,"Please enter a valid surname. (Only characters allowed and it must start with a capital)");
+            if (!nameRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput,"Please enter a valid surname. (Only characters allowed and it must start with a capital)");
             }
             else{
                 setInputSuccess(updatePopupInput);
@@ -470,8 +477,8 @@ if (updatePopupInput != null){
             //do validation for ID number
             clearInputSuccessError(updatePopupInput);
             const initialsRequirement = /^[A-Z]+$/;
-            if (!initialsRequirement.test(updateLastName)){
-                setInputError(updateInitials,"Please enter valid initials. (Only characters allowed and it must be in capitals)");
+            if (!initialsRequirement.test(updatePopupInput.value.trim())){
+                setInputError(updatePopupInput,"Please enter valid initials. (Only characters allowed and it must be in capitals)");
             }
             else{
                 setInputSuccess(updatePopupInput);

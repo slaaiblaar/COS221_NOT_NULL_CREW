@@ -241,6 +241,8 @@ if(updatePersonKey != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option1");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter Id number");
+        document.querySelector(".updateInput > input").setAttribute("type","number");
+        document.querySelector(".updateInput > input").setAttribute("name","option1");
     })
 }
 if(updateDoB != null){
@@ -254,6 +256,8 @@ if(updateDoB != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option2");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter birth date");
+        document.querySelector(".updateInput > input").setAttribute("type","date");
+        document.querySelector(".updateInput > input").setAttribute("name","option2");
     })
 }
 if(updateAge != null){
@@ -267,6 +271,8 @@ if(updateAge != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option3");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter age (range[18-65]");
+        document.querySelector(".updateInput > input").setAttribute("type","number");
+        document.querySelector(".updateInput > input").setAttribute("name","option3");
     })
 }
 if(updateHandicap != null){
@@ -280,6 +286,8 @@ if(updateHandicap != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option4");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter handicap (range[0-54])");
+        document.querySelector(".updateInput > input").setAttribute("type","number");
+        document.querySelector(".updateInput > input").setAttribute("name","option4");
     })
 }
 if(updateDeathDate != null){
@@ -293,6 +301,8 @@ if(updateDeathDate != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option5");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter death date");
+        document.querySelector(".updateInput > input").setAttribute("type","date");
+        document.querySelector(".updateInput > input").setAttribute("name","option5");
     })
 }
 if(updateGender != null){
@@ -306,6 +316,8 @@ if(updateGender != null){
         document.querySelector(".updateInput > input").classList.add("updatePopupInput");
         document.querySelector(".updateInput > input").classList.add("option6");
         document.querySelector(".updateInput > input").setAttribute("placeholder","Enter gender (choose from Male/Female/Other)");
+        document.querySelector(".updateInput > input").setAttribute("type","text");
+        document.querySelector(".updateInput > input").setAttribute("name","option6");
     })
 }
 //validation on update fields
@@ -382,7 +394,7 @@ function ValidateInput(){
     // var submitReq = false;
 
     if (genderMale!=null && !genderMale.checked && !genderFemale.checked && !genderOther.checked){
-        setInputError(genderMale, "Please select a gender.")
+        setInputError(genderMale, "Please select a gender.");
     }
     else{
         setInputSuccess(genderMale);

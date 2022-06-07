@@ -235,11 +235,12 @@
             }
 
         }
-        else if(isset($_POST['updatePopupInput']) && (isset($_POST['option1']))){
+        else if(isset($_POST['option1'])){
             //update a player's data
             $_SESSION['option1'] = $_POST['option1'];
             $select=null;
             $result=null;
+            $id = $_POST['idUpdate'];
             if($_SESSION['option1'] != null){
                 //view males
                 $select = $conn->prepare("SELECT * FROM media WHERE id=?");

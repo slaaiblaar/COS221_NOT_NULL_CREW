@@ -323,7 +323,7 @@
                         </div>
                         <div class="inputTextBox updateInputID">
                             <label>User Email</label><br>
-                            <input class="pkEmail" type="text" name="pkEmail" placeholder="Enter your email">
+                            <input class="pkEmailUpdate" type="text" name="pkEmailUpdate" placeholder="Enter your email">
                             <div class="error"></div><br>
                         </div>
                         <div class="inputTextBox updateInput">
@@ -381,7 +381,7 @@
                     var regPopup = document.querySelector('fullScreenPopupReg');                    
                     var updatePopup = document.querySelector('fullScreenPopupUpdate');
                     var succesPopup = document.querySelector('#SuccessfulRegPopup');
-                    successPopup.children[0].innerHTML = 'Successfully Updated User's record';
+                    successPopup.children[0].innerHTML = 'Successfully Updated Users record';
 
                     regPopup.style.visibility = 'visible'; 
                     regPopup.fadeIn('slow');

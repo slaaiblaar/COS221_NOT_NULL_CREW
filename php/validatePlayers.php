@@ -38,15 +38,11 @@
                 $idNumber = $_POST['idNumber'];
                 
                 //insert user into database
-                $query = $conn->prepare("INSERT INTO persons (person_key, publisher_id, gender, birth_date, death_date, resting_location_id,
+                $query = "INSERT INTO persons (person_key, publisher_id, gender, birth_date, death_date, resting_location_id,
                 birth_location_id,hometown_location_id, residence_location_id, death_location_id, age, handicap, affiliation_id) 
-                VALUES (?,'null',?,?,'null','null','null','null','null','null',?,?,'null')");
-                $nullVal = null;
-                $query->bind_param("sisssiiiiiiii", $idNumber,$nullVal, $gender, $dateOfBirth,$nullVal,$nullVal,$nullVal,$nullVal,$nullVal,$nullVal, $age, $handicap,$nullVal);
-                $query->execute();
-                $result = $query->get_result();
+                VALUES ('$idNumber','1','$gender','$dateOfBirth','1','1','1','1','1','1','$age','$handicap','1')";
                 
-                if ($query){
+                if ($conn->query($query)){
                     //Success
                     $_SESSION['showRegPopupAdd'] = "true";
                     header("Location: managePlayers.php");
@@ -291,7 +287,7 @@
             }
 
         }
-        else if(isset($_POST['updatePopupInput']) && (isset($_POST['option1']) || isset($_POST['option2']) || isset($_POST['option3']) || isset($_POST['option4']) || isset($_POST['option5']) || isset($_POST['option6']))){
+        else if(isset($_POST['option1']) || isset($_POST['option2']) || isset($_POST['option3']) || isset($_POST['option4']) || isset($_POST['option5']) || isset($_POST['option6'])){
             //update a player's data
             $_SESSION['option1'] = $_POST['option1'];
             $_SESSION['option2'] = $_POST['option2'];
@@ -301,6 +297,7 @@
             $_SESSION['option6'] = $_POST['option6'];
             $select=null;
             $result=null;
+            $id = $_POST['idUpdate'];
             if($_SESSION['option1'] != null){
                 //view males
                 $select = $conn->prepare("SELECT * FROM persons WHERE id=?");

@@ -303,7 +303,7 @@
                     </div>
                     <div class="inputTextBox updateInputID">
                         <label>Player id</label><br>
-                        <input class="id" type="text" name="id" placeholder="Enter the id">
+                        <input class="idUpdate" type="text" name="idUpdate" placeholder="Enter the id">
                         <div class="error"></div><br>
                     </div>
                     <div class="inputTextBox updateInput">
@@ -362,7 +362,7 @@
                     var regPopup = document.querySelector('fullScreenPopupReg');                    
                     var updatePopup = document.querySelector('fullScreenPopupUpdate');
                     var succesPopup = document.querySelector('#SuccessfulRegPopup');
-                    successPopup.children[0].innerHTML = 'Successfully Updated User's record';
+                    successPopup.children[0].innerHTML = 'Successfully Updated Users record';
 
                     regPopup.style.visibility = 'visible'; 
                     regPopup.fadeIn('slow');

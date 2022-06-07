@@ -309,14 +309,70 @@ function openMenu(){
 
     }
     //media
-    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/media.php")
+    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/manageMedia.php")
     {
-
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#createNewMedia").style.backgroundColor = "rgba(179, 179, 90,0.9)";
+        document.querySelector("#createNewMedia").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#deleteMedia").style.backgroundColor = "rgba(130, 0, 0,0.9)";
+        document.querySelector("#deleteMedia").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateMediaData").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#updateMediaData").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#createNewMedia").style.pointerEvents = "none";
+        document.querySelector("#deleteMedia").style.pointerEvents = "none";
+        document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector("#updateMediaData").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
     //statistics
-    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/statistics.php")
+    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/manageStatistics.php")
     {
-
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector("#createNewStatistics").style.backgroundColor = "rgba(179, 179, 90,0.9)";
+        document.querySelector("#createNewStatistics").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#deleteStatistics").style.backgroundColor = "rgba(130, 0, 0,0.9)";
+        document.querySelector("#deleteStatistics").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateStatisticsData").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#updateStatisticsData").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#createNewStatistics").style.pointerEvents = "none";
+        document.querySelector("#deleteStatistics").style.pointerEvents = "none";
+        document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector("#updateStatisticsData").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
     }
 
     $(document).click(function(e) 
@@ -647,14 +703,72 @@ function closeMenu(){
 
     }
     //media
-    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/media.php")
+    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/manageMedia.php")
     {
-
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "0";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "black";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector("#createNewMedia").style.backgroundColor = "rgba(179, 179, 3,1)";
+        document.querySelector("#createNewMedia").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#deleteMedia").style.backgroundColor = "rgba(179, 0, 0,1)";
+        document.querySelector("#deleteMedia").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateMediaData").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#updateMediaData").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#createNewMedia").style.pointerEvents = "auto";
+        document.querySelector("#deleteMedia").style.pointerEvents = "auto";
+        document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector("#updateMediaData").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
     //statistics
-    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/statistics.php")
+    else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/manageStatistics.php")
     {
-
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "0";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "black";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector("#createNewStatistics").style.backgroundColor = "rgba(179, 179, 3,1)";
+        document.querySelector("#createNewStatistics").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#deleteStatistics").style.backgroundColor = "rgba(179, 0, 0,1)";
+        document.querySelector("#deleteStatistics").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateStatisticsData").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#updateStatisticsData").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#createNewStatistics").style.pointerEvents = "auto";
+        document.querySelector("#deleteStatistics").style.pointerEvents = "auto";
+        document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector("#updateStatisticsData").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
     }
 }
 

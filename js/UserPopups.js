@@ -128,7 +128,7 @@ popupUpdateType.addEventListener("click", function(){
     $(".fullScreenPopupUpdate").fadeIn();    
     document.querySelector(".updatePopupHeader > span").innerHTML = "Change User Type";
     document.querySelector(".updateInput > label").innerHTML ="User new type";
-    document.querySelector(".updateInput > input").placeholder ="Enter User type (e.g. Male / Female / Other)";
+    document.querySelector(".updateInput > input").placeholder ="Enter User type (e.g. Admin / Normal)";
     document.querySelector(".updateInput > input").setAttribute("type","text");
 });
 var popupUpdateFirstName = document.querySelector(".update-option5");

@@ -35,7 +35,7 @@ dismissAddPopup.addEventListener("click", function hidePopup(){ //this will hide
         nodeList[i].classList.remove("error");
         nodeList[i].classList.remove("success");
     }
-    document.querySelector("#newMediaFormPopup").scrollTop = 0;   
+    document.querySelector("#newMediaPopupForm").scrollTop = 0;   
 
     document.querySelector(".fullScreenPopupAdd").style.visibility = "hidden";
     $(".fullScreenPopupAdd").fadeOut();
@@ -153,7 +153,7 @@ $(function updates(){
     // });
 });
 
-$(function updates(){
+$(function filters(){
     $('#filterTable').click(function() {
         
         $('#filterOptions').slideToggle();
