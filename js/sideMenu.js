@@ -189,6 +189,45 @@ function openMenu(){
     //holes
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/viewHoles.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector("#createNewHole").style.backgroundColor = "rgba(179, 179, 90,0.9)";
+        document.querySelector("#createNewHole").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#deleteHole").style.backgroundColor = "rgba(130, 0, 0,0.9)";
+        document.querySelector("#deleteHole").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateHoleData").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#updateHoleData").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#createNewHole").style.pointerEvents = "none";
+        document.querySelector("#deleteHole").style.pointerEvents = "none";
+        document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
+        document.querySelector("#updateHoleData").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
         
     }
     //tournaments
@@ -478,6 +517,45 @@ function openMenu(){
     //rounds
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/rounds.php")
     {
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "250px";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#webTitle").style.backgroundColor = "transparent";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,0.7)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0.7)";
+        document.querySelector(".content").style.color = "rgba(0,0,0,0.7)";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,0.7)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,0.5)";
+        document.querySelector("#userName").style.pointerEvents = "none";
+        document.querySelector("#Login").style.pointerEvents = "none";
+        document.querySelector("#Register").style.pointerEvents = "none";
+        document.querySelector(".loginRegister").style.pointerEvents = "none";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(140, 143, 141,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0, 130, 3,0.9)";
+            elems[index].style.color = "rgba(255, 255, 255,0.5)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector("#createNewRound").style.backgroundColor = "rgba(179, 179, 90,0.9)";
+        document.querySelector("#createNewRound").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#deleteRound").style.backgroundColor = "rgba(130, 0, 0,0.9)";
+        document.querySelector("#deleteRound").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#updateRoundData").style.backgroundColor = "rgba(0, 130, 3,0.9)";
+        document.querySelector("#updateRoundData").style.color = "rgba(0, 0, 0,0.7)";
+        document.querySelector("#createNewRound").style.pointerEvents = "none";
+        document.querySelector("#deleteRound").style.pointerEvents = "none";
+        document.querySelector("#filterTable").style.pointerEvents = "none";
+        document.querySelector(".tableGrid").style.pointerEvents = "none";
+        document.querySelector("#updateRoundData").style.pointerEvents = "none";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,0.7)";
 
     }
     //media
@@ -764,6 +842,47 @@ function closeMenu(){
     //holes
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/viewHoles.php")
     {
+        
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "0";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "black";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#createNewHole").style.backgroundColor = "rgba(179, 179, 3,1)";
+        document.querySelector("#createNewHole").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#deleteHole").style.backgroundColor = "rgba(179, 0, 0,1)";
+        document.querySelector("#deleteHole").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#updateHoleData").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#updateHoleData").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#createNewHole").style.pointerEvents = "auto";
+        document.querySelector("#deleteHole").style.pointerEvents = "auto";
+        document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector("#updateHoleData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
         
     }
     //tournaments
@@ -1061,6 +1180,47 @@ function closeMenu(){
     //rounds
     else if(window.location.pathname === "/COS221_NOT_NULL_CREW/php/rounds.php")
     {
+        
+        document.querySelector(".sidenav a").classList.toggle("show");
+        document.getElementById("sideMenu").style.width = "0";
+        document.querySelector(".top-content").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector("#webTitle").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector(".content").style.backgroundColor = "rgba(0,0,0,0)";
+        document.querySelector(".content").style.color = "black";
+        document.querySelector(".loginRegister").style.backgroundColor = "rgba(0, 108, 32,1)";
+        document.querySelector(".loginRegister").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Register").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#Login").style.pointerEvents = "auto";
+        document.querySelector("#Register").style.pointerEvents = "auto";
+        document.querySelector("#userName").style.color = "rgba(255, 255, 255,1)";
+        document.querySelector("#userName").style.pointerEvents = "auto";
+        document.querySelector("#sideMenu").style.pointerEvents = "auto";
+        document.querySelector(".loginRegister").style.pointerEvents = "auto";
+        document.querySelector(".buttonsGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        document.querySelector(".tableGrid").style.backgroundColor = "rgba(255, 255, 255,0.9)";
+        var elems = document.querySelectorAll("th");
+        var index = 0, length = elems.length;
+        for ( ; index < length; index++) {
+            elems[index].style.backgroundColor = "rgba(0,179,3,1)";
+            elems[index].style.color = "rgba(255, 255, 255,1)";            
+        }
+        document.querySelector(".tableGrid tr").style.backgroundColor = "rgba(255, 255, 255,1)";
+        document.querySelector("#createNewRound").style.backgroundColor = "rgba(179, 179, 3,1)";
+        document.querySelector("#createNewRound").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#deleteRound").style.backgroundColor = "rgba(179, 0, 0,1)";
+        document.querySelector("#deleteRound").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#filterTable").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#filterTable").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#updateRoundData").style.backgroundColor = "rgba(0, 179, 3,1)";
+        document.querySelector("#updateRoundData").style.color = "rgba(0, 0, 0,1)";
+        document.querySelector("#createNewRound").style.pointerEvents = "auto";
+        document.querySelector("#deleteRound").style.pointerEvents = "auto";
+        document.querySelector("#filterTable").style.pointerEvents = "auto";
+        document.querySelector("#updateRoundData").style.pointerEvents = "auto";
+        document.querySelector(".tableGrid").style.pointerEvents = "auto";
+        document.querySelector('.footer').style.color = "rgba(255, 255, 255,1)";
 
     }
     //media

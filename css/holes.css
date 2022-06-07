@@ -48,6 +48,29 @@ body{
     display:none;
 }
 
+.loaderFlag{
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: #16191e;
+    position: relative;
+  }
+  
+  .loaderFlag > div > img{
+    position: absolute;
+    margin: auto;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    animation: loadFlag 2s infinite linear;
+  }
+  @keyframes loadFlag{
+    100%{
+      transform:none;
+    }
+  }
+
 /* Side navigation bar*/
 .sidenav {
     height: 100%;
