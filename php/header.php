@@ -35,7 +35,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -43,7 +43,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -85,7 +85,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -93,7 +93,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -135,7 +135,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -143,7 +143,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -185,7 +185,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -193,7 +193,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -235,7 +235,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -243,7 +243,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -285,7 +285,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -293,7 +293,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -335,7 +335,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="#">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -343,7 +343,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -385,7 +385,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="#">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -393,7 +393,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -435,7 +435,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="#">Register Player</a></li>
+                            <li><a href="#">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -443,7 +443,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -485,7 +485,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -493,7 +493,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="#">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -535,7 +535,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -543,7 +543,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="#">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -585,7 +585,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -593,7 +593,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="#">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -635,7 +635,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -643,13 +643,13 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="#">Scores</a>
+                <a href="#">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
             
             </div>
-            <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Scores</span>
+            <span class="active" style="color: white;font-size: 30px; cursor:pointer" onclick="openMenu()">&#9776; Strokes</span>
             <div class="loginRegister">
                 <a id="Login" href="login.php">Login</a>
                 <a id="Register" href="signup.php">Sign Up</a>   
@@ -685,7 +685,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -693,7 +693,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="#">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -735,7 +735,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -743,7 +743,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="tours.php">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="#">Media</a>
                 <a href="manageStatistics.php">Statistics</a>               
@@ -785,7 +785,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                         <ul class="tournament-show">
                             <li><a href="viewTournaments.php">View Tournaments</a></li>
                             <li><a href="schedule.php">Schedule</a></li>
-                            <li><a href="registerPlayer.php">Register Player</a></li>
+                            <li><a href="registerPlayer.php">Player Scores</a></li>
                         </ul>
                     </a>
                 </div>                
@@ -793,7 +793,7 @@ if (strpos($_SERVER['SCRIPT_FILENAME'], 'login.php',0) == FALSE || strpos($_SERV
                 <a href="#">Tours</a>
                 <a href="manageUsers.php">Users</a>
                 <a href="managePlayers.php">Players</a>
-                <a href="scores.php">Scores</a>
+                <a href="scores.php">Strokes</a>
                 <a href="rounds.php">Rounds</a>
                 <a href="manageMedia.php">Media</a>
                 <a href="#">Statistics</a>               

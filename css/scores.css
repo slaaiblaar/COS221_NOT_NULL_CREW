@@ -1,9 +1,31 @@
 body{
     background-image: url("../img/wallpaperflare.com_wallpaper-1.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 126%;
+    background-size: cover;
     margin:0;
     padding:0;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: darkgreen; 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(1, 148, 1); 
 }
 
 .footer{
@@ -19,28 +41,6 @@ body{
     width: 95%;
     color: white;
     position: relative;
-  }
-
-/* width */
-::-webkit-scrollbar {
-    width: 10px;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: darkgreen; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: rgb(1, 148, 1); 
   }
 
 .content{
@@ -82,6 +82,7 @@ body{
     transition: 0.5s;
     padding-top: 10px;
     text-align: center;
+    /* overflow-y: scroll; */
     
   }
   
@@ -117,7 +118,7 @@ body{
     color: rgb(0, 255, 119);
   }
   
-  .tournament-btn a.active{
+  .tournaments-btn a.active{
     color: rgb(0, 255, 119);
   }
   
@@ -257,19 +258,22 @@ body{
 
 .contentContainer{
     display: grid;
-    grid-template-columns: 30% 65%;
+    grid-template-columns: auto auto;
     margin-top: 20px;
     width: 100%;
     height: 100%;
     grid-gap: 40px;
+    /* overflow-y: scroll; */
 }
 .buttonsGrid{
     background-color: white;
     display: grid;
     grid-template-rows: auto;
-    grid-gap: 10px;
+    grid-column: 1 / span 1;
+    grid-row: 2 / span 1;
+    grid-gap: 20px;
     height: 100%;
-    width:100%;
+    width: 50%;
     margin: 0px 0px 5px 10px;
     border-radius: 20px;
     opacity: 0.9;
@@ -294,115 +298,55 @@ body{
     background-color: white;
     display: grid;
     grid-template-rows: auto;
+    grid-column: 1 / span 2;
+    grid-row: 1 / span 1;
     grid-gap: 20px;
     height: 100%;
-    width:100%;
+    width:97%;
     margin: 0px 0px 5px 10px;
     border-radius: 20px;
     opacity: 0.9;
     border: 4px solid black;
     padding: 5px;
-    overflow: scroll;
-}
-.tableGrid th,td{
-    padding: 2px;
-    text-align: center;
-}
-#TableSize{
-  height:100%;
-  width:975px;
-  overflow-y: auto;
+    overflow-y: scroll;
+    max-height: 300px;
 }
 
-th 
-{
-  background: rgb(0, 179, 3);
-  color: white;
-  position: sticky;
-  top: 0;
+/* width */
+.tableGrid::-webkit-scrollbar {
+  width: 20px;
+  color: rgb(95, 255, 101);
 }
 
-/* top-left border-radius */
-table tr:first-child th:first-child {
-  border-top-left-radius: 13px;
+/* Track */
+.tableGrid::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px rgb(95, 255, 101); 
+  border-radius: 10px;
+  margin-left: 30px;
+  margin-right: 30px;
+}
+ 
+/* Handle */
+.tableGrid::-webkit-scrollbar-thumb {
+  background: rgb(95, 255, 101); 
+  border-radius: 10px;
 }
 
-/* top-right border-radius */
-table tr:first-child th:last-child {
-  border-top-right-radius: 13px;
+/* Handle on hover */
+.tableGrid::-webkit-scrollbar-thumb:hover {
+  background: rgb(29, 185, 34); 
 }
 
-table.Table
-{
-  height: 500px;
-  width: 965px;
-  border: 1px solid black;
-  border-radius: 13px; 
-  border-spacing: 0;
-}
-
-table.Table td, table.Table th { 
-border-bottom: 1px solid black;
-padding: 10px; 
-border-right: 1px solid black;;
-}
-
-table.Table tr:last-child > td {
-border-bottom: none;
-}
-
-tr:nth-child(even)
-{
-  background-color: #d8d6d6
-}
-
-.TableRow:hover 
-{
-  background-color: rgb(96, 164, 98);
-  color: #00420d;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.TableRow.TRactive
-{
-  background-color: rgb(124, 211, 126);
-  color: #00420d;
-  text-decoration: none;
-}
-#newPlayerFormPopup::-webkit-scrollbar {
-    width: 15px;
-  
-  }
-  
-  /* Track */
-  #newPlayerFormPopup::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey; 
-    border-radius: 10px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-  }
-   
-  /* Handle */
-  #newPlayerFormPopup::-webkit-scrollbar-thumb {
-    background: rgb(139, 255, 165); 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  #newPlayerFormPopup::-webkit-scrollbar-thumb:hover {
-    background: rgb(79, 145, 93); 
-  }
-#createNewPlayer{
+#createNewStroke{
     background-color: rgb(179, 179, 0);
 }
-#deletePlayer{
+#deleteStroke{
     background-color: rgb(179, 0, 0);
 }
 #filterTable{
     background-color: rgb(0, 179, 3);
 }
-#updatePlayerData{
+#updateStrokeData{
     background-color: rgb(0, 179, 3);
 }
 #pageHeader{
@@ -445,12 +389,12 @@ tr:nth-child(even)
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-#deletePlayerPopup, #updatePlayerPopup{
+#deleteStrokePopup, #updateStrokePopup{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 40%;
-    width: 35%;
+    height: 30%;
+    width: 30%;
     padding: 10px;
     border-radius: 20px;
     background-color: rgb(35, 35, 35);
@@ -459,16 +403,15 @@ tr:nth-child(even)
     color:rgb(0, 255, 115);
     text-align: center;
 }
-#deletePlayerPopup button, #updatePlayerPopup button{
+#deleteStrokePopup button, #updateStrokePopup button{
     margin-top: 20px;
 }
-#updatePlayerPopup{
-    height: 50%;
+#updateStrokePopup{
+    height: 20%;
 }
-#newPlayerFormPopup{
+#newStrokesFormPopup{
     position: fixed;
-    overflow-y: scroll;
-    top: 15%;
+    top: 10%;
     left: 35%;
     height: 80%;
     width: 30%;
@@ -487,11 +430,11 @@ tr:nth-child(even)
 .deletePopupHeader p{
     margin: 10px;
 }
-.updatePopupInput, .updatePopupInputID{
-    margin-top: 10px;
+.updatePopupInput{
+    margin-top: 20px;
 }
 
-#newPlayerFormPopup hr{
+#newStrokesFormPopup hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
 }
@@ -516,23 +459,37 @@ tr:nth-child(even)
     padding-top: 10px;
     padding-bottom: 20px;
 }
+
 input[type="text"], input[type="date"]{
     width: 55%;
 }
 input[type="radio"]{
-    width: 20px;
+    width: 1px;
+    margin-inline: 20px;
+    margin-top: 10px;
+}
+
+.lblStatusType{
+    color: skyblue;
+    font-size: 10pt;
 }
 .lblGenderType{
     color: skyblue;
     font-size: 10pt;
 }
 input[type="number"]{
-    width: 90%;
+    width: 10%;
+    text-align: center;
 }
 #Age_Handicap{
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
+.distance{
+    width: 30%;
+}
+
 
 .inputTextBox input{
     min-width: 45px;
@@ -540,7 +497,9 @@ input[type="number"]{
 }
 .inputTextBox > label{
     color: rgb(0, 255, 115);
+    margin-top: 10px;
 }
+
 .inputTextBox input:focus{
     outline: 0;
 }
@@ -551,9 +510,10 @@ input[type="number"]{
     border: 2px solid red;
     font-weight: bold;
 }
-.submitButtons{
+#submitButtons{
     font-weight: bold;
     color: white;
+    margin-top: 30px;
 }
 .cancelbtnDel, .cancelbtn, .cancelbtnUpdate{
     width: 30%;
@@ -581,33 +541,11 @@ input[type="number"]{
     color:white;
     box-shadow: 2px 5px 10px black;
 }
-#filterForm{
-    background-color: rgb(172, 172, 172);
-    border-radius: 10px;
-    visibility: hidden;
-}
-.filterFormContainer > button{
-    visibility: hidden;
-    font-size: 10pt;
-    font-weight: bold;
-    height: 30px;
-    width: 100px;
-    color: white;
-    background-color: rgb(0, 94, 255);
-    opacity: 1;
-}
-.filterFormContainer > button:hover{
-    cursor: cursor;
-    box-shadow: 2px 3px 8px rgb(29, 123, 255);
-}
 
 #filterOptions{
-    /* visibility: hidden; */
-    /* background-color: rgb(172, 172, 172); */
     display: none;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    /* display: grid; */
     grid-template-columns: 50% 50%;
 }
 .lblFilter{
@@ -621,9 +559,8 @@ input[type="number"]{
     display: none;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
-    /* display: grid; */
     grid-template-columns: 50% 50%;
-    margin-bottom: 10px;
+    /* margin-bottom: 5px; */
 }
 .lblUpdate{
     color:black;
@@ -692,9 +629,3 @@ input[type="number"]{
     background-color: rgb(136, 0, 0);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
   }
-.footer{
-    margin-top: 20px;
-    color: white;
-}
-
-
