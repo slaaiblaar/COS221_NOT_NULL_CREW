@@ -663,10 +663,19 @@ Please see the following files on our GitHub repository:
 \subsection{Explanation Of Methods}
 \vspace{1em}
 For some relations, it was feasible to manually create JSON-objects within javascript (see Sample Data folder on GitHub) files and query an API that Wian
-created in order to populate the tables. However, this approach did not scale well to relations such as SCORES which required
-3600 tuples (ten players, five tournaments, four rounds per tournament and 18 holes played per round). For this relation,
+created in order to populate the tables. Although this approach was convenient, it did not scale well to relations such as SCORES which required
+3600+ tuples (ten players, five tournaments, four rounds per tournament and 18 holes played per round). For this relation,
 and others requiring a similiar number of tuples, we opted for an algorithmic approach that populated these relations with 
-coherent data, across many tuples using nested for-loops (for an example see Sample Data/ populateScores.js).
+coherent data, across many tuples using nested for-loops (for an example see Sample Data/ populateScores.js). This method was
+chosen, firstly, because it was far more efficient than entering by hand, and, secondly, because it was orders-of-magnitude less prone
+to erroneous data-entry. \\
+
+\noindent
+We also aimed to bring our sample data closer to reality by randomising outcomes of play. For instance, we randomised the number
+of shots it took a player, during a hole, to sink the ball in the hole and used a logarithmic progression to incorporate the likelihood
+of hitting a hole-in-one, 1-under par, 2-under par, etc. (please see line 31, Sample Data/ populateStrokes.js on the GitHub repository).
+Another example of this approach can be found on line 40 of the same file, where we rudimentarily randomised the quality of the player's shot,
+i.e. how well positioned the shot was (for instance, a fairway is better than a bunker). 
 
 \newpage
 
@@ -676,45 +685,151 @@ coherent data, across many tuples using nested for-loops (for an example see Sam
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Task 7: Analysis and Optimisation}
-\newpage
+\vspace{1em}
+\subsection{Query 1: Driving-Distance Leaderboard}
+\vspace{1em}
+This query gathers the top-10 players by driving distance off the tee, that is, distance achieved, on average, on the
+first shot of every hole. \\ \\ \\
+\hspace{15pt}SELECT first\_name, last\_name, \\
+\hspace{15pt}AVG(distance) as avg\_tee\_off \\
+\hspace{15pt}FROM strokes \\
+\hspace{15pt}LEFT JOIN display\_names \\
+\hspace{15pt}ON person\_id = entity\_id \\
+\hspace{15pt}WHERE stroke\_no = 1 \\
+\hspace{15pt}GROUP BY first\_name \\
+\hspace{15pt}ORDER BY avg\_tee\_off DESC; \\
 
+\vspace{1em}
+
+\subsubsection{Initial Analysis of Performance}
+\vspace{1em}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{query1plan.png}
+\end{center}
+\vspace{1em}
+For this query's initial performance metrics, we see:
+\begin{itemize}
+  \item Query Cost: 2947.29
+  \item Execution time: 0.02 seconds
+\end{itemize}
+\vspace{1em}
+\subsubsection{Plan For Optimisation}
+After reading some research, we found that we could immediately improve the performance of this query,
+while maintaining the same output, by changing the LEFT JOIN to an INNER JOIN. The effects of the 
+optimisation are analysed below. \\ \\ \\
+\hspace{15pt}SELECT first\_name, last\_name, \\
+\hspace{15pt}AVG(distance) as avg\_tee\_off \\
+\hspace{15pt}FROM strokes \\
+\hspace{15pt}INNER JOIN display\_names \\
+\hspace{15pt}ON person\_id = entity\_id \\
+\hspace{15pt}WHERE stroke\_no = 1 \\
+\hspace{15pt}GROUP BY first\_name \\
+\hspace{15pt}ORDER BY avg\_tee\_off DESC; \\
+\vspace{1em}
+\subsubsection{Results}
+\vspace{1em}
+For the optimised query's performance metrics, we see:
+\begin{itemize}
+  \item Query Cost: 1612.53
+  \item Execution time: 0.014 seconds
+\end{itemize}
+\vspace{1em}
+With the optimisation implemented, we see a substantial improvement in the performance metrics.
+\vspace{1em}
+\subsubsection{Why Did The Optimisation Work?}
+LEFT JOIN returns all rows in the left table regardless of whether there is a matching value in the right
+table producing NULLs and causing a sizeable decrease in performance. Since we didn't have any NULL values
+present in the output of the initial query, this went unnoticed.\\
+
+\noindent
+INNER JOIN saves time by excluding any tuples with no matching attributes, thus, saving on time and resources used.
+\vspace{1em}
+\subsection{Query 2: Retrieving All Data From STROKES relation}
+\vspace{1em}
+This query, here in its initial form, retrieves the longest hole, as well as the shortest hole, \\
+in the HOLES relation by yards using two subqueries and a UNION operation.\\ \\ \\
+\hspace{15pt}SELECT id, length \\
+\hspace{15pt}FROM holes \\
+\hspace{15pt}WHERE length = (SELECT MAX(length) FROM holes) \\
+\hspace{15pt}UNION \\
+\hspace{15pt}FROM holes \\
+\hspace{15pt}WHERE length = (SELECT MIN(length) FROM holes) \\
+\vspace{1em}
+\newpage
+\subsubsection{Initial Analysis of Performance}
+\vspace{1em}
+\begin{itemize}
+  \item Query Cost: 37
+  \item Execution time: 0.0012 seconds (varies by $\pm$ 0.0001 of a second)
+\end{itemize}
+\vspace{1em}
+\vspace{1em}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{query2plan.png}
+\end{center}
+\vspace{1em}
+\subsubsection{Plan For Optimisation}
+\vspace{1em}
+To optimise this query, we substituted the UNION operation for an OR clause, to see if any performance gains
+could be made. After some research, we also decided to replace the HAVING clause with a WHERE clause. \\ \\ \\
+\hspace{15pt}SELECT id, length, \\
+\hspace{30pt}FROM holes \\
+\hspace{30pt}WHERE length = (SELECT MAX(length) FROM holes) \\
+\hspace{30pt}OR length = (SELECT MIN(length) FROM holes); \\
+\subsubsection{Results}
+For the optimised query's performance metrics, we see:
+\begin{itemize}
+  \item Query Cost: 28
+  \item Execution time: 0.0009 seconds (varies by $\pm$ 0.0001 of a second)
+\end{itemize}
+\vspace{1em}
+With the optimisation implemented, we see clear evidence of a resource optimisation having occurred as well
+as potential evidence of a decrease in execution time. \\
+\subsubsection{Why Did The Optimisation Work?}
+From the following execution plan of the optimised query, it is clear to see why there was a 25\% reduction
+in the number of resources used to execute the query: we no longer duplicate the work. \\
+\begin{center}
+\includegraphics[width=0.7\textwidth]{query3plan.png}
+\end{center}
+\noindent
+The WHERE clauses optimises a query because WHERE restricts the result set before retrieving rows
+while a HAVING clause restricts the result set after retrieving all the tuples in a relation. \\
+\newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Comments on Development
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \section{Task 8: Comments on Development}
-
+\vspace{1em}
 \subsection{Usage of git}
 We have multiple git commits, from multiple members of the team across several javascript, PHP, CSS and SQL files.
-
+\vspace{1em}
+\subsection{Usage of a package manager}
+We used the Composer package manager. (please see composer.json on GitHub)
+\vspace{1em}
 \subsection{Data validation}
 Multiple instances of data validation using Javascript can be found in our GitHub repository.
-
+\vspace{1em}
 \subsubsection{js/addresses.js}
 When a user wants to add or modify existing data in the addresses relation, our system first verifies that the
 input-language is a valid language and in the correct format. The same is done with the inputted street data
 and the inputted country.
-
+\vspace{1em}
 \subsubsection{js/locations.js}
 Here our system queries an API to verify that the inputted location is valid.
-
+\vspace{1em}
 \subsubsection{js/viewCourses.js}
 Here we used an in-house API to validate that the passed-in publisher, location and address are valid.
-
+\vspace{1em}
 \subsubsection{js/inputValidationLogin.js}
 Here we used ReGex to validate the name, surname, password and email required parameters.
-
+\vspace{1em}
 \subsubsection{js/inputValidationPlayers.js}
 Here we built javascript functions to validate that the user is over the age of 18. 
-
+\vspace{1em}
 \subsubsection{js/inputValidationSignUp.js}
 Here, again, we used ReGex, this time to validate the name, surname, password, email, telephone number,
 and the initials requirement.
-
-\subsection{Git commit message format}
-For our git commit messages we agreed before starting to include in our commit messages the name of the team member
-pushing the changes. This standard was, largely, followed throughout except where team members chose to include
-a descriptive message of the changes made.
 
 \newpage
 
