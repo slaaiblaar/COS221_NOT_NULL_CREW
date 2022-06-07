@@ -420,12 +420,6 @@
                 $arr = ["person_id" => $pid, "round_id" => $rid, "hole_id" => $hid, "net_score" => $netscore, "stroke_count"=> intval($numStrokes['stroke_num']),
                 "birdie" =>(($netscore === -1)?1:0), "eagle" =>(($netscore === -2)?1:0), "bogey" =>(($netscore === 1)?1:0), "double_bogey" =>(($netscore === 2)?1:0)];
                 array_push($responseObject, $this->addScore($arr));
-                // $debugFile = fopen("../debug.txt","a+");
-                // fwrite($debugFile,"======================================\n");
-                // fwrite($debugFile,print_r($post,true));
-                // fwrite($debugFile,"\n======================================\n");
-                // fclose($debugFile);
-                //echo json_encode($post['data']);
             }
             fclose($debugFile);
             return $responseObject;
@@ -458,6 +452,72 @@
             {
                 return ["success" => false, "query" =>$query, "message" => $conn->error];
             }
+        }
+        public function popSampleStats()
+        {
+            $conn = $this->dbConnection;
+            $statsArr = [];
+
+            $roundQuery = "SELECT * FROM rounds";
+            $roundResult = $conn->query($roundQuery);
+            while ($tempRound = $roundResult->fetch_assoc())
+            {
+                $personStatsQuery = "SELECT person_id, round_id, SUM(net_score) AS net, SUM(birdie) AS s_bird, SUM(eagle) AS s_eag, SUM(bogey) AS s_bog, SUM(double_bogey) AS s_d_bog"
+                ." FROM scores WHERE round_id = ".$tempRound['id']." GROUP BY person_id ORDER BY net ASC";
+                $tourQuery = "SELECT tour_id FROM events WHERE id = ".$tempRound['event_id'];
+                $tourResult = $conn->query($tourQuery);
+                $tourID = null;
+                if ($tourResult->num_rows > 0)
+                {
+                    $tempTour = $tourResult->fetch_Assoc();
+                    $tourID = $tempTour['tour_id'];
+                }
+                $personsResult = $conn->query($personStatsQuery);
+
+                if ($personsResult->num_rows > 0)
+                {   
+                    $counter = 1;
+                    while ($tempPerson = $personsResult->fetch_Assoc())
+                    {
+                        $maxDriveQuery = "SELECT MAX(distance) AS maxDrive FROM strokes WHERE person_id = ".$tempPerson['person_id']. " and round_id = ".$tempRound['id'];
+                        $maxDriveResult = $conn->query($maxDriveQuery);
+                        $maxDrive = $maxDriveResult->fetch_Assoc();
+                        array_push($statsArr, ["entity_type"=>"rounds", "entity_id" => $tempRound['id'], "person_id"=> $tempPerson['person_id'],
+                        "round_ind"=> true, "player_ind"=> true, "no_of_eagles" => $tempPerson['s_eag'], "no_of_birdies" => $tempPerson['s_bird'], "no_of_bogeys" => $tempPerson['s_bog'],
+                        "no_of_double_bogeys" => $tempPerson['s_d_bog'], "max_drive" => $maxDrive['maxDrive'], "position" => $counter, "avg_net_score"=>(intval($tempPerson['net'])/18)]);
+                        $counter++;
+                    }
+                }                
+            }
+            return $this->populateSamples(["table" =>"golf_statistics", "data" => $statsArr]);
+            // fwrite($debugFile,"======================================\n");
+            // fwrite($debugFile,print_r($statsArr,true));
+            // fwrite($debugFile,"\n======================================\n");
+            // fclose($debugFile);
+            // return $statsArr;
+            // $tourListQuery = "SELECT * FROM tours";
+            // $result = $conn->query($tourListQuery);
+            // while ($temp = $result->fetch_assoc()) // iterate through tours
+            // {
+            //     $tourStats = [];
+            //     $eventList = [];
+            //     $tourEventsQuery = "SELECT * FROM events where tour_id = ".$temp['id'];
+            //     $eventResult = $conn->query($tourEventsQuery);
+            //     while ($tempEvent = $eventResult->fetch_assoc()) // iterate through events that fall within those tours
+            //     {
+            //         $roundList = [];
+            //         $roundsQuery = "SELECT * FROM rounds where event_id = ".$tempEvent['id'];
+            //         $roundResult = $conn->query($roundsQuery);
+            //         while ($tempRound = $roundResult->fetch_assoc()) // iterate through rounds within those events
+            //         {
+            //             $tourRoundStatsQuery = 
+            //             push_array($tourRounds, $tempRound)
+            //         }
+            //         push_array($eventList, ["event" => $tempEvent, "rounds" => $roundList]);
+            //     }
+            //     push_array($tourListArr, ["tour" => $temp, "events" => $eventList]);
+            // }
+
         }
     }   
     $dbConn = Database::getInstance();
@@ -521,11 +581,23 @@
             fwrite($debugFile,"\n======================================\n");
             fclose($debugFile);
             //echo json_encode($post['data']);
-            if ($post['table'] == "scores")
+            if (isset($post['data']))
             {
-                echo json_encode($dbConn->sampleScores($post['data']));
+                if ($post['table'] == "scores") echo json_encode($dbConn->sampleScores($post['data']));
+                else echo json_encode($dbConn->populateSamples($post));
             }
-            else echo json_encode($dbConn->populateSamples($post));
+            else 
+            {   
+                $returnArr = $dbConn->popSampleStats();
+
+                $debugFile = fopen("../debug.txt","a+");
+                fwrite($debugFile,"======================================\n");
+                fwrite($debugFile,print_r($debugFile,true));
+                fwrite($debugFile,"\n======================================\n");
+                fclose($debugFile);
+
+                echo json_encode($returnArr);
+            }
         }
 
     }

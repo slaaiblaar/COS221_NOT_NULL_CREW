@@ -680,7 +680,7 @@ DROP TABLE IF EXISTS `golf_statistics`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `golf_statistics` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `entity_type` varchar(100) NOT NULL,
   `entity_id` int(11) NOT NULL,
   `person_id` int(11) DEFAULT NULL,
@@ -715,7 +715,7 @@ CREATE TABLE `golf_statistics` (
   CONSTRAINT `CHK_top10_cnt` CHECK (`top10_cnt` >= 0),
   CONSTRAINT `CHK_win_cnt` CHECK (`win_cnt` >= 0),
   CONSTRAINT `CHK_position` CHECK (`position` >= 0)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --

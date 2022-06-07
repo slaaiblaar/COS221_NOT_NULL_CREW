@@ -1,3 +1,4 @@
+//Wian Koekemoer u19043512
 var rounds = [
     {
         "round_no": 1,
@@ -47,73 +48,73 @@ var rounds = [
         "round_no": 1,
         "event_id": 3,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 2,
         "event_id": 3,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 3,
         "event_id": 3,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 4,
         "event_id": 3,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 1,
         "event_id": 4,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 2,
         "event_id": 4,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 3,
         "event_id": 4,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 4,
         "event_id": 4,
         "leader_id": 11,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 1,
         "event_id": 5,
         "leader_id": 12,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 2,
         "event_id": 5,
         "leader_id": 1,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 3,
         "event_id": 5,
         "leader_id": 14,
-        "state": "Completed"
+        "state": "Finished"
     },
     {
         "round_no": 4,
         "event_id": 5,
         "leader_id": 20,
-        "state": "Completed"
+        "state": "Finished"
     },
 ];
 

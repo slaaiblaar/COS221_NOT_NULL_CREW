@@ -24,6 +24,7 @@
     <script src="../Sample Data/popTournSched.js"></script>
     <script src="../Sample Data/populateStrokes.js"></script>
     <script src="../Sample Data/populateScores.js"></script>
+    <script src="../Sample Data/populateStatistics.js"></script>
     <script src="https://kit.fontawesome.com/8fbf0cb444.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
@@ -55,19 +56,8 @@
     </div>
     <script src="../js/loader.js"></script>
     <script>
-        // console.log(locations);
-        // console.log(addresses);
-        // console.log(sites);
-        // console.log(holes);
-        // console.log(affiliations);
-        // console.log(tours);
-        // console.log(events);
-        // console.log(persons);
-        // console.log(displayNames);
 
-        popPubs(true);
-        //popScores(true);
-        console.log("Done");
+        popPubs(true); //Starts a daisy-chain of table population js scripts
 
     </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

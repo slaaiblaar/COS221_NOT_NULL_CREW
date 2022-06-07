@@ -46,7 +46,7 @@ function popScores(a)//Populating scores relation
     var personIndexBase = 0
     if (events[eventIndex]['gender'] !== "Women") // Female events
     {
-      personBase = 10;
+      personBase = 10; //The index where the first male person appears
     }
     
     for (var roundIndex = 0; roundIndex < 4; roundIndex++) //iterate through rounds
@@ -70,18 +70,18 @@ function popScores(a)//Populating scores relation
     scoresEventsApiRequest.open('POST','../php/addr_loc_course_api.php',true);
     scoresEventsApiRequest.onreadystatechange = function()
     {
-        if (scoresEventsApiRequest.readyState == 4 && scoresEventsApiRequest.status == 200)
-        {
-            var response = (JSON.parse(scoresEventsApiRequest.responseText));
-            console.log("Scores Population API Call Response:");
-            console.log(response);
-            //if (a) popDispNames(a);
-        }
+      if (scoresEventsApiRequest.readyState == 4 && scoresEventsApiRequest.status == 200)
+      {
+        var response = (JSON.parse(scoresEventsApiRequest.responseText));
+        console.log("Scores Population API Call Response:");
+        console.log(response);
+        if (a) popStats(a);
+      }
     }
     var data = {
-        "sample": true,
-        "table": "scores",
-        "data": scoreIdCombinations
+      "sample": true,
+      "table": "scores",
+      "data": scoreIdCombinations
     };
     scoresEventsApiRequest.setRequestHeader("Content-type", "application/json; charset=utf-8");
     console.log(scoreIdCombinations);

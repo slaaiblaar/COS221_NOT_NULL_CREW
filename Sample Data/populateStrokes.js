@@ -1,3 +1,4 @@
+//Wian Koekemoer u19043512
 function popStrokes(a)
 {
     
