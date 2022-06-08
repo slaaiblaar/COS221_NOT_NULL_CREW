@@ -704,7 +704,7 @@ first shot of every hole. \\ \\ \\
 \subsubsection{Initial Analysis of Performance}
 \vspace{1em}
 \begin{center}
-  \includegraphics[width=0.7\textwidth]{query1plan.png}
+  \includegraphics[width=0.7\textwidth]{query0plan.png}
 \end{center}
 \vspace{1em}
 For this query's initial performance metrics, we see:
@@ -733,18 +733,21 @@ For the optimised query's performance metrics, we see:
   \item Query Cost: 1612.53
   \item Execution time: 0.014 seconds
 \end{itemize}
+\begin{center}
+  \includegraphics[width=0.7\textwidth]{query1plan.png}
+\end{center}
 \vspace{1em}
 With the optimisation implemented, we see a substantial improvement in the performance metrics.
 \vspace{1em}
 \subsubsection{Why Did The Optimisation Work?}
 LEFT JOIN returns all rows in the left table regardless of whether there is a matching value in the right
-table producing NULLs and causing a sizeable decrease in performance. Since we didn't have any NULL values
+table causing a sizeable decrease in performance. Since we didn't have any NULL valued attributes
 present in the output of the initial query, this went unnoticed.\\
 
 \noindent
 INNER JOIN saves time by excluding any tuples with no matching attributes, thus, saving on time and resources used.
 \vspace{1em}
-\subsection{Query 2: Retrieving All Data From STROKES relation}
+\subsection{Query 2: Retrieving Shortests and Longest Holes In Database}
 \vspace{1em}
 This query, here in its initial form, retrieves the longest hole, as well as the shortest hole, \\
 in the HOLES relation by yards using two subqueries and a UNION operation.\\ \\ \\
@@ -755,7 +758,6 @@ in the HOLES relation by yards using two subqueries and a UNION operation.\\ \\ 
 \hspace{15pt}FROM holes \\
 \hspace{15pt}WHERE length = (SELECT MIN(length) FROM holes) \\
 \vspace{1em}
-\newpage
 \subsubsection{Initial Analysis of Performance}
 \vspace{1em}
 \begin{itemize}
@@ -794,6 +796,7 @@ in the number of resources used to execute the query: we no longer duplicate the
 \noindent
 The WHERE clauses optimises a query because WHERE restricts the result set before retrieving rows
 while a HAVING clause restricts the result set after retrieving all the tuples in a relation. \\
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % Comments on Development
@@ -942,6 +945,7 @@ and the initials requirement.
 \subsubsection*{u04929552 - Jake Weatherhead}
 \vspace{1em}
 \begin{itemize}
+  \item I produced the work for Task 7.
   \item I used my previous experience with git and GitHub to coordinate the team around best practices with regards to cloning, 
         pulling, staging commits, forking repositories, and merging branches.
   \item I worked on understanding and finalising the conceptual design of the database.
