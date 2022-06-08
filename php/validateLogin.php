@@ -1,4 +1,5 @@
 <?php
+    require_once("setDBEnvVar.php");
     include_once("configDB.php");
     session_start();
 
@@ -17,7 +18,7 @@
 
             $invalidDetails = false;
             //first check if the name exists
-            $select = mysqli_query($conn, "SELECT * FROM usersTBL WHERE FirstName = ?");
+            $select = $conn->prepare("SELECT * FROM users WHERE first_name = ?");
             $select->bind_param("s", $name);
             $select->execute();
             $result = $select->get_result();
@@ -28,7 +29,7 @@
                 $invalidDetails = true;
             }  
             //check if the surname exists
-            $select = mysqli_query($conn, "SELECT * FROM usersTBL WHERE LastName = ?");
+            $select = $conn->prepare("SELECT * FROM users WHERE last_name = ?");
             $select->bind_param("s", $surname);
             $select->execute();
             $result = $select->get_result();
@@ -39,7 +40,7 @@
                 $invalidDetails = true;
             }
             // check if the email address exists
-            $select = mysqli_query($conn, "SELECT * FROM usersTBL WHERE Email = ?");
+            $select = $conn->prepare("SELECT * FROM users WHERE email = ?");
             $select->bind_param("s", $email);
             $select->execute();
             $result = $select->get_result();
@@ -51,32 +52,34 @@
             }  
             
             if ($invalidDetails == true){
-                header("Location: ../login.php"); //redirect with the errors back to the login page
+                header("Location: login.php"); //redirect with the errors back to the login page
             }
             else{   
                 //now get the hashed pw from the DB since all other fields are correct
                 // check if password exists
-                $select = mysqli_query($conn, "SELECT * FROM usersTBL WHERE FirstrName = ? AND LastName = ? AND Email = ?");
+                $select = $conn->prepare("SELECT * FROM users WHERE first_name = ? AND last_name = ? AND email = ?");
                 $select->bind_param("sss", $name, $surname, $email);
                 $select->execute();
                 $result = $select->get_result();
                 
                 $row = mysqli_fetch_assoc($result); //fetch records returned
+                
                 //check if input password matched unhashed password
-                if(!password_verify($password,$row['Password'])) {
+                if(!($password === $row['password'])) {
                     $_SESSION['error'] = "Errors found.";
                     $_SESSION['errorPsw'] = 'Password incorrect or does not exist!';
-                    header("Location: ../login.php"); //redirect with the errors back to the login page
+                    header("Location: login.php"); //redirect with the errors back to the login page
                 }  
-                else if($row['Type'] != "Admin"){ //test if returned record's type attribute == Admin
+                else if($row['user_type'] != "Admin"){ //test if returned record's type attribute == Admin
                     $_SESSION['error'] = "Errors found";
-                    $_SESSION['errorAccessDenied'] = "Access Denied! Only Admins are allowed to login."
+                    $_SESSION['errorAccessDenied'] = "Access Denied! Only Admins are allowed to login.";
                 }
                 else{                         
                     //set session login status to success
-                    $_SESSION['loginStatus'] = "success";
+                    setcookie('loginStatus',"success",0,'/');
+                    setcookie('userName',$name.' '.$surname,0,'/');
                     //finally return to Login successful page
-                    header("Location: ../loginComplete.php");
+                    header("Location: login.php");
 
                     $conn->close();
                 }

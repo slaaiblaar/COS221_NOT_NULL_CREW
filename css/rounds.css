@@ -1,5 +1,5 @@
 body{
-    background-image: url("../IMG/wallpaperflare.com_wallpaper-1.jpg");
+    background-image: url("../img/wallpaperflare.com_wallpaper-1.jpg");
     background-repeat: no-repeat;
     background-size: 100% 126%;
     margin:0;
@@ -9,16 +9,16 @@ body{
 .content{
     display:none;
 }
-  
+
 .loaderFlag{
     height: 100vh;
     width: 100vw;
     overflow: hidden;
     background-color: #16191e;
     position: relative;
-}
+  }
   
-.loaderFlag > div > img{
+  .loaderFlag > div > img{
     position: absolute;
     margin: auto;
     top:0;
@@ -26,8 +26,8 @@ body{
     left: 0;
     right: 0;
     animation: loadFlag 2s infinite linear;
-}
-@keyframes loadFlag{
+  }
+  @keyframes loadFlag{
     100%{
       transform:none;
     }
@@ -48,6 +48,21 @@ body{
     color: white;
 }
   
+.loginRegister{
+    float: right;
+    background-color: rgb(0, 108, 32); 
+    font-size: 30px;
+    padding: 10px 10px;
+    box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+    
+}
+  
+.loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+}
+
 .loginRegister a:hover{
     color: black;
     background-color: #00420d;
@@ -61,8 +76,8 @@ body{
     background-color: rgb(0, 108, 32);  
     box-shadow: 1px 8px 10px rgb(0, 255, 119);
     font-family: "Courier New", Courier, monospace;
-    border: 10px dashed rgb(151, 151, 151);
-}
+    border: 6px dashed rgb(151, 151, 151);
+  }
 
 .top-content > img{
     float: left;
@@ -127,7 +142,44 @@ body{
 .tournament-btn a.active{
     color: rgb(0, 255, 119);
 }
+
   
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    text-align: left;
+    transition: 0.3s;
+    border-bottom: 1px solid white;
+    letter-spacing: 1px;
+}
+  
+.tournaments-btn a.active{
+    color: rgb(0, 255, 119);
+}
+  
+.sidenav a:hover {
+    color: rgb(0, 254, 119);
+}
+  
+.course-show a, .tournament-show a{
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    text-align: center;
+    padding: 5px 0px;
+    font-size: 15px
+}
+  
+.course-show a:hover, .tournament-show a:hover{
+    color: rgb(0, 255, 119);
+}
+  
+.tournament-btn a.active{
+    color: rgb(0, 255, 119);
+}
+
 .course-show {
     display: none;
     text-align: center;
@@ -237,8 +289,8 @@ body{
     display: grid;
     grid-template-rows: auto;
     grid-gap: 20px;
-    height: 100%;
-    width:100%;
+    height: 510px;
+    width: 100%;
     margin: 0px 0px 5px 10px;
     border-radius: 20px;
     opacity: 0.9;
@@ -264,8 +316,8 @@ body{
     display: grid;
     grid-template-rows: auto;
     grid-gap: 20px;
-    height: 100%;
-    width:100%;
+    height: 510px;
+    width: 980px;
     margin: 0px 0px 5px 10px;
     border-radius: 20px;
     opacity: 0.9;
@@ -273,18 +325,174 @@ body{
     padding: 5px;
 }
 
+#TableSize{
+    height:100%;
+    width:975px;
+    overflow-y: auto;
+}
+
+th 
+{
+    background: rgb(0, 179, 3);
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+    border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+    border-top-right-radius: 13px;
+}
+
+table.Table
+{
+    height: 500px;
+    width: 965px;
+    border: 1px solid black;
+    border-radius: 13px; 
+    border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+  border-bottom: 1px solid black;
+  padding: 10px; 
+  border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+  border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+    background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+    background-color: rgb(96, 164, 98);
+    color: #00420d;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+    background-color: rgb(124, 211, 126);
+    color: #00420d;
+    text-decoration: none;
+}
+
+
+/* Designing for scroll-bar */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: gainsboro;
+    border-radius: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(1, 89, 3);
+    border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
 #createNewRound{
     background-color: rgb(179, 179, 0);
 }
+
 #deleteRound{
     background-color: rgb(179, 0, 0);
 }
+
 #filterTable{
     background-color: rgb(0, 179, 3);
 }
-#updateRound{
+
+#filterOptions
+{
+    width: 450px;
+    padding: 5px;
+    margin-bottom: 5px;
+    margin-right:4px;
+    margin-left: -1px;
+    border-radius: 13px;
+}
+
+#filterOptions select:first-of-type
+{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+#filterOptions select:last-of-type 
+{
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+#filterOptions select:hover
+{
+    cursor: pointer;
+    background-color: rgb(144, 218, 145);
+}
+
+#filterOptions select
+{
+    font-size: 12pt;
+}
+
+#filterOptions input[type="submit"]{
+    background-color: rgb(34, 216, 37);
+    width: 395px;
+    height: 25px;
+    font-size: 14pt;
+    margin-left: 20px;
+    border-radius: 20px;
+    opacity: 1;
+    color: black;
+    word-wrap: normal;
+}
+
+#filterOptions input[type="submit"]:hover{
+    box-shadow: 3px 8px 15px black;
+    cursor: pointer;
+}
+
+.FilterDropDown
+{
+    width: 420px;
+    margin-left:13px;
+    margin-right: 2px;
+    height: 25px;
+    font-size: 12pt;
+    text-align: center;
+}
+
+.FilterDropDown:hover
+{
+    cursor: pointer;
+    background-color: rgb(144, 218, 145);
+}
+
+#updateRoundData{
     background-color: rgb(0, 179, 3);
 }
+
 #pageHeader{
     background-color: black;
     opacity: 0.5;
@@ -325,11 +533,19 @@ body{
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
 }
-#deleteRoundPopup, #updateRoundPopup{
+
+button[disabled] { 
+    pointer-events: none;
+    background-color: rgb(137, 136, 136);
+    color:#555;
+}
+
+/* Delete Round + Update Round */
+#deleteRoundPopup{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 30%;
+    height: 50%;
     width: 30%;
     padding: 10px;
     border-radius: 20px;
@@ -345,6 +561,34 @@ body{
 #updateRoundPopup{
     height: 20%;
 }
+
+#updateRoundPopup{
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    height: 60%;
+    width: 30%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(35, 35, 35);
+    opacity: 0.8;
+    border: 5px solid rgb(0, 255, 115);
+    color:rgb(0, 255, 115);
+    text-align: center;
+}
+
+#deleteRoundPopup button, #updateRoundPopup button{
+    margin-top: 20px;
+}
+
+.DeleteRoundInput
+{
+    color: #00420d;
+    background-color: rgb(200, 241, 201);
+    font-weight: bold;
+}
+
+/* New Tour */
 #newRoundFormPopup{
     position: fixed;
     top: 15%;
@@ -370,6 +614,47 @@ body{
     margin-top: 20px;
 }
 
+.RoundsCreateInput
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    padding : 3px;
+    margin: 8px;
+}
+
+.RoundsUpdateInput
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    padding : 3px;
+    margin: 8px;
+}
+
+#RoundNumberCreate
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    height: 20px;
+    margin: 0px;
+    
+}
+
+#RoundNumberUpdate
+{
+    color: #00420d;
+    background-color: rgb(223, 248, 223);
+    font-weight: bold;
+    width : 250px;
+    height: 20px;
+    margin: 0px;
+}
+
 #newRoundFormPopup hr{
     border: 1px solid rgb(0, 255, 119);
     margin-bottom: 25px;
@@ -377,6 +662,24 @@ body{
 .endRuler{
     margin-top: 25px;
 }
+
+.deletePopupHeader span{
+    font-size: 30pt;
+    margin: 10px;
+}
+
+.deletePopupHeader p{
+    margin: 10px;
+}
+
+.updatePopupInput{
+    margin-top: 20px;
+}
+
+.endRuler{
+    margin-top: 25px;
+}
+
 .formHeading{
     font-size: 30pt;
     color: white;
@@ -405,19 +708,45 @@ input[type="text"]{
     width: 90%;
 }
 
+input[type="text"], input[type="date"]{
+    width: 55%;
+}
+
+input[type="radio"]{
+    width: 20px;
+}
+
+.lblGenderType{
+    color: skyblue;
+    font-size: 10pt;
+}
+
+input[type="number"]{
+    width: 90%;
+}
+
+#Age_Handicap{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
 .inputTextBox input{
     min-width: 45px;
     height: 20px;
 }
+
 .inputTextBox > label{
     color: rgb(0, 255, 115);
 }
+
 .inputTextBox input:focus{
     outline: 0;
 }
+
 .inputTextBox.success input{
     border: 2px solid lime;
 }
+
 .inputTextBox.error input{
     border: 2px solid red;
     font-weight: bold;
@@ -431,7 +760,8 @@ input[type="text"]{
     font-size: 15pt;
     background-color:#f44336;
 }
-.submitbtnDel, .createbtn, .submitbtnUpdate{
+
+.submitbtnDel, .submitbtn, .submitbtnUpdate{
     width: 30%;
     font-size: 15pt;
     background-color: #04AA6D;
@@ -446,7 +776,8 @@ input[type="text"]{
     color:white;
     box-shadow: 2px 5px 10px black;
 }
-.submitbtnDel:hover, .createbtn:hover, .submitbtnUpdate:hover{
+
+.submitbtnDel:hover, .submitbtn:hover, .submitbtnUpdate:hover{
     cursor: pointer;
     background-color: #038555;
     color:white;
@@ -460,9 +791,11 @@ input[type="text"]{
     display: grid;
     grid-template-columns: 50% 50%;
 }
+
 .lblFilter{
     color:black;
 }
+
 #filterOptions input{
     width: 20px;
     margin-top: 2px;
@@ -475,9 +808,11 @@ input[type="text"]{
     grid-template-columns: 50% 50%;
     margin-bottom: 10px;
 }
+
 .lblUpdate{
     color:black;
 }
+
 #updateOptions input{
     width: 20px;
     margin-top: 2px;
@@ -497,8 +832,9 @@ input[type="text"]{
     color:rgb(0, 255, 115);
     text-align: center;
     /* visibility: hidden; */
-}
-.fullScreenPopupReg{
+  }
+
+  .fullScreenPopupReg{
     visibility: hidden;
     position: fixed;
     height: 100%;
@@ -509,8 +845,9 @@ input[type="text"]{
     bottom:0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
-}
-#SuccessfulRegPopup .popupButtons{
+  }
+
+  #SuccessfulRegPopup .popupButtons{
     position: absolute;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -518,30 +855,33 @@ input[type="text"]{
     bottom: 10%;
     left: 13%;
     width: 80%;
-}
+  }
   
-.dismissPopup{
+  .dismissPopup{
     background-color: rgb(0, 255, 115);
     font-weight: bold;
     width: 80%;
     border-radius: 20px;
     font-size: 15pt;
-}
-.dismissPopup:hover{
+  }
+
+  .dismissPopup:hover{
     background-color: rgb(0, 108, 32);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
-}
-.undoReg{
+  }
+
+  .undoReg{
     background-color: rgb(255, 0, 0);
     width: 80%;
     font-weight: bold;
     border-radius: 20px;
     font-size: 15pt;
-}
-.undoReg:hover{
+  }
+  
+  .undoReg:hover{
     background-color: rgb(136, 0, 0);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
-}
+  }
 
 .footer{
     text-align: center;
@@ -550,7 +890,7 @@ input[type="text"]{
     padding-bottom: 5px;
     margin-left: 10px;
     margin-right: 10px;
-    margin-top: 50px;
+    margin-top: 10px;
     bottom: 0%;
     top: 100%;
     width: 95%;

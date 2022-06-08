@@ -4,6 +4,12 @@
     session_unset();
     session_destroy();
 }
+if (isset($_COOKIE['resetLogin']))
+{
+    unset($_COOKIE['resetLogin']);
+    unset($_COOKIE['userName']);
+    unset($_COOKIE['loginStatus']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,7 +39,7 @@
                 include_once("header.php");
             ?>
             <div id="loginForm">
-                <form action="validate-login.php" method="post" class="loginForm">
+                <form action="validateLogin.php" method="post" class="loginForm">
                     <div class="container">
                         <h1>Login</h1>
                         <p>Please fill in details to login.</p>
@@ -91,7 +97,23 @@
                     </div>
                 </form>
             </div>
+            <div class="fullscreenPopup">
+                <div id="SuccessfulRegPopup">
+                    <h1> Successful Login </h1>
+                    <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader" width="100" height="100">
+                    <div class="popupButtons">
+                        <button type="button" class="dismissPopup"><a href="home.php">Dismiss</a></button>
+                    </div>
+                </div>
+            </div>
+            
             <?php
+                if (isset($_COOKIE['loginStatus']))
+                {
+                    echo"<script src='../js/loginSuccess.js'></script>";
+                }
+
+
                 include_once("footer.php");
             ?>
         </div>

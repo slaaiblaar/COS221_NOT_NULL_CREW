@@ -65,7 +65,7 @@
             <img id="courses-img" src="../img/courses-image.jpg" alt="courses" width="500" height="200">
             <img id="courses-dark-img" src="../img/courses-dark-image.jpeg" alt="courses" width="500" height="200">
           </div>
-          <button id="courses-btn" ><a href="courses.php">View Courses
+          <button id="courses-btn" ><a href="viewCourses.php">View Courses
               <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </button>
         </div>
@@ -79,7 +79,7 @@
             <img id="tournaments-img" src="../img/tournaments-image.jpg" alt="tournaments" width="500" height="200">
             <img id="tournaments-dark-img" src="../img/tournaments-dark-image.jpeg" alt="tournaments" width="500" height="200">
           </div>
-          <button id="tournaments-btn"><a href="tournaments.php">View Tournaments
+          <button id="tournaments-btn"><a href="viewTournaments.php">View Tournaments
               <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </button>
         </div>
@@ -107,7 +107,7 @@
             <img id="statistics-img" src="../img/statistics-image.jpg" alt="statistics" width="500" height="200">
             <img id="statistics-dark-img" src="../img/statistics-dark-image.jpeg" alt="statistics" width="500" height="200">
           </div>
-          <button id="statistics-btn"><a href="statistics.php">View Statistics
+          <button id="statistics-btn"><a href="manageStatistics.php">View Statistics
               <i class="fa-solid fa-arrow-right-to-bracket"></i></a>
           </button>
         </div>
@@ -122,6 +122,7 @@
       
     </div>
     <script src="../js/loader.js"></script>
+    <script src="../js/home.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   </body>

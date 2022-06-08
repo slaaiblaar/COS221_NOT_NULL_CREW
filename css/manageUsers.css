@@ -301,6 +301,69 @@ body{
     opacity: 0.9;
     border: 4px solid black;
     padding: 5px;
+    overflow: scroll;
+}
+#TableSize{
+  height:100%;
+  width:975px;
+  overflow-y: auto;
+}
+
+th 
+{
+  background: rgb(0, 179, 3);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 13px;
+}
+
+table.Table
+{
+  height: 500px;
+  width: 965px;
+  border: 1px solid black;
+  border-radius: 13px; 
+  border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+border-bottom: 1px solid black;
+padding: 10px; 
+border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+  background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+  background-color: rgb(96, 164, 98);
+  color: #00420d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+  background-color: rgb(124, 211, 126);
+  color: #00420d;
+  text-decoration: none;
 }
 
 #createNewUser{
@@ -341,7 +404,9 @@ body{
     font-size: 15pt;
     color: white;
 }
-.fullscreenPopup{
+
+.fullScreenPopupAdd, .fullScreenPopupDelete,
+.fullScreenPopupReg, .fullScreenPopupUpdate{
     visibility: hidden;
     position: fixed;
     height: 100%;
@@ -352,8 +417,204 @@ body{
     bottom:0;
     background-color: rgba(0, 0, 0, 0.5);
     z-index: 9999;
-    overflow: scroll;
 }
+#deleteUserPopup, #updateUserPopup{
+    position: fixed;
+    top: 15%;
+    left: 35%;
+    height: 60%;
+    width: 30%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: rgb(35, 35, 35);
+    opacity: 0.8;
+    border: 5px solid rgb(0, 255, 115);
+    color:rgb(0, 255, 115);
+    text-align: center;
+}
+#deleteUserPopup button, #updateUserPopup button{
+    margin-top: 20px;
+}
+#updateUserPopup{
+    height: 50%;
+}
+
+.deletePopupHeader span, .updatePopupHeader span{
+    font-size: 30pt;
+    margin: 10px;
+}
+.deletePopupHeader p{
+    margin: 10px;
+}
+.updatePopupInput, .updatePopupInputID{
+    margin-top: 10px;
+}
+
+.endRuler{
+    margin-top: 25px;
+}
+.formHeading{
+    font-size: 30pt;
+    color: white;
+    text-decoration: underline dotted;
+    font-weight: bold;
+}
+.formSubHeading{
+    font-size: 15pt;
+    color: red;
+    font-weight: bold;
+}
+#formBodyContainer{
+    border: 2px dashed white;
+    background-color: rgb(10, 10, 10);
+    border-radius: 10px;
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+input[type="text"], input[type="date"]{
+    width: 55%;
+}
+input[type="radio"]{
+    width: 20px;
+}
+.lblGenderType{
+    color: skyblue;
+    font-size: 10pt;
+}
+input[type="number"]{
+    width: 90%;
+}
+#Age_Handicap{
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.inputTextBox input{
+    min-width: 45px;
+    height: 20px;
+}
+.inputTextBox > label{
+    color: rgb(0, 255, 115);
+}
+.inputTextBox input:focus{
+    outline: 0;
+}
+.inputTextBox.success input{
+    border: 2px solid lime;
+}
+.inputTextBox.error input{
+    border: 2px solid red;
+    font-weight: bold;
+}
+.submitButtons{
+    font-weight: bold;
+    color: white;
+}
+.cancelbtnDel, .cancelbtn, .cancelbtnUpdate{
+    width: 30%;
+    font-size: 15pt;
+    background-color:#f44336;
+}
+.submitbtnDel, .submitbtn, .submitbtnUpdate, .signupbtn{
+    width: 30%;
+    font-size: 15pt;
+    background-color: #04AA6D;
+}
+.error {
+    color: red;
+    font-weight: bold;
+}
+.cancelbtnDel:hover, .cancelbtn:hover, .cancelbtnUpdate:hover{
+    cursor: pointer;
+    background-color: #900a00;
+    color:white;
+    box-shadow: 2px 5px 10px black;
+}
+.submitbtnDel:hover, .submitbtn:hover, .submitbtnUpdate:hover,
+.signupbtn:hover{
+    cursor: pointer;
+    background-color: #038555;
+    color:white;
+    box-shadow: 2px 5px 10px black;
+}
+#filterForm{
+    background-color: rgb(172, 172, 172);
+    border-radius: 10px;
+    visibility: hidden;
+}
+.filterFormContainer > button{
+    visibility: hidden;
+    font-size: 10pt;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: rgb(0, 94, 255);
+    opacity: 1;
+}
+.filterFormContainer > button:hover{
+    cursor: cursor;
+    box-shadow: 2px 3px 8px rgb(29, 123, 255);
+}
+
+#filterOptions{
+    /* visibility: hidden; */
+    background-color: rgb(172, 172, 172);
+    border-radius: 10px;
+    display: none;
+    /* display: grid;*/
+    /* grid-template-columns: 50% 50%;  */
+}
+.lblFilter{
+    color:black;
+}
+#filterOptions input{
+    width: 20px;
+    margin-top: 2px;
+}
+#updateOptions{
+    /* visibility: hidden; */
+    background-color: rgb(172, 172, 172);
+    border-radius: 10px;
+    display: none;
+    /* grid-template-columns: 50% 50%; */
+    /* margin-bottom: 10px; */
+}
+.lblUpdate{
+    color:black;
+}
+#updateOptions input{
+    width: 20px;
+    margin-top: 2px;
+}
+
+#SuccessfulRegPopup{
+    position: fixed;
+    top: 35%;
+    left: 26%;
+    height: 50%;
+    width: 50%;
+    padding: 10px;
+    border-radius: 20px;
+    background-color: white;
+    opacity: 0.8;
+    border: 5px solid rgb(0, 0, 0);
+    color:rgb(0, 255, 115);
+    text-align: center;
+    /* visibility: hidden; */
+  }
+  .fullScreenPopupReg{
+    visibility: hidden;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+  }
 #SuccessfulRegPopup .popupButtons{
     position: absolute;
     display: grid;
@@ -386,31 +647,58 @@ body{
     background-color: rgb(136, 0, 0);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
 }
-  
-#signupForm{
+.footer{
+  margin-top: 20px;
+    color: white;
+}
+#newUserPopupForm{
     background-color: rgb(35, 35, 35);
     width: 50%;
-    height: 100%;
-    position: relative;
+    overflow-y:scroll ;
+    height: 80%;
+    position: fixed;
+    top: 50px;
     left: 26%;
-    top: 32%;
     box-shadow: 2px 5px 10px;
     border-radius: 10%;
-    margin-top: 15px;
     border: 5px solid rgb(0, 255, 115);
     grid-column: 1 / span 2;
     grid-row: 1 / span 1;
     opacity: 0.85;
     padding: 0px 15px 0px 15px;
 }
+/* width */
+#newUserPopupForm::-webkit-scrollbar {
+  width: 15px;
 
-#signupForm h1, #signupForm p {
+}
+
+/* Track */
+#newUserPopupForm::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+  border-radius: 10px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+ 
+/* Handle */
+#newUserPopupForm::-webkit-scrollbar-thumb {
+  background: rgb(139, 255, 165); 
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+#newUserPopupForm::-webkit-scrollbar-thumb:hover {
+  background: rgb(79, 145, 93); 
+}
+
+#newUserPopupForm h1, #newUserPopupForm p {
   text-align: center;
 }
-#signupForm h1{
+#newUserPopupForm h1{
   color:rgb(0, 255, 119)
 }
-#signupForm p{
+#newUserPopupForm p{
   color: white;
 }
 .error {
@@ -455,7 +743,6 @@ hr {
     padding: 14px 20px;
     background-color: #04AA6D;
     font-weight: bold;
-    color: white;
 }
 .signupbtn a{
     text-decoration: none;
@@ -470,10 +757,10 @@ hr {
   background-color: #b6342b;
   box-shadow: 2px 3px 8px rgb(255, 0, 0);
 }
-.signupbtn:hover {
+/* .signupbtn:hover {
   background-color: #007e50;
   box-shadow: 2px 3px 8px rgb(0, 255, 106);
-}
+} */
 .inputTextBox label{
   text-align: left;
   color: rgb(0, 255, 119);

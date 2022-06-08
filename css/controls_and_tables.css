@@ -7,7 +7,7 @@
   {
     border-radius: 20px;
     background-color: white;
-    opacity: 0.7;
+    opacity: 0.9;
     border: 5px solid black;
     width: 70%;
     margin: auto;
@@ -66,6 +66,7 @@
     display:block;
     border-radius: 3px;
     border: 1px solid black;
+    cursor: pointer;
   }
   .controlButton > h2
   {
@@ -75,15 +76,15 @@
   }
   #add
   {
-    background-color: rgba(85, 207, 60,0.7);
+    background-color: rgba(85, 207, 60,1);
   }
   #modify
   {
-    background-color: rgba(255, 187, 0, 0.7);
+    background-color: rgba(255, 187, 0, 1);
   }
   #delete
   {
-    background-color: rgba(255, 72, 0, 0.7);
+    background-color: rgba(255, 72, 0, 1);
   }
   #tableContainer
   {

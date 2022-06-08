@@ -425,8 +425,8 @@ function isValidLat(a,b)
 
     var input = document.querySelectorAll(b + " > input");
     var valid = true;
-    var decCountReg = /\.[0-9]{5}$/g;
-    var symReg = /[^\.\-\+0-9]/g;
+    var decCountReg = /\.[0-9]{5,}$/g;
+    var symReg = /[^\.\-\+[0-9]/g;
     if (decCountReg.test(a))  
     {
         valid = false;

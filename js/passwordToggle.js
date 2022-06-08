@@ -1,15 +1,28 @@
 const passwordInput = document.getElementById('togglePsw');
 
 passwordInput.addEventListener('click', function toggleVisibility() {
-    const userInput = document.querySelector('.password');
+    var userInput = document.querySelector('.password');
+    var userInputUpdate = document.querySelector('.updateInput input.password');
     const icon = document.getElementById('icon');
-
-    if (userInput.type === "password"){
-        userInput.type = "text";
-        icon.innerText = "visibility_off";
+    const icon2 = document.getElementById('icon2');
+    if(icon != null){
+        if (userInput.type === "password"){
+            userInput.type = "text";
+            icon.innerText = "visibility_off";
+        }
+        else{
+            userInput.type = "password";
+            icon.innerText = "visibility";
+        }
     }
-    else{
-        userInput.type = "password";
-        icon.innerText = "visibility";
+    if (icon2!=null){
+        if (userInput.type === "password"){
+            userInput.type = "text";
+            icon2.innerText = "visibility_off";
+        }
+        else{
+            userInput.type = "password";
+            icon2.innerText = "visibility";
+        }
     }
 })

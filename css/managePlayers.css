@@ -267,7 +267,7 @@ body{
     background-color: white;
     display: grid;
     grid-template-rows: auto;
-    grid-gap: 20px;
+    grid-gap: 10px;
     height: 100%;
     width:100%;
     margin: 0px 0px 5px 10px;
@@ -302,8 +302,97 @@ body{
     opacity: 0.9;
     border: 4px solid black;
     padding: 5px;
+    overflow: scroll;
+}
+.tableGrid th,td{
+    padding: 2px;
+    text-align: center;
+}
+#TableSize{
+  height:100%;
+  width:975px;
+  overflow-y: auto;
 }
 
+th 
+{
+  background: rgb(0, 179, 3);
+  color: white;
+  position: sticky;
+  top: 0;
+}
+
+/* top-left border-radius */
+table tr:first-child th:first-child {
+  border-top-left-radius: 13px;
+}
+
+/* top-right border-radius */
+table tr:first-child th:last-child {
+  border-top-right-radius: 13px;
+}
+
+table.Table
+{
+  height: 500px;
+  width: 965px;
+  border: 1px solid black;
+  border-radius: 13px; 
+  border-spacing: 0;
+}
+
+table.Table td, table.Table th { 
+border-bottom: 1px solid black;
+padding: 10px; 
+border-right: 1px solid black;;
+}
+
+table.Table tr:last-child > td {
+border-bottom: none;
+}
+
+tr:nth-child(even)
+{
+  background-color: #d8d6d6
+}
+
+.TableRow:hover 
+{
+  background-color: rgb(96, 164, 98);
+  color: #00420d;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.TableRow.TRactive
+{
+  background-color: rgb(124, 211, 126);
+  color: #00420d;
+  text-decoration: none;
+}
+#newPlayerFormPopup::-webkit-scrollbar {
+    width: 15px;
+  
+  }
+  
+  /* Track */
+  #newPlayerFormPopup::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey; 
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+  }
+   
+  /* Handle */
+  #newPlayerFormPopup::-webkit-scrollbar-thumb {
+    background: rgb(139, 255, 165); 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  #newPlayerFormPopup::-webkit-scrollbar-thumb:hover {
+    background: rgb(79, 145, 93); 
+  }
 #createNewPlayer{
     background-color: rgb(179, 179, 0);
 }
@@ -360,8 +449,8 @@ body{
     position: fixed;
     top: 15%;
     left: 35%;
-    height: 30%;
-    width: 30%;
+    height: 40%;
+    width: 35%;
     padding: 10px;
     border-radius: 20px;
     background-color: rgb(35, 35, 35);
@@ -374,10 +463,11 @@ body{
     margin-top: 20px;
 }
 #updatePlayerPopup{
-    height: 20%;
+    height: 50%;
 }
 #newPlayerFormPopup{
     position: fixed;
+    overflow-y: scroll;
     top: 15%;
     left: 35%;
     height: 80%;
@@ -397,8 +487,8 @@ body{
 .deletePopupHeader p{
     margin: 10px;
 }
-.updatePopupInput{
-    margin-top: 20px;
+.updatePopupInput, .updatePopupInputID{
+    margin-top: 10px;
 }
 
 #newPlayerFormPopup hr{
@@ -491,8 +581,29 @@ input[type="number"]{
     color:white;
     box-shadow: 2px 5px 10px black;
 }
+#filterForm{
+    background-color: rgb(172, 172, 172);
+    border-radius: 10px;
+    visibility: hidden;
+}
+.filterFormContainer > button{
+    visibility: hidden;
+    font-size: 10pt;
+    font-weight: bold;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: rgb(0, 94, 255);
+    opacity: 1;
+}
+.filterFormContainer > button:hover{
+    cursor: cursor;
+    box-shadow: 2px 3px 8px rgb(29, 123, 255);
+}
 
 #filterOptions{
+    /* visibility: hidden; */
+    /* background-color: rgb(172, 172, 172); */
     display: none;
     background-color: rgb(172, 172, 172);
     border-radius: 10px;
@@ -581,3 +692,9 @@ input[type="number"]{
     background-color: rgb(136, 0, 0);
     box-shadow: 5px 2px 15px rgb(0, 0, 0);
   }
+.footer{
+    margin-top: 20px;
+    color: white;
+}
+
+

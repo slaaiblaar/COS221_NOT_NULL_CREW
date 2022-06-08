@@ -2,20 +2,32 @@
    if(!isset($_SESSION)) session_start();
 ?>
 
+<!--
+    MEMBERS of NOT_NULL_CREW:
+    u19043512
+    u21446271
+    u19234806
+    u21457451
+    u04929552
+    u21457060
+-->
+<?php 
+    session_start(); 
+    
+    require_once("setDBEnvVar.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="stylesheet" href="../css/holes.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-    <title>Golf Holes</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <title>Holes</title>
 </head>
 <body>
     <div class="loaderFlag">
@@ -23,98 +35,85 @@
             <img src="../img/flag-in-hole-joypixels.gif" alt="Flag Loader">
         </div>
     </div>
-
     <div class="content">
+
         <div class="top-content">
             <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
             <h1 id="webTitle">Sunrise Golfing</h1>  
-        </div>   
+        </div> 
 
-        <?php 
-            include_once("header.php");
+        <!-- inclusion of navbar start -->
+        <?php
+            require_once("../php/header.php");
         ?>
-
-        <nav id="navBar">
-            <div class="container">
-                <ul>
-                    <li><a href="home.php">Home</a></li>
-                    <li class="loginSignUp"><a class="active" href="#">Login</a></li>
-                    <li class="loginSignUp"><a href="signup.php">Sign Up</a></li>
-                </ul>
-            </div>
-        </nav>
-
+        <!-- inclusion of navbar end-->
+        <br/><br/>
         <div id="pageHeader">
             <div class="pageHeadings">
                 <span>Manage Holes</span>
-                <p>Use the buttons on the left to manage the holes</p>
+                <p> Use the buttons on the left to manage the Holes</p>
             </div>
         </div>
+
         <div class="contentContainer">
             <div class="buttonsGrid">
-                <button id="createNewHole">Create New Hole</button>
-                <button id="deleteHole">Delete a Hole from the table</button>
-                <!-- <button id="filterTable">List filter options</button>
-                <div id="filterOptions">
-                    <div>
-                        <input type="radio" name="filterOption1" class="filter-option1">
-                        <label for="lblFilter">Par < 3</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="filterOption2" class="filter-option2">
-                        <label for="lblFilter">Par >= 3</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="filterOption3" class="filter-option3">
-                        <label for="lblFilter">Site Id</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="filterOption3" class="filter-option3">
-                        <label for="lblFilter">Reset Table</label>
-                    </div>
-                </div> -->
-                <button id="updateHole">Update a Hole's data</button>
-                <div id="updateOptions">
-                    <div>
-                        <input type="radio" name="updateOption1" class="update-option1">
-                        <label for="lblUpdate">Update Hole number</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="updateOption2" class="update-option2">
-                        <label for="lblUpdate">Update site ID</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="updateOption3" class="update-option3">
-                        <label for="lblUpdate">Update Par number</label>
-                    </div>
-                    <div>
-                        <input type="radio" name="updateOption4" class="update-option4">
-                        <label for="lblUpdate">Update length</label>
-                    </div>
-                </div>
+
+                <button type="button" id="createNewHole">Create a New Hole</button>
+                <button type="button" id="deleteHole" onmouseup="HasActive('delete')">Delete a Hole from the table</button>
+                <button type="button" id="updateHoleData" onmouseup="HasActive('update')">Update a Hole's data</button>
+
+                <button type="button" id="filterTable">List filter options</button>
+                <form id="filterOptions" method = "post" onsubmit="clearTable()">
+
+                    <?php
+                        include_once("../php/holeTableDisplay.php");
+
+                        PopulateDropDown();
+                    ?>
+                    
+                    <input type="submit" name = "ApplyFilter" id="ApplyFilter" value="Apply Filter"/>
+                </form>
+
+                <script>
+                    function clearTable()
+                    {
+                        document.getElementById("TableSize").innerhtml = "";
+                    }
+                </script>
+
             </div>
 
             <div class="tableGrid">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><h3>ID</h3></th>
-                            <th><h3>Hole number</h3></th>
-                            <th><h3>Site Id</h3></th>
-                            <th><h3>Par</h3></th>
-                            <th><h3>Length</h3></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
+                <div id = "TableSize">
+                    <!-- include Tours table -->
+                    <?php
+                        include_once("../php/holeTableDisplay.php");
+                        
+                        if(array_key_exists('ApplyFilter', $_POST)) {
 
-                    </tbody>
-                </table>
+                            $HoleNum = $_POST["HoleNumDrpDwn"];
+                            $SiteName = $_POST["SiteNameDrpDwn"];
+                            $ParNum = $_POST["ParNumDrpDwn"];
+                            FilterTable($HoleNum, $SiteName, $ParNum);
+
+                            unset($_POST);
+                            $_POST = array();
+                        }
+                        else
+                        {
+                            NormalTable();
+                        }
+
+                    ?>
+                </div>
+                
             </div>
         </div>
 
+        <!-- New Hole -->
         <div class="fullScreenPopupAdd">
             <div id="newHoleFormPopup">
-                <form action="addHoleValidationForm.php" method="post" onsubmit="return validateAddInput()">
+                <form id="createHoleForm"  onsubmit = "return InsertCheck()">
                     <div class="addHoleFormHeader">
                         <div class="formHeading">Create new Hole</div>
                         <div class="formSubHeading">Please enter all fields</div>
@@ -122,151 +121,172 @@
                     <hr>
                     <div id="formBodyContainer">
                         <div class="inputTextBox">
-                            <label for="holeNo"><b>Hole Number</b></label><br>
-                            <input type="number" name="holeNo" id="holeNo" min="1" max="99" placeholder="Enter hole number [1-99]">
-                            <small><?php if(isset($_SESSION["holeNoError"]))
-                                echo $_SESSION["holeNoError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-                            
-                        <div class="inputTextBox">
-                            <label for="siteId"><b>Site ID</b></label><br>
-                            <input type="number" name="siteId" id="siteId" min="1" placeholder="Enter site ID">
-                            <small><?php if(isset($_SESSION["siteIdError"])) 
-                                echo $_SESSION["siteIdError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="inputTextBox">
-                            <label for="par"><b>Par</b></label><br>
-                            <input type="number" name="par" id="par" min="1" max="99" placeholder="Enter par number [1-99]">
-                            <small><?php if(isset($_SESSION["par"])) 
-                                echo $_SESSION["par"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="inputTextBox">
-                            <label for="length"><b>Length</b></label><br>
-                            <input type="text" name="len" id="len" maxlength="11" placeholder="Enter length">
-                            <small><?php if(isset($_SESSION["lenError"]))
-                                echo $_SESSION["lenError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="submitButtons">
-                            <button type="button" class="cancelbtn">Cancel</button>
-                            <button type="submit" class="createbtn" name="Submit">Submit</button>
+                            <label for="HoleNumberCreate"><b>Choose the hole number:</b></label><br>
+                            <select name='HoleNumberCreate' id='HoleNumberCreate' class="HolesCreateInput">
+                                <option value= '1'>1</option>
+                                <option value= '2'>2</option>
+                                <option value= '3'>3</option>
+                                <option value= '4'>4</option>
+                                <option value= '5'>5</option>
+                                <option value= '6'>6</option>
+                                <option value= '7'>7</option>
+                                <option value= '8'>8</option>
+                                <option value= '9'>9</option>
+                                <option value= '10'>10</option>
+                                <option value= '11'>11</option>
+                                <option value= '12'>12</option>
+                                <option value= '13'>13</option>
+                                <option value= '14'>14</option>
+                                <option value= '15'>15</option>
+                                <option value= '16'>16</option>
+                                <option value= '17'>17</option>
+                                <option value= '18'>18</option>
+                            </select>
                         </div>
+                        <div class="inputTextBox">
+                            <label for="SiteNamesCreate"><b>Choose an Site Name:</b></label><br>
+                            <?php
+                                include_once("../php/holeTableDisplay.php");
+
+                                PopulateAddSiteNDropDown("Insert");
+                            ?>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="HoleParCreate"><b>Choose the Par number:</b></label><br>
+                            <select name='HoleParCreate' id='HoleParCreate' class="HolesCreateInput">
+                                <option value= '1'>1</option>
+                                <option value= '2'>2</option>
+                                <option value= '3'>3</option>
+                                <option value= '4'>4</option>
+                                <option value= '5'>5</option>
+                            </select>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="HoleLengthCreate"><b>Enter the Hole Length (in meters):</b></label><br>
+                            <input class="HolesCreateInput" type="number" placeholder="Length in meters" name="HoleLengthCreate" id= "HoleLengthCreate" min="1" required>
+                            <div class="error" id = "HoleLengthErrorCreate"></div><br>
+                        </div>
+
+                        <div id="submitButtons">
+                            <button type="button" class="cancelbtn">Cancel</button>
+                            <button type="submit" class="submitbtn" id="SubmitCreateHole" onclick="Insert()">Submit</button>
+                        </div>
+                        
                     </div>
                 </form>
+
                 <hr class="endRuler">
+
             </div>
         </div>
 
+        <!-- Delete Hole -->
         <div class="fullScreenPopupDelete">
             <div id="deleteHolePopup">
-                <form action="delHoleValidationForm.php" method="post" id="deleteHoleForm" onsubmit="return validateDelInput()">
+                <forms id="DeleteHoleForm">
+                    <div class="addHoleFormHeader">
+                        <div class="formHeading">Delete Hole</div>
+                    </div>
+                    <hr>
                     <div id="formBodyContainer">
-                        <div class="deletePopupHeader">
-                            <span>Enter the site id and hole number</span>
-                        </div>
-
                         <div class="inputTextBox">
-                            <input type="number" name="siteId" id="siteId" min="1" placeholder="Enter site ID">
-                            <small><?php if(isset($_SESSION["siteIdError"])) 
-                                echo $_SESSION["siteIdError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="inputTextBox">
-                            <input type="number" name="holeNo" id="holeNo" min="1" max="99" placeholder="Enter hole number [1-99]">
-                            <small><?php if(isset($_SESSION["holeNoError"]))
-                                echo $_SESSION["holeNoError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="submitButtons">
-                            <button type="button" class="cancelbtnDel">Cancel</button>
-                            <button type="submit" class="submitbtnDel" name="Submit">Delete</button>
+                            <label for="DeleteHoleNum"><b>Hole Number:</b></label><br>
+                            <input class="DeleteHoleInput" type="text" placeholder="Hole Number" name="DeleteHoleNum" id= "DeleteHoleNum" disabled>
                         </div>
+                        <div class="inputTextBox">
+                            <label for="DeleteSiteName"><b>Site Name:</b></label><br>
+                            <input class="DeleteHoleInput" type="text" placeholder="Site Name" name="DeleteSiteName" id= "DeleteSiteName" disabled>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="DeletePar"><b>Par number:</b></label><br>
+                            <input class="DeleteHoleInput" type="text" placeholder="Par number" name="DeletePar" id= "DeletePar" disabled>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="DeleteLength"><b>Length(in meters):</b></label><br>
+                            <input class="DeleteHoleInput" type="text" placeholder="Length(in meters)" name="DeleteLength" id= "DeleteLength" disabled>
+                        </div>
+                    </div>
+                    <div id="submitButtons">
+                        <button type="button" class="cancelbtnDel">Cancel</button>
+                        <button type="submit" class="submitbtnDel" id="submitbtnDel" name="Submit" onclick="Delete()">Delete</button>
                     </div>
                 </form>
             </div>
         </div>
 
-        <div class="fullScreenPopupReg">
-            <div id="SuccessfulRegPopup">
-                <h1> Successful Registration </h1>
-                <image class="Logo"></image>
-                <div class="popupButtons">
-                    <button type="button" class="undoReg">Undo Registration</button>
-                    <button type="button" class="dismissPopup">Dismiss</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- <div class="fullScreenPopupFilter">
-            <div id="filterHolePopup">
-                <form action="InputvalidationHole.php" method="post" id="filterHoleForm" onsubmit="return validateDelInput()">
-                    <div class="filterPopupHeader">
-                        <span></span>
-                    </div>
-
-                    <div class="inputTextBox filterInput">
-                        <input type="number" name="filterPopupInput" class="filterPopupInput">
-                        <small></small>
-                    </div>
-
-                    <div class="submitButtons">
-                        <button type="button" class="cancelbtnFilter">Cancel</button>
-                        <button type="submit" class="submitbtnFilter" name="Submit">Filter</button>
-                    </div>
-                </form>
-            </div>
-        </div> -->
-
+        <!-- Update Hole -->
         <div class="fullScreenPopupUpdate">
             <div id="updateHolePopup">
-                <form action="updateHoleValidationForm.php" method="post" id="updateHoleForm">
-                    <div class="updatePopupHeader">
-                    <span>Enter the site id</span>
+                <forms id="updateHoleForm" onsubmit = "return UpdateCheck()">
+                    <div class="addHoleFormHeader">
+                        <div class="formHeading">Update Tour</div>
                     </div>
+                    <hr>
+                    <div id="formBodyContainer">
+                        <div class="inputTextBox">
+                            <label for="HoleNumberUpdate"><b>Choose the hole number:</b></label><br>
+                            <select name='HoleNumberUpdate' id='HoleNumberUpdate' class="HolesUpdateInput">
+                                <option value= '1'>1</option>
+                                <option value= '2'>2</option>
+                                <option value= '3'>3</option>
+                                <option value= '4'>4</option>
+                                <option value= '5'>5</option>
+                                <option value= '6'>6</option>
+                                <option value= '7'>7</option>
+                                <option value= '8'>8</option>
+                                <option value= '9'>9</option>
+                                <option value= '10'>10</option>
+                                <option value= '11'>11</option>
+                                <option value= '12'>12</option>
+                                <option value= '13'>13</option>
+                                <option value= '14'>14</option>
+                                <option value= '15'>15</option>
+                                <option value= '16'>16</option>
+                                <option value= '17'>17</option>
+                                <option value= '18'>18</option>
+                            </select>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="SiteNamesUpdate"><b>Choose an Site Name:</b></label><br>
+                            <?php
+                                include_once("../php/holeTableDisplay.php");
 
-                    <div class="inputTextBox">
-                        <input type="number" name="siteId" id="siteId" min="1" placeholder="Enter site id">
-                        <small><?php if(isset($_SESSION["siteIdError"])) 
-                            echo $_SESSION["siteIdError"];
-                        else echo "";
-                        ?></small>
-                    </div><br>
-
-                    <div class="inputTextBox updateInput">
-                        <input type="number" name="updatePopupInput" class="updatePopupInput">
-                        <small></small>
+                                PopulateAddSiteNDropDown("Update");
+                            ?>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="HoleParUpdate"><b>Choose the Par number:</b></label><br>
+                            <select name='HoleParUpdate' id='HoleParUpdate' class="HolesUpdateInput">
+                                <option value= '1'>1</option>
+                                <option value= '2'>2</option>
+                                <option value= '3'>3</option>
+                                <option value= '4'>4</option>
+                                <option value= '5'>5</option>
+                            </select>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="HoleLengthUpdate"><b>Enter the Hole Length (in meters):</b></label><br>
+                            <input class="HolesUpdateInput" type="number" placeholder="Length in meters" name="HoleLengthUpdate" id= "HoleLengthUpdate" min="1" required>
+                            <div class="error" id = "HoleLengthErrorUpdate"></div><br>
+                        </div>
                     </div>
-
-                    <div class="submitButtons">
-                        <button type="button" class="cancelbtnUpdate">Cancel</button>
-                        <button type="submit" class="submitbtnUpdate" name="Submit">Update</button>
+                    <div id="submitButtons">
+                        <button type="button" class="cancelbtnUpdate" id="cancelbtnUpdate" >Cancel</button>
+                        <button type="submit" class="submitbtnUpdate" id="submitbtnUpdate" name="Submit" onclick="Update()">Update</button>
                     </div>
                 </form>
             </div>
         </div>
 
         <?php
-            include_once("footer.php");
+            include_once("../php/footer.php");
         ?>
     </div>
 
     <script src="../js/HolePopups.js"></script>
-    <script src="../js/inputValidationHole.js"></script>
-    <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
+    <script src="../js/holes.js"></script>
+    <script src="../js/loaderFlag.js"></script>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
