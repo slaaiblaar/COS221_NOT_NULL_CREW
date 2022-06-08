@@ -1,5 +1,8 @@
 <?php
    if(!isset($_SESSION)) session_start();
+    session_start(); 
+    
+    require_once("setDBEnvVar.php");
 ?>
 
 <!DOCTYPE html>
@@ -25,6 +28,7 @@
     </div>
     
     <div class="content">
+
         <div class="top-content">
             <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
             <h1 id="webTitle">Sunrise Golfing</h1>  
@@ -87,20 +91,31 @@
             </div>
 
             <div class="tableGrid">
-                <table>
-                    <thead>
-                        <tr>
-                            <th><h3>ID</h3></th>
-                            <th><h3>Round number</h3></th>
-                            <th><h3>Event Id</h3></th>
-                            <th><h3>Leader Id</h3></th>
-                            <th><h3>State</h3></th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
+                <div id = "TableSize">
+                    <!-- include Tours table -->
+                    <?php
+                        include_once("../php/roundTableDisplay.php");
+                        
+                        if(array_key_exists('ApplyFilter', $_POST)) 
+                        {
+                            $RoundNum = $_POST["RoundNumDrpDwn"];
+                            $EventName = $_POST["EventNameDrpDwn"];
+                            $LeaderName = $_POST["LeaderNameDrpDwn"];
+                            $State = $_POST["RoundStateFilter"];
+                           
+                            FilterTable($RoundNum, $EventName, $LeaderName, $State);
+                           
+                            unset($_POST);
+                            $_POST = array();
+                        }
+                        else
+                        {
+                            NormalTable();
+                        }
 
-                    </tbody>
-                </table>
+                    ?>
+                </div>
+                
             </div>
         </div>
 
@@ -141,15 +156,17 @@
                         </div><br>
 
                         <div class="inputTextBox">
-                            <label for="state"><b>State</b></label><br>
-                            <input type="text" name="state" id="state" maxLength="25" placeholder="Enter state(Scheduled','In progress','Finished','Cancelled','Postponed)">
-                            <small><?php if(isset($_SESSION["stateError"])) 
-                                echo $_SESSION["stateError"];
-                            else echo "";
-                            ?></small>
-                        </div><br>
-
-                        <div class="submitButtons">
+                            <label for="RoundStateCreate"><b>Choose the Round number:</b></label><br>
+                            <select name='RoundStateCreate' id='RoundStateCreate' class="RoundsCreateInput">
+                                <option value= 'Scheduled'>Scheduled</option>
+                                <option value= 'In+progress'>In progress</option>
+                                <option value= 'Finished'>Finished</option>
+                                <option value= 'Cancelled'>Cancelled</option>
+                                <option value= 'Postponed'>Postponed</option>
+                            </select>
+                        </div>
+                        
+                        <div id="submitButtons">
                             <button type="button" class="cancelbtn">Cancel</button>
                             <button type="submit" class="createbtn" name="Submit">Submit</button>
                         </div>
@@ -225,15 +242,39 @@
                     <div class="updatePopupHeader">
                         <span></span>
                     </div>
+                    <hr>
+                    <div id="formBodyContainer">
+                        <div class="inputTextBox">
+                            <label for="RoundNumberUpdate"><b>Enter the Round Number:</b></label><br>
+                            <input class="RoundsUpdateInput" type="number" placeholder="Number" name="RoundNumberUpdate" id= "RoundNumberUpdate" min="1" required>
+                            <div class="error" id = "RoundNumberErrorUpdate"></div><br>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="EventNamesUpdate"><b>Choose a Tournament:</b></label><br>
+                            <?php
+                                include_once("../php/roundTableDisplay.php");
+                                PopulateAddLeaderNDropDown("Update");
+                            ?>
 
                     <div class="inputTextBox updateInput">
                         <input type="text" name="updatePopupInput" class="updatePopupInput">
                         <small></small>
                     </div>
-
-                    <div class="submitButtons">
-                        <button type="button" class="cancelbtnUpdate">Cancel</button>
-                        <button type="submit" class="submitbtnUpdate" name="Submit">Update</button>
+                        </div>
+                        <div class="inputTextBox">
+                            <label for="RoundStateUpdate"><b>Choose the Round number:</b></label><br>
+                            <select name='RoundStateUpdate' id='RoundStateUpdate' class="RoundsUpdateInput">
+                                <option value= 'Scheduled'>Scheduled</option>
+                                <option value= 'In+progress'>In progress</option>
+                                <option value= 'Finished'>Finished</option>
+                                <option value= 'Cancelled'>Cancelled</option>
+                                <option value= 'Postponed'>Postponed</option>
+                            </select>
+                        </div>
+                        <div id="submitButtons">
+                            <button type="button" class="cancelbtnUpdate" id="cancelbtnUpdate" >Cancel</button>
+                            <button type="submit" class="submitbtnUpdate" id="submitbtnUpdate" name="Submit" onclick="Update()">Update</button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -244,9 +285,10 @@
         ?>
     </div>
 
-    <script src="../JS/RoundPopups.js"></script>
-    <script src="../JS/inputValidationRound.js"></script>
-    <script language="Javascript" type="text/javascript" src="../js/loaderFlag.js"></script>
+    <script src="../js/RoundPopups.js"></script>
+    <script src="../js/rounds.js"></script>
+    <script src="../js/loaderFlag.js"></script>
+    <script src="../js/sideMenu.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>
