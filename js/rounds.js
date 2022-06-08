@@ -97,3 +97,146 @@ function HasActive(Type)
         document.getElementById("submitbtnDel").disabled = true;
     }
 }
+<<<<<<< Updated upstream
+=======
+
+function InsertCheck()
+{
+    var Length = document.getElementById("RoundNumberCreate").value;
+
+
+    if(Length == null || Length <= 0  )
+    {
+        document.getElementById("RoundLengthErrorCreate").innerHTML = "The Round number must be 1 or higher";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+
+}
+
+function Insert()
+{
+    if(InsertCheck() == true)
+    {
+        var RoundNum = document.getElementById("RoundNumberCreate").value;
+        var EventName = document.getElementById("EventNamesCreate").value;
+        EventName = EventName.replace(/[+]/g, " ");
+        var LeaderName = document.getElementById("LeaderNamesCreate").value;
+        LeaderName = LeaderName.replace(/[+]/g, " ");
+        var State = document.getElementById("RoundStateCreate").value;
+        State = State.replace(/[+]/g, " ");
+
+        var requestN = new XMLHttpRequest();
+    
+        requestN.addEventListener("readystatechange", function(){
+            if (requestN.readyState == 4 && requestN.status == 200)
+            {
+                var Result = JSON.parse(this.responseText);   
+
+                alert(Result["message"]);
+                location.reload();
+            }
+        });
+
+        var url = '../php/roundTableDisplay.php' ;
+
+        requestN.open("POST", url);
+        requestN.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        var urlParameters = JSON.stringify({ type: "insert", 
+                                            RoundNum: RoundNum,
+                                            EventName: EventName,
+                                            LeaderName: LeaderName,
+                                            State:State});
+
+         requestN.send(urlParameters);
+        
+    }
+}
+
+function Delete()
+{
+    var requestN = new XMLHttpRequest();
+    
+    requestN.addEventListener("readystatechange", function(){
+        if (requestN.readyState == 4 && requestN.status == 200)
+        {
+            var Result = JSON.parse(this.responseText);   
+
+            alert(Result["message"]);
+            location.reload();
+        }
+    });
+
+    var url = '../php/roundTableDisplay.php' ;
+
+    requestN.open("POST", url);
+    requestN.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    var urlParameters = JSON.stringify({ type: "delete", 
+                                        RoundID: ActiveRecordId});
+
+    requestN.send(urlParameters);
+}
+
+function UpdateCheck()
+{
+    var Length = document.getElementById("RoundNumberUpdate").value;
+
+    if(Length == null || Length <= 0  )
+    {
+        document.getElementById("RoundNumberErrorUpdate").innerHTML = "The Round number must be 1 or higher";
+        return false;
+    }
+    else
+    {
+        return true;
+    }
+}
+
+function Update()
+{
+    if(UpdateCheck() == true)
+    {
+        var RoundNum = document.getElementById("RoundNumberUpdate").value;
+        var EventName = document.getElementById("EventNamesUpdate").value;
+        EventName = EventName.replace(/[+]/g, " ");
+        var LeaderName = document.getElementById("LeaderNamesUpdate").value;
+        LeaderName = LeaderName.replace(/[+]/g, " ");
+        var State = document.getElementById("RoundStateUpdate").value;
+        State = State.replace(/[+]/g, " ");
+
+        var requestN = new XMLHttpRequest();
+        
+        requestN.addEventListener("readystatechange", function(){
+            if (requestN.readyState == 4 && requestN.status == 200)
+            {
+                var Result = JSON.parse(this.responseText); 
+                
+                alert(Result["message"]);
+                location.reload();
+            }
+        });
+
+        var url = '../php/roundTableDisplay.php' ;
+
+        requestN.open("POST", url);
+        requestN.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+        var urlParameters = JSON.stringify({ type: "update", 
+                                        RoundID: ActiveRecordId,
+                                        oldRoundNum:ActiveRecordRoundNum,
+                                        oldEvent: ActiveRecordEventName,
+                                        newRoundNum: RoundNum,
+                                        newEvent : EventName,
+                                        newLeader: LeaderName,
+                                        newState : State});
+
+        requestN.send(urlParameters);
+    }
+
+}
+>>>>>>> Stashed changes

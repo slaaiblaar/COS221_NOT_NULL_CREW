@@ -9,8 +9,11 @@
 -->
 <?php 
     session_start(); 
+<<<<<<< Updated upstream
     
     require_once("setDBEnvVar.php");
+=======
+>>>>>>> Stashed changes
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -22,6 +25,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/1af5f85004.js" crossorigin="anonymous"></script>
+<<<<<<< Updated upstream
     <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <title>Rounds</title>
 </head>
@@ -32,6 +36,12 @@
         </div>
     </div>
     <div class="content">
+=======
+    <title>Rounds</title>
+</head>
+<body>
+    <div id="bodyContainer">
+>>>>>>> Stashed changes
 
         <div class="top-content">
             <img id="Logo" src="../img/Golf-full-logo-transparent.png" width="150" height="150">
@@ -85,12 +95,24 @@
                     <?php
                         include_once("../php/roundTableDisplay.php");
                         
+<<<<<<< Updated upstream
                         if(array_key_exists('ApplyFilter', $_POST)) {
 
                             $TourName = $_POST["TourNames"];
                             $AffiliationName = $_POST["AffiliationNames"];
                             FilterTable($TourName, $AffiliationName);
 
+=======
+                        if(array_key_exists('ApplyFilter', $_POST)) 
+                        {
+                            $RoundNum = $_POST["RoundNumDrpDwn"];
+                            $EventName = $_POST["EventNameDrpDwn"];
+                            $LeaderName = $_POST["LeaderNameDrpDwn"];
+                            $State = $_POST["RoundStateFilter"];
+                           
+                            FilterTable($RoundNum, $EventName, $LeaderName, $State);
+                           
+>>>>>>> Stashed changes
                             unset($_POST);
                             $_POST = array();
                         }
@@ -139,11 +161,19 @@
                         <div class="inputTextBox">
                             <label for="RoundStateCreate"><b>Choose the Round number:</b></label><br>
                             <select name='RoundStateCreate' id='RoundStateCreate' class="RoundsCreateInput">
+<<<<<<< Updated upstream
                                 <option value= 'scheduled'>Scheduled</option>
                                 <option value= 'in+progress'>In progress</option>
                                 <option value= 'finished'>Finished</option>
                                 <option value= 'cancelled'>Cancelled</option>
                                 <option value= 'postponed'>Postponed</option>
+=======
+                                <option value= 'Scheduled'>Scheduled</option>
+                                <option value= 'In+progress'>In progress</option>
+                                <option value= 'Finished'>Finished</option>
+                                <option value= 'Cancelled'>Cancelled</option>
+                                <option value= 'Postponed'>Postponed</option>
+>>>>>>> Stashed changes
                             </select>
                         </div>
                         
@@ -206,7 +236,11 @@
                         <div class="inputTextBox">
                             <label for="RoundNumberUpdate"><b>Enter the Round Number:</b></label><br>
                             <input class="RoundsUpdateInput" type="number" placeholder="Number" name="RoundNumberUpdate" id= "RoundNumberUpdate" min="1" required>
+<<<<<<< Updated upstream
                             <div class="error" id = "RoundLengthErrorUpdate"></div><br>
+=======
+                            <div class="error" id = "RoundNumberErrorUpdate"></div><br>
+>>>>>>> Stashed changes
                         </div>
                         <div class="inputTextBox">
                             <label for="EventNamesUpdate"><b>Choose a Tournament:</b></label><br>
@@ -227,11 +261,19 @@
                         <div class="inputTextBox">
                             <label for="RoundStateUpdate"><b>Choose the Round number:</b></label><br>
                             <select name='RoundStateUpdate' id='RoundStateUpdate' class="RoundsUpdateInput">
+<<<<<<< Updated upstream
                                 <option value= 'scheduled'>Scheduled</option>
                                 <option value= 'in+progress'>In progress</option>
                                 <option value= 'finished'>Finished</option>
                                 <option value= 'cancelled'>Cancelled</option>
                                 <option value= 'postponed'>Postponed</option>
+=======
+                                <option value= 'Scheduled'>Scheduled</option>
+                                <option value= 'In+progress'>In progress</option>
+                                <option value= 'Finished'>Finished</option>
+                                <option value= 'Cancelled'>Cancelled</option>
+                                <option value= 'Postponed'>Postponed</option>
+>>>>>>> Stashed changes
                             </select>
                         </div>
                         <div id="submitButtons">
@@ -250,7 +292,11 @@
 
     <script src="../js/RoundPopups.js"></script>
     <script src="../js/rounds.js"></script>
+<<<<<<< Updated upstream
     <script src="../js/loaderFlag.js"></script>
+=======
+    <script src="../js/sideMenu.js"></script>
+>>>>>>> Stashed changes
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </body>

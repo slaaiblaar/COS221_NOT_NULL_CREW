@@ -6,6 +6,7 @@ body{
     padding:0;
 }
 
+<<<<<<< Updated upstream
 .loaderFlag{
     height: 100vh;
     width: 100vw;
@@ -44,6 +45,23 @@ body{
     color: white;
 }
   
+=======
+.loginRegister{
+    float: right;
+    background-color: rgb(0, 108, 32); 
+    font-size: 30px;
+    padding: 10px 10px;
+    box-shadow: -10px 8px 10px 1px rgb(0, 255, 119);
+    
+}
+  
+.loginRegister a{
+    padding: 10px 10px;
+    text-decoration: none;
+    color: white;
+}
+  
+>>>>>>> Stashed changes
 .loginRegister a:hover{
     color: black;
     background-color: #00420d;
@@ -87,6 +105,7 @@ body{
     overflow-y: scroll;
     
 }
+<<<<<<< Updated upstream
   
 .sidenav a {
     padding: 8px 8px 8px 32px;
@@ -124,6 +143,45 @@ body{
     color: rgb(0, 255, 119);
 }
   
+=======
+  
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 18px;
+    color: #818181;
+    display: block;
+    text-align: left;
+    transition: 0.3s;
+    border-bottom: 1px solid white;
+    letter-spacing: 1px;
+}
+  
+.tournaments-btn a.active{
+    color: rgb(0, 255, 119);
+}
+  
+.sidenav a:hover {
+    color: rgb(0, 254, 119);
+}
+  
+.course-show a, .tournament-show a{
+    text-decoration: none;
+    border-bottom: 1px solid white;
+    text-align: center;
+    padding: 5px 0px;
+    font-size: 15px
+}
+  
+.course-show a:hover, .tournament-show a:hover{
+    color: rgb(0, 255, 119);
+}
+  
+.tournament-btn a.active{
+    color: rgb(0, 255, 119);
+}
+  
+>>>>>>> Stashed changes
 .course-show {
     display: none;
     text-align: center;
